@@ -35,7 +35,7 @@ class Player:
     def save_game_bin(self):
         game_state = [self.v_RM, self.v_L, self.v_C, self.v_F]
 
-        with open('savedgame.bin', 'wb') as filehandle:
+        with open('.\\data\\savedgame.bin', 'wb') as filehandle:
             pickle.dump(game_state, filehandle)
 
         print('file saved')
@@ -43,7 +43,7 @@ class Player:
 
     def load_game_bin(self):
 
-        with open('savedgame.bin', 'rb') as filehandle:
+        with open('.\\data\\savedgame.bin', 'rb') as filehandle:
             self.v_RM, self.v_L, self.v_C, self.v_F = pickle.load(filehandle)
 
         print('file loaded')
@@ -52,7 +52,7 @@ class Player:
     def save_game(self, num):
         game_state = [self.v_RM, self.v_L, self.v_C, self.v_F]
 
-        fname = "savedgame-"+ str(num) +".json"
+        fname = ".\\data\\savedgame-"+ str(num) +".json"
         with open(fname, 'w') as filehandle:
             json.dump(game_state, filehandle)
 
@@ -60,7 +60,7 @@ class Player:
         return
 
     def load_game(self, num):
-        fname = "savedgame-"+ str(num) +".json"
+        fname = ".\\data\\savedgame-"+ str(num) +".json"
         print(fname)
         with open(fname, 'r') as filehandle:
             data = json.load(filehandle)
