@@ -26,9 +26,7 @@ REM # *** VARIABLES ***
 REM **********************
 REM * INITIALIZE VARIABLES
 REM **********************
-
 REM # -- READ DATA --
-
 REM # *** DIM *** VOCAB$(60)
     FOR I = 1 TO LWRD
         READ D2$
@@ -144,83 +142,12 @@ REM # *** DIM *** EXLOC(10,2)
         DATA 17, 1, "YOUR UNCLE'S DOBERMAN BLOCKS A DOORWAY TO THE NORTH"
 
 
-REM # --- DISPLAY INTRO ---
-DEF FN_15000_INTRO():
-    PRINT "TAYS HOUSE ADVENTURE"
-    PRINT "FIND TREASURES AND VALUABLES IN YOUR MAD UNCLE TAYS' HOUSE"
-    PRINT "TYPE SIMPLE COMMANDS: NORTH, SOUTH, ETC. TO MOVE (OR JUST 'N', 'S')."
-    PRINT "TAKE AND DROP, INVENTORY, LOOK, READ, MOVE, AND SO ON."
-    PRINT "SOME COMMANDS ARE COMPLEX: 'MOVE THE HUBCAP WITH THE SPANNER'"
-    RETURN
-
-REM # -- SCORE --
-DEF FN_9500_SCORE():
-    SCORE = 50
-    FOR I = 16 TO 20
-        IF ILOC(I) = 0 THEN 
-            SCORE = SCORE + 10
-    NEXT
-    FOR I = 3 TO 30
-        FOR J = 1 TO 6
-            IF REXIT(I,J) = -1 THEN 
-                SCORE = SCORE -5
-    NEXT J, I
-    FOR I = 1 TO 15
-        IF ILOC(I) = -1 THEN
-            SCORE = SCORE - 5
-    NEXT
-    PRINT "YOUR SCORE IS "; SCORE; " OUT OF A POSSIBLE 100":
-    RETURN
-
-REM # --- DECODE D$ INTO D2$ ---
-DEF FN_10000_DECODE():
-    D2$ = "" 
-    IF D$ = "" THEN 
-        IF SP = 1 THEN PRINT "."; REM # loading
-    CS = 0
-    OFT = ASC(MID$(D$,1,1))-48
-    FOR DC = 2 TO LEN(D$)-1
-        D2AS = ASC(MID$(D$,DC,1))
-        IF D2AS >= 65 AND D2AS <= 90 THEN D2AS=D2AS - OFT
-        IF D2AS < 65 THEN D2AS = D2AS+26
-        D2$ = D2$ + CHR$(D2AS)
-        IF D2AS >= 65 AND D2AS <= 90 THEN CS = CS + D2AS
-        IF CS > 9 THEN CS = CS-((INT(CS/10)) * 10)
-    NEXT
-    IF D$ <> "" THEN 
-        IF ASC(MID$(D$, LEN(D$), 1))-48 <> CS THEN 
-            PRINT "BAD CHECKSUM FOR "; D$; ", FOUND "; CS
-    GOTO FN_19999_END_GAME()
-    RETURN
-
-REM # --- PRINT MESSAGE D2$ ---
-DEF FN_11000_PRINT():
-    REM GOSUB FN_10000_DECODE()
-    PRINT D2$
-    RETURN
-
-DEF FN_19000_GAME_OVER():
-    D2$ = "YOU HAVE DIED"
-    PRINT D2$
-    GOTO FN_19999_END_GAME()
-
-DEF FN_19900_GAME_WON():
-    GOSUB FN_9500_SCORE()
-    IF SCORE = 100 THEN
-		D2$ = "YOU HAVE WON THE GAME!"
-    PRINT D2$
-
-DEF FN_19999_END_GAME():
-    REM # --- END GAME ---
-    EXIT
-    END
-
 --------------------------------------------------------------------------------------
 
 REM ******************
 REM * START HERE
 REM ******************
-DEF FN_GAME():
+def FN_GAME():
     CLS
     FN_15000_INTRO()
     LET GAME = TRUE
@@ -232,52 +159,52 @@ DEF FN_GAME():
         FN_5100()
 
 
-DEF FN_2500():
+def FN_2500():
     IF LCL = 30 THEN 
         D2$= "... AND SPRING BACK"
-        PRINT D2$
+        print D2$
         LCL = 12
     IF LCL = 31 THEN 
         GOTO FN_19900_GAME_WIN()
 
-DEF FN_2510():
-    PRINT RNAME$(LCL)
-    PRINT RDESC$(LCL)
+def FN_2510():
+    print RNAME$(LCL)
+    print RDESC$(LCL)
     FOR I = 1 TO 6
         NEIGH = REXIT(LCL, I)
         IF NEIGH > 0 THEN 
-            PRINT VOCAB$(I) ; ": "; RNAME$(NEIGH)
+            print VOCAB$(I) ; ": "; RNAME$(NEIGH)
     NEXT
     FOR I = 1 TO NXDESC
         IF LCL = EXLOC(I,1) AND REXIT(EXLOC(I,1),EXLOC(I,2)) <= 0 THEN 
-            PRINT EXDESC$(I)
+            print EXDESC$(I)
     NEXT
     IF LCL = 17 AND REXIT(17,1) > 0 THEN
         D2$="YOUR UNCLE'S DOBERMAN IS SNORING PEACEFULLY"
-        PRINT D2$
+        print D2$
     IF LCL = 3 AND ILOC(6) = -12 THEN
         D2$="A BUNGEE CORD DANGLES FROM THE RAILING ABOVE"
-        PRINT D2$
+        print D2$
     IF LCL = 12 AND ILOC(6) = -12 THEN
         D2$="A BUNGEE CORD DANGLES FROM THE RAILING"
-        PRINT D2$
+        print D2$
     FOR I = 1 TO LASTITEM
         IF ILOC(I) = LCL THEN 
-            PRINT "THERE IS A "; VOCAB$(I + ITEMOFF); " HERE"
+            print "THERE IS A "; VOCAB$(I + ITEMOFF); " HERE"
     NEXT
     IF LCL = 2 AND ILOC(3) = -1 THEN
         D2$= "SOMETHING IS BARELY VISIBLE UNDER THE FRIDGE"
-        PRINT D2$
+        print D2$
     IF LCL = 3 AND ILOC(5) = 30 THEN
         D2$= "THERE IS A PICTURE HIGH UP ON THE WALL"
-        PRINT D2$
+        print D2$
     IF LCL = 30 THEN
         TURN1 = 1
 
-DEF FN_5000():
+def FN_5000():
     IF TURN1 <> 1 AND LCL = 30 THEN 
         D2$= "...AND SPRING BACK"
-        PRINT D2$
+        print D2$
         LCL = 12
         GOTO 2500
     REM # --- READ INPUT ---
@@ -300,7 +227,7 @@ DEF FN_5000():
             INW$(WIDX) = INW$(WIDX) + C$
     NEXT
 
-DEF FN_5100():
+def FN_5100():
     CURTOK = 1
     FOR TIDX = 1 TO WIDX
         ISNULLW = 0
@@ -329,11 +256,11 @@ DEF FN_5100():
         IF X = 4 THEN FN_7100()
 
     D2$ = "YOU CAN'T DO THAT"
-    PRINT D2$
+    print D2$
     # GOTO 5000
-    RETURN
+    # RETURN
 
-DEF FN_6050():
+def FN_6050():
     IF INPTK(1) >= 1 AND INPTK(1) <= 12 THEN 
         GOTO FN_7000()
 
@@ -351,48 +278,48 @@ DEF FN_6050():
         IF X = 7 THEN FN_6099()
         IF X = 8 THEN FN_2500()
 
-DEF FN_6099()
+def FN_6099()
     # TAKE DROP?
     D2$ = "HUH?"
-    PRINT D2$
+    print D2$
     # GOTO 5000
 
-DEF FN_6100_INV():
+def FN_6100_INV():
     D2$ = "YOU ARE CARRYING:"
-    PRINT D2$
+    print D2$
     FOR I = 1 TO LASTITEM
         IF ILOC(I) = 0 THEN 
-            PRINT "  "; VOCAB$(I+ITEMOFF)
+            print "  "; VOCAB$(I+ITEMOFF)
     NEXT I
     # GOTO 5000
 
-DEF FN_6200_SCORE():
+def FN_6200_SCORE():
     GOSUB FN_9500_SCORE()
     # GOTO 5000
 
-DEF FN_6300_JUMP():
+def FN_6300_JUMP():
     IF LCL <> 12 THEN 
         D2$= "WHO ARE YOU, DAVID LEE ROTH?"
-        PRINT D2$
+        print D2$
         GOTO 5000
     IF ILOC(6) <> -12 THEN
         D2$ = "YOU FORGOT YOUR PARACHUTE"
-        PRINT D2$
+        print D2$
         GOTO 5000
     D2$ = "YOU BUNGEE OFF THE BALCONY..."
-    PRINT D2$
+    print D2$
     LCL = 30
     # GOTO 2510
 
-DEF FN_6350_HELP(): 
+def FN_6350_HELP(): 
     GOSUB FN_15000_INTRO()
     # GOTO 5000
 
-DEF FN_6400():
+def FN_6400():
     ARG = INPTK(2) - ITEMOFF
     IF ARG < 1 or ARG > LASTITEM THEN 
         D2$ = "HUH?"
-        PRINT D2$
+        print D2$
         GOTO 5000
     IF COMM > 17 AND COMM <= 27 THEN 
         ON COMM-17 GOTO 6500, 6600, 6700, 6700, 6700, 6800, 6900, 7600, 6950, 8200
@@ -411,125 +338,125 @@ DEF FN_6400():
         IF X = 1 THEN FN_8200()
 
     D2$ = "HUH?"
-    PRINT D2$
+    print D2$
     GOTO 5000
 
-DEF FN_6500_TAKE(): 
+def FN_6500_TAKE(): 
     IF ILOC(ARG) = 0 THEN
         D2$ = "YOU ALREADY HAVE IT"
-        PRINT D2$
+        print D2$
         GOTO 5000
     IF ILOC(ARG) = 30 AND LCL = 3 AND ARG = 5 THEN
         D2$= "IT'S TOO HIGH"
-        PRINT D2$
+        print D2$
         GOTO 5000
     IF ILOC(ARG) <> LCL THEN
 		D2$ = "IT'S NOT HERE"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF IC >= 8 THEN
 		D2$ = "YOU'RE CARRYING TOO MUCH"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF ARG > IMMOFF THEN
 		D2$ = "IT'S TOO HEAVY"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF LCL = 29 AND ARG = 12 THEN
 		D2$ = "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IC = IC + 1: IF LCL = 30 AND ARG = 5 THEN
 		D2$ = "TAKING THE PICTURE REVEALS A FUSEBOX"
-		PRINT D2$
+		print D2$
 		 ILOC(ARG) = 0: ILOC(IMMOFF+7) = 30: GOTO 2500
-    ILOC(ARG) = 0: PRINT VOCAB$(INPTK(2)); ": TAKEN": GOTO 5000
+    ILOC(ARG) = 0: print VOCAB$(INPTK(2)); ": TAKEN": GOTO 5000
 
-DEF FN_6600_DROP();
+def FN_6600_DROP();
     IF ILOC(ARG) <> 0 THEN
 		D2$= "YOU AREN'T CARRYING IT"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IC = IC - 1: IF LCL = 17 AND ARG = 10 AND REXIT(17,1) <= 0 THEN
 		D2$= "THE DOG LOOKS DISGUSTED. MAYBE YOU SHOULD EAT IT."
-		PRINT D2$
+		print D2$
 		 GOTO 6690
     IF LCL = 17 AND ARG = 2 AND REXIT(17,1) <= 0 THEN
 		D2$= "THE DOG CHEWS HIS FAVORITE TOY AND IS SOON ASLEEP"
-		PRINT D2$
+		print D2$
 		 ILOC(ARG) = -999: REXIT(17,1)=18: GOTO 2500
     IF LCL = 29 AND ARG = 12 AND REXIT(29,5) <= 0 THEN
 		D2$= "THE BOXSPRING COVERS THE GAP IN THE STAIRS"
-		PRINT D2$
+		print D2$
 		 ILOC(ARG) = -999: REXIT(29,5) = 2: REXIT(2,6) = 29: GOTO 2500
     # 6690 
-    ILOC(ARG) = LCL: PRINT VOCAB$(INPTK(2)); ": DROPPED": GOTO 5000
+    ILOC(ARG) = LCL: print VOCAB$(INPTK(2)); ": DROPPED": GOTO 5000
 
-DEF FN_6700_LOOK():
+def FN_6700_LOOK():
     ARG = INPTK(2) - ITEMOFF
     IF ILOC(ARG) <> 0 AND ILOC(ARG) <> LCL THEN
 		D2$= "IT'S NOT HERE"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF ARG = 9 AND (LCL = 13 OR LCL = 22) THEN GOSUB FN_8000(): GOSUB FN_8050(): GOTO 5000
-    IF IDESC$(ARG) = "" THEN PRINT "THERE'S NOTHING SPECIAL ABOUT THE "; VOCAB$(INPTK(2)): GOTO 5000
-    PRINT IDESC$(ARG): GOTO 5000
+    IF IDESC$(ARG) = "" THEN print "THERE'S NOTHING SPECIAL ABOUT THE "; VOCAB$(INPTK(2)): GOTO 5000
+    print IDESC$(ARG): GOTO 5000
 
-DEF FN_6800_UNLOCK():
+def FN_6800_UNLOCK():
     IF ILOC(7) <> 0 THEN
 		D2$ = "YOU DON'T HAVE A KEY!"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF LCL = 5 THEN
 		D2$= "THE KEY DOESN'T FIT THE LOCK"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF LCL = 17 THEN
 		D2$ = "YOU UNLOCK THE DOOR. BEWARE!"
-		PRINT D2$
+		print D2$
 		 REXIT(17,4) = 20: GOTO 2500
 
-DEF FN_8000():
-    IF SAFED <> 0 THEN RETURN
+def FN_8000():
+    IF SAFED <> 0 THEN # RETURN
     SAFED = INT(RND(3) * 3) + 1
-    RETURN
+    # RETURN
 
-DEF FN_8050():
+def FN_8050():
     N1$ = VOCAB$(DIROFF+1)
     N2$ = VOCAB$(DIROFF+3)
     IF SAFED = 1 THEN N1$ = VOCAB$(DIROFF+2)
     IF SAFED = 3 THEN N2$ = VOCAB$(DIROFF+2)
     D2$ = "EXPERIMENTS ON "
-    PRINT D2$
+    print D2$
     NTMSG$ = D2$ + N1$
     D2$ = " AND "
-    PRINT D2$
+    print D2$
     NTMSG$ = NTMSG$ + D2$ + N2$
     D2$ = " DOORS PROCEEDING WELL; FILE FOR PATENT"
-    PRINT D2$
+    print D2$
     NTMSG$=NTMSG$+D2$
-    PRINT NTMSG$
-    RETURN
+    print NTMSG$
+    # RETURN
 
-DEF FN_6899_HUH():
+def FN_6899_HUH():
     D2$ = "HUH?"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
 
-DEF FN_6900_EAT():
+def FN_6900_EAT():
     IF ILOC(ARG) <> 0 THEN
 		D2$= "YOU DON'T HAVE IT!"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF ARG <> 10 THEN
 		D2$= "YOU CAN'T EAT THAT!"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     D2$= "THERE WAS A DIAMOND HIDDEN INSIDE THE GAINESBURGER"
-		PRINT D2$
+		print D2$
 		 ILOC(ARG) = -2: ILOC(17) = 0: GOTO 2500
 
-DEF FN_6950_SPIN():
+def FN_6950_SPIN():
     AIMM = ARG - IMMOFF
     IF AIMM >= 1 AND AIMM <= 4 THEN
         ON AIMM GOTO 6970, 6975, 6980
@@ -539,47 +466,47 @@ DEF FN_6950_SPIN():
         IF X = 8 THEN FN_6980()
 
     6970 D2$= "IT'S TOO HEAVY FOR YOU TO MOVE"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     6975 D2$= "YOUR BACK IS ACTING UP"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     6980 D2$= "THAT SEEMS POINTLESS AND UNSANITARY"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     
     D2$= "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
 
-DEF FN_7000():
+def FN_7000():
     GOARG = INPTK(1): IF GOARG > 6 THEN GOARG = GOARG - 6
     IF REXIT(LCL, GOARG) > 0 THEN LCL = REXIT(LCL, GOARG): GOTO 2500
     IF LCL = 12 AND GOARG = 5 THEN
 		D2$= "YOU'RE AFRAID OF THE DARK"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF LCL = 17 AND GOARG = 1 THEN
 		D2$= "YOU NEVER DID LIKE THAT DOG"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF LCL = 23 AND REXIT(23, 6) <= 0 THEN
 		D2$ = "THE DUMBWAITER MECHANISM IS CORRODED AND WON'T MOVE"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     D2$= "YOU CAN'T GO THAT WAY"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
 
-DEF FN_7100():
+def FN_7100():
     IF COMM < 23 OR COMM > 30 THEN GOTO FN_6899_HUH()
     ARG = INPTK(2) - ITEMOFF: IF COMM <> 27 AND ARG < 1 or ARG > LASTITEM THEN
 		D2$ = "HUH?"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF COMM <> 23 AND COMM <> 29 AND ILOC(ARG) <> LCL AND ILOC(ARG) <> 0 THEN
 		D2$= "IT'S NOT HERE"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     ON COMM-22 GOTO 6800, 6899, 6899, 7200, 7400, 7500, 7700, 7800
     X = COMM-22 
@@ -592,19 +519,19 @@ DEF FN_7100():
     IF X = 1 THEN FN_7700()
     IF X = 1 THEN FN_7800()
 
-DEF FN_7200():
+def FN_7200():
     IF ARG < IMMOFF THEN
 		D2$= "YOU CAN JUST TAKE THAT"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     AIMM = ARG - IMMOFF: MVARG = INPTK(3) - ITEMOFF:
     IF AIMM < 1 OR AIMM > 3 THEN
 		D2$ = "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     IF ILOC(MVARG) <> 0 THEN
 		D2$ = "YOU DON'T HAVE IT!"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     ON AIMM GOTO 7250, 7300, 7350
     X = AIMM
@@ -612,152 +539,224 @@ DEF FN_7200():
     IF X = 1 THEN FN_7300()
     IF X = 1 THEN FN_7350()
 
-DEF FN_7250():
+def FN_7250():
     IF MVARG <> 4 OR ILOC(3) >= 0 THEN
 		D2$= "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		 GOTO 5000
     D2$= "YOU JACK UP THE FRIDGE AND FIND A FUSE UNDER IT"
-		PRINT D2$
+		print D2$
 		ILOC(3)=LCL
         GOTO 2500
 
-DEF FN_7300():
+def FN_7300():
     IF MVARG <> 13 OR ILOC(2) >= 0 THEN
 		D2$ = "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     D2$="YOU MOVE THE COUCH AND FIND A TEDDYBEAR BEHIND IT"
-		PRINT D2$
+		print D2$
 		ILOC(2)=LCL
         GOTO 2500
 
-DEF FN_7350():
+def FN_7350():
     IF MVARG <> 11 THEN
 		D2$ = "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     D2$="MOVING THE CLOTHES REVEALS A LAUNDRY CHUTE TO THE BASEMENT"
-		PRINT D2$
+		print D2$
 		REXIT(LCL,6) = 27
         GOTO 2500
 
-DEF FN_7400():
+def FN_7400():
     IF LCL <> 20 THEN
 		D2$ = "HUH?"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF INPTK(3) - ITEMOFF <> IMOFF + 4 THEN
 		D2$ = "HUH?"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     DOORDIR = INPTK(2) - DIROFF: IF DOORDIR < 1 OR DOORDIR > 3 THEN
 		D2$ = "HUH?"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     GOSUB FN_8025()
     IF DOORDIR = SAFED THEN
 		D2$= "OPENING THE DOOR REVEALS A DUMBWAITER"
-		PRINT D2$
+		print D2$
 		REXIT(LCL, 4) = 23
         GOTO 2500
     IF INT(RND(2)) > 1 THEN
 		D2$= "A SHOT RINGS OUT! IT WAS WELL-AIMED TOO."
-		PRINT D2$
+		print D2$
 		GOTO 19000
     D2$= "AN IRONING BOARD SLAMS ONTO YOUR HEAD"
-		PRINT D2$
+		print D2$
 		GOTO 19000
 
-DEF FN_8025():
-    IF SAFED <> 0 THEN RETURN
+def FN_8025():
+    IF SAFED <> 0 THEN # RETURN
     SAFED = (INPTK(2) - DIROFF) + 1
     IF SAFED > 3 THEN SAFED = 1
-    RETURN
+    # RETURN
 
-DEF FN_7500():
+def FN_7500():
     IF LCL <> 12 THEN
 		D2$ = "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF INPTK(2) - ITEMOFF <> 6 THEN
 		D2$= "YOU CAN'T TIE THAT"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF INPTK(3) - ITEMOFF <> (IMOFF + 5) THEN
 		D2$= "YOU CAN'T TIE TO THAT"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF ILOC(6) <> 0 THEN
 		D2$ = "YOU DON'T HAVE IT!"
-		PRINT D2$
+		print D2$
 		GOTO 5000
-    D2$= "TIED": PRINT D2$
+    D2$= "TIED": print D2$
     ILOC(6) = -12
     IC = IC - 1
     GOTO 2500
 
-DEF FN_7600():
+def FN_7600():
     IF ILOC(8) <> 0 THEN
 		D2$ = "HUH?"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF LCL = 18 THEN
 		D2$= "THERE IS A FLASH OF LIGHT AND A CRACKING SOUND. AN OPENING APPEARS IN THE EAST WALL"
-		PRINT D2$
+		print D2$
 		REXIT(18, 3) = 19
         GOTO 2500
     INVERSE: 
         D2$= "WHEE!"
-		PRINT D2$
-		NORMAL: PRINT ""
+		print D2$
+		NORMAL: print ""
         GOTO 5000
 
-DEF FN_7700():
+def FN_7700():
     IF LCL <> 20 THEN
 		D2$ = "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF ILOC(15) <> 0 THEN
 		D2$= "YOU DON'T HAVE ANY OIL"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF INPTK(2) - ITEMOFF <> IMOFF + 6 THEN
 		D2$ = "HUH?"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     D2$= "THE DUMBWAITER MECHANISM NOW RUNS SMOOTHLY"
-		PRINT D2$
+		print D2$
 		REXIT(23,6) = 24
         GOTO 5000
 
-DEF FN_7800():
+def FN_7800():
     IF LCL <> 30 OR (INPTK(2) - ITEMOFF <> 3) THEN 
         D2$ = "YOU CAN'T DO THAT"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF INPTK(3) - ITEMOFF <> (IMOFF + 7) THEN 
         D2$= "YOU CAN'T PUT IT THERE"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     IF ILOC(3) <> 0 THEN 
         D2$ = "YOU DON'T HAVE IT!"
-		PRINT D2$
+		print D2$
 		GOTO 5000
     D2$= "YOU PUT THE FUSE IN THE BOX"
-    PRINT D2$
+    print D2$
     ILOC(3) = -999
     IC = IC - 1
     REXIT(12,5) = 25
     GOTO 5000
 
-DEF FN_8200():
+def FN_8200():
     IF LCL = 20 AND (INPTK(2) - ITEMOFF) = IMOFF + 4 THEN 
         D2$ = "PLEASE SPECIFY LEFT, CENTER, OR RIGHT"
-        PRINT D2$
+        print D2$
         GOTO 5000
     ELSE
         D2$ = "HUH?"
-        PRINT D2$
+        print D2$
         GOTO 5000
-    RETURN
+    # RETURN
+
+REM # --- DISPLAY INTRO ---
+def FN_15000_INTRO():
+    print "TAYS HOUSE ADVENTURE"
+    print "FIND TREASURES AND VALUABLES IN YOUR MAD UNCLE TAYS' HOUSE"
+    print "TYPE SIMPLE COMMANDS: NORTH, SOUTH, ETC. TO MOVE (OR JUST 'N', 'S')."
+    print "TAKE AND DROP, INVENTORY, LOOK, READ, MOVE, AND SO ON."
+    print "SOME COMMANDS ARE COMPLEX: 'MOVE THE HUBCAP WITH THE SPANNER'"
+    # RETURN
+
+REM # -- SCORE --
+def FN_9500_SCORE():
+    SCORE = 50
+    FOR I = 16 TO 20
+        IF ILOC(I) = 0 THEN 
+            SCORE = SCORE + 10
+    NEXT
+    FOR I = 3 TO 30
+        FOR J = 1 TO 6
+            IF REXIT(I,J) = -1 THEN 
+                SCORE = SCORE -5
+    NEXT J, I
+    FOR I = 1 TO 15
+        IF ILOC(I) = -1 THEN
+            SCORE = SCORE - 5
+    NEXT
+    print "YOUR SCORE IS "; SCORE; " OUT OF A POSSIBLE 100":
+    # RETURN
+
+REM # --- DECODE D$ INTO D2$ ---
+def FN_10000_DECODE():
+    D2$ = "" 
+    IF D$ = "" THEN 
+        IF SP = 1 THEN print "."; REM # loading
+    CS = 0
+    OFT = ASC(MID$(D$,1,1))-48
+    FOR DC = 2 TO LEN(D$)-1
+        D2AS = ASC(MID$(D$,DC,1))
+        IF D2AS >= 65 AND D2AS <= 90 THEN D2AS=D2AS - OFT
+        IF D2AS < 65 THEN D2AS = D2AS+26
+        D2$ = D2$ + CHR$(D2AS)
+        IF D2AS >= 65 AND D2AS <= 90 THEN CS = CS + D2AS
+        IF CS > 9 THEN CS = CS-((INT(CS/10)) * 10)
+    NEXT
+    IF D$ <> "" THEN 
+        IF ASC(MID$(D$, LEN(D$), 1))-48 <> CS THEN 
+            print "BAD CHECKSUM FOR "; D$; ", FOUND "; CS
+    GOTO FN_19999_END_GAME()
+    # RETURN
+
+REM # --- print MESSAGE D2$ ---
+def FN_11000_PRINT():
+    REM GOSUB FN_10000_DECODE()
+    print D2$
+    # RETURN
+
+def FN_19000_GAME_OVER():
+    D2$ = "YOU HAVE DIED"
+    print D2$
+    GOTO FN_19999_END_GAME()
+
+def FN_19900_GAME_WON():
+    GOSUB FN_9500_SCORE()
+    IF SCORE = 100 THEN
+		D2$ = "YOU HAVE WON THE GAME!"
+    print D2$
+
+def FN_19999_END_GAME():
+    REM # --- END GAME ---
+    EXIT
+    END
+
