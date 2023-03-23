@@ -1,5 +1,6 @@
 import random
 
+# 10 REM *** UNCLE TAYS HOUSE ADVENTURE ***
 # REM *** VARIABLES ***
 # DIM INWS[10]
 # DIM INPTK[10]
@@ -9,15 +10,15 @@ import random
 # DIM ILOC[30]
 # DIM RNAMES[31]
 # DIM RDESCS[31]
-# DIM REXIT[31,6]
+# DIM REXIT[31][6]
+# DIM EXLOC[10][2]
 # DIM EXDESCS[10]
-# DIM EXLOC[10,2]
+
 DIROFF = 30
 ITEMOFF = 33
 LASTITEM = 27
 IMMOFF = 20
-IMOFF = 20
-# IMOFF ??
+# IMOFF ?? never declared
 
 LWRD = 60
 NXDESC = 7
@@ -162,7 +163,7 @@ RDESCS = [
 ]
 print("RDESCS", len(RDESCS))
 
-# DIM REXIT[31,6]
+# DIM REXIT[31][6]
 REXIT = [
     [ 2 , 31, 3 , 4 , 0 , 0  ],
     [ 0 , 1 , 0 , 0 , 0 , -1 ],
@@ -219,7 +220,7 @@ EXDESCS =[
 ]
 print("EXDESCS", len(EXDESCS))
 
-# DIM EXLOC[10,2]
+# DIM EXLOC[10][2]
 EXLOC = [
     [ 5 , 6],
     [ 8 , 6],
@@ -262,7 +263,7 @@ def FN_9500_SCORE():
 
     for I in range(3, 30):
         for J in range(1, 6):
-            if REXIT[I,J] == -1 :
+            if REXIT[I][J] == -1 :
                 SCORE = SCORE -5
 
     for I in range(1, 15):
@@ -306,15 +307,17 @@ def FN_2510():
     print(RNAMES[LCL])
     print(RDESCS[LCL])
     for I in range(1, 6):
-        NEIGH = REXIT[LCL, I]
+        NEIGH = REXIT[LCL][ I]
         if NEIGH > 0:
             print(VOCABS[I] , ": ", RNAMES[NEIGH])
 
     for I in range(1, NXDESC):
-        if LCL == EXLOC[I,1] and REXIT[EXLOC[I,1],EXLOC[I,2]] <= 0:
+        L1 = EXLOC[I][1]
+        L2 = EXLOC[I][2]
+        if LCL == L1 and REXIT[L1][L2] <= 0:
             print(EXDESCS[I])
 
-    if LCL == 17 and REXIT[17,1] > 0:
+    if LCL == 17 and REXIT[17][1] > 0:
         D2S="YOUR UNCLE'S DOBERMAN IS SNORING PEACEFULLY"
         print(D2S)
     if LCL == 3 and ILOC[6] == -12:
@@ -522,24 +525,24 @@ def FN_6600():
         print(D2S)
          # GOTO 5000
     IC = IC - 1
-    if LCL == 17 and ARG == 10 and REXIT[17,1] <= 0:
+    if LCL == 17 and ARG == 10 and REXIT[17][1] <= 0:
         D2S = "THE DOG LOOKS DISGUSTED. MAYBE YOU SHOULD EAT IT."
         print(D2S)
         # GOTO 6690
     
-    if LCL == 17 and ARG == 2 and REXIT[17,1] <= 0:
+    if LCL == 17 and ARG == 2 and REXIT[17][1] <= 0:
         D2S = "THE DOG CHEWS HIS FAVORITE TOY and IS SOON ASLEEP"
         print(D2S)
         ILOC[ARG] = -999
-        REXIT[17,1] = 18
+        REXIT[17][1] = 18
         # GOTO 2500
     
-    if LCL == 29 and ARG == 12 and REXIT[29,5] <= 0:
+    if LCL == 29 and ARG == 12 and REXIT[29][5] <= 0:
         D2S = "THE BOXSPRING COVERS THE GAP IN THE STAIRS"
         print(D2S)
         ILOC[ARG] = -999
-        REXIT[29,5] = 2
-        REXIT[2,6] = 29
+        REXIT[29][5] = 2
+        REXIT[2][6] = 29
         # GOTO 2500
     # 6690
     ILOC[ARG] = LCL
@@ -577,7 +580,7 @@ def FN_6800():
     if LCL == 17:
         D2S = "YOU UNLOCK THE DOOR. BEWARE!"
         print(D2S)
-        REXIT[17,4] = 20
+        REXIT[17][4] = 20
         # GOTO 2500
 
 def FN_8000():
@@ -652,8 +655,8 @@ def FN_6950():
 def FN_7000():
     GOARG = INPTK[1]
     if GOARG > 6: GOARG = GOARG - 6
-    if REXIT[LCL, GOARG] > 0:
-        LCL = REXIT[LCL, GOARG]
+    if REXIT[LCL][ GOARG] > 0:
+        LCL = REXIT[LCL][ GOARG]
         # GOTO 2500
     if LCL == 12 and GOARG == 5:
         D2S = "YOU'RE AFRAID OF THE DARK"
@@ -663,7 +666,7 @@ def FN_7000():
         D2S = "YOU NEVER DID LIKE THAT DOG"
         print(D2S)
         # GOTO 5000
-    if LCL == 23 and REXIT[23, 6] <= 0:
+    if LCL == 23 and REXIT[23][ 6] <= 0:
         D2S = "THE DUMBWAITER MECHANISM IS CORRODED and WON'T MOVE"
         print(D2S)
         # GOTO 5000
@@ -745,7 +748,7 @@ def FN_7350():
         # GOTO 5000
     D2S="MOVING THE CLOTHES REVEALS A LAUNDRY CHUTE TO THE BASEMENT"
     print(D2S)
-    REXIT[LCL,6] = 27
+    REXIT[LCL][6] = 27
     # GOTO 2500
 
 def FN_7400():
@@ -753,7 +756,7 @@ def FN_7400():
         D2S = "HUH?"
         print(D2S)
         # GOTO 5000
-    if INPTK[3] - ITEMOFF != IMOFF + 4:
+    if INPTK[3] - ITEMOFF != IMMOFF + 4:
         D2S = "HUH?"
         print(D2S)
         # GOTO 5000
@@ -766,7 +769,7 @@ def FN_7400():
     if DOORDIR == SAFED:
         D2S = "OPENING THE DOOR REVEALS A DUMBWAITER"
         print(D2S)
-        REXIT[LCL, 4] = 23
+        REXIT[LCL][ 4] = 23
         # GOTO 2500
     rnd = random.randint(0,2)
     if rnd > 1:
@@ -794,7 +797,7 @@ def FN_7500():
         D2S = "YOU CAN'T TIE THAT"
         print(D2S)
         # GOTO 5000
-    if INPTK[3] - ITEMOFF != (IMOFF + 5):
+    if INPTK[3] - ITEMOFF != (IMMOFF + 5):
         D2S = "YOU CAN'T TIE TO THAT"
         print(D2S)
         # GOTO 5000
@@ -816,7 +819,7 @@ def FN_7600():
     if LCL == 18:
         D2S = "THERE IS A FLASH OF LIGHT and A CRACKING SOUND. AN OPENING APPEARS IN THE EAST WALL"
         print(D2S)
-        REXIT[18, 3] = 19
+        REXIT[18][ 3] = 19
         #GOTO 2500
     #INVERSE:
     D2S = "WHEE!"
@@ -834,13 +837,13 @@ def FN_7700():
         D2S = "YOU DON'T HAVE ANY OIL"
         print(D2S)
         # GOTO 5000
-    if INPTK[2] - ITEMOFF != IMOFF + 6:
+    if INPTK[2] - ITEMOFF != IMMOFF + 6:
         D2S = "HUH?"
         print(D2S)
         # GOTO 5000
     D2S = "THE DUMBWAITER MECHANISM NOW RUNS SMOOTHLY"
     print(D2S)
-    REXIT[23,6] = 24
+    REXIT[23][6] = 24
     # GOTO 5000
 
 def FN_7800():
@@ -848,7 +851,7 @@ def FN_7800():
         D2S = "YOU CAN'T DO THAT"
         print(D2S)
         # GOTO 5000
-    if INPTK[3] - ITEMOFF != (IMOFF + 7):
+    if INPTK[3] - ITEMOFF != (IMMOFF + 7):
         D2S = "YOU CAN'T PUT IT THERE"
         print(D2S)
         # GOTO 5000
@@ -860,11 +863,11 @@ def FN_7800():
     print(D2S)
     ILOC[3] = -999
     IC = IC - 1
-    REXIT[12,5] = 25
+    REXIT[12][5] = 25
     # GOTO 5000
 
 def FN_8200():
-    if LCL == 20 and (INPTK[2] - ITEMOFF) == IMOFF + 4:
+    if LCL == 20 and (INPTK[2] - ITEMOFF) == IMMOFF + 4:
         D2S = "PLEASE SPECIFY LEFT, CENTER, or RIGHT"
         print(D2S)
         # GOTO 5000

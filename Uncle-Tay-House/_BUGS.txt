@@ -1,3 +1,7 @@
 BUGS:
 
 LINE 6530 IS DUPPLICATED
+
+IMMOFF = 20
+IMOFF = 20
+# IMOFF ?? never declared
