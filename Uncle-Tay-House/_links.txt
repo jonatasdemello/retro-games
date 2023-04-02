@@ -1,0 +1,7 @@
+
+https://github.com/inexorabletash/jsbasic
+
+https://github.com/inexorabletash/jsbasic/blob/main/samples/sample.adventure.txt
+
+https://inexorabletash.github.io/jsbasic/
+
