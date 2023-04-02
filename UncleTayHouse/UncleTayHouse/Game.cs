@@ -40,15 +40,16 @@ namespace UncleTayHouse
 			Console.ResetColor();
 			Console.WriteLine();
 		}
-		#region Methods
+
 		public void FN_15000_INTRO()
 		{
 			print(" ");
 			print("TAYS HOUSE ADVENTURE");
 			print("--------------------");
 			print("FIND TREASURES && VALUABLES IN YOUR MAD UNCLE TAYS' HOUSE");
-			print("TYPE SIMPLE COMMANDS: NORTH, SOUTH, ETC. TO MOVE (OR JUST 'N', 'S').");
-			print("TAKE && DROP, INVENTORY, LOOK, READ, MOVE, && SO ON.");
+			print("TYPE SIMPLE COMMANDS:");
+			print("   TO MOVE AROUND: NORTH, SOUTH, EAST, WEST, UP, DOWN (OR JUST N, S, E, W, U, D).");
+			print("TAKE, DROP, INVENTORY, LOOK, READ, MOVE, AND SO ON.");
 			print("SOME COMMANDS ARE COMPLEX: 'MOVE THE HUBCAP WITH THE SPANNER'");
 			print(" ");
 			print("commands: ");
@@ -60,31 +61,39 @@ namespace UncleTayHouse
 		}
 		public void FN_9500_SCORE()
 		{
-			SCORE = 50;
-			for (var I = 16; I < 20; I++)
+			int SCORE = 50;
+			// add points for collected items
+			for (var i = 16; i < 20; i++)
 			{
-				if (ILOC[I] == 0)
+				if (ILOC[i] == 0) // Carrying?
 				{
-					SCORE = SCORE + 10;
+					SCORE += 10;
 				}
 			}
-			for (var I = 3; I < 30; I++)
+			// reduce points for non explored items
+			for (var i = 3; i < 30; i++)
 			{
-				for (var J = 1; J < 6; J++)
+				for (var j = 1; j < 6; j++)
 				{
-					if (REXIT[I, J] == -1)
+					if (LocationExit[i, j] == -1)
 					{
-						SCORE = SCORE - 5;
+						SCORE -= 5;
 					}
 				}
 			}
-			for (var I = 1; I < 15; I++)
+			// reduce points for ?
+			for (var i = 1; i < 15; i++)
 			{
-				if (ILOC[I] == -1)
+				if (ILOC[i] == -1)
 				{
-					SCORE = SCORE - 5;
+					SCORE -= 5;
 				}
-				print("YOUR SCORE IS " + SCORE + " OUT OF A POSSIBLE 100");
+			}
+			// show result
+			print("YOUR SCORE IS " + SCORE + " OUT OF A POSSIBLE 100");
+			if (SCORE == 100)
+			{
+				print("YOU HAVE WON THE GAME!");
 			}
 		}
 		public void FN_19000_GAME_OVER()
@@ -92,17 +101,9 @@ namespace UncleTayHouse
 			print("YOU HAVE DIED");
 			FN_19999_END_GAME();
 		}
-		public void FN_19900_GAME_WON()
-		{
-			FN_9500_SCORE();
-			if (SCORE == 100)
-			{
-				print("YOU HAVE WON THE GAME!");
-			}
-		}
 		public void FN_19999_END_GAME()
 		{
-			print("bye!");
+			print("THANK YOU FOR PLAYING, BYE!");
 			Environment.Exit(0);
 		}
 		public void FN_2500_local()
@@ -114,33 +115,36 @@ namespace UncleTayHouse
 			}
 			if (LCL == 31)
 			{
-				FN_19900_GAME_WON();
+				FN_9500_SCORE();
+				FN_19999_END_GAME();
 			}
-			PrintDgb("LOCATION AND DESCRIPTION");
-			print("L: ", RNAMES[LCL]);
-			print("D: ", RDESCS[LCL]);
+			PrintDgb("LOCATION & DESCRIPTION");
+			print("LCL: ", LCL.ToString());
+			print("L: ", LocationName_RNAMES[LCL]);
+			print("D: ", LocationDescription_RDESCS[LCL]);
 			print(" ");
 			PrintDgb("DIRECTIONS");
 			for (var I = 1; I <= 6; I++)
 			{
-				NEIGH = REXIT[LCL, I];
+				int NEIGH = LocationExit[LCL, I];
 				if (NEIGH > 0)
 				{
-					print(VOCABS[I], ": ", RNAMES[NEIGH]);
+					print(VOCABS[I], ": ", LocationName_RNAMES[NEIGH]);
 				}
 			}
 			print(" ");
 			PrintDgb("EXTENDED DESCRIPTIONS");
+			int NXDESC = 7;
 			for (var I = 1; I < NXDESC; I++)
 			{
 				int L1 = EXLOC[I, 1];
 				int L2 = EXLOC[I, 2];
-				if (LCL == L1 && REXIT[L1, L2] <= 0)
+				if (LCL == L1 && LocationExit[L1, L2] <= 0)
 				{
-					print(EXDESCS[I]);
+					print(ExtendedDescription[I]);
 				}
 			}
-			if (LCL == 17 && REXIT[17, 1] > 0)
+			if (LCL == 17 && LocationExit[17, 1] > 0)
 			{
 				print("YOUR UNCLE'S DOBERMAN IS SNORING PEACEFULLY");
 			}
@@ -180,37 +184,14 @@ namespace UncleTayHouse
 				LCL = 12;
 				FN_2500_local();
 			}
-			// # --- READ INPUT ---;
-			IS = INPUT("] ");
+			// # --- READ INPUT ---
 			TURN1 = 0;
-			INWRD = 0;
 			WIDX = 0;
-			/*
-			for (var C = 0; C < IS.Length; C++)
+			string IS = INPUT("] ");
+			if (IS == "EXIT")
 			{
-				// # CS = mid(IS,C,1);
-				CS = IS.Substring(C, 1);
-				if (CS == " " && INWRD == 1)
-				{
-					INWRD = 0;
-				}
-				if (CS != " " && INWRD == 0) // new word
-				{
-					INWS[WIDX] = "";
-					WIDX = WIDX + 1;
-					INWRD = 1;
-				}
-				if (WIDX > 10)
-				{
-					// # GOTO 5100;
-					break;
-				}
-				if (CS != " ")
-				{
-					INWS[WIDX] = INWS[WIDX] + CS;
-				}
+				FN_19999_END_GAME();
 			}
-			*/
 			// split input:
 			var words = IS.Split(" ");
 			WIDX = words.Length;
@@ -221,34 +202,36 @@ namespace UncleTayHouse
 		}
 		public void FN_5100()
 		{
-			CURTOK = 1;
-			for (var TIDX = 1; TIDX <= WIDX; TIDX++)
+			int CURTOK = 1;
+			for (var i = 1; i <= WIDX; i++)
 			{
-				ISNULLW = 0;
-				for (var i = 0; i < 4; i++)
+				int ISNULLW = 0;
+				for (var j = 0; j < 4; j++)
 				{
-					if (INWS[TIDX] == NULLWS[i])
+					if (INWS[i] == NULLWORDS[j])
 					{
 						ISNULLW = 1;
 					}
 				}
 				if (ISNULLW == 1)
 				{
-					// # GOTO 5170;
 					continue;
 				}
-				for (var CMDIDX = 0; CMDIDX < LWRD; CMDIDX++)
+				int LWRD = 60;
+				for (var k = 0; k < LWRD; k++)
 				{
-					if (INWS[TIDX] == VOCABS[CMDIDX])
+					if (INWS[i] == VOCABS[k])
 					{
-						INPTK[CURTOK] = CMDIDX;
-						CURTOK = CURTOK + 1;
+						INPTK[CURTOK] = k;
+						CURTOK++;
+						break;
 					}
 				}
 			}
-			// # NEXT TIDX // # 5170;
-			NTOK = CURTOK - 1;
-			COMM = INPTK[1];
+
+			int NTOK = CURTOK - 1;
+			COMM = INPTK[1]; // first word cmd
+
 			//# ON NTOK+1 // # GOTO 5000, 6050, 6400, 7100;
 			var X = NTOK + 1;
 			if (X == 1)
@@ -271,7 +254,6 @@ namespace UncleTayHouse
 			{
 				print("YOU CAN'T DO THAT");
 			}
-			// # RETURN;
 		}
 		public void FN_6050()
 		{
@@ -294,7 +276,7 @@ namespace UncleTayHouse
 				}
 				else if (X == 3)
 				{
-					FN_6200_SCORE();
+					FN_9500_SCORE();
 				}
 				else if (X == 4)
 				{
@@ -302,15 +284,16 @@ namespace UncleTayHouse
 				}
 				else if (X == 5)
 				{
-					FN_6350_HELP();
+					// help
+					FN_15000_INTRO();
 				}
 				else if (X == 6)
 				{
-					FN_6099();
+					print("HUH?");
 				}
 				else if (X == 7)
 				{
-					FN_6099();
+					print("HUH?");
 				}
 				else if (X == 8)
 				{
@@ -318,15 +301,11 @@ namespace UncleTayHouse
 				}
 			}
 		}
-		public void FN_6099()
-		{
-			// # TAKE DROP?;
-			print("HUH?");
-		}
+
 		public void FN_6100_INV()
 		{
 			print(" ");
-			print("YOU ARE CARRYING:");
+			print("Inventory: YOU ARE CARRYING:");
 			for (var I = 1; I < LASTITEM; I++)
 			{
 				if (ILOC[I] == 0)
@@ -334,10 +313,6 @@ namespace UncleTayHouse
 					print(" - ", VOCABS[I + ITEMOFF]);
 				}
 			}
-		}
-		public void FN_6200_SCORE()
-		{
-			FN_9500_SCORE();
 		}
 		public void FN_6300_JUMP()
 		{
@@ -351,12 +326,8 @@ namespace UncleTayHouse
 			}
 			print("YOU BUNGEE OFF THE BALCONY...");
 			LCL = 30;
-			// # GOTO 2510;
 		}
-		public void FN_6350_HELP()
-		{
-			FN_15000_INTRO();
-		}
+
 		public void FN_6400()
 		{
 			ARG = INPTK[2] - ITEMOFF;
@@ -371,7 +342,7 @@ namespace UncleTayHouse
 				var X = COMM - 17;
 				if (X == 1)
 				{
-					FN_6500();
+					FN_6500_TAKE();
 				}
 				else if (X == 2)
 				{
@@ -391,7 +362,7 @@ namespace UncleTayHouse
 				}
 				else if (X == 6)
 				{
-					FN_6800();
+					FN_6800_OPEN();
 				}
 				else if (X == 7)
 				{
@@ -415,7 +386,7 @@ namespace UncleTayHouse
 				}
 			}
 		}
-		public void FN_6500()
+		public void FN_6500_TAKE()
 		{
 			if (ILOC[ARG] == 0)
 			{
@@ -449,6 +420,8 @@ namespace UncleTayHouse
 				ILOC[IMMOFF + 7] = 30;
 				// # GOTO 2500;
 			}
+
+			// if player is carrying object, ILOC[obj] == 0
 			ILOC[ARG] = 0;
 			print(VOCABS[INPTK[2]], ": TAKEN");
 		}
@@ -459,24 +432,24 @@ namespace UncleTayHouse
 				print("YOU AREN'T CARRYING IT");
 			}
 			IC = IC - 1;
-			if (LCL == 17 && ARG == 10 && REXIT[17, 1] <= 0)
+			if (LCL == 17 && ARG == 10 && LocationExit[17, 1] <= 0)
 			{
 				print("THE DOG LOOKS DISGUSTED. MAYBE YOU SHOULD EAT IT.");
 				// # GOTO 6690;
 			}
-			if (LCL == 17 && ARG == 2 && REXIT[17, 1] <= 0)
+			if (LCL == 17 && ARG == 2 && LocationExit[17, 1] <= 0)
 			{
 				print("THE DOG CHEWS HIS FAVORITE TOY && IS SOON ASLEEP");
 				ILOC[ARG] = -999;
-				REXIT[17, 1] = 18;
+				LocationExit[17, 1] = 18;
 				// # GOTO 2500;
 			}
-			if (LCL == 29 && ARG == 12 && REXIT[29, 5] <= 0)
+			if (LCL == 29 && ARG == 12 && LocationExit[29, 5] <= 0)
 			{
 				print("THE BOXSPRING COVERS THE GAP IN THE STAIRS");
 				ILOC[ARG] = -999;
-				REXIT[29, 5] = 2;
-				REXIT[2, 6] = 29;
+				LocationExit[29, 5] = 2;
+				LocationExit[2, 6] = 29;
 				// # GOTO 2500;
 			}
 			// # 6690;
@@ -495,27 +468,42 @@ namespace UncleTayHouse
 				FN_8000();
 				FN_8050();
 			}
+
+			// Print extended obj description
 			if (IDESCS[ARG] == "")
 			{
 				print("THERE'S NOTHING SPECIAL ABOUT THE ", VOCABS[INPTK[2]]);
 			}
-			print(IDESCS[ARG]);
+			else
+			{
+				print(IDESCS[ARG]);
+			}
 		}
-		public void FN_6800()
+		public void FN_6800_OPEN()
 		{
-			if (ILOC[7] != 0)
+			if (LCL != 5 && LCL != 17)
+			{
+				print("THERE IS NO DOOR HERE!");
+			}
+			// do we have a key?
+			if (ILOC[7] != 0) // 13 = master bedroom ? key ?
 			{
 				print("YOU DON'T HAVE A KEY!");
 			}
-			if (LCL == 5)
+			else // yes
 			{
-				print("THE KEY DOESN'T FIT THE LOCK");
-			}
-			if (LCL == 17)
-			{
-				print("YOU UNLOCK THE DOOR. BEWARE!");
-				REXIT[17, 4] = 20;
-				// # GOTO 2500;
+				// ckeck locale
+				if (LCL == 5) // Hallway?
+				{
+					print("THE KEY DOESN'T FIT THE LOCK");
+				}
+				// only unlock if is in the Hallway and have a key
+				if (LCL == 17 && ILOC[7] == 0) // Hallway?
+				{
+					print("YOU UNLOCK THE DOOR. BEWARE!");
+					LocationExit[17, 4] = 20;
+					// # GOTO 2500;
+				}
 			}
 		}
 		public void FN_8000()
@@ -545,11 +533,6 @@ namespace UncleTayHouse
 			print("EXPERIMENTS ON " + N1S);
 			print(" AND " + N2S);
 			print(" DOORS PROCEEDING WELL; FILE for PATENT");
-			//NTMSGS = D2S + N1S;
-			//NTMSGS = NTMSGS + D2S + N2S;
-			//NTMSGS = NTMSGS + D2S;
-			//print(NTMSGS);
-			// # RETURN;
 		}
 		public void FN_6899()
 		{
@@ -600,15 +583,18 @@ namespace UncleTayHouse
 		}
 		public void FN_7000()
 		{
+			int GOARG = 0;
 			GOARG = INPTK[1];
+			// convert N,S,E,W,U,D to long form
 			if (GOARG > 6)
 			{
 				GOARG = GOARG - 6;
 			}
-			else if (REXIT[LCL, GOARG] > 0)
+
+			if (LocationExit[LCL, GOARG] > 0)
 			{
 				// new position
-				LCL = REXIT[LCL, GOARG];
+				LCL = LocationExit[LCL, GOARG];
 				// # GOTO 2500;
 			}
 			else if (LCL == 12 && GOARG == 5)
@@ -619,7 +605,7 @@ namespace UncleTayHouse
 			{
 				print("YOU NEVER DID LIKE THAT DOG");
 			}
-			else if (LCL == 23 && REXIT[23, 6] <= 0)
+			else if (LCL == 23 && LocationExit[23, 6] <= 0)
 			{
 				print("THE DUMBWAITER MECHANISM IS CORRODED && WON'T MOVE");
 			}
@@ -647,7 +633,7 @@ namespace UncleTayHouse
 			var X = COMM - 22;
 			if (X == 1)
 			{
-				FN_6800();
+				FN_6800_OPEN();
 			}
 			else if (X == 2)
 			{
@@ -744,7 +730,7 @@ namespace UncleTayHouse
 			else
 			{
 				print("MOVING THE CLOTHES REVEALS A LAUNDRY CHUTE TO THE BASEMENT");
-				REXIT[LCL, 6] = 27;
+				LocationExit[LCL, 6] = 27;
 				// # GOTO 2500;
 			}
 		}
@@ -758,6 +744,7 @@ namespace UncleTayHouse
 			{
 				print("HUH?");
 			}
+			int DOORDIR = 0;
 			DOORDIR = INPTK[2] - DIROFF;
 			if (DOORDIR < 1 || DOORDIR > 3)
 			{
@@ -767,7 +754,7 @@ namespace UncleTayHouse
 			if (DOORDIR == SAFED)
 			{
 				print("OPENING THE DOOR REVEALS A DUMBWAITER");
-				REXIT[LCL, 4] = 23;
+				LocationExit[LCL, 4] = 23;
 				// # GOTO 2500;
 			}
 			int rnd = RNG(2);
@@ -825,7 +812,7 @@ namespace UncleTayHouse
 			if (LCL == 18)
 			{
 				print("THERE IS A FLASH OF LIGHT && A CRACKING SOUND. AN OPENING APPEARS IN THE EAST WALL");
-				REXIT[18, 3] = 19;
+				LocationExit[18, 3] = 19;
 				// # GOTO 2500;
 			}
 			// #INVERSE:;
@@ -848,7 +835,7 @@ namespace UncleTayHouse
 				print("HUH?");
 			}
 			print("THE DUMBWAITER MECHANISM NOW RUNS SMOOTHLY");
-			REXIT[23, 6] = 24;
+			LocationExit[23, 6] = 24;
 		}
 		public void FN_7800()
 		{
@@ -867,7 +854,7 @@ namespace UncleTayHouse
 			print("YOU PUT THE FUSE IN THE BOX");
 			ILOC[3] = -999;
 			IC = IC - 1;
-			REXIT[12, 5] = 25;
+			LocationExit[12, 5] = 25;
 		}
 		public void FN_8200()
 		{
@@ -881,25 +868,22 @@ namespace UncleTayHouse
 			}
 			// # RETURN;
 		}
-		// # REM ******************;
+
 		// # REM * START HERE;
-		// # REM ******************;
 		public void FN_GAME()
 		{
 			FN_15000_INTRO();
 			while (true)
 			{
 				FN_2500_local();
-				//FN_2510();
+
 				FN_5000_read_input();
 				PrintDgb1(" ");
 
 				FN_5100();
-				if (IS == "EXIT")
-					break;
 				PrintDgb1(" *** ");
 			}
 		}
-		#endregion Methods
+
 	}
 }
