@@ -31,7 +31,16 @@
     In this adventure you find treasures and valuables in your mad uncle Tays' house type simple commands: north, south, etc. To move (or just 'n', 's'). Take and drop, inventory, look, read, move, and so on. Some commands are complex: 'move the hubcap with the spanner'.
 </div>
 
-<button name="hints">Show hints</button>
+<button name="hints" onclick="ShowHints()">Show hints</button>
+
+<script>
+function ShowHints(){
+	var collection = document.getElementsByClassName("hint");
+	for (let i = 0; i < collection.length; i++) {
+	  collection[i].style.display = "block";
+	}
+}
+</script>
 
 <hr />
 

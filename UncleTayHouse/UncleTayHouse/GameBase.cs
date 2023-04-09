@@ -7,16 +7,13 @@
 		// player: current location
 		public int LCL = 1;
 
-		public int DIROFF = 30;
-		public int LASTITEM = 27;
-		public int IMMOFF = 20;
 		public int SAFED = 0;
-		public int IC = 0;
-		public int COMM = 0;
-		public int ARG = 0;
+
 		public int MVARG = 0;
 		public int TURN1 = 0;
-		public int AIMM = 0;
+
+		public int CMD = 0;
+		public int ARG = 0;
 
 		public int InputWords = 0;
 		const int MaxInput = 5;
@@ -29,6 +26,10 @@
 
 		// item offset - where objects start at Vocab
 		public int ITEMOFF = 33;
+		public int IMMOFF = 20;
+		public int DIROFF = 30;
+		public int LASTITEM = 27;
+
 
 		// # DIM NULLWS[4]
 		public string[] NULLWORDS = {
@@ -40,6 +41,7 @@
 		// # DIM VOCABS[60] , LWRD = 60;
 		public string[] VOCABS = {
 /* 00 */	 "-99", // 0-dummy
+
 /* 01 */	 "NORTH",
 /* 02 */	 "SOUTH",
 /* 03 */	 "EAST",
@@ -52,6 +54,7 @@
 /* 10 */	 "W",
 /* 11 */	 "U",
 /* 12 */	 "D",
+
 /* 13 */	 "I",
 /* 14 */	 "INVENTORY",
 /* 15 */	 "SCORE",
@@ -60,6 +63,7 @@
 /* 18 */	 "TAKE",
 /* 19 */	 "DROP",
 /* 20 */	 "LOOK",
+
 /* 21 */	 "READ",
 /* 22 */	 "EXAMINE",
 /* 23 */	 "UNLOCK",
@@ -70,9 +74,11 @@
 /* 28 */	 "TIE",
 /* 29 */	 "OIL",
 /* 30 */	 "PUT",
+
 /* 31 */	 "LEFT",
 /* 32 */	 "CENTER",
 /* 33 */	 "RIGHT",
+
 /* 34 */	 "NEWSPAPER",
 /* 35 */	 "TEDDYBEAR",
 /* 36 */	 "FUSE",
@@ -250,7 +256,7 @@
 /* 01 */	 1,		 // "NEWSPAPER",
 /* 02 */	-1,		 // "TEDDYBEAR",
 /* 03 */	-1,		 // "FUSE",
-/* 04 */	10,		 // "JACK",
+/* 04 */	0,		 // "JACK", 10
 /* 05 */	30,		 // "PICTURE",
 /* 06 */	10,		 // "BUNGEE",
 /* 07 */	13,		 // "KEY",

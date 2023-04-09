@@ -29,14 +29,16 @@
 				InputWordNum_INPTK[i] = 0;
 			}
 
+			if (String.IsNullOrEmpty(prompt))
+			{
+				InputWords = 0;
+				return;
+			}
 			prompt = prompt.ToUpper();
-			int idx = 0;
 
-			// split input:
 			var words = prompt.Split(" ");
 
-			InputWords = words.Length; // used later
-
+			int idx = 0;
 			for (var i = 0; i < words.Length; i++)
 			{
 				// remove null words
@@ -61,17 +63,14 @@
 							InputWordNum_INPTK[idx] = k;
 							break;
 						}
-						//if (InputWords_INWS[idx] == VOCABS[k])
-						//{
-						//	InputWordNum_INPTK[idx] = k;
-						//	break;
-						//}
 					}
-					//idx++;
 				}
-				// InputWords_INWS contain only valid words now
-				// InputWordNum_INPTK contain the verb number
 			}
+			InputWords = idx; // used later
+
+			// InputWords => number of words
+			// InputWords_INWS => contain only valid words now
+			// InputWordNum_INPTK => contain the verb number
 		}
 	}
 }

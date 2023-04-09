@@ -1,0 +1,97 @@
+BASEMENT
+[26] STORAGE
+"take boxspring"
+	
+[27] LAUNDRY X
+"take loons"
+	
+[28] WORK ROOM
+"take oilcan"
+	
+[29] BOTTOM OF STAIRS X
+"drop boxspring"
+
+MAIN FLOOR
+[23] DUMBWAITER X
+	
+[08] LIBRARY
+"take checkbook"
+	
+[06] DEN
+"move couch with brace","take teddybear"
+	
+[02] KITCHEN / STAIRS TO BASEMENT X
+"move fridge with jack", "take fuse"
+	
+
+[10] GARAGE
+"take jack", "take bungee"
+	
+[05] HALL
+	
+[04] HALL
+	
+[01] FOYER (lobby)
+"take newspaper","read newspaper"
+	
+[03] SITTING ROOM X
+
+	
+[11] DINING ROOM
+
+	
+[09] SMALL BEDROOM
+"take note"
+	
+[07] BATHROOM X
+"move clothes with gloves"
+	
+[31] EXIT
+Return here when finished
+	
+
+	
+
+SECOND FLOOR
+
+	
+[21] CORNER BEDROOM
+"take investment"
+	
+[18] CHILD'S ROOM
+"spin top"
+	
+[19] SECRET ROOM
+"take loverboy"
+	
+[13] MASTER BEDROOM
+"take key"
+[24] 3 DOORS / DUMBWAITER X
+	
+[20] DANGEROUS HALL
+ "open [direction not mentionedin note] door","oil dumbwaiter with oilcan"
+	
+[17] HALL
+"unlock door"
+"drop teddybear"
+	
+[14] HALL
+	
+[12] BALCONY / STAIRS TO ATTIC X X
+"tie bungee to railing","jump"
+"take picture","jump"
+"put fuse in fusebox"
+ 	
+[22] BATHROOM
+"take gloves", "read note in mirror"
+	
+[16] CLOSET
+"take gainesburger","eat gainesburger"
+	
+[15] GAME ROOM
+"take top"
+	
+ 
+THIRD FLOOR
+[25] ATTIC X
+"take brace", "take magazine", "read magazine"
