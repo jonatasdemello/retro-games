@@ -5,38 +5,40 @@
 		#region Variables
 
 		// player: current location
-		int LCL = 1;
+		public int LCL = 1;
 
-		int DIROFF = 30;
-		int LASTITEM = 27;
-		int IMMOFF = 20;
-		int SAFED = 0;
-		int IC = 0;
-		int WIDX = 0; // word index
-		int COMM = 0;
-		int ARG = 0;
-		int MVARG = 0;
-		int TURN1 = 0;
-		int AIMM = 0;
+		public int DIROFF = 30;
+		public int LASTITEM = 27;
+		public int IMMOFF = 20;
+		public int SAFED = 0;
+		public int IC = 0;
+		public int COMM = 0;
+		public int ARG = 0;
+		public int MVARG = 0;
+		public int TURN1 = 0;
+		public int AIMM = 0;
+
+		public int InputWords = 0;
+		const int MaxInput = 5;
 
 		// # DIM INWS[10) : store input words
-		string[] INWS = new string[10];
+		public string[] InputWords_INWS = new string[MaxInput];
 
-		// # DIM INPTK[10] : input keyword
-		int[] INPTK = new int[10];
+		// # DIM INPTK[10] : processed input keyword
+		public int[] InputWordNum_INPTK = new int[MaxInput];
 
 		// item offset - where objects start at Vocab
-		int ITEMOFF = 33;
+		public int ITEMOFF = 33;
 
 		// # DIM NULLWS[4]
-		string[] NULLWORDS = {
-			"THE", "TO", "WITH", "USING"
+		public string[] NULLWORDS = {
+			"THE", "TO", "WITH", "USING", "IN", "GO"
 		};
 
 		// NOTE: adding one more item to the arrays because BASIC arrays start at 1
 
 		// # DIM VOCABS[60] , LWRD = 60;
-		string[] VOCABS = {
+		public string[] VOCABS = {
 /* 00 */	 "-99", // 0-dummy
 /* 01 */	 "NORTH",
 /* 02 */	 "SOUTH",
@@ -102,7 +104,7 @@
 
 
 		// # DIM IDESC$[27]
-		string[] IDESCS = {
+		public string[] IDESCS = {
 /* 00 */	"-99", // 0-dummy
 /* 01 */	"TAYS HOUSE UNLIKELY EVER TO BE SOLD. TALES OF GUTTED STAIRWELLS AND BOOBY TRAPS HAVE SPOOKED BUYERS...",
 /* 02 */	"SOMEONE HAS BEEN PLAYING VERY ROUGH WITH THIS TOY",
@@ -134,7 +136,7 @@
 		};
 
 		// # DIM RNAMES[31] : LOCATION NAME
-		string[] LocationName_RNAMES = {
+		public string[] LocationName_RNAMES = {
 /* 00 */	"-99", // 0-dummy
 /* 01 */	"FOYER (LOBBY)",
 /* 02 */	"KITCHEN",
@@ -170,7 +172,7 @@
 		};
 
 		// # DIM RDESCS[31] : LOCATION DESCRIPTION
-		string[] LocationDescription_RDESCS = {
+		public string[] LocationDescription_RDESCS = {
 /* 00 */	"-99", // 0-dummy
 /* 01 */	"THE ENTRYWAY TO THE HOUSE",
 /* 02 */	"COUNTERTOPS ARE DUSTY AND THERE ARE RUSTING POTS AND PANS",
@@ -206,7 +208,7 @@
 		};
 
 		// # DIM REXIT[31][6] : : LOCATION EXITS
-		int[,] LocationExit = {
+		public int[,] LocationExit = {
 			// 0  1="NORTH", 2="SOUTH", 3="EAST", 4="WEST", 5="UP", 6="DOWN"
 /* 00 */	{-99, -99  , -99  , -99  , -99  , -99  , -99  },//0-dummy
 /* 01 */	{-99,   2  ,  31  ,   3  ,   4  ,   0  ,   0  },
@@ -243,7 +245,7 @@
 		};
 
 		// # DIM ILOC[27]
-		int[] ILOC = {
+		public int[] ILOC = {
 /* 00 */	-99,//dummy
 /* 01 */	 1,		 // "NEWSPAPER",
 /* 02 */	-1,		 // "TEDDYBEAR",
@@ -271,11 +273,11 @@
 /* 24 */	-1,		 // "DOOR",
 /* 25 */	12,		 // "RAILING",
 /* 26 */	-1,		 // "DUMBWAITER",
-/* 27 */	-1       // "FUSEBOX"
+/* 27 */	-1		 // "FUSEBOX"
 		};
 
 		// # DIM EXDESCS[7] : EXTENDED DESCRIPTION
-		string[] ExtendedDescription = {
+		public string[] ExtendedDescription = {
 /* 00 */	"-99", // 0-dummy
 /* 01 */	"THERE IS A LOCKED DOOR TO THE NORTH",
 /* 02 */	"THERE IS A LOCKED DOOR TO THE SOUTH",
@@ -287,7 +289,7 @@
 		};
 
 		// # DIM EXLOC[7][2] : EXTENDED ?
-		int[,] EXLOC = {
+		public int[,] EXLOC = {
 /* 00 */	{ -99, -99  , -99 }, // dummy
 /* 01 */	{ -99,  5   ,  6  },
 /* 02 */	{ -99,  8   ,  6  },
