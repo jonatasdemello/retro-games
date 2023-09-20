@@ -15,7 +15,6 @@ An example for an Apple Screen:
 1083 IF D(L,4)<>0 THEN PRINT"WEST ";
 1084 IF D(L,5)<>0 THEN PRINT"UP ";
 1085 IF D(L,6)<>0 THEN PRINT"DOWN ";
-1090 NEXT:PRINT SPC(80-POS(0));:PRINT"-----------------------------------------
--------------------------------------"
+1090 NEXT:PRINT SPC(80-POS(0));:PRINT"------------------------------------------------------------------------------"
 1100 VTAB 24:HTAB 1:INPUT"WHAT WOULD YOU LIKE TO DO";AN$
 

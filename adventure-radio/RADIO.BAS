@@ -5,20 +5,11 @@
 20 CLS:PRINT TAB(30)"The Case at KAXL":LOCATE 24,1:PRINT TAB(20)"Copyright (c) 1982 by Doug Rogers";
 30 RESTORE:X=0:L=22:Z1=0:Z=0:M=0:H=0:NO=60:NV=17:NN=NO:AU=120:CC=0:BF=0:FOR X= 0 TO 3:READ D$(X):NEXT:FOR X=1 TO 28:READ L$(X),L(X,0),L(X,1),L(X,2),L(X,3):NEXT
 40 FOR X=1 TO NO:READ O$(X),O(X):NEXT:FOR X=1 TO NV:READ VB$(X):NEXT:FOR X=1 TO NN:READ NO$(X):NEXT:M$="00":H$="12":ID=1:L$="It's locked...":OP$="It's open...":CP=0
-50 LOCATE 2,5:PRINT"A few minutes ago, you got a frantic phone call from your buddy Mike Mouth,
-the Disk Jockey. He was cut off in mid-sentence. You have just arrived at the
-Radio Station to investigate..."
-60 PRINT"   If you've never been in a Radio Station before, we suggest that you look
-around carefully. There is a lot of equipment in the place, and some of it couldbe of use to you."
-70 PRINT"   Note also that Radio Station managers and Program Directors are notorious
-memo writers and note posters. You can learn alot (that you'll need to know)
-about running a radio station just by keeping your eyes open."
-80 PRINT:PRINT"   Some words I know that should be useful to you are LISTEN, GET, PUT, READ,
-EXAMINE, HELP, USE, INVENTORY (tells what you are holding), SAVE, LOAD, WAIT,
-and any other VERB-NOUN";
-90 PRINT"combinations that seems appropriate.":PRINT"If one combination doesn't work, try another! I have a large vocabulary.
-
-   Press <ENTER> to begin"
+50 LOCATE 2,5:PRINT"A few minutes ago, you got a frantic phone call from your buddy Mike Mouth,the Disk Jockey. He was cut off in mid-sentence. You have just arrived at the Radio Station to investigate..."
+60 PRINT"   If you've never been in a Radio Station before, we suggest that you look around carefully. There is a lot of equipment in the place, and some of it couldbe of use to you."
+70 PRINT"   Note also that Radio Station managers and Program Directors are notorious memo writers and note posters. You can learn alot (that you'll need to know) about running a radio station just by keeping your eyes open."
+80 PRINT:PRINT"   Some words I know that should be useful to you are LISTEN, GET, PUT, READ, EXAMINE, HELP, USE, INVENTORY (tells what you are holding), SAVE, LOAD, WAIT, and any other VERB-NOUN";
+90 PRINT"combinations that seems appropriate.":PRINT"If one combination doesn't work, try another! I have a large vocabulary. Press <ENTER> to begin"
 100 IF INKEY$="" THEN 100 ELSE CLS
 110 IF CC<>0 THEN 490 ELSE AU=AU-1:IF AU<-6 THEN PH=1:IF AU<-10 THEN CC=1
 120 LOCATE 1,1:PRINT"You are ";L$(L);STRING$(80-POS(0),32);:PRINT"You see: ";:FL=0:FOR X=1 TO NO:IF O(X)=L THEN 130 ELSE 150
@@ -59,8 +50,7 @@
 470 FOR X=1 TO NO:INPUT #Q,O(X):NEXT:INPUT #Q,L,CC,AU,ID,CP,H$,M$:CLOSE
 480 GOTO 110
 490 CLS:IF CC=2 THEN PRINT"The police have just arrived..." ELSE PRINT"The police just broke the front door in..."
-500 SB=1:GOSUB 580:IF SC<90 THEN PRINT"You keep telling them you didn't do it, but they aren't listening. After all,
-there's the body, and there you are without enough evidence to the contrary...":SB=0:GOTO 420
+500 SB=1:GOSUB 580:IF SC<90 THEN PRINT"You keep telling them you didn't do it, but they aren't listening. After all, there's the body, and there you are without enough evidence to the contrary...":SB=0:GOTO 420
 510 PRINT"They see all your evidence, and ask you to lead them to the murderer...":CP=1:CC=0:GOTO 1710
 520 IF O(40)=0 THEN O(39)=0:GF=1
 530 RETURN
@@ -71,13 +61,9 @@
 580 SC=0:FOR X=44 TO 48:GOSUB 600:NEXT:X=50:GOSUB 600:FOR X=58 TO 60:GOSUB 600:NEXT:SC=SC+BF
 590 PRINT"You have found";SC;CHR$(28);"% of the evidence.":FOR X=1 TO 1000:NEXT:IF SB=1 THEN RETURN ELSE 110
 600 IF O(X)=-1 THEN SC=SC+10:RETURN ELSE RETURN
-610 IF L<>19 THEN 640 ELSE IF O(55)<>-1 THEN 1170 ELSE IF GF=1 THEN 630 ELSE IF CP=1 THEN PRINT"OK...
-Susan's inside with the knife. She sees the cop and gives up.
-You've solved it all!":GOTO 420 ELSE PRINT"As the door opens the murderer stabs YOU! ";
+610 IF L<>19 THEN 640 ELSE IF O(55)<>-1 THEN 1170 ELSE IF GF=1 THEN 630 ELSE IF CP=1 THEN PRINT"OK... Susan's inside with the knife. She sees the cop and gives up. You've solved it all!":GOTO 420 ELSE PRINT"As the door opens the murderer stabs YOU! ";
 620 PRINT"You are dead!":GOTO 420
-630 PRINT"The stall is empty. She got away.
-But with all your evidence, you've cleared yourself.
-Better luck next time.":GOTO 420
+630 PRINT"The stall is empty. She got away. But with all your evidence, you've cleared yourself. Better luck next time.":GOTO 420
 640 IF L<>25 THEN 650 ELSE IF O(42)<>L THEN PRINT OP$ ELSE IF O(55)<>-1 THEN 1170 ELSE O(42)=0:O(43)=L:L(25,0)=26:GOTO 110
 650 IF L<>22 THEN 1290 ELSE IF O(40)<>L THEN PRINT OP$ ELSE IF O(55)<>-1 THEN 1170 ELSE O(40)=0:O(41)=L:GOTO 110
 660 IF NB<>22 THEN 670 ELSE IF O(NB)=L THEN CLS:PRINT"Z  A  P  !":PRINT:PRINT:PRINT"THE HIGH VOLTAGE KILLED YOU!":GOTO 420 ELSE 1290
@@ -99,45 +85,31 @@
 820 PRINT"Try ";CHR$(34);"THREAD REEL";CHR$(34):GOTO 1580
 830 PRINT"OK... You look a little strange...":GOTO 1580
 840 IF AX<>0 THEN PRINT"It's the Program Director wanting to know why the stationis off the air. ";:GOTO 870
-850 IF ID=0 THEN PRINT"It's the Program Director wanting to know why the Station ID didn't play
-this hour. ";:GOTO 870
+850 IF ID=0 THEN PRINT"It's the Program Director wanting to know why the Station ID didn't play this hour. ";:GOTO 870
 860 PRINT"Wrong number":GOTO 110
 870 PRINT"He hung up when he heard your voice...":CC=1:GOTO 1570
 880 IF AX=0 THEN PRINT"I hear music playing all over the station":GOTO 1580
 890 PRINT"The station is silent.":GOTO 1580
 900 IF NB=2 THEN 910 ELSE IF NB=14 THEN 1310 ELSE IF NB=44 THEN 930E LSE IF NB=46 THEN 940 ELSE IF NB=47 THEN 970 ELSE IF NB=50 THEN 990 ELSE IF NB=51 THEN 1000 ELSE IF NB=52 THEN 1010 ELSE IF NB=59 THEN 1020 ELSE PRINT"I see nothing to read here.":GOTO 1580
-910 PRINT"It says:
-        All announcers! Remember! The Station ID recorder is broken! We MUST
-        make the ID manually at the beginning of each hour! NO EXCEPTIONS!
-        Engineering has rigged the machine so we can give ";
-920 PRINT"the ID by pushing":PRINT"        the RED button. But you'll also then have to restart the music by
-        pressing the GREEN button! Don't Blow this!                                        Steve":GOTO 1710
+910 PRINT"It says: All announcers! Remember! The Station ID recorder is broken! We MUST make the ID manually at the beginning of each hour! NO EXCEPTIONS! Engineering has rigged the machine so we can give ";
+920 PRINT"the ID by pushing":PRINT"        the RED button. But you'll also then have to restart the music by pressing the GREEN button! Don't Blow this!                                        Steve":GOTO 1710
 930 IF O(44)<>-1 AND O(44)<>L THEN 1290 ELSE 1410
-940 IF O(46)<>-1 AND O(46)<>L THEN 1290 ELSE IF O(47)<>-1 AND O(47)<>L THEN PRINT"It's the top half of a letter...
-It says:"ELSE PRINT"The two pieces read:"
-950 PRINT"Dear Susan,
-        I don't know an easy way to say this... We have meant so
-   much to each other. You have been a really great kid, and
-   I've really had a blast being with you, but";
-960 IF O(47)<>-1 AND O(47)<>L THEN PRINT"
-            AND THE REST IS MISSING...":GOTO 1710
+940 IF O(46)<>-1 AND O(46)<>L THEN 1290 ELSE IF O(47)<>-1 AND O(47)<>L THEN PRINT"It's the top half of a letter... It says:"ELSE PRINT"The two pieces read:"
+950 PRINT"Dear Susan, I don't know an easy way to say this... We have meant so much to each other. You have been a really great kid, and I've really had a blast being with you, but";
+960 IF O(47)<>-1 AND O(47)<>L THEN PRINT"AND THE REST IS MISSING...":GOTO 1710
 970 IF O(47)<>-1 AND O(47)<>L THEN 1290 ELSE IF O(46)<>-1 AND O(46)<>L THEN PRINT"It's the botton half of a letter. It says:"
-980 PRINT TAB(45);" the time has now
-   come when we must part. I hope you will forgive me.
-                                Mike":GOTO 1710
+980 PRINT TAB(45);" the time has now come when we must part. I hope you will forgive me. Mike":GOTO 1710
 990 IF O(50)<>-1 AND O(50)<>L THEN 1290 ELSE 1460
 1000 IF O(51)<>-1 AND O(51)<>L THEN 1290 ELSE 1470
 1010 IF O(52)<>-1 AND O(52)<>L THEN 1290 ELSE 1490
 1020 IF O(59)<>-1 AND O(59)<>L THEN 1290 ELSE 1550
 1030 IF L<>1 THEN 1590
-1040 IF NB=3 THEN AX=AU:AU=0:ID=1:PRINT"The speaker says:
-This is KAXL, Compuberg":GOTO 1580
+1040 IF NB=3 THEN AX=AU:AU=0:ID=1:PRINT"The speaker says: This is KAXL, Compuberg":GOTO 1580
 1050 IF NB=4 THEN AU=AX:PRINT"The music has started again":AX=0:GOTO 1580
 1060 PRINT"Why would you want to do that???":GOTO 1580
 1070 IF L<>23 THEN 1590
 1080 IF NB<>57 THEN PRINT"You can only thread REELs on the Automation...":GOTO 1580
-1090 IF O(57)<>-1 THEN PRINT"What are you going to thread onto the machine?
-You don't have any tape...":GOTO 1570
+1090 IF O(57)<>-1 THEN PRINT"What are you going to thread onto the machine? You don't have any tape...":GOTO 1570
 1100 O(57)=0:AU=181:GOTO 1160
 1110 IF NB<44 THEN 1150 ELSE IF O(NB)=-1 THEN PRINT"You already have the ";O$(NB) ELSE IF O(NB)<>L THEN 1290 ELSE O(NB)=-1:GOTO 1160
 1120 GOTO 1580
@@ -151,8 +123,7 @@
 1200 PRINT"It's Mike all right... and he's got a knife wound in the back!":BF=10:IF O(60)<>-1 THEN O(60)=L:GOTO 1570 ELSE 1570
 1210 PRINT"There's something there all right...":GOTO 110
 1220 PRINT"I see nothing unusual":GOTO 110
-1230 PRINT"There's too many switches and controls here for me to under-
-stand... leave it alone!":GOTO 1570
+1230 PRINT"There's too many switches and controls here for me to understand... leave it alone!":GOTO 1570
 1240 IF L=3 OR L=4 OR L=12 THEN 1220 ELSE 1290
 1250 IF O(45)<>-1 THEN O(45)=L:GOTO 1210 ELSE 1220
 1260 IF L=1 OR L=7 OR L=12 OR L=13 THEN 1220 ELSE 1290
@@ -160,10 +131,7 @@
 1280 IF L=1 OR L=7 OR L=2 THEN 1230 ELSE 1690
 1290 PRINT"I don't see it here...":GOTO 110
 1300 IF L=4 THEN 1220 ELSE IF L=14 THEN IF O(51)<>-1 THEN O(51)=L:GOTO 1210 ELSE 1220 ELSE 1290
-1310 IF L=4 THEN PRINT"It says:
-     Welcome to KAXL
-Please see receptionist for tour":GOTO 1570 ELSE IF L=22 THEN PRINT"It says:
-     NO VISITORS AFTER 5 PM":GOTO 1570 ELSE IF L=23 THEN PRINT"Electric sign says: ";AU;"minutes till tape runout":GOTO 1570
+1310 IF L=4 THEN PRINT"It says: Welcome to KAXL Please see receptionist for tour":GOTO 1570 ELSE IF L=22 THEN PRINT"It says: NO VISITORS AFTER 5 PM":GOTO 1570 ELSE IF L=23 THEN PRINT"Electric sign says: ";AU;"minutes till tape runout":GOTO 1570
 1320 GOTO 1290
 1330 IF O(47)<>-1 THEN O(47)=L:GOTO 1210 ELSE 1220
 1340 IF O(46)<>-1 THEN O(46)=L:GOTO 1210 ELSE 1220
@@ -173,37 +141,21 @@
 1380 IF L=17 THEN PRINT OP$:GOTO 110 ELSE IF L=19 THEN PRINT L$:GOTO 110 ELSE 1290
 1390 PRINT"It's a LONG WAY UP>>>>>>>>!":GOTO 1580
 1400 PRINT"It's too high to climb... and there's no gate...":GOTO 1570
-1410 PRINT"The notepad says:
-     @ 11 remember to open door for Susan
-     get record
-     call cleaners @ 8 am
-
-               Maybe it means something to you, but I don't
-understand...":GOTO 1710
+1410 PRINT"The notepad says: @ 11 remember to open door for Susan get record call cleaners @ 8 am Maybe it means something to you, but I don't understand...":GOTO 1710
 1420 PRINT"It's a ";CHR$(34);"Virginia Slims";CHR$(34);" and there's lipstick on it.":GOTO 1570
 1430 PRINT"It's the bottom half of a torn sheet.":GOTO 1580
 1440 PRINT"It's the top half of a torn sheet.":GOTO 1580
-1450 PRINT"It's broken...
-it says: ";CHR$(34);"MISTY";CHR$(34);"
-on the label...":GOTO 1570
-1460 PRINT"It's the transmitter log. Mike's last entry was at 11:00
-That could help establish time of death...":GOTO 1570
-1470 PRINT"It's a memo from the manager:
-        All Staff!
-           This business with visitors after business hours is
-        going to STOP! It's DANGEROUS to let people in this
-        place! I'm going to can the next guy who pulls"
-1480 PRINT"this!
-                                Steve":GOTO 1710
+1450 PRINT"It's broken... it says: ";CHR$(34);"MISTY";CHR$(34);"on the label...":GOTO 1570
+1460 PRINT"It's the transmitter log. Mike's last entry was at 11:00 That could help establish time of death...":GOTO 1570
+1470 PRINT"It's a memo from the manager: All Staff! This business with visitors after business hours is going to STOP! It's DANGEROUS to let people in this place! I'm going to can the next guy who pulls"
+1480 PRINT"this! Steve":GOTO 1710 
 1490 PRINT"It's a ratings book that shows the station to be number 1":GOTO 1570
 1500 PRINT"They're too big to go in your radio...":GOTO 1580
 1510 PRINT"I don't see a thing that's useful...":GOTO 1580
 1520 PRINT"It's a man's keyring with several keys...":GOTO 1580
 1530 PRINT"There's a three-hour reel of recorded music here.":GOTO 1580
 1540 PRINT"It's just a cheap lipstick... it's been used some...":GOTO 1580
-1550 PRINT"It's pretty mushy...
-     Let's just say that some girl named Susan was really hot
-     for our boy Mike...":GOTO 1570
+1550 PRINT"It's pretty mushy... Let's just say that some girl named Susan was really hot for our boy Mike...":GOTO 1570
 1560 PRINT"It looks like a bead off a girl's necklace or ear-ring..."
 1570 FOR X=1 TO 5000:NEXT:GOTO 110
 1580 FOR X=1 TO 3000:NEXT:GOTO 110
