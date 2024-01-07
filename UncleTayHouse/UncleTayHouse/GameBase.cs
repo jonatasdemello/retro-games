@@ -1,45 +1,43 @@
 ﻿namespace UncleTayHouse
 {
-	public partial class Game
-	{
-		#region Variables
+    public partial class Game
+    {
+        #region Variables
 
-		// player: current location
-		public int LCL = 1;
+        // player: current location
+        public int LCL = 1;
+        public int SAFED = 0;
+        public int TURN1 = 0;
 
-		public int SAFED = 0;
+        public int CMD = 0;
+        public int ARG = 0;
+        public int MVARG = 0;
 
-		public int MVARG = 0;
-		public int TURN1 = 0;
+        public int InputWordTotal = 0;
+        const int MaxInput = 4;
 
-		public int CMD = 0;
-		public int ARG = 0;
+        // # DIM INWS[10] : input words
+        public string[] InputWordText_INWS = new string[MaxInput];
 
-		public int InputWords = 0;
-		const int MaxInput = 5;
+        // # DIM INPTK[10] : input processed keyword
+        public int[] InputWordNum_INPTK = new int[MaxInput];
 
-		// # DIM INWS[10) : store input words
-		public string[] InputWords_INWS = new string[MaxInput];
-
-		// # DIM INPTK[10] : processed input keyword
-		public int[] InputWordNum_INPTK = new int[MaxInput];
-
-		// item offset - where objects start at Vocab
-		public int ITEMOFF = 33;
-		public int IMMOFF = 20;
-		public int DIROFF = 30;
-		public int LASTITEM = 27;
+        // item offset - where objects start at Vocab
+        public int ITEMOFF = 33;
+        public int IMMOFF = 20;
+        public int DIROFF = 30;
+        public int LASTITEM = 27;
 
 
-		// # DIM NULLWS[4]
-		public string[] NULLWORDS = {
-			"THE", "TO", "WITH", "USING", "IN", "GO"
-		};
+        // # DIM NULLWS[4] : words to be ignored
+        public string[] NULLWORDS = {
+            "THE", "TO", "WITH", "USING", "IN", "GO"
+        };
 
-		// NOTE: adding one more item to the arrays because BASIC arrays start at 1
+        // NOTE: adding one more item to the arrays because BASIC arrays start at 1
 
-		// # DIM VOCABS[60] , LWRD = 60;
-		public string[] VOCABS = {
+        // # DIM VOCABS[60] , LWRD = 60;
+        public string[] VOCABS = {
 /* 00 */	 "-99", // 0-dummy
 
 /* 01 */	 "NORTH",
@@ -106,11 +104,11 @@
 /* 58 */	 "RAILING",
 /* 59 */	 "DUMBWAITER",
 /* 60 */	 "FUSEBOX"
-			};
+            };
 
 
-		// # DIM IDESC$[27]
-		public string[] IDESCS = {
+        // # DIM IDESC$[27]
+        public string[] IDESCS = {
 /* 00 */	"-99", // 0-dummy
 /* 01 */	"TAYS HOUSE UNLIKELY EVER TO BE SOLD. TALES OF GUTTED STAIRWELLS AND BOOBY TRAPS HAVE SPOOKED BUYERS...",
 /* 02 */	"SOMEONE HAS BEEN PLAYING VERY ROUGH WITH THIS TOY",
@@ -120,7 +118,7 @@
 /* 06 */	"CORD for BUNGEE JUMPING",
 /* 07 */	"A SMALL BRASS KEY",
 /* 08 */	"A CHILD'S TOY",
-/* 09 */	"THE WRITING IS REVERSED",
+/* 09 */	"THE WRITING IS REVERSED. Maybe there is a way to read it somewhere...",
 /* 10 */	"SUPPOSEDLY DOG FOOD, THOUGH IT APPEARS TO BE MADE OF PLASTIC",
 /* 11 */	"RUBBER GLOVES USED for CLEANING",
 /* 12 */	"A QUEEN-SIZED BOXSPRING",
@@ -139,10 +137,10 @@
 /* 25 */	"",
 /* 26 */	"",
 /* 27 */	"AN OLD-FASHIONED FUSEBOX. THE FUSE MARKED 'ATTIC' IS MISSING."
-		};
+        };
 
-		// # DIM RNAMES[31] : LOCATION NAME
-		public string[] LocationName_RNAMES = {
+        // # DIM RNAMES[31] : LOCATION NAME
+        public string[] LocationName_RNAMES = {
 /* 00 */	"-99", // 0-dummy
 /* 01 */	"FOYER (LOBBY)",
 /* 02 */	"KITCHEN",
@@ -175,10 +173,10 @@
 /* 29 */	"BOTTOM OF STAIRS",
 /* 30 */	"MID-AIR",
 /* 31 */	"LEAVE THE HOUSE (AND THE GAME)"
-		};
+        };
 
-		// # DIM RDESCS[31] : LOCATION DESCRIPTION
-		public string[] LocationDescription_RDESCS = {
+        // # DIM RDESCS[31] : LOCATION DESCRIPTION
+        public string[] LocationDescription_RDESCS = {
 /* 00 */	"-99", // 0-dummy
 /* 01 */	"THE ENTRYWAY TO THE HOUSE",
 /* 02 */	"COUNTERTOPS ARE DUSTY AND THERE ARE RUSTING POTS AND PANS",
@@ -199,7 +197,7 @@
 /* 17 */	"A HALLWAY IN THE CENTER OF THE SECOND FLOOR",
 /* 18 */	"YOUR COUSIN'S ROOM IN HAPPIER TIMES, BEFORE HE RAN OFF TO JOIN THE BAATH PARTY",
 /* 19 */	"A DARK CHAMBER OFF THE BEDROOM",
-/* 20 */	"THIS EERIE HALL HAS THREE IDENTICAL DOORS ON THE WEST WALL",
+/* 20 */	"THIS EERIE HALL HAS THREE IDENTICAL DOORS ON THE WEST WALL (LEFT, CENTER, RIGHT)",
 /* 21 */	"A COZY CORNER ROOM WITH WINDOWS ON TWO WALLS",
 /* 22 */	"AN ELEGANT BATH WITH A MIRROR OVER A MARBLE SINK",
 /* 23 */	"A CRAMPED DUMBWAITER",
@@ -211,10 +209,10 @@
 /* 29 */	"STAIRS FROM BASEMENT TO KITCHEN",
 /* 30 */	"HANGING FROM A BUNGEE CORD",
 /* 31 */	""
-		};
+        };
 
-		// # DIM REXIT[31][6] : : LOCATION EXITS
-		public int[,] LocationExit = {
+        // # DIM REXIT[31][6] : : LOCATION EXITS
+        public int[,] LocationExit = {
 			// 0  1="NORTH", 2="SOUTH", 3="EAST", 4="WEST", 5="UP", 6="DOWN"
 /* 00 */	{-99, -99  , -99  , -99  , -99  , -99  , -99  },//0-dummy
 /* 01 */	{-99,   2  ,  31  ,   3  ,   4  ,   0  ,   0  },
@@ -228,7 +226,7 @@
 /* 09 */	{-99,   5  ,   0  ,   0  ,   0  ,   0  ,   0  },
 /* 10 */	{-99,   0  ,   0  ,   5  ,   0  ,   0  ,   0  },
 /* 11 */	{-99,   0  ,   0  ,   0  ,   3  ,   0  ,   0  },
-/* 12 */	{-99,  13  ,   0  ,   0  ,  14  ,  -1  ,   3  },
+/* 12 */	{-99,  13  ,   0  ,   0  ,  14  ,  -1  ,   3  }, // STAIRS TO ATTIC is hidden until fuse is inserted
 /* 13 */	{-99,   0  ,  12  ,   0  ,   0  ,   0  ,   0  },
 /* 14 */	{-99,   0  ,  15  ,  12  ,  17  ,   0  ,   0  },
 /* 15 */	{-99,  14  ,   0  ,   0  ,  16  ,   0  ,   0  },
@@ -248,20 +246,22 @@
 /* 29 */	{-99,   0  ,   0  ,   0  ,  28  ,  -1  ,   0  },
 /* 30 */	{-99,   0  ,   0  ,   0  ,   0  ,   0  ,   0  },
 /* 31 */	{-99,   0  ,   0  ,   0  ,   0  ,   0  ,   0  }
-		};
+        };
 
-		// # DIM ILOC[27]
-		public int[] ILOC = {
+        // if ILOC[obj] == 0 => player is carrying object
+        // if ILOC[obj] == -1 => object is hidden
+        // # DIM ILOC[27]
+        public int[] ILOC = {
 /* 00 */	-99,//dummy
 /* 01 */	 1,		 // "NEWSPAPER",
 /* 02 */	-1,		 // "TEDDYBEAR",
 /* 03 */	-1,		 // "FUSE",
 /* 04 */	0,		 // "JACK", 10
 /* 05 */	30,		 // "PICTURE",
-/* 06 */	10,		 // "BUNGEE",
-/* 07 */	13,		 // "KEY",
+/* 06 */	0,		 // "BUNGEE", 10
+/* 07 */	0,		 // "KEY", 13
 /* 08 */	15,		 // "TOP",
-/* 09 */	 9,		 // "NOTE",
+/* 09 */	 0,		 // "NOTE", 9
 /* 10 */	16,		 // "GAINESBURGER",
 /* 11 */	22,		 // "GLOVES",
 /* 12 */	26,		 // "BOXSPRING",
@@ -282,20 +282,20 @@
 /* 27 */	-1		 // "FUSEBOX"
 		};
 
-		// # DIM EXDESCS[7] : EXTENDED DESCRIPTION
-		public string[] ExtendedDescription = {
+        // # DIM EXDESCS[7] : EXTENDED DESCRIPTION
+        public string[] ExtendedDescription = {
 /* 00 */	"-99", // 0-dummy
 /* 01 */	"THERE IS A LOCKED DOOR TO THE NORTH",
 /* 02 */	"THERE IS A LOCKED DOOR TO THE SOUTH",
 /* 03 */	"STAIRS LEAD DOWN TO A CELLAR. SEVERAL STEPS HAVE COLLAPSED, MAKING THE STAIRCASE UNUSABLE.",
 /* 04 */	"STAIRS LEAD UP. SEVERAL STEPS HAVE COLLAPSED, MAKING THE STAIRCASE UNUSABLE.",
-/* 05 */	"DARK STAIRS LEAD UP TO THE ATTIC",
+/* 05 */	"DARK STAIRS LEAD UP TO THE ATTIC (it is too DARK to see the way)",
 /* 06 */	"A LOCKED DOOR TO THE WEST IS LABELLED 'EXTREME DANGER'",
 /* 07 */	"YOUR UNCLE'S DOBERMAN BLOCKS A DOORWAY TO THE NORTH"
-		};
+        };
 
-		// # DIM EXLOC[7][2] : EXTENDED ?
-		public int[,] EXLOC = {
+        // # DIM EXLOC[7][2] : EXTENDED location?
+        public int[,] EXLOC = {
 /* 00 */	{ -99, -99  , -99 }, // dummy
 /* 01 */	{ -99,  5   ,  6  },
 /* 02 */	{ -99,  8   ,  6  },
@@ -304,8 +304,8 @@
 /* 05 */	{ -99,  12  ,  5  },
 /* 06 */	{ -99,  17  ,  4  },
 /* 07 */	{ -99,  17  ,  1  }
-		};
+        };
 
-		#endregion
-	}
+        #endregion
+    }
 }
