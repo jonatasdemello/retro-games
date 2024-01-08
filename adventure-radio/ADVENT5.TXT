@@ -1,0 +1,134 @@
+                     How to Write an Adventure
+                            Part 5
+
+Object Manipulation
+
+     Of all the things required of an Adventure program, the most fundimental
+is the ability to manipulate objects in the environment. This is facilitated
+by two major routines... those triggered by the verbs "GET" and "PUT".
+     The L(X) array determines in what room an object is placed. If L(1)=1
+then object #1 is located in Room 1 and so on. By simply changing the number
+in the propper L(X) element, we can easily change the location of the object.
+     Let's say you want to GET KNIFE. The command parser determines that GET
+and KNIFE are both recognized words. The V value directs the program to a
+particular line of the program (Say 3000) where the GET routine is located.
+Let's see what happens next:
+     At line 3000 we must first determine if the player is already holding the
+knife. If KNIFE was noun number 7, then N (noun counter) is equal to 7. (This
+was assigned in the command parser... remember?) So how do we know what the
+player is holding? Well, array L(X) holds the location of the object. If we
+assign the location -1 to anything being held, then there can never be any
+conflicts with where other things are located, right? So that is what we do.
+This means that to check and see if we are holding the object, we just have to
+check and see if L(N)=-1:
+
+          3000 IF L(N)=-1 THEN PRINT"You already have the ";N$;".":GOTO 1000
+
+     If the OBJECT LOCATION is not -1, the test fails, and control falls to
+3010 where we will test to see that the mentioned object can indeed be gotten.
+There are some objects that are either too large to be moved, or objects that
+need the presence of another object to move them. You can "filter out" these
+objects with a test like the one in 3010:
+
+          3010 IF N>28 THEN PRINT"The ";N$;" is too heavy to move.":GOTO 1000
+
+     In this example, any noun with a count of less than 28 can actually be
+picked up. All nouns that are larger than 28 are considered to heavy to move.
+     Next, we must check to see that the object mentioned is really in the
+room with us. This is also easy to check. Our current location is contained in
+variable L:
+
+          3020 IF L(N)<>L THEN PRINT"I don't SEE the ";N$;" here.":GOTO 1000
+
+     L(N) contains the number of the room where the object IS, and L is OUR
+location.
+     The case will arise when the posession of one object is necessary before
+another object can be gotten. The code in 3030 is an example:
+
+          3030 IF L(19)<>-1 AND N=20 THEN PRINT"I can't do that YET!":GOTO
+                   1000
+
+     In other words, if object 19 is not being held, then object 20 cannot be
+gotten. This can be turned around to check for ANYTHING, like a certain object
+being in another room or the like. You can cram as many of these tests in as
+you like (and have memory to accomodate!).
+     Finally, you come to the moment of truth... All of the tests have been
+passed, and it's time to get the object:
+
+          3040 L(N)=-1:PRINT N$;" taken.":GOTO 1000
+
+     Pretty slick, NO?
+     PUTTING or DROPPING an object is even easier. The only thing you really
+have to check on is, "Do I HAVE the object". If you don't, say so. If you do,
+assign L(N)=L...that is...put the ojbect back into a room:
+
+          3100 IF L(N)<>-1 THEN PRINT"You don't HAVE the ";N$:GOTO 1000
+          3110 L(N)=L:PRINT N$;" dropped.":GOTO 1000
+
+ROOM ZERO
+
+     There is a special room that we have not discussed yet, and this is as
+good a place to talk about it as any. That is Room Zero. You never assigned a
+room zero in your planning, but it is there. That is because all of your
+arrays begin with the "0" subscript. This room is a "holding tank" or "staging
+platform" for objects that are not needed until later in the adventure, or for
+objects that must change their form. It's easy to transfer objects too and
+from room Zero. Let's say that waving a wand changes a statue (N(12)) into a
+princess (N(13)). After you do all your testing to be sure the wand is there
+etc the code to do the change would look like this:
+
+          3240 L(12)=0:L(13)=L:PRINT"The wand did something!":GOTO 1000
+
+     Just swap the objects out!!!!!! This is handy also for lighting lamps and
+so forth. Room Zero is also the place you send tasty food that get's eaten, or
+treasures that get stollen that you never plan to return to the adventurer.
+
+MOVING FROM ROOM TO ROOM
+
+     You MUST have a way to get from one room to another. Usually you GO NORTH
+or whatever. The actual movement routine uses the D(X,Y) array to determine if
+the requested move is legal. This routine looks like this:
+
+          5000 IF D(N,L)<>0 THEN L=D(N,L):GOTO 1000
+          5010 PRINT"You cannot go in that Direction":GOTO 1000
+
+     The D(X,Y) array contains the numbers of all the rooms that canned with
+the current room, room L. If the direction is zero, then no exit exists in
+that direction. If there IS an exit, then the room number in that array
+element becomes the new L number.
+
+HELP
+
+     Many adventures offer hints to the adventurer. This is usually handled
+along the lines of "if he's in room # so and so, tell him this:
+
+          11000 ON L GOTO 11001,11002,11003,11004:GOTO 11005
+          11001 PRINT"Try EXAMINING THINGS":GOTO 1000
+          11002 PRINT"The wall appears climbable":GOTO 1000
+          11003 PRINT"Leave the apples alone!":GOTO 1000
+          11004 PRINT"Try pushing the button":GOTO 1000
+          11005 PRINT"Gee, I'm as confused as you are!":GOTO 1000
+
+     Depending on the room number, the adventurer gets a meaningful message.
+If there is no helkp for a room, the routing should be to line 11005 where a
+general purpose "shrug" is displayed.
+
+EXAMINE
+
+     Examine is handled just like Help. It tells more about a particular
+object. The only difference is, instead of keying on the room number, we must
+key first on the object, and then check to see if it is
+     A) in the room
+     B) on the adventurer
+     Given an afirmative to either case, we display the help:
+
+          12000 IF L(N)<>L AND L(N)<>-1 THEN PRINT "I don't see it!": GOTO
+               1000
+          12010 IF N=8 THEN PRINT"It's an old rusted key!":GOTO 1000
+
+     In turn, all items can be so handled, and in writing all of these
+routines, the adventure is fleshed out.
+
+     The final chapter of our little tutoral will deal with enhancements, like
+game saves, inventories, and shorthand commands.
+

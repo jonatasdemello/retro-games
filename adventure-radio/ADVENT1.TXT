@@ -1,4 +1,5 @@
-                     How to write an Adventure
+                     How to Write an Adventure
+					        Part 1
 
      It seems to me that there have got to be others out there in modem
 country who have adventure running around in their heads.  If you are like me,
@@ -9,7 +10,6 @@ all appear) we'll demonstrate how to make the computer understand our input
 and act out the adventure.  The coding is coing to be "plain vanilla"...
 nothing fancy with the screen or machine specific.  Just code that will create
 an adventure, and which will be easily transportable from machine to machine.
-
 
 Some conventions in Adventuring
 
@@ -115,10 +115,4 @@ this fashion until you feel you have covered all bases. (You'll forget
 something, but that can be fixed later on... I'll show you how!)
      You are now ready to hit the keyboard... a subject covered in file 2 of
 our little story.
-
-
-
-
-
-
 

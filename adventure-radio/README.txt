@@ -1,4 +1,4 @@
----------How to Write an Adventure: A Tutoral --------
+---------How to Write an Adventure: A Tutorial --------
 ADVENT1.DOC     7,412  02-14-86  How to write an Adventure:Conventions
 ADVENT2.DOC     5,532  02-14-86  Planning the Adventure
 ADVENT3.DOC     5,422  02-23-86  The Display Screen
@@ -17,8 +17,8 @@ NEWPAGE.PRT                      Utility to advance printer to new page.  Used
                                  by PRINTALL.BAT
 
 
-All of these were written by Douglas C. Rogers.  These and many more
-adventures are available on Doug's BBS:
+All of these were written by Douglas C. Rogers.
+These and many more adventures are available on Doug's BBS:
 
    ADVENTURELAND BBS
    300/1200 Baud

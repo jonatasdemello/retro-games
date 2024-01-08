@@ -1,0 +1,69 @@
+"The Case at KAXL" 
+Douglas C. Rogers
+1982
+
+Source code TRSTimes
+https://bluerenga.blog/2023/06/25/the-case-at-kaxl-1982/
+
+
+Zip from: 
+https://www.qbasic.net/en/qbasic-downloads/qbasic-tutorial/game-programming.htm
+https://www.qbasic.net/dl.php?id=SGH6DkilE9Fus&file=adventure_tut
+
+How to Write an Adventure: A six part Tutorial
+
+
+All of these were written by Douglas C. Rogers.
+These and many more adventures are available on Doug's BBS:
+
+   ADVENTURELAND BBS
+   300/1200 Baud
+   24 Hours/Day
+   (606) 271-0558
+
+
+https://bluerenga.blog/all-the-adventures/
+https://bluerenga.blog/2023/06/25/the-case-at-kaxl-1982/#comments
+https://bluerenga.blog/2023/06/27/the-case-at-kaxl-historical-update/
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+https://bluerenga.blog/tag/the-case-at-kaxl/?order=ASC
+https://bluerenga.blog/2023/06/25/the-case-at-kaxl-1982/
+
+There is a real KAXL radio station. It services the Bakersfield, California area with a Christian contemporary format.
+
+This game has nothing to do with the real station, but I just wanted to clear that up; because of how radio station names work we can say the fictional version is somewhere on the western half of the United States (since it starts with “K”, starting with “W” would indicate stations on the eastern half).
+
+This game is otherwise utterly mysterious. There’s an Internet Archive page for it but it isn’t listed (as of this writing) in any of my sources. It is in GW-BASIC format for DOS, copyrighted 1982 by Doug Rogers. Was it written in that format? Probably not. GW-BASIC first appeared in 1983. In 1982 DOS is just rare overall; the only DOS-developed game we’ve seen so far is The Hermit’s Secret. There’s also textual irregularities which suggest to me a port from another platform.
+
+It is not by some company, otherwise I could prod at that angle. There are too many Doug Rogers out there to resolve one as being the author. Could it be the Canadian judo champion from the 1960s? The one who was a developer relations manager for NVIDIA? Maybe the one who co-developed a Macintosh HyperCard stack with Randolph Valentine which generates random poetry and art?
+
+Nevermind. At least the premise is interesting. You get a panicked call from a radio station and need to investigate. No specific goal immediately given. Was it corporate espionage? Murder? Zombies?
+
+The details about “If you’ve never been in a radio station before” and casually mentioning “Radio Station managers and Program directors are notorious memo writers” strikes me that the author, at least, has/had radio station experience. In fact, this feels like a My Office Game, cousin to the My Home Game, filled with details that aren’t really part of the game proper but are part of a real radio station.
+
+The map structure is fairly simple; there’s a main hallway I have shaded in color above with branches. No rooms are locked off except the one at the very back, and for that room there’s keys just sitting on the desk of the first room, because given the story scenario, there would be keys laying about in the first room. So the design is from the end of verisimilitude, while inserting a story scenario.
+
+You arrive at the station at midnight to find the front door strangely unlocked.
+
+The entire game involves exploring the different rooms of the radio station and looking at things. According to the ratings book in the office, the station is currently number 1 on the charts. The station ID recorder is broken (announcing the name of the station, as is required) so it has to be entered in manually at the hour. There’s a large studio with microphones and an old piano.
+
+The open map means it can take a while to make the main discovery, the dead body of Mike, the one who called us on the phone.
+
+The game isn’t clear from here but the idea is to gather clues as to what happened. You keep in them in inventory akin to getting items in a standard Treasure Hunt.
+
+Items include a broken record (“MISTY”), lipstick, a lovenote (between Mike and a “Susan”, the same one that got let in the studio late), a cigarette (there’s also randomly the faint smell of smoke), and a transmitter log.
+
+Once you collect enough information, you can go to the phone at the front desk and USE it. You’ll be prompted who to call; you can call the POLICE.
+
+If you have enough evidence gathered, the police will ask you to help them locate where the murderer might be happening. When I played, I had already gotten stabbed so I knew where to go.
+
+As a game, this was pretty easy and slight. The only challenge I had was realizing the premise in the first place (gathering evidence then calling police).
+
+Just scenery.
+
+As a conceptual premise it was unusual, though; even our “easy” games have generally had arbitrarily map layout meant as service to the game’s puzzles. Here, there’s a radio tower out back for no reason other than that’s what should be there, and the door there is locked only because, logically speaking in the real world, that door would normally be locked. Not because there was a puzzle that demanded a key.
+
+
