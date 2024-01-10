@@ -8,24 +8,23 @@
         public int RNG(int max)
         {
             Random rnd = new Random();
-            int value = rnd.Next(0, max);
+            int value = rnd.Next(1, max+1);
             return value;
         }
+
         public void print(string text) => Console.WriteLine(text);
         public void print(string text1, string text2) => Console.WriteLine($"{text1} {text2}");
-
         public void PrintResponse(string text)
         {
             string sep = new string('-', 80);
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine(sep);
+            //Console.WriteLine(sep);
             Console.WriteLine(text);
-            Console.WriteLine(sep);
+            //Console.WriteLine(sep);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             //Console.ResetColor();
         }
-
         public void PrintDgb(string text)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -43,22 +42,30 @@
             //Console.ResetColor();
         }
 
+        public int GetObject(int x)
+        {
+            return x - OBJECTOFFSET;
+        }
+        public string GetString(int x)
+        {
+            return VOCABS[x + OBJECTOFFSET];
+        }
 
         public void ActionInventory()
         {
-            print("[Inventory] You are carrying:");
+            print(" [Inventory] You are carrying:");
             bool empty = true;
             for (int i = 1; i < ILOC.Length; i++)
             {
                 if (ILOC[i] == 0)
                 {
-                    print("  - ", VOCABS[i + ITEMOFF]);
+                    print("   - ", VOCABS[i + OBJECTOFFSET]);
                     empty = false;
                 }
             }
             if (empty)
             {
-                print("  - nothing!");
+                print(" - nothing!");
             }
         }
         public void ActionIntro()
@@ -126,25 +133,28 @@
             PrintResponse("Thank you for playing, bye!");
             Environment.Exit(0);
         }
-        public void ActionHuh()
-        {
-            PrintResponse("HUH?");
-        }
 
         public void ActionLocation()
         {
-            PrintDgb("location & description");
-            print("    LCL : ", LCL.ToString());
-            print("    L   : ", LocationName_RNAMES[LCL]);
-            print("    D   : ", LocationDescription_RDESCS[LCL]);
+            //PrintDgb("location & description");
+            //print("  L : ", LOCAL.ToString());
+            //print("  L : { " + LOCAL.ToString() +" } "+ LocationName_RNAMES[LOCAL]);
+            //print("  D : " + LocationDescription_RDESCS[LOCAL]);
+
+            print("  { " + LOCAL.ToString() + " } " + LocationName_RNAMES[LOCAL]);
+            print("  " + LocationDescription_RDESCS[LOCAL]);
+
+            //print("    LOCAL : " + LOCAL.ToString() +
+            //"    L   : " + LocationName_RNAMES[LOCAL] +
+            //"    D   : " + LocationDescription_RDESCS[LOCAL] );
         }
         public void ActionDirections()
         {
             PrintDgb("directions");
-            print("    You can go:");
+            // print("    You can go:");
             for (int i = 1; i <= 6; i++)
             {
-                int exit = LocationExit[LCL, i];
+                int exit = LocationExit[LOCAL, i];
                 if (exit > 0)
                 {
                     print("    " + VOCABS[i] +"\t : ", LocationName_RNAMES[exit]);
@@ -153,298 +163,340 @@
         }
         public void ActionExtendedDescriptions()
         {
-            PrintDgb("extended descriptions");
+            // PrintDgb("extended descriptions");
 
             for (int i = 1; i < ExtendedDescription.Length; i++)
             {
                 int L1 = EXLOC[i, 1];
                 int L2 = EXLOC[i, 2];
-                if (LCL == L1 && LocationExit[L1, L2] <= 0)
+                if (LOCAL == L1 && LocationExit[L1, L2] <= 0)
                 {
-                    print(ExtendedDescription[i]);
+                    PrintResponse(ExtendedDescription[i]);
                 }
             }
-            if (LCL == 17 && LocationExit[17, 1] > 0)
+            if (LOCAL == 17 && LocationExit[17, 1] > 0)
             {
-                print("YOUR UNCLE'S DOBERMAN IS SNORING PEACEFULLY");
+                PrintResponse("Your uncle's doberman is snoring peacefully");
             }
-            if (LCL == 3 && ILOC[6] == -12)
+            if (LOCAL == 3 && ILOC[6] == -12)
             {
-                print("A BUNGEE CORD DANGLES FROM THE RAILING ABOVE");
+                PrintResponse("A bungee cord dangles from the railing above");
             }
-            if (LCL == 12 && ILOC[6] == -12)
+            if (LOCAL == 12 && ILOC[6] == -12)
             {
-                print("A BUNGEE CORD DANGLES FROM THE RAILING");
+                PrintResponse("A bungee cord dangles from the railing");
             }
-            for (int i = 1; i <= LASTITEM; i++)
+            for (int i = 1; i < ILOC.Length; i++)
             {
-                if (ILOC[i] == LCL)
+                if (ILOC[i] == LOCAL)
                 {
-                    print("THERE IS A " + VOCABS[i + ITEMOFF] + " HERE");
+                    PrintResponse("There is a " + VOCABS[i + OBJECTOFFSET] + " here");
                 }
             }
-            if (LCL == 2 && ILOC[3] == -1)
+            if (LOCAL == 2 && ILOC[3] == -1)
             {
-                print("SOMETHING IS BARELY VISIBLE UNDER THE FRIDGE");
+                PrintResponse("Something is barely visible under the fridge");
             }
-            if (LCL == 3 && ILOC[5] == 30)
+            if (LOCAL == 3 && ILOC[5] == 30)
             {
-                print("THERE IS A PICTURE HIGH UP ON THE WALL");
+                PrintResponse("There is a picture high up on the wall");
             }
         }
 
-        public void ActionTake(int obj)
+        public void ActionTake()
         {
-            if (obj < 0)
+            // below 34 (verbs) above 33 (objects)
+            int obj = CMD2 - OBJECTOFFSET;
+
+            if (CMD2 < 34) // verbs
             {
-                PrintResponse("Do what?");
+                PrintResponse("Take what?");
                 return;
             }
-            // ARG is the object
-            ARG = InputWordNum_INPTK[2] - ITEMOFF;
 
             if (ILOC[obj] == 0)
             {
-                PrintResponse("You already have " + VOCABS[InputWordNum_INPTK[2]]);
+                PrintResponse("You already have " + VOCABS[CMD2]);
                 return;
             }
+
             // take picture from the wall
-            if (ILOC[obj] == 30 && LCL == 3 && obj == 5)
+            // picture, sitting hall
+            if (CMD2 == 32 && ILOC[obj] == 30 && LOCAL == 3)
             {
                 PrintResponse("The picture is hanging too high up on the wall, you have to find another way to reach it...");
                 return;
             }
 
-            //if (IC >= 8)
-            //{
-            //	print("YOU'RE CARRYING TOO MUCH");
-            //}
-            if (obj > IMMOFF)
+            // big objects that can't be taken
+            if (CMD2 >= 54) // fridge, couch, door, railing...
             {
-                print("IT'S TOO HEAVY");
-                return;
-            }
-            if (LCL == 29 && obj == 12)
-            {
-                print("YOU CAN'T DO THAT");
-                return;
-            }
-            if (LCL == 30 && obj == 5)
-            {
-                print("TAKING THE PICTURE REVEALS A FUSEBOX");
-                ILOC[obj] = 0;
-                ILOC[IMMOFF + 7] = 30;
-                // # GOTO 2500;
+                PrintResponse("It's too heavy, you can't take that");
                 return;
             }
 
-            if (ILOC[obj] != LCL)
+            // bottom of stairs, boxspring
+            if (LOCAL == 29 && CMD2 == 45)
             {
-                PrintResponse("There is no " + VOCABS[InputWordNum_INPTK[2]] + " here");
+                PrintResponse("It is better to leave it there");
+                return;
+            }
+
+            // mid-air, picture
+            if (LOCAL == 30 && CMD2 == 38)
+            {
+                PrintResponse("Taking the picture reveals a fusebox");
+
+                ILOC[5] = 0; // picture
+                ILOC[obj] = 0;
+                ILOC[27] = 30; // Fusebox
+                return;
+            }
+
+            if (ILOC[obj] != LOCAL)
+            {
+                PrintResponse("There is no " + VOCABS[CMD2] + " here");
                 return;
             }
 
             // if player is carrying object, ILOC[obj] == 0
             ILOC[obj] = 0;
-            PrintResponse(VOCABS[InputWordNum_INPTK[2]] + ": taken");
+            PrintResponse(VOCABS[CMD2] + ": taken");
         }
-
-
-        public void ActionDrop(int obj)
+        public void ActionDrop()
         {
+            int obj = CMD2 - OBJECTOFFSET;
+
             if (ILOC[obj] != 0)
             {
-                PrintResponse("You aren't carrying " + VOCABS[InputWordNum_INPTK[2]]);
+                PrintResponse("You aren't carrying " + VOCABS[CMD2]);
                 return;
             }
-            // IC = IC - 1;
-            if (LCL == 17 && obj == 10 && LocationExit[17, 1] <= 0)
+            // gainesburger, hallway
+            if (CMD2 == 43 && LOCAL == 17 && LocationExit[17, 1] <= 0)
             {
-                print("THE DOG LOOKS DISGUSTED. MAYBE YOU SHOULD EAT IT.");
-                // # GOTO 6690;
+                PrintResponse("The dog looks disgusted. maybe you should eat it");
+                return;
             }
-            if (LCL == 17 && obj == 2 && LocationExit[17, 1] <= 0)
+            // teddybear, hallway
+            if (CMD2 == 35 && LOCAL == 17 && LocationExit[17, 1] <= 0)
             {
-                print("THE DOG CHEWS HIS FAVORITE TOY AND IS SOON ASLEEP");
+                PrintResponse("The dog chews his favorite toy and is soon asleep");
                 ILOC[obj] = -999;
                 LocationExit[17, 1] = 18;
-                // # GOTO 2500;
             }
-            if (LCL == 29 && obj == 12 && LocationExit[29, 5] <= 0)
+            // boxpring, bottom of stairs
+            if (CMD2 == 45 && LOCAL == 29 && LocationExit[29, 5] <= 0)
             {
-                print("THE BOXSPRING COVERS THE GAP IN THE STAIRS");
+                PrintResponse("The boxspring covers the gap in the stairs");
                 ILOC[obj] = -999;
                 LocationExit[29, 5] = 2;
                 LocationExit[2, 6] = 29;
-                // # GOTO 2500;
             }
-            // # 6690;
 
             // if player is carrying object, ILOC[obj] == current local
-            ILOC[obj] = LCL;
-            PrintResponse(VOCABS[InputWordNum_INPTK[2]] + ": dropped");
+            ILOC[obj] = LOCAL;
+            PrintResponse(VOCABS[CMD2] + ": dropped");
         }
-        public void ActionLook(int obj)
+        public void ActionLook()
         {
+            int obj = CMD2 - OBJECTOFFSET;
+
             // look at the picture on the wall
-            if (ILOC[obj] == 30 && LCL == 3 && obj == 5)
+            if (ILOC[5] == 30 && LOCAL == 3 && CMD2 == 38)
             {
                 PrintResponse("The picture is hanging too high up on the wall, you have to find another way to reach it...");
                 return;
             }
 
             // check if the object is here and not hidden
-            if (ILOC[obj] != 0 && ILOC[obj] != LCL)
+            if (ILOC[obj] != 0 && ILOC[obj] != LOCAL)
             {
-                PrintResponse("There is no " + VOCABS[InputWordNum_INPTK[2]] + " here");
+                PrintResponse("There is no " + VOCABS[CMD2] + " here");
                 return;
             }
 
-            // 9=note and (13=master bedroom OR 22=bathroom)
-            if (obj == 9 && (LCL == 13 || LCL == 22))
+            // 42=note and (13=master bedroom OR 22=bathroom)
+            if (CMD2 == 42 && (LOCAL == 13 || LOCAL == 22))
             {
-                // decide which door is safe
-                if (SAFED != 0)
-                {
-                    return;
-                }
-                //int rnd = RNG(3);
-                //SAFED = (rnd * 3) + 1;
-                SAFED = RNG(3);
-                string N1S = VOCABS[DIROFF + 1];
-                string N2S = VOCABS[DIROFF + 3];
-                if (SAFED == 1)
-                {
-                    N1S = VOCABS[DIROFF + 2];
-                }
-                if (SAFED == 3)
-                {
-                    N2S = VOCABS[DIROFF + 2];
-                }
-                print("EXPERIMENTS ON " + N1S + " AND " + N2S + " DOORS PROCEEDING WELL; FILE FOR PATENT");
+                ActionSafeDoor();
+                return;
             }
 
             // Print extended obj description
-            if (IDESCS[obj] == "")
-            {
-                PrintResponse("There's nothing special about the " + VOCABS[InputWordNum_INPTK[2]]);
-            }
-            else
+            if (IDESCS[obj] != "")
             {
                 PrintResponse(IDESCS[obj]);
+                return;
             }
+            PrintResponse("There's nothing special about the " + VOCABS[CMD2]);
         }
-        public void ActionUnlock(int obj)
+        public void ActionSafeDoor()
         {
-            if (LCL != 5 && LCL != 17)
+            // decide which door is safe
+            if (SAFEDoor == 0)
             {
-                print("THERE IS NO DOOR HERE!");
+                SAFEDoor = RNG(3);
+            }
+
+            string N1S = "LEFT";
+            string N2S = "RIGHT";
+
+            if (SAFEDoor == 1)
+            {
+                N1S = "CENTER";
+            }
+            if (SAFEDoor == 3)
+            {
+                N2S = "CENTER";
+            }
+            PrintResponse("Experiments on " + N1S + " and " + N2S + " doors proceeding well; file for patent");
+        }
+        public void ActionUnlock()
+        {
+            if (LOCAL != 20 && LOCAL != 17)
+            {
+                PrintResponse("There is no door here!");
+                return;
             }
             // do we have a key?
             if (ILOC[7] != 0) // 13 = master bedroom ? key ?
             {
-                print("YOU DON'T HAVE A KEY!");
+                PrintResponse("You don't have a key!");
+                return;
             }
             else // yes
             {
                 // ckeck locale
-                if (LCL == 5) // Hallway?
+                if (LOCAL == 5) // Hallway?
                 {
-                    print("THE KEY DOESN'T FIT THE LOCK");
+                    PrintResponse("The key doesn't fit the lock");
+                    return;
                 }
                 // only unlock if is in the Hallway and have a key
-                if (LCL == 17 && ILOC[7] == 0) // Hallway?
+                if (LOCAL == 17 && ILOC[7] == 0) // Hallway?
                 {
-                    print("YOU UNLOCK THE DOOR. BEWARE!");
+                    PrintResponse("You unlock the door. beware!");
                     LocationExit[17, 4] = 20;
-                    // # GOTO 2500;
+                    return;
                 }
             }
+            PrintResponse("Nothing to unlock!");
         }
-        public void ActionEat(int obj)
+        public void ActionOpen()
         {
-            if (ILOC[obj] != 0)
-            {
-                print("YOU DON'T HAVE IT!");
-            }
-            else if (obj != 10)
-            {
-                print("YOU CAN'T EAT THAT!");
-            }
+            // 2 words only
 
-            print("THERE WAS A DIAMOND HIDDEN INSIDE THE GAINESBURGER");
-
-            ILOC[obj] = -2;
-            ILOC[17] = 0;
-        }
-        public void ActionSpin()
-        {
-            if (ILOC[8] != 0)
+            // dangerous hall: open door
+            if (LOCAL == 20 && CMD2 == 57)
             {
-                print("HUH?");
-            }
-            if (LCL == 18)
-            {
-                print("THERE IS A FLASH OF LIGHT AND A CRACKING SOUND. AN OPENING APPEARS IN THE EAST WALL");
-                LocationExit[18, 3] = 19;
-                // # GOTO 2500;
-            }
-            // #INVERSE:;
-            print("WHEE!");
-            // # NORMAL:;
-            print(" ");
-        }
-
-        public void ActionMove()
-        {
-            int AIMM = ARG - IMMOFF;
-            if (AIMM >= 1 && AIMM <= 4)
-            {
-                // #ON AIMM GOTO 6970, 6975, 6980;
-                int X = AIMM;
-                if (X == 1)
-                {
-                    // #FN_6970();
-                    print("IT'S TOO HEAVY FOR YOU TO MOVE");
-                }
-                else if (X == 2)
-                {
-                    // #FN_6975();
-                    print("YOUR BACK IS ACTING UP");
-                }
-                else if (X == 3)
-                {
-                    // #FN_6980();
-                    print("THAT SEEMS POINTLESS AND UNSANITARY");
-                }
-                else
-                {
-                    print("YOU CAN'T DO THAT");
-                }
-            }
-        }
-
-        public void ActionOpenDoor()
-        {
-            // hall: OPEN x Door
-            if (LCL == 20 && (InputWordNum_INPTK[2] - ITEMOFF) == IMMOFF + 4)
-            {
-                print("PLEASE SPECIFY LEFT, CENTER OR RIGHT");
+                PrintResponse("Please specify LEFT, CENTER or RIGHT");
+                return;
             }
             else
             {
-                print("HUH?");
+                PrintResponse("Open what?");
             }
-            // # RETURN;
         }
+        public void ActionOpen3Door()
+        {
+            if (LOCAL != 20) // dangerous hall
+            {
+                PrintResponse("You can't do that here");
+                return;
+            }
 
+            if (CMD3 != 57) // door
+            {
+                PrintResponse("Open what?");
+                return;
+            }
+
+            // open[direction not mentioned in note] door
+            int DOORDIR = CMD2 - 30;
+            if (DOORDIR < 1 || DOORDIR > 3)
+            {
+                PrintResponse("Which door?");
+                return;
+            }
+
+            if (DOORDIR == SAFEDoor)
+            {
+                PrintResponse("Opening the door reveals a dumbwaiter");
+                LocationExit[LOCAL, 4] = 23;
+                return;
+            }
+
+            // Trap: if you haven't read the note before
+            int rnd = RNG(100);
+            if (rnd > 50)
+            {
+                PrintResponse("BAM! A shot rings out! it was well-aimed too.");
+                // you die
+                return;
+            }
+
+            PrintResponse("An ironing board slams onto your head");
+            // you die
+        }
+        public void ActionEat()
+        {
+            if (ILOC[10] != 0) //  GAINESBURGER
+            {
+                PrintResponse("You don't have it!");
+                return;
+            }
+            else if (CMD2 != 42)
+            {
+                PrintResponse("You can't eat that!");
+                return;
+            }
+
+            PrintResponse("There was a diamond hidden inside the gainesburger");
+
+            ILOC[10] = -2; // GAINESBURGER
+            ILOC[17] = 0; //  DIAMOND
+        }
+        public void ActionSpin()
+        {
+            if (ILOC[8] != 0) // Top
+            {
+                PrintResponse("Spin what?");
+                return;
+            }
+            if (LOCAL == 18) // child's room
+            {
+                PrintResponse("There is a flash of light and a cracking sound! An opening appears in the east wall");
+                LocationExit[18, 3] = 19;
+            }
+            PrintResponse("Whee!");
+        }
+        public void ActionMoveObj()
+        {
+            if (CMD2 == 54) // fridge
+            {
+                PrintResponse("It's too heavy for you to move alone (without any help)");
+                return;
+            }
+            if (CMD2 == 55) // couch
+            {
+                PrintResponse("Your back is acting up, you will need some support");
+                return;
+            }
+            if (CMD2 == 56) // clothes
+            {
+                PrintResponse("That seems pointless and unsanitary, they are too dirty!");
+                return;
+            }
+
+            PrintResponse("You can't do that");
+        }
         public void ActionJump()
         {
             // location 12 = BALCONY
-            if (LCL != 12)
+            if (LOCAL != 12)
             {
                 PrintResponse("You jump up and down a couple of times and feel more relaxed now, but nothing special happens.");
-                // print("WHO ARE YOU, DAVID LEE ROTH? (Van Halen)");
                 return;
             }
 
@@ -458,10 +510,9 @@
             PrintResponse("You bungee off the balcony...");
 
             // set location to MID-AIR (so can take the picture)
-            LCL = 30;
+            LOCAL = 30;
             TURN1 = 0; // reset for multiple jumps
         }
-
         public void ActionPlayerMove(int dir)
         {
             // convert N,S,E,W,U,D to long form
@@ -469,70 +520,63 @@
             {
                 dir = dir - 6;
             }
-
-            if (LocationExit[LCL, dir] > 0)
+            if (LocationExit[LOCAL, dir] > 0)
             {
-                // new position
-                LCL = LocationExit[LCL, dir];
-                // # GOTO 2500;
+                LOCAL = LocationExit[LOCAL, dir];
             }
-            else if (LCL == 12 && dir == 5)
+            else if (LOCAL == 12 && dir == 5) // up to attic
             {
-                print("YOU'RE AFRAID OF THE DARK");
+                PrintResponse("You're afraid of the dark");
+                return;
             }
-            else if (LCL == 17 && dir == 1)
+            else if (LOCAL == 17 && dir == 1)
             {
-                print("YOU NEVER DID LIKE THAT DOG");
+                PrintResponse("You never did like that dog");
+                return;
             }
-            else if (LCL == 23 && LocationExit[23, 6] <= 0)
+            else if (LOCAL == 23 && LocationExit[23, 6] <= 0)
             {
-                print("THE DUMBWAITER MECHANISM IS CORRODED AND WON'T MOVE");
+                PrintResponse("The dumbwaiter mechanism is corroded and won't move");
+                return;
             }
             else
             {
-                print("YOU CAN'T GO THAT WAY");
+                PrintResponse("You can't go that way");
             }
         }
-
         public void ActionMoveFridgeWithJack()
         {
-            if (MVARG != 4 || ILOC[3] >= 0)
+            if (CMD1 != 26 || CMD2 != 54 || CMD3 != 37) // move fridge jack
             {
-                print("YOU CAN'T DO THAT");
+                PrintResponse("You can't do that");
+                return;
             }
-            else
-            {
-                print("YOU JACK UP THE FRIDGE AND FIND A FUSE UNDER IT");
-                ILOC[3] = LCL;
-            }
-        }
 
+            PrintResponse("You jack up the fridge and find a fuse under it");
+            ILOC[3] = LOCAL;
+        }
         public void ActionMoveCouchWithBrace()
         {
-            if (MVARG != 13 || ILOC[2] >= 0)
+            if (CMD1!= 26 || CMD2 != 55 || CMD3 != 46) // move couch brace
             {
-                print("YOU CAN'T DO THAT");
+                PrintResponse("You can't do that");
+                return;
             }
-            else
-            {
-                print("YOU MOVE THE COUCH AND FIND A TEDDYBEAR BEHIND IT");
-                ILOC[2] = LCL;
-            }
-        }
 
+            PrintResponse("You move the couch and find a teddybear behind it");
+            ILOC[2] = LOCAL;
+        }
         public void ActionMoveClothesWithGloves()
         {
-            if (MVARG != 11)
+            if (CMD1 != 26 || CMD2 != 56 || CMD3 != 44) // move clothes gloves
             {
-                print("YOU CAN'T DO THAT");
+                PrintResponse("You can't do that");
+                return;
             }
-            else
-            {
-                print("MOVING THE CLOTHES REVEALS A LAUNDRY CHUTE TO THE BASEMENT");
-                LocationExit[LCL, 6] = 27;
-            }
-        }
 
+            PrintResponse("MOVING THE CLOTHES REVEALS A LAUNDRY CHUTE TO THE BASEMENT");
+            LocationExit[LOCAL, 6] = 27;
+        }
         public void ActionTieBungeeToRailing()
         {
             // carrying bungee?
@@ -542,21 +586,19 @@
                 return;
             }
             // if not in the Balcony
-            if (LCL != 12)
+            if (LOCAL != 12)
             {
                 PrintResponse("There is nothing here to tie to");
                 return;
             }
-
             // object is not BUNGEE cord
-            if (ARG != 6)
+            if (CMD2 != 39)
             {
-                PrintResponse("You can't tie to that");
+                PrintResponse("You can't tie that");
                 return;
             }
-
-            // RAINLING?
-            if (MVARG != (IMMOFF + 5))
+            // rainling
+            if (CMD3 != 58)
             {
                 PrintResponse("Tie to what?");
                 return;
@@ -567,48 +609,64 @@
             // BUNGEE cord is tied to the railing
             ILOC[6] = -12;
         }
-
         public void ActionOilDumbwaiterWithOilcan()
         {
-            if (LCL != 20)
+            // not in the dumbwaiter
+            if (LOCAL != 23)
             {
-                print("YOU CAN'T DO THAT");
+                PrintResponse("You can't do that here");
+                return;
             }
+            // 15 OILCAN
             if (ILOC[15] != 0)
             {
-                print("YOU DON'T HAVE ANY OIL");
+                PrintResponse("You don't have any oil");
+                return;
             }
-            if (InputWordNum_INPTK[2] - ITEMOFF != IMMOFF + 6)
+            // dumbwaiter
+            if (CMD2 != 59)
             {
-                print("HUH?");
+                PrintResponse("Oil what?");
+                return;
             }
 
-            print("THE DUMBWAITER MECHANISM NOW RUNS SMOOTHLY");
+            PrintResponse("The dumbwaiter mechanism now runs smoothly");
             LocationExit[23, 6] = 24;
         }
-
         public void ActionPutFuseInFusebox()
         {
-            if (LCL != 30 || (InputWordNum_INPTK[2] - ITEMOFF != 3))
+            if (LOCAL != 30 || CMD1 != 30 || CMD2 != 36)
             {
-                print("YOU CAN'T DO THAT");
+                PrintResponse("You can't do that");
+                return;
             }
-            if (MVARG != (IMMOFF + 7))
+            if (CMD3 != 60) // fusebox
             {
-                print("YOU CAN'T PUT IT THERE");
+                PrintResponse("You can't put it there");
+                return;
             }
+            // do we have the fuse?
             if (ILOC[3] != 0)
             {
-                print("YOU DON'T HAVE IT!");
+                PrintResponse("You don't have it!");
             }
 
-            print("YOU PUT THE FUSE IN THE BOX");
+            PrintResponse("You put the fuse in the box. Power is restored in the Attic!");
             // mark fuse as used
             ILOC[3] = -999;
 
-            //IC--;
             // STAIRS TO ATTIC is hidden until fuse is inserted
             LocationExit[12, 5] = 25;
+        }
+        public void ActionReadNoteInMirror()
+        {
+            // 42=note and (13=master bedroom OR 22=bathroom)
+            if (CMD2 == 42 && (LOCAL == 13 || LOCAL == 22))
+            {
+                ActionSafeDoor();
+                return;
+            }
+            PrintResponse("I don't see a mirror here");
         }
     }
 }

@@ -5,29 +5,18 @@
         #region Variables
 
         // player: current location
-        public int LCL = 1;
-        public int SAFED = 0;
+        public int LOCAL = 1;
+        public int SAFEDoor = 0;
         public int TURN1 = 0;
 
-        public int CMD = 0;
-        public int ARG = 0;
-        public int MVARG = 0;
+        public int CMD1 = 0;
+        public int CMD2 = 0;
+        public int CMD3 = 0;
 
         public int InputWordTotal = 0;
-        const int MaxInput = 4;
-
-        // # DIM INWS[10] : input words
-        public string[] InputWordText_INWS = new string[MaxInput];
-
-        // # DIM INPTK[10] : input processed keyword
-        public int[] InputWordNum_INPTK = new int[MaxInput];
 
         // item offset - where objects start at Vocab
-        public int ITEMOFF = 33;
-        public int IMMOFF = 20;
-        public int DIROFF = 30;
-        public int LASTITEM = 27;
-
+        public const int OBJECTOFFSET = 33;
 
         // # DIM NULLWS[4] : words to be ignored
         public string[] NULLWORDS = {
@@ -103,40 +92,41 @@
 /* 57 */	 "DOOR",
 /* 58 */	 "RAILING",
 /* 59 */	 "DUMBWAITER",
-/* 60 */	 "FUSEBOX"
+/* 60 */	 "FUSEBOX",
+/* 61 */	 "MIRROR"
             };
 
 
         // # DIM IDESC$[27]
         public string[] IDESCS = {
 /* 00 */	"-99", // 0-dummy
-/* 01 */	"TAYS HOUSE UNLIKELY EVER TO BE SOLD. TALES OF GUTTED STAIRWELLS AND BOOBY TRAPS HAVE SPOOKED BUYERS...",
-/* 02 */	"SOMEONE HAS BEEN PLAYING VERY ROUGH WITH THIS TOY",
-/* 03 */	"OLD-FASHIONED ELECTRICAL FUSE",
-/* 04 */	"TIRE JACK for LIFTING HEAVY OBJECTS LIKE CARS",
-/* 05 */	"UNCLE TAYS IN ALL HIS SALLOW GLORY",
-/* 06 */	"CORD for BUNGEE JUMPING",
-/* 07 */	"A SMALL BRASS KEY",
-/* 08 */	"A CHILD'S TOY",
-/* 09 */	"THE WRITING IS REVERSED. Maybe there is a way to read it somewhere...",
-/* 10 */	"SUPPOSEDLY DOG FOOD, THOUGH IT APPEARS TO BE MADE OF PLASTIC",
-/* 11 */	"RUBBER GLOVES USED for CLEANING",
-/* 12 */	"A QUEEN-SIZED BOXSPRING",
-/* 13 */	"A BACK BRACE",
-/* 14 */	"TAYS' STRANGE INVENTIONS INCLUDE BOOBY-TRAPPED DOORS AND TOYS THAT OPEN DOORS BY REMOTE CONTROL...",
-/* 15 */	"THIS CAN CONTAINS FINE LUBRICATING OIL",
-/* 16 */	"UNCLE TAYS' CHECKBOOK LISTS A BALANCE OF $220,000",
-/* 17 */	"THIS DIAMOND'S BEAUTY STEMS FROM ALL THE GODDAMNED MONEY IT IS WORTH",
-/* 18 */	"LOVERBOY'S FIRST ALBUM IN VINYL, WORTH AN INCALCULABLE SUM",
-/* 19 */	"PRE-IPO SHARES OF APOLLO COMPUTING HAVE TO BE WORTH ... SOMETHING",
-/* 20 */	"A THICK WAD OF CANADIAN NOTES",
-/* 21 */	"THIS OLD REFRIGERATOR'S MOTOR LABORS HEAVILY",
-/* 22 */	"AN OVERSTUFFED, DUSTY COUCH",
-/* 23 */	"A DISGUSTING PILE OF SOILED LAUNDRY",
+/* 01 */	"Tays house unlikely ever to be sold. tales of gutted stairwells and booby traps have spooked buyers...",
+/* 02 */	"Someone has been playing very rough with this toy",
+/* 03 */	"Old-fashioned electrical fuse",
+/* 04 */	"Tire jack for lifting heavy objects like cars",
+/* 05 */	"Uncle tays in all his sallow glory",
+/* 06 */	"Cord for bungee jumping",
+/* 07 */	"A small brass key",
+/* 08 */	"A child's toy (spinning top)",
+/* 09 */	"The writing is reversed. maybe there is a way to read it somewhere...",
+/* 10 */	"Supposedly dog food, though it appears to be made of plastic",
+/* 11 */	"Rubber gloves used for cleaning",
+/* 12 */	"A queen-sized boxspring",
+/* 13 */	"A back brace",
+/* 14 */	"Tays' strange inventions include booby-trapped doors and toys that open doors by remote control...",
+/* 15 */	"This can contains fine lubricating oil",
+/* 16 */	"Uncle tays' checkbook lists a balance of $220,000",
+/* 17 */	"This diamond's beauty stems from all the goddamned money it is worth",
+/* 18 */	"Loverboy's first album in vinyl, worth an incalculable sum",
+/* 19 */	"Pre-ipo shares of apollo computing have to be worth ... something",
+/* 20 */	"A thick wad of canadian notes",
+/* 21 */	"This old refrigerator's motor labors heavily",
+/* 22 */	"An overstuffed, dusty couch",
+/* 23 */	"A disgusting pile of soiled laundry",
 /* 24 */	"",
-/* 25 */	"",
-/* 26 */	"",
-/* 27 */	"AN OLD-FASHIONED FUSEBOX. THE FUSE MARKED 'ATTIC' IS MISSING."
+/* 25 */	"A railing or guardrail, is a system designed to keep people or objects from falling off the balcony.",
+/* 26 */	"A dumbwaiter lift is a small freight elevator designed to transport goods, supplies, or food between different levels of a building.",
+/* 27 */	"An old-fashioned fusebox. the fuse marked 'attic' is missing."
         };
 
         // # DIM RNAMES[31] : LOCATION NAME
@@ -178,72 +168,73 @@
         // # DIM RDESCS[31] : LOCATION DESCRIPTION
         public string[] LocationDescription_RDESCS = {
 /* 00 */	"-99", // 0-dummy
-/* 01 */	"THE ENTRYWAY TO THE HOUSE",
-/* 02 */	"COUNTERTOPS ARE DUSTY AND THERE ARE RUSTING POTS AND PANS",
-/* 03 */	"THIS ROOM IS TWO STORIES HIGH AND CONTAINS ELEGANT CHAIRS AND COUCHES",
-/* 04 */	"A NARROW HALLWAY WHICH RUNS WEST OF THE FOYER",
-/* 05 */	"A NARROW HALLWAY AT THE WEST END OF THE HOUSE",
-/* 06 */	"THIS ROOM HAS AN ANCIENT TELEVISION",
-/* 07 */	"A DINGY BATHROOM WITH A CRACKED SINK",
-/* 08 */	"THIS WELL-FURNISHED LIBRARY IS LINED WITH BOOKS AND LEATHER FURNITURE",
-/* 09 */	"THIS SMALL BEDROOM HAS A TWIN BED AND CHAIR. IT LOOKS LITTLE USED.",
-/* 10 */	"THE CAVERNOUS GARAGE HOLDS A NON-OPERATIONAL GREMLIN AND PILES OF JUNK",
-/* 11 */	"TROPHIES LINE THE WALLS. THERE ARE SIX CHAIRS AROUND A LONG TABLE.",
-/* 12 */	"BALCONY ABOVE THE SITTING ROOM. A RAILING PROTECTS YOU FROM A 15-FOOT DROP.",
-/* 13 */	"THIS LARGE CORNER BEDROOM HAS SOLID WALNUT FURNITURE AND A LARGE MIRROR",
-/* 14 */	"A HALLWAY WITH A LARGE ARCH ON ITS SOUTH SIDE",
-/* 15 */	"THIS ELEGANT GAME ROOM HAS A POOL TABLE AND MARBLE CHESSBOARD",
-/* 16 */	"A SPACIOUS CLOSET OFF THE GAMEROOM",
-/* 17 */	"A HALLWAY IN THE CENTER OF THE SECOND FLOOR",
-/* 18 */	"YOUR COUSIN'S ROOM IN HAPPIER TIMES, BEFORE HE RAN OFF TO JOIN THE BAATH PARTY",
-/* 19 */	"A DARK CHAMBER OFF THE BEDROOM",
-/* 20 */	"THIS EERIE HALL HAS THREE IDENTICAL DOORS ON THE WEST WALL (LEFT, CENTER, RIGHT)",
-/* 21 */	"A COZY CORNER ROOM WITH WINDOWS ON TWO WALLS",
-/* 22 */	"AN ELEGANT BATH WITH A MIRROR OVER A MARBLE SINK",
-/* 23 */	"A CRAMPED DUMBWAITER",
-/* 24 */	"A CRAMPED DUMBWAITER",
-/* 25 */	"A DUSTY ATTIC WITH LOW SLOPING WALLS",
-/* 26 */	"A BARE ROOM USED TO STORE RANDOM EQUIPMENT AND FURNITURE",
-/* 27 */	"THIS ROOM HAS A WASHER AND DRYER, AS WELL AS A BOILER AND FURNACE",
-/* 28 */	"EQUIPMENT for WORKING WOOD AND METAL",
-/* 29 */	"STAIRS FROM BASEMENT TO KITCHEN",
-/* 30 */	"HANGING FROM A BUNGEE CORD",
+/* 01 */	"The entryway to the house",
+/* 02 */	"Countertops are dusty and there are rusting pots and pans",
+/* 03 */	"This room is two stories high and contains elegant chairs and couches",
+/* 04 */	"A narrow hallway which runs west of the foyer",
+/* 05 */	"A narrow hallway at the west end of the house",
+/* 06 */	"This room has an ancient television",
+/* 07 */	"A dingy bathroom with a cracked sink",
+/* 08 */	"This well-furnished library is lined with books and leather furniture",
+/* 09 */	"This small bedroom has a twin bed and chair. It looks little used",
+/* 10 */	"The cavernous garage holds a non-operational gremlin and piles of junk",
+/* 11 */	"Trophies line the walls. there are six chairs around a long table",
+/* 12 */	"Balcony above the sitting room. a railing protects you from a 15-foot drop",
+/* 13 */	"This large corner bedroom has solid walnut furniture and a large mirror",
+/* 14 */	"A hallway with a large arch on its south side",
+/* 15 */	"This elegant game room has a pool table and marble chessboard",
+/* 16 */	"A spacious closet off the gameroom",
+/* 17 */	"A hallway in the center of the second floor",
+/* 18 */	"Your cousin's room in happier times, before he ran off to join the baath party",
+/* 19 */	"A dark chamber off the bedroom",
+/* 20 */	"This eerie hall has three identical doors on the west wall (left, center, right)",
+/* 21 */	"A cozy corner room with windows on two walls",
+/* 22 */	"An elegant bath with a mirror over a marble sink",
+/* 23 */	"A cramped dumbwaiter",
+/* 24 */	"A cramped dumbwaiter",
+/* 25 */	"A dusty attic with low sloping walls",
+/* 26 */	"A bare room used to store random equipment and furniture",
+/* 27 */	"This room has a washer and dryer, as well as a boiler and furnace",
+/* 28 */	"Equipment for working wood and metal",
+/* 29 */	"Stairs from basement to kitchen",
+/* 30 */	"Hanging from a bungee cord",
 /* 31 */	""
         };
 
         // # DIM REXIT[31][6] : : LOCATION EXITS
         public int[,] LocationExit = {
-			// 0  1="NORTH", 2="SOUTH", 3="EAST", 4="WEST", 5="UP", 6="DOWN"
+			// 1-NORTH 2-SOUTH 3-EAST 4-WEST 5-UP 6-DOWN
+            //      N      S      E      W      U      D
 /* 00 */	{-99, -99  , -99  , -99  , -99  , -99  , -99  },//0-dummy
 /* 01 */	{-99,   2  ,  31  ,   3  ,   4  ,   0  ,   0  },
-/* 02 */	{-99,   0  ,   1  ,   0  ,   0  ,   0  ,  -1  },
+/* 02 */	{-99,   0  ,   1  ,   0  ,   0  ,   0  ,  -1  }, // D: STAIRS TO BASEMENT is hidden until drop Boxspring
 /* 03 */	{-99,   2  ,   0  ,  11  ,   1  ,  12  ,   0  },
 /* 04 */	{-99,   6  ,   7  ,   1  ,   5  ,   0  ,   0  },
 /* 05 */	{-99,   0  ,   9  ,   4  ,  10  ,   0  ,   0  },
 /* 06 */	{-99,   0  ,   4  ,   0  ,   0  ,   0  ,   0  },
-/* 07 */	{-99,   4  ,   0  ,   0  ,   0  ,   0  ,  -1  },
+/* 07 */	{-99,   4  ,   0  ,   0  ,   0  ,   0  ,  -1  }, // D: move clothes with gloves
 /* 08 */	{-99,   0  ,   0  ,   0  ,  24  ,   0  ,   0  },
 /* 09 */	{-99,   5  ,   0  ,   0  ,   0  ,   0  ,   0  },
 /* 10 */	{-99,   0  ,   0  ,   5  ,   0  ,   0  ,   0  },
 /* 11 */	{-99,   0  ,   0  ,   0  ,   3  ,   0  ,   0  },
-/* 12 */	{-99,  13  ,   0  ,   0  ,  14  ,  -1  ,   3  }, // STAIRS TO ATTIC is hidden until fuse is inserted
+/* 12 */	{-99,  13  ,   0  ,   0  ,  14  ,  -1  ,   3  }, // W: STAIRS TO ATTIC is hidden until fuse is inserted
 /* 13 */	{-99,   0  ,  12  ,   0  ,   0  ,   0  ,   0  },
 /* 14 */	{-99,   0  ,  15  ,  12  ,  17  ,   0  ,   0  },
 /* 15 */	{-99,  14  ,   0  ,   0  ,  16  ,   0  ,   0  },
 /* 16 */	{-99,   0  ,   0  ,  15  ,   0  ,   0  ,   0  },
-/* 17 */	{-99,  -1  ,   0  ,  14  ,  -1  ,   0  ,   0  },
-/* 18 */	{-99,   0  ,  17  ,  -1  ,   0  ,   0  ,   0  },
+/* 17 */	{-99,  -1  ,   0  ,  14  ,  -1  ,   0  ,   0  }, // N: HALL, doverman blocks door until drop teddybear, W: unlock door
+/* 18 */	{-99,   0  ,  17  ,  -1  ,   0  ,   0  ,   0  }, // E: secret room hidden until sping top
 /* 19 */	{-99,   0  ,   0  ,   0  ,  18  ,   0  ,   0  },
-/* 20 */	{-99,  21  ,  22  ,  17  ,  -1  ,   0  ,   0  },
+/* 20 */	{-99,  21  ,  22  ,  17  ,  -1  ,   0  ,   0  }, // W: Dangerous Hall, open X door (after reading note)
 /* 21 */	{-99,   0  ,  20  ,   0  ,   0  ,   0  ,   0  },
 /* 22 */	{-99,  20  ,   0  ,   0  ,   0  ,   0  ,   0  },
-/* 23 */	{-99,   0  ,   0  ,  20  ,   0  ,   0  ,  -1  },
+/* 23 */	{-99,   0  ,   0  ,  20  ,   0  ,   0  ,  -1  }, // D: unlock with oilcan
 /* 24 */	{-99,   0  ,   0  ,   8  ,   0  ,  23  ,   0  },
 /* 25 */	{-99,   0  ,   0  ,   0  ,   0  ,   0  ,  12  },
 /* 26 */	{-99,   0  ,   0  ,  27  ,   0  ,   0  ,   0  },
 /* 27 */	{-99,   0  ,   0  ,  28  ,  26  ,   0  ,   0  },
 /* 28 */	{-99,   0  ,   0  ,  29  ,  27  ,   0  ,   0  },
-/* 29 */	{-99,   0  ,   0  ,   0  ,  28  ,  -1  ,   0  },
+/* 29 */	{-99,   0  ,   0  ,   0  ,  28  ,  -1  ,   0  }, // U: unlock with drop boxspring
 /* 30 */	{-99,   0  ,   0  ,   0  ,   0  ,   0  ,   0  },
 /* 31 */	{-99,   0  ,   0  ,   0  ,   0  ,   0  ,   0  }
         };
@@ -254,20 +245,20 @@
         public int[] ILOC = {
 /* 00 */	-99,//dummy
 /* 01 */	 1,		 // "NEWSPAPER",
-/* 02 */	-1,		 // "TEDDYBEAR",
+/* 02 */	0,		 // "TEDDYBEAR", -1
 /* 03 */	-1,		 // "FUSE",
 /* 04 */	0,		 // "JACK", 10
 /* 05 */	30,		 // "PICTURE",
 /* 06 */	0,		 // "BUNGEE", 10
 /* 07 */	0,		 // "KEY", 13
-/* 08 */	15,		 // "TOP",
+/* 08 */	0,		 // "TOP", 15
 /* 09 */	 0,		 // "NOTE", 9
-/* 10 */	16,		 // "GAINESBURGER",
-/* 11 */	22,		 // "GLOVES",
+/* 10 */	0,		 // "GAINESBURGER", 16
+/* 11 */	0,		 // "GLOVES", 22
 /* 12 */	26,		 // "BOXSPRING",
-/* 13 */	25,		 // "BRACE",
+/* 13 */	0,		 // "BRACE", 25
 /* 14 */	25,		 // "MAGAZINE",
-/* 15 */	28,		 // "OILCAN",
+/* 15 */	0,		 // "OILCAN", 28
 /* 16 */	 8,		 // "CHECKBOOK",
 /* 17 */	-1,		 // "DIAMOND",
 /* 18 */	19,		 // "LOVERBOY",
@@ -285,25 +276,27 @@
         // # DIM EXDESCS[7] : EXTENDED DESCRIPTION
         public string[] ExtendedDescription = {
 /* 00 */	"-99", // 0-dummy
-/* 01 */	"THERE IS A LOCKED DOOR TO THE NORTH",
-/* 02 */	"THERE IS A LOCKED DOOR TO THE SOUTH",
-/* 03 */	"STAIRS LEAD DOWN TO A CELLAR. SEVERAL STEPS HAVE COLLAPSED, MAKING THE STAIRCASE UNUSABLE.",
-/* 04 */	"STAIRS LEAD UP. SEVERAL STEPS HAVE COLLAPSED, MAKING THE STAIRCASE UNUSABLE.",
-/* 05 */	"DARK STAIRS LEAD UP TO THE ATTIC (it is too DARK to see the way)",
-/* 06 */	"A LOCKED DOOR TO THE WEST IS LABELLED 'EXTREME DANGER'",
-/* 07 */	"YOUR UNCLE'S DOBERMAN BLOCKS A DOORWAY TO THE NORTH"
+/* 01 */	"There is a locked door to the NORTH",
+/* 02 */	"There is a locked door to the SOUTH",
+/* 03 */	"Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable",
+/* 04 */	"Stairs lead up. several steps have collapsed, making the staircase unusable",
+/* 05 */	"Dark stairs lead up to the attic",
+/* 06 */	"A locked door to the WEST is labelled 'EXTREME DANGER'",
+/* 07 */	"Your uncle's doberman blocks a doorway to the north"
         };
 
-        // # DIM EXLOC[7][2] : EXTENDED location?
+        // # DIM EXLOC[7][2] : EXTENDED location? (map to LocationExit)
+        // pos1 = location
+        // pos3 = 1-NORTH, 2-SOUTH, 3-EAST, 4-WEST, 5-UP, 6-DOWN
         public int[,] EXLOC = {
 /* 00 */	{ -99, -99  , -99 }, // dummy
-/* 01 */	{ -99,  5   ,  6  },
-/* 02 */	{ -99,  8   ,  6  },
-/* 03 */	{ -99,  2   ,  6  },
-/* 04 */	{ -99,  29  ,  5  },
-/* 05 */	{ -99,  12  ,  5  },
-/* 06 */	{ -99,  17  ,  4  },
-/* 07 */	{ -99,  17  ,  1  }
+/* 01 */	{ -99,  5   ,  6  }, // hallway
+/* 02 */	{ -99,  8   ,  6  }, // library
+/* 03 */	{ -99,  2   ,  6  }, // kitchen
+/* 04 */	{ -99,  29  ,  5  }, // bottom of stairs
+/* 05 */	{ -99,  12  ,  5  }, // balcony
+/* 06 */	{ -99,  17  ,  4  }, // hallway end floor
+/* 07 */	{ -99,  17  ,  1  }  // hallway end floor
         };
 
         #endregion

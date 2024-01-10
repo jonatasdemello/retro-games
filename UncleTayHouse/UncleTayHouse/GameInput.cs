@@ -15,7 +15,7 @@
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
-            //Console.ResetColor();
+
             Console.WriteLine(" ");
 
             if (res == null || res.Length == 0 || res.Length > 100)
@@ -32,15 +32,22 @@
 
         /// <summary>
         /// Process input string and return:
-        /// InputWordTotal => number of words
-        /// InputWordText_INWS => only valid words
-        /// InputWordNum_INPTK => the corresponding verb number
         /// </summary>
         /// <param name="inputText"></param>
         public void ProcessInput(string inputText)
         {
+            // InputWordTotal => number of words
+            // InputWordText_INWS => contain only valid words now
+            // InputWordNum_INPTK => contain the verb number
+
+            string[] InputWordText_INWS = new string[4];
+            int[] InputWordNum_INPTK = new int[4];
+
             // reset previous input
-            for (int i = 0; i < MaxInput; i++)
+            CMD1 = 0;
+            CMD2 = 0;
+            CMD3 = 0;
+            for (int i = 0; i < InputWordText_INWS.Length; i++)
             {
                 InputWordText_INWS[i] = "";
                 InputWordNum_INPTK[i] = 0;
@@ -86,9 +93,9 @@
             }
             InputWordTotal = idx; // used later: number of words
 
-            // InputWordTotal => number of words
-            // InputWordText_INWS => contain only valid words now
-            // InputWordNum_INPTK => contain the verb number
+            CMD1 = InputWordNum_INPTK[1]; // first word
+            CMD2 = InputWordNum_INPTK[2]; // second word
+            CMD3 = InputWordNum_INPTK[3]; // third word
         }
     }
 }

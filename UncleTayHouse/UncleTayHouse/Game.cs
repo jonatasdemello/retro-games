@@ -20,20 +20,22 @@
 
                 ActionProcessInput();
 
-                PrintDgb1(" next round ");
+                // PrintDgb1(" next round ");
             }
         }
         public void ShowLocation()
         {
-            if (LCL == 30 && TURN1 == 0) // first time after jump
+            if (LOCAL == 30 && TURN1 == 0) // first time after jump
+            {
                 TURN1 = 1;
-            else if (LCL == 30 && TURN1 == 1) // second time
+            }
+            else if (LOCAL == 30 && TURN1 == 1) // second time
             {
                 PrintResponse("... and bunge cord spring back");
-                LCL = 12; // back to the balcony
+                LOCAL = 12; // back to the balcony
             }
 
-            if (LCL == 31)
+            if (LOCAL == 31) // exit
             {
                 ActionScore();
                 ActionExit();
@@ -46,27 +48,20 @@
         {
             string userInput = ReadInput();
             ProcessInput(userInput);
-
-            CMD = InputWordNum_INPTK[1]; // first word cmd
-            ARG = InputWordNum_INPTK[2] - ITEMOFF; // second word object
-            MVARG = InputWordNum_INPTK[3] - ITEMOFF; // third word object
         }
         public void ActionProcessInput()
         {
-            print("*");
+            //print(">*<");
             if (InputWordTotal < 1)
             {
                 PrintResponse("You need 1 word to move, 2+ words (verb + noun) for actions.");
             }
             else if (InputWordTotal == 1)
             {
-                // "I", "INVENTORY", "SCORE", "JUMP", "HELP", "TAKE", "DROP", "LOOK"
                 ActionOneWord();
             }
             else if (InputWordTotal == 2)
             {
-                // 18"TAKE", 19"DROP", 20"LOOK", 21"READ", 22"EXAMINE",
-                // 23"UNLOCK", 24"EAT", 25"SPIN", 26"MOVE", 27"OPEN", 28"TIE",
                 ActionTwoWords();
             }
             else if (InputWordTotal == 3)
@@ -75,236 +70,160 @@
             }
             else
             {
-                PrintResponse("You can't do that.");
+                PrintResponse("I don't understand...");
             }
-            print("*");
+            //print(">*<");
         }
         public void ActionOneWord()
         {
-            if (CMD > 33)
+            if (CMD1 > OBJECTOFFSET) // objects, not verbs
             {
-                PrintResponse("Do what with "+ VOCABS[CMD] +"?");
+                PrintResponse("Do what with "+ VOCABS[CMD1] +"?");
             }
-            else if (CMD >= 1 && CMD <= 12)
+            else if (CMD1 >= 1 && CMD1 <= 12) // move N S E W U D
             {
-                ActionPlayerMove(CMD);
+                ActionPlayerMove(CMD1);
             }
-            else if (CMD == 13 || CMD == 14)
+            else if (CMD1 == 13 || CMD1 == 14) // inventory
             {
                 ActionInventory();
             }
-            else if (CMD == 15)
+            else if (CMD1 == 15) // score
             {
                 ActionScore();
             }
-            else if (CMD == 16)
+            else if (CMD1 == 16) // jump
             {
                 ActionJump();
             }
-            else if (CMD == 17) // HELP
+            else if (CMD1 == 17) // help
             {
                 ActionIntro();
             }
-            else if (CMD == 18) // TAKE
+            else if (CMD1 == 18) // take
             {
                 PrintResponse("Take what?");
             }
-            else if (CMD == 19) // DROP
+            else if (CMD1 == 19) // drop
             {
                 PrintResponse("Drop what?");
             }
-            else if (CMD == 20) // LOOK
+            else if (CMD1 == 20) // look
             {
                 ShowLocation();
+            }
+            else
+            {
+                PrintResponse("HUH?");
             }
         }
         public void ActionTwoWords()
         {
-            if (ARG < 1 || ARG > LASTITEM)
+            if (CMD1 > 17 && CMD1 <= 28)
             {
-                print("HUH?");
-            }
-
-            if (CMD > 17 && CMD <= 28)
-            {
-                // #ON COMM-17 GOTO 6500, 6600, 6700, 6700, 6700, 6800, 6900, 7600, 6950, 8200;
-                // 18"TAKE", 19"DROP", 20"LOOK", 21"READ", 22"EXAMINE",
-                // 23"UNLOCK", 24"EAT", 25"SPIN", 26"MOVE", 27"OPEN", 28"TIE",;
-                int X = CMD - 17;
-                if (X == 1)
+                if (CMD1 == 18) // take
                 {
-                    ActionTake(ARG); // 18"TAKE"
+                    ActionTake();
                 }
-                else if (X == 2)
+                else if (CMD1 == 19) // drop
                 {
-                    ActionDrop(ARG); // 19"DROP"
+                    ActionDrop();
                 }
-                else if (X >= 3 && X <= 5)
+                else if (CMD1 >= 20 && CMD1 <= 22) // look, read, examine
                 {
-                    ActionLook(ARG); // 20"LOOK", 21"READ", 22"EXAMINE"
+                    ActionLook();
                 }
-                else if (X == 6)
+                else if (CMD1 == 23) // unlock
                 {
-                    ActionUnlock(ARG); // 23"UNLOCK"
+                    ActionUnlock();
                 }
-                else if (X == 7)
+                else if (CMD1 == 24) // eat
                 {
-                    ActionEat(ARG); // 24"EAT"
+                    ActionEat();
                 }
-                else if (X == 8)
+                else if (CMD1 == 25) // spin
                 {
-                    ActionSpin(); // 25"SPIN",
+                    ActionSpin();
                 }
-                else if (X == 9)
+                else if (CMD1 == 26) // move
                 {
-                    ActionMove(); // 26"MOVE"
+                    ActionMoveObj();
                 }
-                else if (X == 10)
+                else if (CMD1 == 27) // open (X door)
                 {
-                    ActionOpenDoor(); // 27"OPEN x door"
+                    ActionOpen();
                 }
-                else if (X == 11)
+                else if (CMD1 == 28) // tie
                 {
-                    ActionTieBungeeToRailing(); // 28"TIE bungee"
+                    ActionTieBungeeToRailing();
                 }
                 else
                 {
-                    ActionHuh();
+                    PrintResponse("HUH?");
                 }
+            }
+            else
+            {
+                PrintResponse("HUH?");
             }
         }
         public void ActionThreeWords()
         {
-            if (ARG  < 0)
+            if (CMD2 == 0 || CMD3 == 0)
             {
-                ARG = InputWordNum_INPTK[2] - DIROFF; // second word object
+                PrintResponse("You need 3 words");
+                return;
             }
-            if (CMD < 23 || CMD > 30)
+            // read note in mirror (look, read, examine)
+            if ((CMD1 == 20 || CMD1 == 21 || CMD1 == 22) && CMD2 == 42 && CMD3 == 61)
             {
-                ActionHuh();
+                ActionReadNoteInMirror();
+                return;
             }
-            if (CMD != 27 && ARG < 1 || ARG > LASTITEM)
-            {
-                print("HUH?");
-            }
-            if (CMD != 23 && CMD != 29 && ILOC[ARG] != LCL && ILOC[ARG] != 0)
-            {
-                print("IT'S NOT HERE");
-            }
-
-            int X = CMD - 22;
-            if (X == 1)
-            {
-                ActionUnlock(ARG);
-            }
-            else if (X == 2)
-            {
-                ActionHuh();
-            }
-            else if (X == 3)
-            {
-                ActionHuh();
-            }
-            else if (X == 4)
-            {
-                Action3Move();
-            }
-            else if (X == 5)
-            {
-                Action3Open();
-            }
-            else if (X == 6)
-            {
-                ActionTieBungeeToRailing();
-            }
-            else if (X == 7)
-            {
-                ActionOilDumbwaiterWithOilcan();
-            }
-            else if (X == 8)
-            {
-                ActionPutFuseInFusebox();
-            }
-        }
-        public void Action3Move()
-        {
-            if (ARG < IMMOFF)
-            {
-                print("YOU CAN JUST TAKE THAT");
-            }
-
-            int AIMM = ARG - IMMOFF;
-            if (AIMM < 1 || AIMM > 3)
-            {
-                print("YOU CAN'T DO THAT");
-            }
-
-            if (ILOC[MVARG] != 0)
-            {
-                print("YOU DON'T HAVE IT!");
-            }
-
-            if (AIMM == 1)
-            {
-                ActionMoveFridgeWithJack();
-            }
-            else if (AIMM == 2)
+            // move couch with brace
+            if (CMD1 == 26 && CMD2 == 55 && CMD3 == 46)
             {
                 ActionMoveCouchWithBrace();
+                return;
             }
-            else if (AIMM == 3)
+            // move fridge with jack
+            if (CMD1 == 26 && CMD2 == 54 && CMD3 == 37)
+            {
+                ActionMoveFridgeWithJack();
+                return;
+            }
+            // move clothes with gloves
+            if (CMD1 == 26 && CMD2 == 56 && CMD3 == 44)
             {
                 ActionMoveClothesWithGloves();
+                return;
+            }
+
+            // open[direction not mentioned in note] door
+            if (CMD1 == 27 && (CMD2 >= 31 && CMD2 <= 33) && CMD3 == 57)
+            {
+                ActionOpen3Door();
+                return;
+            }
+
+            // tie bungee to railing
+            if (CMD1 == 28 && CMD2 == 39 && CMD3 == 58)
+            {
+                ActionTieBungeeToRailing();
+                return;
+            }
+            // oil,unlock dumbwaiter with oilcan
+            if ((CMD1 == 23 || CMD1 == 29) && CMD2 == 59 && CMD3 == 48)
+            {
+                ActionOilDumbwaiterWithOilcan();
+                return;
+            }
+            // put fuse in fusebox
+            if (CMD1 == 30 && CMD2 == 36 && CMD3 == 60)
+            {
+                ActionPutFuseInFusebox();
+                return;
             }
         }
-        public void Action3Open()
-        {
-            if (LCL != 20)
-            {
-                print("HUH?");
-                return;
-            }
-            if (MVARG != IMMOFF + 4)
-            {
-                print("HUH?");
-                return;
-            }
-            int DOORDIR = InputWordNum_INPTK[2] - DIROFF;
-            if (DOORDIR < 1 || DOORDIR > 3)
-            {
-                print("HUH?");
-                return;
-            }
-
-            if (SAFED != 0)
-            {
-                return;
-            }
-            SAFED = (InputWordNum_INPTK[2] - DIROFF) + 1;
-            if (SAFED > 3)
-            {
-                SAFED = 1;
-            }
-
-            if (DOORDIR == SAFED)
-            {
-                print("OPENING THE DOOR REVEALS A DUMBWAITER");
-                LocationExit[LCL, 4] = 23;
-                return;
-            }
-
-            int rnd = RNG(100);
-            if (rnd > 50)
-            {
-                print("A SHOT RINGS OUT! IT WAS WELL-AIMED TOO.");
-                // you die
-                // GOTO 19000;
-                return;
-            }
-            print("AN IRONING BOARD SLAMS ONTO YOUR HEAD");
-            // you die
-            // GOTO 19000;
-        }
-
     }
 }

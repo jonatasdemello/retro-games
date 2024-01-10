@@ -33,4 +33,16 @@ SECOND FLOOR
 THIRD FLOOR
 [25] ATTIC              =>"take brace", "take magazine", "read magazine"
 
-* Gaines-Burgers is an American brand of dog food currently owned and marketed by dVour Brands Corporation. Gaines-Burgers had been originally introduced in 1961 by General Foods, which ceased its production 1990s. The product consists of individually wrapped patties of moisturized dog food that resembled a hamburger. 
+* Gaines-Burgers is an American brand of dog food currently owned and marketed by dVour Brands Corporation. 
+Gaines-Burgers had been originally introduced in 1961 by General Foods, which ceased its production 1990s. 
+The product consists of individually wrapped patties of moisturized dog food that resembled a hamburger. 
+
+3 words
+move couch with brace
+move fridge with jack
+move clothes with gloves
+open [direction] door
+oil dumbwaiter with oilcan
+tie bungee to railing
+put fuse in fusebox
+read note in mirror
