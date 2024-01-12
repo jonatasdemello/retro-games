@@ -8,7 +8,7 @@
         public string ReadInput()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine();
+            Console.WriteLine(" ");
 
             Console.Write("] ");
             string? res = Console.ReadLine();
@@ -47,12 +47,6 @@
             CMD1 = 0;
             CMD2 = 0;
             CMD3 = 0;
-            for (int i = 0; i < InputWordText_INWS.Length; i++)
-            {
-                InputWordText_INWS[i] = "";
-                InputWordNum_INPTK[i] = 0;
-            }
-
             InputWordTotal = 0;
 
             if (String.IsNullOrEmpty(inputText))

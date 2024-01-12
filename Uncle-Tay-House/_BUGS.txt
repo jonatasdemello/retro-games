@@ -1,7 +1,120 @@
 BUGS:
+In the original file:
 
-LINE 6530 IS DUPPLICATED
+LINE 6530 is dupplicated
+
+Also: variable is missing declarartion
 
 IMMOFF = 20
 IMOFF = 20
 # IMOFF ?? never declared
+
+-------------------------------------------------------------------------------------------------------------------------------
+Bug:
+https://github.com/inexorabletash/jsbasic/issues/36
+
+W
+W
+S
+TAKE NOTE
+N
+E
+E
+E
+U
+N
+TAKE KEY
+S
+W
+W
+UNLOCK DOOR
+W
+S
+READ NOTE
+N
+OPEN X DOOR
+
+7110 IF COMM = 27 THEN ARG = INPTK(2) - DIROFF : GOTO 7120
+7115 IF COMM = 23 OR COMM = 29 THEN ARG = INPTK(2) - ITEMOFF : GOTO 7130
+
+
+7099 REM *** 3 WORDS ***
+7100 IF COMM < 23 OR COMM > 30 THEN GOTO 6899
+
+7110 IF COMM = 27 THEN GOTO 7120
+7115 IF COMM = 23 OR COMM = 29 THEN GOTO 7130
+
+	7119 REM *** 27-OPEN ***
+7120 ARG = INPTK(2) - DIROFF: IF COMM <> 27 AND ARG < 1 or ARG > LASTITEM THEN D$ = "HUH? 5": PRINT D$: GOTO 5000
+
+	7129 REM *** 23-UNLOCK 29-OIL ***
+7130 ARG = INPTK(2) - ITEMOFF: IF COMM <> 23 AND COMM <> 29 AND ILOC(ARG) <> LCL AND ILOC(ARG) <> 0 THEN D$= "IT'S NOT HERE 3": PRINT D$: GOTO 5000
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+To repro: https://www.calormen.com/jsbasic/
+
+    Click the Select a sample… drop down
+    In the Games section, select "Text Adventure (Floyd McWilliams)"
+    Click Run
+    Run these commands:
+
+    e
+    u
+    n
+    take key
+    s
+    w
+    w
+    unlock door
+    open left door (it doesn't matter which door you open)
+
+A JS alert appears, "Illegal quantity in line 7130"
+-------------------------------------------------------------------------------------------------------------------------------
+
+7110 PRINT COMM,INPTK(1),INPTK(2),INPTK(3)
+7120 ARG = INPTK(2) - ITEMOFF: IF COMM <> 27 AND ARG < 1 or ARG > LASTITEM THEN D$ = "3KXK?9": GOSUB 11000: GOTO 5000
+
+replace by
+7120 ARG = ITEMOFF - INPTK(2)
+or
+7120 ARG = INPTK(2) - DIROFF
+
+ITEMOFF = 33
+INPTK(2) = 31 | 32 | 33
+
+	31 LEFT
+	32 CENTER
+	33 RIGHT
+	
+
+Hi,
+when you type "OPEN LEFT DOOR"
+line 7120 calculates ARG as the second word number stored in INPTK(2) = 31 (LEFT) or 31 (CENTER) or 33 (RIGHT) 
+subtracted by ITEMOFF = 33 (line 700)
+which translates to: 
+ARG = 31 - 33 = -2
+this happens because INPTK(2) will always be lower than ITEMOFF (=33)
+and it will fail on line 7130 because ILOC(ARG) translates to ILOC(-2)
+and arrays can't have negative indexes.
+
+So, in line 7120, instead of:
+
+`7120 ARG = INPTK(2) - ITEMOFF`
+
+if we just swith the order of the parameters (and leave the rest of the line after the : untouched)
+
+`7120 ARG = ITEMOFF - INPTK(2)`
+
+everything works correctly.
+
+	
+
+-------------------------------------------------------------------------------------------------------------------------------
+Running on AppleWin:
+
+INWORD => become INW OR D => INWRD
+CURTOK => become CUR TO K => CURTK
+NTOK => become N TO K => NTK
+DOORDIR => become DO OR DIR => DRDIR
+

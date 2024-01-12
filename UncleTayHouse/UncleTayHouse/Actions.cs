@@ -142,7 +142,7 @@
             //print("  D : " + LocationDescription_RDESCS[LOCAL]);
 
             print("  { " + LOCAL.ToString() + " } " + LocationName_RNAMES[LOCAL]);
-            print("  " + LocationDescription_RDESCS[LOCAL]);
+            print("    " + LocationDescription_RDESCS[LOCAL]);
 
             //print("    LOCAL : " + LOCAL.ToString() +
             //"    L   : " + LocationName_RNAMES[LOCAL] +
@@ -284,6 +284,7 @@
                 PrintResponse("The dog chews his favorite toy and is soon asleep");
                 ILOC[obj] = -999;
                 LocationExit[17, 1] = 18;
+                return;
             }
             // boxpring, bottom of stairs
             if (CMD2 == 45 && LOCAL == 29 && LocationExit[29, 5] <= 0)
@@ -292,6 +293,7 @@
                 ILOC[obj] = -999;
                 LocationExit[29, 5] = 2;
                 LocationExit[2, 6] = 29;
+                return;
             }
 
             // if player is carrying object, ILOC[obj] == current local
@@ -468,7 +470,9 @@
             {
                 PrintResponse("There is a flash of light and a cracking sound! An opening appears in the east wall");
                 LocationExit[18, 3] = 19;
+                return;
             }
+
             PrintResponse("Whee!");
         }
         public void ActionMoveObj()

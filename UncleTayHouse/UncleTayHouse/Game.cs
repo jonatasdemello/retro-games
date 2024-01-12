@@ -9,8 +9,7 @@
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
 
-            // disable for now
-            // ActionIntro();
+            ActionIntro();
 
             while (true)
             {
@@ -19,8 +18,6 @@
                 ActionReadInput();
 
                 ActionProcessInput();
-
-                // PrintDgb1(" next round ");
             }
         }
         public void ShowLocation()
@@ -51,7 +48,6 @@
         }
         public void ActionProcessInput()
         {
-            //print(">*<");
             if (InputWordTotal < 1)
             {
                 PrintResponse("You need 1 word to move, 2+ words (verb + noun) for actions.");
@@ -72,15 +68,10 @@
             {
                 PrintResponse("I don't understand...");
             }
-            //print(">*<");
         }
         public void ActionOneWord()
         {
-            if (CMD1 > OBJECTOFFSET) // objects, not verbs
-            {
-                PrintResponse("Do what with "+ VOCABS[CMD1] +"?");
-            }
-            else if (CMD1 >= 1 && CMD1 <= 12) // move N S E W U D
+            if (CMD1 >= 1 && CMD1 <= 12) // move N S E W U D
             {
                 ActionPlayerMove(CMD1);
             }
@@ -108,63 +99,60 @@
             {
                 PrintResponse("Drop what?");
             }
-            else if (CMD1 == 20) // look
+            else if (CMD1 == 20 || CMD1 == 62) // look
             {
                 ShowLocation();
             }
+            else if (CMD1 > OBJECTOFFSET) // objects, not verbs
+            {
+                PrintResponse("Do what with " + VOCABS[CMD1] + "?");
+            }
             else
             {
-                PrintResponse("HUH?");
+                PrintResponse("I don't understand...");
             }
         }
         public void ActionTwoWords()
         {
-            if (CMD1 > 17 && CMD1 <= 28)
+            if (CMD1 == 18) // take
             {
-                if (CMD1 == 18) // take
-                {
-                    ActionTake();
-                }
-                else if (CMD1 == 19) // drop
-                {
-                    ActionDrop();
-                }
-                else if (CMD1 >= 20 && CMD1 <= 22) // look, read, examine
-                {
-                    ActionLook();
-                }
-                else if (CMD1 == 23) // unlock
-                {
-                    ActionUnlock();
-                }
-                else if (CMD1 == 24) // eat
-                {
-                    ActionEat();
-                }
-                else if (CMD1 == 25) // spin
-                {
-                    ActionSpin();
-                }
-                else if (CMD1 == 26) // move
-                {
-                    ActionMoveObj();
-                }
-                else if (CMD1 == 27) // open (X door)
-                {
-                    ActionOpen();
-                }
-                else if (CMD1 == 28) // tie
-                {
-                    ActionTieBungeeToRailing();
-                }
-                else
-                {
-                    PrintResponse("HUH?");
-                }
+                ActionTake();
+            }
+            else if (CMD1 == 19) // drop
+            {
+                ActionDrop();
+            }
+            else if (CMD1 == 20 || CMD1 == 21 || CMD1 == 22 || CMD1 == 64) // look, read, examine
+            {
+                ActionLook();
+            }
+            else if (CMD1 == 23) // unlock
+            {
+                ActionUnlock();
+            }
+            else if (CMD1 == 24) // eat
+            {
+                ActionEat();
+            }
+            else if (CMD1 == 25) // spin
+            {
+                ActionSpin();
+            }
+            else if (CMD1 == 26) // move
+            {
+                ActionMoveObj();
+            }
+            else if (CMD1 == 27) // open (X door)
+            {
+                ActionOpen();
+            }
+            else if (CMD1 == 28) // tie
+            {
+                ActionTieBungeeToRailing();
             }
             else
             {
-                PrintResponse("HUH?");
+                PrintResponse("I don't understand...");
             }
         }
         public void ActionThreeWords()

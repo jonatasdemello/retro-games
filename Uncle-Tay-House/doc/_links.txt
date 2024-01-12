@@ -1,7 +1,17 @@
+# UNCLE TAYS HOUSE ADVENTURE
 
-https://github.com/inexorabletash/jsbasic
+An online orignal version can be played at:
+
+Select "Text Adventure (Floyd McWilliams)"
+
+https://inexorabletash.github.io/jsbasic/
+
 
 https://github.com/inexorabletash/jsbasic/blob/main/samples/sample.adventure.txt
 
 https://inexorabletash.github.io/jsbasic/
 
+
+IFDB:
+
+https://ifdb.org/viewgame?id=7zol897du6iup7t2
