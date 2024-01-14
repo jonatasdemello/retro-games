@@ -186,14 +186,12 @@
                 ActionMoveClothesWithGloves();
                 return;
             }
-
             // open[direction not mentioned in note] door
             if (CMD1 == 27 && (CMD2 >= 31 && CMD2 <= 33) && CMD3 == 57)
             {
                 ActionOpen3Door();
                 return;
             }
-
             // tie bungee to railing
             if (CMD1 == 28 && CMD2 == 39 && CMD3 == 58)
             {

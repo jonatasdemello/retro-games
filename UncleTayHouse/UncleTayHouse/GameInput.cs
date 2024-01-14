@@ -32,6 +32,9 @@
 
         /// <summary>
         /// Process input string and return:
+        /// CMD1: first word
+        /// CMD2: second word
+        /// CMD3: third word
         /// </summary>
         /// <param name="inputText"></param>
         public void ProcessInput(string inputText)
