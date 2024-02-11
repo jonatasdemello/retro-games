@@ -1,0 +1,7 @@
+making-games-with-python-pygame
+
+http://inventwithpython.com/pygame
+
+https://inventwithpython.com/makinggames.pdf
+
+https://inventwithpython.com/makinggames.zip
