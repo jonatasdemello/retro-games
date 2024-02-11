@@ -1,0 +1,20 @@
+The Horrible Rotten Dancing Dragon
+
+info:
+
+	https://ifdb.org/viewgame?id=2bavj7k3yeckppxj
+
+	http://solutionarchive.com/game/id%2C1620/Horrible+Rotten+Dancing+Dragon...Strikes%21%21%21%2C+The.html
+
+Play:
+
+	http://bbcmicro.co.uk/index.php
+	
+	http://bbcmicro.co.uk/jsbeeb/play.php?loadBasic=https://raw.githubusercontent.com/dfabulich/horrible-rotten-dancing-dragon-strikes/master/bbcmicro.bas&autorun
+
+
+Code: 
+
+	https://github.com/dfabulich/horrible-rotten-dancing-dragon-strikes
+	https://github.com/dfabulich/horrible-rotten-dancing-dragon-strikes/blob/master/dragon.bas
+
