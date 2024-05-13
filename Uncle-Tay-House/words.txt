@@ -1,4 +1,4 @@
-SAFED = 0: LCL=1: IC = 0: SP = 0
+SAFED = 0: LCL = 1: IC = 0: SP = 0
 
 DIROFF = 30
 ITEMOFF = 33

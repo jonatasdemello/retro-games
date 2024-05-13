@@ -22,11 +22,12 @@ DOORDIR => become DO OR DIR  => DRDIR
 
 Running on GW-Basic
 
-LOC	=> LCL
+LOC	=> LCL => PLOC
 HOME => CLS
-PR#3
+PR#3 => 80 COLS
 
-
+* GWBasic: 
+	LOC() => To return the current position in the file.
 -------------------------------------------------------------------------------------------------------------------------------
 Bug:
 https://github.com/inexorabletash/jsbasic/issues/36
@@ -291,5 +292,61 @@ if we just swith the order of the parameters (and leave the rest of the line aft
 everything works correctly.
 
 	
+-------------------------------------------------------------------------------------------------------------------------------
+
+Uncle Tays' House Adventure Walkthrough
+http://jimgerrie.blogspot.com/2014/02/uncle-tays-house-adventure-walkthrough.html
+
+
+    Click the Select a sample… drop down
+    In the Games section, select "Text Adventure (Floyd McWilliams)"
+    Click Run
+    Run these commands:
+
+
+w
+w
+w
+s
+take note
+n
+e
+e
+e
+u
+n
+take key
+s
+w
+w
+unlock door
+w
+s
+read note
+(make a note of the missing door left|center|right)
+n
+open (left|center|right) door
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+    Click the Select a sample… drop down
+    In the Games section, select "Text Adventure (Floyd McWilliams)"
+    Click Run
+    Run these commands:
+
+    e
+    u
+    n
+    take key
+    s
+    w
+    w
+    unlock door
+    open left door (it doesn't matter which door you open)
+
 
 
