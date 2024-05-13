@@ -1,0 +1,68 @@
+The Horrible Rotten Dancing Dragon...Strikes!!!
+By Ken Rose
+Published in Softline, vol. 2, no. 3, January 1983, pp. 22-27
+For Atari 400/800/XL/XE
+
+Solution by Garry Francis
+----------------------------------------
+(This is a minimal solution. You cannot LOOK or EXAMINE things, but you will receive many subtle hints when you first enter each room. You cannot get these hints back again, so make sure you take extensive notes.)
+
+E
+E
+E
+E
+GET STICK
+S
+S
+W
+W
+W
+PRESS BUTTON
+S
+S
+S
+S
+S
+GET SWORD
+S
+S
+GET DRUMSTICK
+N
+E
+GET SANDWICH
+N
+E
+S
+E
+S
+GET DRUM
+N
+W
+W
+GIVE SANDWICH
+HIT DRUM
+S
+GET WAGON
+S
+E
+N
+GET SPRING
+S
+W
+N
+W
+W
+N
+N
+N
+N
+E
+E
+E
+HIT KETTLE
+N
+W
+W
+N
+W
+***THE END***
