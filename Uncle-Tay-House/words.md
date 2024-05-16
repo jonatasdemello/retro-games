@@ -56,54 +56,55 @@ Input:
 
 ## Vocabulary, Verbs, Objects
 
+The original version has arrays starting with 1, so 00-dummy was added.
+
 This is IDX-33 (ITEMOFF)
 
-|	IDX		|	VOCAB$(60) 	|	Type	|		|				|
-|-----------|---------------|-----------|		|				|
-|	 00 	|	 -99 		|	dummy	|		|				|
-|-----------|---------------|-----------|		|				|
-|	 01 	|	 NORTH		|	move	|		|				|
-|	 02 	|	 SOUTH		|	move	|		|				|
-|	 03 	|	 EAST		|	move	|		|				|
-|	 04 	|	 WEST		|	move	|		|				|
-|	 05 	|	 UP			|	move	|		|				|
-|	 06 	|	 DOWN		|	move	|		|				|
-|	 07 	|	 N			|	move	|		|				|
-|	 08 	|	 S			|	move	|		|				|
-|	 09 	|	 E			|	move	|		|				|
-|	 10 	|	 W			|	move	|		|				|
-|	 11 	|	 U			|	move	|		|				|
-|	 12 	|	 D			|	move	|		|				|
-|	 13 	|	 I			|	action	|		|				|
-|	 14 	|	 INVENTORY	|	action	|		|				|
-|	 15 	|	 SCORE		|	action	|		|				|
-|	 16 	|	 JUMP		|	action	|		|				|
-|	 17 	|	 HELP		|	action	|		|				|
-|	 18 	|	 TAKE		|	action	|	1	|				|
-|	 19 	|	 DROP		|	action	|	2	|				|
-|	 20 	|	 LOOK		|	action	|	3	|				|
-|-----------|---------------|-----------|----	|				|
-|	 21 	|	 READ		|	action	|	4	|				|
-|	 22 	|	 EXAMINE	|	action	|	5	|				|
-|	 23 	|	 UNLOCK		|	action	|	6	|				|
-|	 24 	|	 EAT		|	action	|	7	|				|
-|	 25 	|	 SPIN		|	action	|	8	|				|
-|	 26 	|	 MOVE		|	action	|	9	|				|
-|	 27 	|	 OPEN		|	action	|	10	|				|
-|	 28 	|	 TIE		|	action	|	11	|				|
-|	 29 	|	 OIL		|	action	|	12	|				|
-|	 30 	|	 PUT		|	action	|	13	|				|
-|-----------|---------------|-----------|-----	|				|
-|	 31 	|	 LEFT		|	doors	|	14	|				|
-|	 32 	|	 CENTER		|	doors	|	15	|				|
-|	 33 	|	 RIGHT		|	doors	|	16	|				|
-|-----------|---------------|-----------|-------|-----------------------------------|
+|	IDX		|	VOCAB$(60) 	|	Type	|	x	|
+|-----------|---------------|-----------|-------|
+|	 00 	|	 -99 		|	dummy	|	.	|
+|-----------|---------------|-----------|-------|
+|	 01 	|	 NORTH		|	move	|	.	|
+|	 02 	|	 SOUTH		|	move	|	.	|
+|	 03 	|	 EAST		|	move	|	.	|
+|	 04 	|	 WEST		|	move	|	.	|
+|	 05 	|	 UP			|	move	|	.	|
+|	 06 	|	 DOWN		|	move	|	.	|
+|	 07 	|	 N			|	move	|	.	|
+|	 08 	|	 S			|	move	|	.	|
+|	 09 	|	 E			|	move	|	.	|
+|	 10 	|	 W			|	move	|	.	|
+|	 11 	|	 U			|	move	|	.	|
+|	 12 	|	 D			|	move	|	.	|
+|	 13 	|	 I			|	action	|	.	|
+|	 14 	|	 INVENTORY	|	action	|	.	|
+|	 15 	|	 SCORE		|	action	|	.	|
+|	 16 	|	 JUMP		|	action	|	.	|
+|	 17 	|	 HELP		|	action	|	.	|
+|	 18 	|	 TAKE		|	action	|	1	|
+|	 19 	|	 DROP		|	action	|	2	|
+|	 20 	|	 LOOK		|	action	|	3	|
+|	 21 	|	 READ		|	action	|	4	|
+|	 22 	|	 EXAMINE	|	action	|	5	|
+|	 23 	|	 UNLOCK		|	action	|	6	|
+|	 24 	|	 EAT		|	action	|	7	|
+|	 25 	|	 SPIN		|	action	|	8	|
+|	 26 	|	 MOVE		|	action	|	9	|
+|	 27 	|	 OPEN		|	action	|	10	|
+|	 28 	|	 TIE		|	action	|	11	|
+|	 29 	|	 OIL		|	action	|	12	|
+|	 30 	|	 PUT		|	action	|	13	|
+|-----------|---------------|-----------|-------|
+|	 31 	|	 LEFT		|	doors	|	14	|
+|	 32 	|	 CENTER		|	doors	|	15	|
+|	 33 	|	 RIGHT		|	doors	|	16	|
 
+Table continues:
 
 |	IDX		|	VOCAB$(60)	|	IDX-33 	| ILOC(27)	|	IDESC$(27)						|
-|-----------|---------------|-----------|-------	|----------------------------------	|
+|-----------|---------------|-----------|-----------|----------------------------------	|
 |	 --		|		00 		|	-99		|	-		|	dummy							|
-|-----------|---------------|-----------|-------	|-----------------------------------|
+|-----------|---------------|-----------|-----------|-----------------------------------|
 |	 34 	|	NEWSPAPER	|	 01 	|	 1		|	TAYS HOUSE UNLIKELY EVER TO BE SOLD. TALES OF GUTTED STAIRWELLS AND BOOBY TRAPS HAVE SPOOKED BUYERS...		|
 |	 35 	|	TEDDYBEAR	|	 02 	|	-1		|	SOMEONE HAS BEEN PLAYING VERY ROUGH WITH THIS TOY		|
 |	 36 	|	FUSE		|	 03 	|	-1		|	OLD-FASHIONED ELECTRICAL FUSE		|
