@@ -197,7 +197,7 @@ Exits for each location: EXLOC(I,1) = 1-NORTH 2-SOUTH 3-EAST 4-WEST 5-UP 6-DOWN
 
 	
 -------------------------------------------------------------------------------------------------------------------------------
-## 0 Words (Ignore) NULLW$(4)
+## 0 Ignore Words - NULLW$(4)
 
 	THE
 	TO
