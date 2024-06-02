@@ -1,0 +1,12 @@
+			WUMPUS and SUPERHACK
+
+WUMPUS is a bit of retrocomputing nostalgia.  It is an *exact* clone, even
+down to the godawful user interface, of an ancient classic game.  This version
+fixes two minor bugs in my original USENET posting of the source.
+
+One historical liberty has been taken; the logo of this project is from a
+latter version on the TI-99/4A with a graphical interface.
+
+SUPERHACK is a satire, structurally quite similar to WUMPUS.
+
+For updates and related resources, see http://www.catb.org/~esr/wumpus/.

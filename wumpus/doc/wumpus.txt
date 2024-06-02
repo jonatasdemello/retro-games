@@ -1,0 +1,231 @@
+https://www.atariarchives.org/bcc1/showpage.php?page=247
+
+
+Another new game from Creative Computing…
+
+[image]  HUNT THE WUMPUS By GREGORY YOB
+
+The Genesis of Wumpus
+
+Two years ago I happened by People's  Computer Company (PCC) and saw some of
+their computer games  such as Hurkle, Snark, and Mugwump. My reaction was:
+"EECH!!" Each of these games was based on a 10 x 10 grid in Cartesian
+co-ordinates and three of them was too much for me. I started to think along the
+lines of: "There has to be a hide and seek computer  game without that (exp.
+deleted) grid!!"  In fact, why not a topological computer game - Imagine a set
+of points connected in some way and the player moves about the set via the
+interconnections.
+
+That afternoon in meditation the  phrase "Hunt the Wumpus" arrived, and Wumpus
+was born. He's still a bit vague in physical detail as most dedicated Wumpus
+hunters know, but appearances are part of the game. (If you like, send me a
+picture of your version of a Wumpus. Perhaps friendly Dave,  our editor,  will
+publish the best one in Creative Computing.)  The grid I chose was the vertices
+of a dodecahedron - simply because it's my favorite Platonic solid and once, 
+ages ago, I made a kite shaped like one. The edges became the connecting tunnels
+between the caves which were the set of points for the game.
+
+My basic idea at this time was for the player to approach the Wumpus, back off,
+and come up to him by going around the dodecahedron. To my knowledge, this has
+never happened... most players adopt other strategies rather than this
+cold-blooded approach.
+
+Anyway... how to get the Wumpus! How about an arrow which could turn corners as
+it goes from room to room. Let the hunter tell the arrow where to go and let it
+fly. The shortest round trip without reversals is 5 caves and thus the Crooked
+Arrow.
+
+Hmmm… How does one sense the Wumpus? It's dark in yonder cave, and light would
+wake him up. If one got one cave away, the Wumpus's distinct smell would serve
+as a warning. So far, so good…  but Wumpus is still too easy, so let's  find
+some appropriate hazards for the caves.
+
+Bottomless pits were easy. Any imaginary cave would have a few of those around
+the place. Superbats were harder to come by. It took me a day or two to get that
+idea. The Superbats are a sort of rapid transit system gone a little batty
+(sorry about that one). They take you a random distance to a random cave and
+leave you there. If that's a pit or a Wumpus, well, you are in Fate's hands.
+
+Around this time, I saw that Map-making would be a regular activity of
+Wumpus-hunters. I numbered the caves and made the scheme fixed in the hopes a
+practised player might notice this and make himself a permanent map of the
+caverns. (Another unrealised hope - as an exercise, make yourself such a map on
+a Squashed Dodecahedron).
+
+[image] A Squashed Dodecahedron
+
+To start the game fairly, Wumpus, Hazards, and Hunter are located on different
+points at the start of the game. Each game starts with random choices of
+location, but the hunter may restart with the same set-up if he chooses. This
+allows re-plays if the hunter, say, fell into a pit on the first move.
+
+Wumpus was nearly done in my mind... ( hint to a games-writer: Have a clear
+notion of your game before you
+
+start coding it. This saves MUCH confusion.) yet I felt it was a bit dull. Once
+you found the Wumpus all you had to do was shoot it. To fix this, the Wumpus was
+given a little life. If you shot an arrow or moved into his cave, he woke up and
+chose to move to a neighboring room or to the same room (one of 4 choices). If
+you and the Wumpus were in the same room after he moved, he ATE YOU UP!!
+
+Around here I noticed that the pits and the bats didn't affect the Wumpus. To
+explain this, I added some color by making him heavy and with the legendary
+sucker feet. After all, evolution works in strange ways!! If you are a Wumpus
+fiend,make a version of Wumpus in which he avoids pits and superbats can carry
+him only one room (with the possibility of being dumped into your cave). This
+can be done by making the wumpus moving procedure a subroutine.
+
+I wrote Wumpus and dropped it off at PCC. Then I went home and dreamed up Wumpus
+II which will be covered in the next issue of Creative Computing.
+
+***
+The Birth of Wumpus
+Around a month later, I went to the Synergy conference at Stanford, where many
+of the far-out folk were gathered to share their visions of improving the world.
+PCC had a few terminals running in a conference room and I dropped by. To my
+vast surprise, all of the terminals were running Wumpus and scraps of paper on
+the floor with scrawled numbers and lines testified that much dedicated
+Wumpus-hunting was in progress. I had spawned a hit computer game!!!
+
+Later, PCC published Wumpus in its newsletter (If you haven't seen it, write
+them for a subscription: P.O. Box 310, Menlo Park, Cal. 94025), and Wumpus
+appeared in all sorts of unlikely places. I have reports of Wumpus written in
+RPG, a listing of one in FORTRAN, a rumor of a system command of 'to Wumpus' on
+a large corporation's R&D computer system and have even seen an illustrated
+version for the Hazeltine CRT terminal!!
+
+WUMPUS TAPES, ETC.
+
+I can be found at:
+
+Gregory Yob
+PO Box 354
+Palo Alto, Calif. 94301
+Paper tapes of Wumpus, Wumpus 2 and Wumpus 3 are available and cost $5.00 each.
+
+May your arrows remain straight. -Gregory Yob.
+
+***
+SAMPLE RUN
+INSTRUCTIONS (Y-N)?Y
+WELCOME TO 'HUNT THE WUMPUS'
+
+THE WUMPUS LIVES IN A CAVE OF 20 ROOMS: EACH ROOM HAS 3 TUNNELS LEADING TO OTHER
+ROOMS. (LOOK AT A DODECAHEDRON TO SEE HOW THIS WORKS. IF YOU DON'T KNOW WHAT A
+DODECAHEDRON IS, ASK SOMEONE)
+
+***
+HAZARDS:
+
+BOTTOMLESS PITS - TWO ROOMS HAVE BOTTOMLESS PITS IN THEM
+IF YOU GO THERE: YOU FALL INTO THE PIT (& LOSE!)
+
+SUPER BATS  - TWO OTHER ROOMS HAVE SUPER BATS. IF YOU GO THERE, A BAT GRABS YOU
+AND TAKES YOU TO SOME OTHER ROOM AT RANDOM. (WHICH MIGHT BE TROUBLESOME)
+
+WUMPUS:
+
+THE WUMPUS IS NOT BOTHERED BY THE HAZARDS (HE HAS SUCKER FEET AND IS TOO BIG FOR
+A BAT TO LIFT). USUALLY HE IS ASLEEP. TWO THINGS WAKE HIM UP: YOUR ENTERING HIS
+ROOM OR YOUR SHOOTING AN ARROW.
+
+IF THE WUMPUS WAKES, HE MOVES (P=0.75) ONE ROOM OR STAYS STILL (P=0.25). AFTER
+THAT, IF HE IS WHERE YOU ARE, HE EATS YOU UP (& YOU LOSE!)
+
+YOU:
+
+EACH TURN YOU MAY MOVE OR SHOOT A CROOKED ARROW 
+MOVING: YOU CAN GO ONE ROOM (THRU ONE TUNNEL)
+ARROWS: YOU HAVE 5 ARROWS. YOU LOSE WHEN YOU RUN OUT.
+
+EACH ARROW CAN GO FROM 1 TO 5 ROOMS: YOU AIM BY TELLING THE COMPUTER THE ROOMS
+YOU WANT THE ARROW TO GO TO. IF THE ARROW CAN'T GO THAT WAY (IE NO TUNNEL) IT
+MOVES AT RANDOM TO THE NEXT ROOM.
+
+IF THE ARROW HITS THE WUMPUS: YOU WIN.
+
+IF THE ARROW HITS YOU: YOU LOSE.
+
+WARNINGS:
+
+WHEN YOU ARE ONE ROOM AWAY FROM WUMPUS OP HAZARD, THE COMPUTER SAYS:
+
+WUMPUS - 'I SMELL A WUMPUS'
+
+BAT - 'BATS NEARBY'
+
+PIT - 'I FEEL A DRAFT'
+
+***
+HUNT THE WUMPUS
+
+BATS NEARBY!
+
+YOU ARE IN ROOM 2
+TUNNELS LEAD TO 1 3 10
+
+<image>
+
+SHOOT OR MOVE (S-M)? M
+WHERE TO? 1
+ZAP -- SUPER BAT SNATCH! ELSEWHEREVILLE FOR YOU!
+
+YYYIIIIEFEE . . . FELL IN PIT
+HA HA HA - YOU LOSE!
+
+SAME SET UP (Y-N)?Y
+HUNT THE WUMPUS
+
+<image>
+BATS SUPERBATS PUT ME IN A PIT SOMEWHERES
+
+BATS NEARBY!
+
+YOU ARE IN ROOM 2
+TUNNELS LEAD TO 1 3 10
+SHOOT OR MOVE (S-M)?M
+WHERE TO?3
+YOU ARE IN ROOM 3
+TUNNELS LEAD TO 2 4 10
+
+SHOOT OR MOVE (S-M)?M WHERE T0?4
+
+YOU ARE IN ROOM 4 TUNNELS LEAD TO 3     5     14
+
+SHOOT OR MOVE (S-M)?M 
+WHERE T0?5
+
+[image] JUST KEEP ON TRUCKIN!
+
+BATS NEARBY! YOU ARE IN ROOM 5 TUNNELS LEAD T0 1     4     6
+
+SHOOT OR MOVE (S-M)?M WHERE T0?6
+
+I FEEL A DRAFT YOU ARE IN ROOM 6 TUNNELS LEAD TO 5     7     15
+
+SHOOT OR MOVE (S-M)?M WHERE T0?7 YYYIIIIEEEE . . . FELL IN PIT HA HA HA - YOU
+LOSE! SAME SET-UP (Y-N)?Y HUNT THE WUMPUS
+
+[image] BLEW IT AGAIN!
+
+BATS NEARBY! YOU ARE IN ROOM 2 TUNNELS LEAD TO 1     3     10
+
+SHOOT OR MOVE (S-M)?M WHERE TO?10
+
+BATS NEARBY! YOU ARE IN ROOM 10 TUNNELS LEAD TO 2     9     11
+
+[image]
+
+SHOOT OR MOVE (S-M)?M WHERE TO?ll ZAP--SUPER BAT SNATCH! ELSEWHEREVILLE FOR YOU!
+
+YOU ARE IN ROOM 14 TUNNELS LEAD TO 4     13    15
+
+SHOOT OR MOVE (S-M)?M WHERE TO?l5
+
+I SMELL A WUMPUS! YOU ARE IN ROOM 15 TUNNELS LEAD TO 6     14    16
+
+[image] CAN YOU FIT THIS MAP INTO THE OTHER ONE ABOVE? FIGURE OUT HOW I KNEW THE
+WUMPUS WAS IN 16.
+
+SHOOT OR MOVE (S-M)?M N0. OF ROOMS(l-5)?l ROOM #?16 AHA! YOU GOT THE WUMPUS! HEE
+HEE HEE - THE WUMPUS'LL GETCHA NEXT TIME!!
