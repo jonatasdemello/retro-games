@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas test</title>
+</head>
+<body>
+    <h1>Simple Canvas example</h1>
+    <canvas id="myCanvas" width="300" height="300" >
+       Canvas is not supported on this browser or in this mode
+    </canvas>
+
+    <script>
+      var canvas = document.getElementById("myCanvas");
+      //  if the canvas element exists 
+      if (canvas.getContext) {
+        // Draw some rectangles with different color values
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "red";
+        ctx.fillRect(5, 5, 200, 200);
+        ctx.fillStyle = "rgba(0,50,200,0.5)";
+        ctx.fillRect(55, 55, 200, 200);
+        ctx.fillStyle = "rgba(0,255,10,0.5)";
+        ctx.fillRect(100, 100, 200, 200);
+      }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Canvas Test</title>
+<style>
+canvas {
+border: 1px dashed black;
+}
+</style>
+<script>
+window.onload = function() {
+var canvas = document.getElementById("drawingCanvas");
+var context = canvas.getContext("2d");
+// (Put your fabulous drawing code here.)
+
+// Set the color (brick red) using an HTML color code:
+context.strokeStyle = "#cd2828";
+// Set the color (brick red) using the rgb() function:
+context.strokeStyle = "rgb(205,40,40)";
+
+
+context.lineWidth = 10;
+
+context.moveTo(10,10);
+context.lineTo(400,40);
+context.stroke();
+
+// Draw a line to the new position.
+//context.lineTo(x, y);
+//context.stroke();
+
+};
+</script>
+</head>
+<body>
+<canvas id="drawingCanvas" width="500" height="300"></canvas>
+</body>
+</html>

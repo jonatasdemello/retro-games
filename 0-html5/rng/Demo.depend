@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1637116245 source:/home/jonatas/src/rng/noisesph.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<graphics.h>
+	<string.h>
+

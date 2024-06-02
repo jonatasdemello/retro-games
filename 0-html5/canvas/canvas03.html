@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Canvas Test</title>
+<style>
+canvas {
+    border: 1px dashed black;
+}
+</style>
+<script>
+/*
+var canvas = document.getElementById("myCanvas");
+var canvasWidth = canvas.width;
+var canvasHeight = canvas.height;
+var ctx = canvas.getContext("2d");
+var canvasData = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+*/
+var constants = {
+	leftArrow: 37,
+	upArrow: 38,
+	rightArrow: 39,
+	downArrow: 40
+}
+function ReadInput(field)
+{
+    var result = 0;
+    var val = document.getElementById(field).value;
+    result = Number(val);
+    console.log(result);
+    if(isNaN(result))
+    {
+        result = null;
+    }
+    return result;
+}
+
+function Draw(canvas, ctx) {
+    /* 
+    -----------------------------------------------------------
+    PROG GRAPH3D.BAS
+    10 FOR X=40 TO 215
+    20 LET MMAX=999: LET MMIN=0
+    30 FOR Y=16 TO 144 STEP 4
+    40 LET R=SQR((X-127)*(X-127)+(Y-80)*(Y-80))/15
+    50 LET Z=INT(Y+90*EXP(-R/3)*COS R)
+    60 IF Z<MMAX OR Z>MMIN THEN PLOT X,Z
+    70 IF Z<MMAX THEN LET MMAX=Z
+    80 IF Z>MMIN THEN LET MMIN=Z
+    90 NEXT Y
+    100 NEXT X
+    -----------------------------------------------------------
+    Z = e ^ (-r/3) . cos (r)
+    r = distancia do centro do plano X-Y ate o ponto desenhado
+            
+    var r = Math.sqrt((x-127)*(x-127)+(y-80)*(y-80))/15;
+    var z = Math.round(y+90 * Math.exp(-r/3) * Math.cos(r));
+    */
+
+    let xMin = ReadInput("xMin") ?? 20;
+    let xMax = ReadInput("xMax") ?? 400;
+    let xStep = ReadInput("xStep") ?? 1;
+    let yMin = ReadInput("yMin") ?? -20;
+    let yMax =  ReadInput("yMax") ?? 250;
+    let yStep = ReadInput("yStep") ?? 3;
+
+    let zCenter = ReadInput("zCenter") ?? 90;
+    let xCenter = ReadInput("xCenter") ?? 200;
+    console.log (xMin, xMax, xStep, yMin,yMax,yStep);
+
+    for (var x = xMin; x < xMax; x += xStep) { // 10, 250
+        var MMAX = 999, MMIN = 0;
+        for (var y = yMin; y < yMax; y += yStep) { // -10, 144, 3
+
+            var r = Math.sqrt((x - xCenter) * (x - xCenter) + (y - zCenter) * (y - zCenter)) / 15;
+            var z = Math.round(y + zCenter * Math.exp(-r / 3) * Math.cos(r));
+
+            if (z < MMAX || z > MMIN)
+                point(x, z, ctx);
+            if (z < MMAX)
+                MMAX = z;
+            if (z > MMIN)
+                MMIN = z;
+        }
+    }
+    DrawAxes(canvas, ctx);
+};
+function point(x, y, ctx) {
+    let PtSize = 2;
+    let Scale = 1.8;
+    ctx.fillStyle = "rgb("+x+","+y+",40)";
+    ctx.fillRect(x * Scale, (250-y)* Scale, PtSize, PtSize);
+}
+function DrawAxes(canvas, ctx)
+{
+    ctx.font = "10px Arial";
+    ctx.fillStyle = "rgb(0,0,0)";
+    // X-axis
+    for (var i=10; i<canvas.width; i+=50) {
+        ctx.fillText(i,i,10);
+    }
+    // Y-axis
+    for (var i=10; i<canvas.height; i+=50) {
+        ctx.fillText(i,10,i);
+    }
+}
+function ClearCanvas(canvas, ctx) {
+    var canvas = document.getElementById("drawingCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+function Update() {
+    canvas = document.getElementById("drawingCanvas");
+    ctx = canvas.getContext("2d");
+    ClearCanvas(canvas, ctx);
+    Draw(canvas, ctx);
+}
+// -----------------------------------------------------------------------------------------------------
+function IncZ() {
+    var val = document.getElementById("zCenter").value;
+    val = Number(val) + 5;
+    document.getElementById("zCenter").value = val;
+    Update();
+}
+function DecZ() {
+    var val = document.getElementById("zCenter").value;
+    val = Number(val) - 5;
+    document.getElementById("zCenter").value = val;
+    Update();
+}
+function processKeyDown(evt) 
+{
+	if (evt.ctrlKey) {
+		switch (evt.keyCode) {
+			case constants.upArrow:
+				// No operation other than preventing the default behavior of the arrow key.
+				evt.preventDefault(); // This prevents the default behavior of the arrow keys, which is to scroll the browser window when scroll bars are present. The user can still scroll the window with the mouse.
+				break;
+			case constants.downArrow:
+				// No operation other than preventing the default behavior of the arrow key.
+				evt.preventDefault();
+				break;
+			case constants.leftArrow:
+				// console.log("ctrl+leftArrow");
+				surface.zRotate(-1); // The sign determines if the surface rotates "clockwise" or "counterclockwise".
+				evt.preventDefault();
+				break;
+			case constants.rightArrow:
+				// console.log("ctrl+rightArrow");
+				surface.zRotate(1);
+				evt.preventDefault();
+				break;
+		}
+		return; // When the control key is pressed, only the left and right arrows have meaning, no need to process any other key strokes (i.e., bail now).
+	}
+
+	// Assert: The control key is not pressed.
+
+	switch (evt.keyCode) {
+		case constants.upArrow:
+            IncZ();
+			evt.preventDefault();
+			break;
+		case constants.downArrow:
+            DecZ();
+			evt.preventDefault();
+			break;
+		case constants.leftArrow:
+			// console.log("leftArrow");
+			evt.preventDefault();
+			break;
+		case constants.rightArrow:
+			// console.log("rightArrow");
+			evt.preventDefault();
+			break;
+	}
+}
+window.onload = function() {
+    canvas = document.getElementById("drawingCanvas");
+    ctx = canvas.getContext("2d");
+    Draw(canvas, ctx);
+    document.addEventListener('keydown', processKeyDown, false); // Used to detect if the control key has been pressed.
+}
+</script>
+</head>
+<body>
+<canvas id="drawingCanvas" width="800" height="600"></canvas>
+<form id="form1">
+    <p>
+        xMin: <input id="xMin" type="text" value="20" size="5" />
+        xMax: <input id="xMax" type="text" value="400" size="5" />
+        xStep: <input id="xStep" type="text" value="1" size="5" /> <br>
+        yMin: <input id="yMin" type="text" value="5" size="5" />
+        yMax: <input id="yMax" type="text" value="250" size="5" />
+        yStep: <input id="yStep" type="text" value="3" size="5" /> <br>
+        zCenter: <input id="zCenter" type="text" value="90" size="5" /> 
+        xCenter: <input id="xCenter" type="text" value="200" size="5" />
+    </p>
+    <input type="button" id="update" value="Refresh" onclick="return Update();" />
+</form>
+</body>
+</html>
