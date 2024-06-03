@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Canvas</title>
+</head>
+
+<body>
+    <main class="container-fluid">
+        <nav>
+            <ul>
+                <li><a href="../index.html" class="contrast">&larr; Back</a></li>
+            </ul>
+        </nav>
+
+        <h1>Simple Canvas example</h1>
+        <canvas id="myCanvas" width="640" height="480"></canvas>
+    </main>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        
+        // Draw some rectangles with different color values
+        ctx.fillStyle = "red";
+        ctx.fillRect(5, 5, 200, 200);
+        ctx.fillStyle = "rgba(0,50,200,0.5)";
+        ctx.fillRect(55, 55, 200, 200);
+        ctx.fillStyle = "rgba(0,255,10,0.5)";
+        ctx.fillRect(100, 100, 200, 200);
+    </script>
+</body>
+
+</html>

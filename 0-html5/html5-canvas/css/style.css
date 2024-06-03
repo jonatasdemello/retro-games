@@ -1,0 +1,19 @@
+canvas {
+	border: 1px dashed black;
+	padding: 10px;
+	background-color: black;
+}
+
+#msg {
+	margin: 5px;
+	border: 1px solid #000000;
+	float: left;
+	width: 400px;
+}
+
+#form1 {
+	margin: 5px;
+	border: 1px solid #000000;
+	float: left;
+	width: 400px;
+}

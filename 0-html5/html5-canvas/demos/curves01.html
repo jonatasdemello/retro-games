@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/utils.js"></script>
+    <title>Canvas</title>
+</head>
+
+<body>
+    <main class="container-fluid">
+        <nav>
+            <ul>
+                <li><a href="../index.html" class="contrast">&larr; Back</a></li>
+            </ul>
+        </nav>
+
+        <h1>Simple Canvas example</h1>
+        <canvas id="myCanvas" width="640" height="480"></canvas>
+    </main>
+
+    <pre>
+        /* 
+        PROG CURVES2
+        10 RADIANS: PAPER 6: CLS: PLOT SCRw/2,SCRh/2
+        20 LET a=10: 
+        25 FOR f=1 TO 10000
+        30 LET x=0: LET y=0
+        40 LET q=1+INT(4*RND)
+        50 IF q=1 THEN LET x=a
+        60 IF q=2 THEN LET x=-a
+        70 IF q=3 THEN LET y=a
+        80 IF q=4 THEN LET y=-a
+        90 DRAW x,y,PI
+        100 NEXT f
+        110 PAUSE 0
+        */
+    </pre>
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+
+            /* 
+            PROG CURVES2
+            10 RADIANS: PAPER 6: CLS: PLOT SCRw/2,SCRh/2
+            20 LET a=10: 
+            25 FOR f=1 TO 10000
+            30 LET x=0: LET y=0
+            40 LET q=1+INT(4*RND)
+            50 IF q=1 THEN LET x=a
+            60 IF q=2 THEN LET x=-a
+            70 IF q=3 THEN LET y=a
+            80 IF q=4 THEN LET y=-a
+            90 DRAW x,y,PI
+            100 NEXT f
+            110 PAUSE 0
+            */
+
+            var Xpos = canvas.width / 2;
+            var Ypos = canvas.height / 2;
+
+            ctx.beginPath();
+            ctx.moveTo(Xpos, Ypos);
+
+            var myColor = "green";
+            ctx.fillStyle = myColor;
+            ctx.strokeStyle = myColor;
+
+            var a = 20;
+            for (var i = 1; i < 5000; i++) {
+                var x = 0;
+                var y = 0;
+                var q = RND(1, 4);
+                if (q == 1) { x = a }
+                if (q == 2) { x = -a }
+                if (q == 3) { y = a }
+                if (q == 4) { y = -a }
+                //DRAW x,y,PI
+                Xpos += x;
+                Ypos += y;
+                //console.log(x +" , "+ y +" - "+ Xpos +" , "+ Ypos);
+                ctx.lineTo(Xpos, Ypos);
+            }
+            /*
+            plot (0,0) to (255, 175) = 45.056 pontos
+                 (0,0) inferior esquerdo tela
+            */
+            drawAxes(canvas, ctx);
+            ctx.stroke();
+        };
+
+    </script>
+</body>
+
+</html>

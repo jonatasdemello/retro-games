@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript" src="../js/utils.js"></script>
+    <title>Canvas</title>
+</head>
+
+<body>
+    <main class="container-fluid">
+        <nav>
+            <ul>
+                <li><a href="../index.html" class="contrast">&larr; Back</a></li>
+            </ul>
+        </nav>
+
+        <h1>Simple Canvas example</h1>
+        <canvas id="myCanvas" width="640" height="480"></canvas>
+    </main>
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+
+            drawAxes(canvas, ctx);
+
+            let frq = 32;
+            let amp = 40;
+
+            ctx.fillStyle = "green";
+
+            for (var x = 0; x < 180; x++) {
+                var y =  amp * Math.sin(x / frq * 3.1415);
+                plot(x, y, ctx);
+            }
+
+            ctx.fillStyle = "yellow";
+
+            for (var x = 0; x < 180; x++) {
+                var y =  amp * Math.cos(x / frq * 3.1415);
+                plot(x, y, ctx);
+            }
+        };
+
+        function plot(x, y, ctx) {
+            let dx = 50;
+            let dy = 100;
+            let es = 2.5;
+            ctx.fillRect((dx + x) * es, (dy - y) * es, 2, 2);
+        }
+    </script>
+</body>
+
+</html>
