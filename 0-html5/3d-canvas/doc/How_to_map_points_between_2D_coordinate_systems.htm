@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual has-default-focus theme-light zvfmxhixfa" lang="en-us"
+	dir="ltr" data-authenticated="false" data-auth-status-determined="true" data-target="docs"
+	x-ms-format-detection="none">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:title" content="How to map points between 2D coordinate systems (Windows)">
+	<meta property="og:url"
+		content="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/jj635757(v=vs.85)">
+	<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png">
+	<meta name="current_version_url" content="https://docs.microsoft.com/en-us/microsoft-edge/">
+	<meta name="document_id" content="70488bf3-654a-c2a6-70d2-e0a71e6aa0aa">
+	<meta name="document_version_independent_id" content="70488bf3-654a-c2a6-70d2-e0a71e6aa0aa">
+	<meta name="git_commit_id" content="08c7d3ca7bc5f96317664f30fd281207674b9092">
+	<meta name="gitcommit"
+		content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/windows-internet-explorer-docs-archive-pr/commit/08c7d3ca7bc5f96317664f30fd281207674b9092?path=/windows-internet-explorer/ie-developer/samples/jj635757(v=vs.85).md&amp;_a=contents">
+	<meta name="is_archived" content="true">
+	<meta name="locale" content="en-us">
+	<meta name="ms:mtpsurl" content="https://msdn.microsoft.com/en-us/library/JJ635757(v=VS.85)">
+	<meta name="original_content_git_url"
+		content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/windows-internet-explorer-docs-archive-pr?path=/windows-internet-explorer/ie-developer/samples/jj635757(v=vs.85).md&amp;version=GBlive&amp;_a=contents">
+	<meta name="TOCTitle" content="How to map points between 2D coordinate systems">
+	<meta name="github_feedback_content_git_url"
+		content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/windows-internet-explorer-docs-archive-pr?path=/windows-internet-explorer/ie-developer/samples/jj635757(v=vs.85).md&amp;version=GBlive&amp;_a=contents">
+	<link
+		href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/jj635757(v=vs.85)"
+		rel="canonical">
+	<title>How to map points between 2D coordinate systems (Windows) | Microsoft Learn</title>
+	<!-- <link rel="stylesheet" href="purifyAndMinified.css"> -->
+	<link rel="stylesheet" href="site-ltr.css">
+</head>
+
+<body lang="en-us" dir="ltr">
+	<div class="mainContainer  uhf-container has-default-focus">
+		<div class="columns has-large-gaps is-gapless-mobile">
+			<section class="primary-holder column">
+				<div class="columns is-gapless-mobile has-large-gaps ">
+					<div id="main-column" class="column  is-full is-8-desktop">
+						<main id="main" class="" role="main" data-bi-name="content" lang="en-us" dir="ltr">
+							<!-- article-header -->
+							<div id="article-header"
+								class="background-color-body margin-top-sm-tablet margin-bottom-xs display-none-print">
+								<div class="display-flex align-items-center ">
+									<details id="article-header-breadcrumbs-overflow-popover" class="popover"
+										data-for="article-header-breadcrumbs">
+									</details>
+
+									<bread-crumbs id="article-header-breadcrumbs"
+										data-test-id="article-header-breadcrumbs"
+										class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs"
+										style="display: block; white-space: nowrap; overflow: hidden;"><!---->
+										<nav>
+											<ol class="breadcrumbs breadcrumbs-initial-slash">
+												<!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a href="https://learn.microsoft.com/en-us/"><!---->Learn<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a href="https://learn.microsoft.com/en-us/previous-versions/"><!---->Previous
+														Versions<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/"><!---->Windows<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/"><!---->Internet
+														Explorer<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/"><!---->Internet
+														Explorer for Developers<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/dn997184(v=vs.85)"><!---->Samples<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg491737(v=vs.85)"><!---->Internet
+														Explorer 9 Samples and Tutorials<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589511(v=vs.85)"><!---->HTML5
+														Graphics<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													style="">
+													<a href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589510(v=vs.85)"
+														style=""><!---->HTML5 Canvas<!----></a>
+												</li>
+												<!----><!----><!---->
+											</ol>
+										</nav>
+										<!---->
+									</bread-crumbs>
+								</div>
+							</div>
+							<!-- end mobile-contents button  -->
+							<div class="content ">
+								<h1 id="how-to-map-points-between-2d-coordinate-systems">How to map points between 2D
+									coordinate systems</h1>
+								<div
+									class="display-flex justify-content-space-between align-items-center flex-wrap-wrap page-metadata-container">
+									<div class="margin-right-xxs">
+										<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us"
+											dir="ltr">
+											<li>Article</li>
+											<li>
+												<time class="" data-article-date="" aria-label="Article review date"
+													datetime="2016-03-03T00:00:00.000Z"
+													data-article-date-source="ms.date">03/03/2016</time>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<nav id="center-doc-outline"
+									class="doc-outline is-hidden-desktop display-none-print margin-bottom-sm"
+									data-bi-name="intopic toc" aria-label="In this article" hidden="">
+									<h2 id="ms--in-this-article" class="title is-6 margin-block-xs">In this article</h2>
+								</nav>
+								<!-- <content> -->
+								<p>This topic describes how to map
+									points from one 2D coordinate system to another. This can be useful for
+									graphics systems, such as <a href="https://go.microsoft.com/fwlink/p/?linkid=690352"
+										data-linktype="external">canvas</a>, that do not provide a <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=261240"
+										data-linktype="external">current transformation matrix</a> (CTM).</p>
+								<p>An <a href="https://go.microsoft.com/fwlink/p/?linkid=261242"
+										data-linktype="external">affine transformation</a>
+									is a linear (or first-order) transformation that can relate two 2D
+									coordinate systems, typically through a composition of rotations,
+									translations, dilations, and shears. The following is a possible
+									example:</p>
+								<p><img src="images/jj635757.image1(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>Assuming a typical screen coordinate system (shown in red), affine transformations
+									are expressed algebraically as follows:</p>
+								<p><img src="images/jj635757.equation1(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>In other words, if we can determine <em>a</em>, <em>b</em>, <em>c</em>, and
+									<em>d</em>, we can calculate the point (<em>x'</em>, <em>y'</em>) from the point
+									(<em>x</em>, <em>y</em>) and vice versa.
+								</p>
+								<p>Notice that this system of linear equations has four unknowns. Therefore, we need
+									four equations to determine <em>a</em>, <em>b</em>, <em>c</em>, and <em>d</em>:</p>
+								<p><img src="images/jj635757.equation2(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>In matrix notation, this linear system can be written as:</p>
+								<p><img src="images/jj635757.equation3(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>To determine <em>a</em> through <em>d</em>, we <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=330517"
+										data-linktype="external">invert</a><strong>M</strong> and solve as follows:</p>
+								<p><img src="images/jj635757.equation4(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p><strong>Note</strong>&nbsp;&nbsp;Although most modern calculators, as well as a
+									number of mathematical websites (such as <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=261243"
+										data-linktype="external">WolframAlpha</a>), can easily invert matrices, the
+									symbolic inverse of <strong>M</strong> is as follows:</p>
+								<p>&nbsp;</p>
+								<p><img src="images/jj635757.inverse(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>Now by examining <strong>u</strong> and <strong>M</strong>, we see that we only need
+									two known coincident points from each coordinate system:</p>
+								<p><img src="images/jj635757.u_and_m(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>For example, from the previous diagram, we see that:</p>
+								<p><img src="images/jj635757.equation5(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>Plugging these values into <strong>u</strong> and <strong>M</strong> yields:</p>
+								<p><img src="images/jj635757.equation6(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>Taking the inverse of <strong>M</strong> (approximate values shown) and multiplying
+									by <strong>u</strong> produces:</p>
+								<p><img src="images/jj635757.equation7(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>That is:</p>
+								<p><img src="images/jj635757.equation8(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>So the transformation equations become:</p>
+								<p><img src="images/jj635757.equation9(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>For example, (<em>x</em>, <em>y</em>) = (37.1, 58.3) maps to the point (<em>x'</em>,
+									<em>y'</em>) = (-7, -3) as follows:
+								</p>
+								<p><img src="images/jj635757.equation10(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>And the point (<em>x</em>, <em>y</em>) = (54.28, 24.33) maps to the
+									<em>x’y’</em>-origin, as expected:
+								</p>
+								<p><img src="images/jj635757.equation11(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>This transformation technique can be useful for graphics systems that do not provide
+									a <a href="https://go.microsoft.com/fwlink/p/?linkid=261240"
+										data-linktype="external">current transformation matrix</a> (CTM). Unlike <a
+										href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589525(v=vs.85)"
+										data-linktype="relative-path">SVG</a>, <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225601"
+										data-linktype="external">canvas</a> (as of this writing) does not provide a CTM
+									(that is, there is no <code>canvas.context.getTransform</code>
+									method). Therefore, the technique we've discussed here can be used in a
+									number of scenarios instead. For example, consider a 600 pixel by 400
+									pixel canvas (in red) with the following implied coordinate system (in
+									green):</p>
+								<p><img src="images/jj635757.image2(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>For this relatively simple case, the required transformation equations can be derived
+									without using <a href="https://go.microsoft.com/fwlink/p/?linkid=261246"
+										data-linktype="external">linear algebra</a>, but we do so to exemplify the above
+									procedure. From this diagram, we see that:</p>
+								<p><img src="images/jj635757.equation12(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>Thus,</p>
+								<p><img src="images/jj635757.equation13(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>And,</p>
+								<p><img src="images/jj635757.equation14(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>Therefore,</p>
+								<p><img src="images/jj635757.equation15(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>So the transformation equations become:</p>
+								<p><img src="images/jj635757.equation16(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>That is, (0, 0) maps to (-8, 4) as follows:</p>
+								<p><img src="images/jj635757.equation17(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>And (600, 400) maps to (4, -4) in the same way:</p>
+								<p><img src="images/jj635757.equation18(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>As a final validation, we confirm that (400, 200) maps to the origin of the green
+									coordinate system:</p>
+								<p><img src="images/jj635757.equation19(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>When the transformation equation coefficients are known, you can calculate
+									(<em>x</em>, <em>y</em>) from (<em>x'</em>, <em>y'</em>) as follows:</p>
+								<p><img src="images/jj635757.equation20(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>To conclude, when a graphical system (such as canvas) does not
+									provide a CTM, the above technique can be used to generate useful
+									transformation equations given two coincident points from both 2D
+									coordinate systems.</p>
+								<div class="heading-wrapper" data-heading-level="h2"><a
+										class="anchor-link docon docon-link" href="#related-topics"
+										aria-label="Section titled: Related topics"></a>
+									<h2 id="related-topics" class="heading-anchor">Related topics</h2>
+								</div>
+								<p><a href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/hh535759(v=vs.85)"
+										data-linktype="relative-path">How To Create 3D Graphics Using Canvas</a></p>
+								<p><a href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589510(v=vs.85)"
+										data-linktype="relative-path">HTML5 Canvas</a></p>
+								<p><a href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/hh535760(v=vs.85)"
+										data-linktype="relative-path">SVG Coordinate Transformations</a></p>
+							</div>
+							<!-- </content> -->
+						</main><!-- recommendations section --><!-- end recommendations section -->
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+
+</html>

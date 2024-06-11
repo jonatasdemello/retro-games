@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual has-default-focus theme-light ssehjwlyx tronxvg"
+	lang="en-us" dir="ltr" data-authenticated="false" data-auth-status-determined="true" data-target="docs"
+	x-ms-format-detection="none">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:title" content="How To Create 3D Graphics Using Canvas (Windows)">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/hh535759(v=vs.85)">
+	<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png">
+	<meta name="current_version_url" content="https://docs.microsoft.com/en-us/microsoft-edge/">
+	<meta name="depot_name" content="MSDN.windows-internet-explorer">
+	<meta name="document_id" content="854b0fa3-5ab5-3bd7-d77c-f0140a92d624">
+	<meta name="document_version_independent_id" content="854b0fa3-5ab5-3bd7-d77c-f0140a92d624">
+	<meta name="git_commit_id" content="08c7d3ca7bc5f96317664f30fd281207674b9092">
+	<meta name="gitcommit"
+		content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/windows-internet-explorer-docs-archive-pr/commit/08c7d3ca7bc5f96317664f30fd281207674b9092?path=/windows-internet-explorer/ie-developer/samples/hh535759(v=vs.85).md&amp;_a=contents">
+	<meta name="ms:mtpsurl" content="https://msdn.microsoft.com/en-us/library/Hh535759(v=VS.85)">
+	<meta name="mtps_version" content="v=VS.85">
+	<meta name="original_content_git_url"
+		content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/windows-internet-explorer-docs-archive-pr?path=/windows-internet-explorer/ie-developer/samples/hh535759(v=vs.85).md&amp;version=GBlive&amp;_a=contents">
+	<meta name="page_type" content="conceptual">
+	<meta name="TOCTitle" content="How To Create 3D Graphics Using Canvas">
+	<meta name="persistent_id" content="a4701583-0675-d34e-8e66-25b764b11e4c">
+	<meta name="github_feedback_content_git_url"
+		content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/windows-internet-explorer-docs-archive-pr?path=/windows-internet-explorer/ie-developer/samples/hh535759(v=vs.85).md&amp;version=GBlive&amp;_a=contents">
+	<link
+		href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/hh535759(v=vs.85)"
+		rel="canonical">
+
+	<title>How To Create 3D Graphics Using Canvas (Windows) | Microsoft Learn</title>
+	<!-- <link rel="stylesheet" href="purifyAndMinified.css"> -->
+	<link rel="stylesheet" href="site-ltr.css">
+</head>
+
+<body lang="en-us" dir="ltr">
+	<div class="mainContainer  uhf-container has-default-focus">
+		<div class="columns has-large-gaps is-gapless-mobile">
+			<section class="primary-holder column">
+				<div class="columns is-gapless-mobile has-large-gaps ">
+					<div id="main-column" class="column  is-full is-8-desktop">
+						<main id="main" class="" role="main" data-bi-name="content" lang="en-us" dir="ltr">
+							<!-- article-header -->
+							<div id="article-header"
+								class="background-color-body margin-top-sm-tablet margin-bottom-xs display-none-print">
+								<div class="display-flex align-items-center ">
+									<details id="article-header-breadcrumbs-overflow-popover" class="popover"
+										data-for="article-header-breadcrumbs">
+										<summary class="button button-clear button-primary button-sm inner-focus"
+											aria-label="All breadcrumbs">
+											<span class="icon">
+												<span class="docon docon-more"></span>
+											</span>
+										</summary>
+										<div id="article-header-breadcrumbs-overflow"
+											class="popover-content padding-none"><!---->
+											<nav>
+												<ol class="list-style-none">
+													<!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/">
+															Learn
+														</a>
+													</li>
+													<!----><!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/previous-versions/">
+															Previous Versions
+														</a>
+													</li>
+													<!----><!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/previous-versions/windows/">
+															Windows
+														</a>
+													</li>
+													<!----><!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/">
+															Internet Explorer
+														</a>
+													</li>
+													<!----><!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/">
+															Internet Explorer for Developers
+														</a>
+													</li>
+													<!----><!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/dn997184(v=vs.85)">
+															Samples
+														</a>
+													</li>
+													<!----><!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg491737(v=vs.85)">
+															Internet Explorer 9 Samples and Tutorials
+														</a>
+													</li>
+													<!----><!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589511(v=vs.85)">
+															HTML5 Graphics
+														</a>
+													</li>
+													<!----><!---->
+													<li class="line-clamp-1">
+														<a class="display-block has-inner-focus padding-inline-xs padding-block-xxs border-radius font-size-sm"
+															href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589510(v=vs.85)">
+															HTML5 Canvas
+														</a>
+													</li>
+													<!----><!----><!---->
+												</ol>
+											</nav>
+
+											<!---->
+										</div>
+									</details>
+
+									<bread-crumbs id="article-header-breadcrumbs"
+										data-test-id="article-header-breadcrumbs"
+										class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs"
+										style="display: block; white-space: nowrap; overflow: hidden;"><!---->
+										<nav>
+											<ol class="breadcrumbs breadcrumbs-initial-slash">
+												<!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a href="https://learn.microsoft.com/en-us/"><!---->Learn<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a href="https://learn.microsoft.com/en-us/previous-versions/"><!---->Previous
+														Versions<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/"><!---->Windows<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/"><!---->Internet
+														Explorer<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/"><!---->Internet
+														Explorer for Developers<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/dn997184(v=vs.85)"><!---->Samples<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													hidden="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg491737(v=vs.85)"><!---->Internet
+														Explorer 9 Samples and Tutorials<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target="">
+													<a
+														href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589511(v=vs.85)"><!---->HTML5
+														Graphics<!----></a>
+												</li>
+												<!----><!---->
+												<li class="breadcrumbs-item" data-bread-crumbs-collapse-target=""
+													style="">
+													<a href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589510(v=vs.85)"
+														style=""><!---->HTML5 Canvas<!----></a>
+												</li>
+												<!----><!----><!---->
+											</ol>
+										</nav>
+										<!---->
+									</bread-crumbs>
+									<div id="article-header-page-actions"
+										class="margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch"><a
+											id="lang-link-tablet"
+											class="button button-primary button-clear button-sm display-none display-inline-flex-tablet"
+											title="Read in English" data-bi-name="language-toggle" data-read-in-link=""
+											hidden=""
+											href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/hh535759(v=vs.85)"
+											data-bi="{&quot;cN&quot;:&quot;language-toggle&quot;,&quot;value&quot;:&quot;off&quot;}">
+											<span class="icon margin-none" aria-hidden="true" data-read-in-link-icon="">
+												<span class="docon docon-locale-globe"></span>
+											</span>
+											<span class="is-visually-hidden" data-read-in-link-text="">Read in
+												English</span>
+										</a>
+										<details class="popover popover-right add-item-popover">
+											<summary
+												class="button button-clear button-sm button-primary display-none display-inline-flex-tablet"
+												data-list-type="collection"
+												data-list-item-title="How To Create 3D Graphics Using Canvas (Windows) | Microsoft Learn"
+												data-list-item-url="/previous-versions/windows/internet-explorer/ie-developer/samples/hh535759(v=vs.85)"
+												data-bi-name="add-to-list" aria-describedby="popover-content"
+												aria-expanded="false">
+
+												<span class="icon margin-none" aria-hidden="true">
+													<span class="docon docon-circle-addition"></span>
+												</span>
+												<span class="collection-status is-visually-hidden">Save</span>
+
+											</summary>
+											<div class="popover-content has-z-index-one">
+												<ul class="list-unstyled">
+													<li>
+														<button class="button button-clear button-sm button-primary"
+															data-list-type="collection"
+															data-list-item-title="How To Create 3D Graphics Using Canvas (Windows) | Microsoft Learn"
+															data-list-item-url="/previous-versions/windows/internet-explorer/ie-developer/samples/hh535759(v=vs.85)"
+															data-bi-name="add-to-collections" data-pressed="false"
+															title="Add How To Create 3D Graphics Using Canvas (Windows) | Microsoft Learn to a collection">
+															<span class="icon" aria-hidden="true">
+																<span class="docon docon-circle-addition"></span>
+															</span>
+															<span class="collection-status">Add to Collections</span>
+														</button>
+													</li>
+													<li>
+														<button class="button button-clear button-sm button-primary"
+															data-list-type="plan"
+															data-list-item-title="How To Create 3D Graphics Using Canvas (Windows) | Microsoft Learn"
+															data-list-item-url="/previous-versions/windows/internet-explorer/ie-developer/samples/hh535759(v=vs.85)"
+															data-bi-name="add-to-plans" data-pressed="false"
+															title="Add How To Create 3D Graphics Using Canvas (Windows) | Microsoft Learn to a Plan">
+															<span class="icon" aria-hidden="true">
+																<span class="docon docon-circle-addition"></span>
+															</span>
+															<span class="plan-status">Add to Plan</span>
+														</button>
+													</li>
+												</ul>
+											</div>
+										</details>
+										<details class="popover popover-right"
+											id="article-header-page-actions-overflow">
+											<summary
+												class="justify-content-flex-start button button-clear button-sm button-primary"
+												aria-label="More actions" title="More actions">
+												<span class="icon" aria-hidden="true">
+													<span class="docon docon-more-vertical"></span>
+												</span>
+											</summary>
+											<div class="popover-content padding-xs"><button
+													data-page-action-item="overflow-mobile" type="button"
+													class="justify-content-flex-start button-block button-sm has-inner-focus button button-clear display-none-tablet"
+													data-bi-name="contents-expand" data-contents-button=""
+													data-popover-close="">
+													<span class="icon">
+														<span class="docon docon-editor-list-bullet"
+															aria-hidden="true"></span>
+													</span><span class="contents-expand-title">Table of
+														contents</span></button><a id="lang-link-overflow"
+													class="justify-content-flex-start button-sm has-inner-focus button button-clear button-block display-none-tablet"
+													title="Read in English" data-bi-name="language-toggle"
+													data-page-action-item="overflow-mobile" data-check-hidden="true"
+													data-read-in-link="" hidden=""
+													href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/hh535759(v=vs.85)"
+													data-bi="{&quot;cN&quot;:&quot;language-toggle&quot;,&quot;value&quot;:&quot;off&quot;}">
+													<span class="icon" aria-hidden="true" data-read-in-link-icon="">
+														<span class="docon docon-locale-globe"></span>
+													</span>
+													<span data-read-in-link-text="">Read in English</span>
+												</a><button type="button"
+													class="collection justify-content-flex-start button button-clear button-sm has-inner-focus button-block display-none-tablet"
+													data-list-type="collection" data-bi-name="collection"
+													title="Add How To Create 3D Graphics Using Canvas (Windows) | Microsoft Learn to a collection"
+													data-page-action-item="overflow-mobile" data-check-hidden="true"
+													data-popover-close="" data-pressed="false">
+													<span class="icon" aria-hidden="true">
+														<span class="docon docon-circle-addition"></span>
+													</span>
+													<span class="collection-status">Add to Collections</span>
+												</button>
+
+
+												<button type="button"
+													class="collection justify-content-flex-start button button-clear button-sm has-inner-focus button-block display-none-tablet"
+													data-list-type="plan" data-bi-name="plan"
+													title="Add How To Create 3D Graphics Using Canvas (Windows) | Microsoft Learn to a Plan"
+													data-page-action-item="overflow-mobile" data-check-hidden="true"
+													data-popover-close="" data-pressed="false">
+													<span class="icon" aria-hidden="true">
+														<span class="docon docon-circle-addition"></span>
+													</span>
+													<span class="plan-status">Add to Plan</span>
+												</button>
+												<div aria-hidden="true" class="margin-none"
+													data-page-action-item="overflow-all"></div>
+												<hr class="display-none-tablet margin-bottom-xxs margin-top-xxs">
+												<h4 class="font-size-sm padding-left-xxs">Share via</h4>
+
+												<a class="button button-clear button-sm button-block has-inner-focus text-decoration-none justify-content-flex-start share-facebook"
+													data-bi-name="facebook" data-page-action-item="overflow-all"
+													href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fprevious-versions%2Fwindows%2Finternet-explorer%2Fie-developer%2Fsamples%2Fhh535759(v%3Dvs.85)%3FWT.mc_id%3Dfacebook">
+													<span class="icon" aria-hidden="true">
+														<span
+															class="docon docon-facebook-share font-size-md color-primary"></span>
+													</span>
+													<span class="margin-left-xxs">Facebook</span>
+												</a>
+												<a class="button button-clear button-sm has-inner-focus button-block text-decoration-none justify-content-flex-start share-twitter"
+													data-bi-name="twitter" data-page-action-item="overflow-all"
+													href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fprevious-versions%2Fwindows%2Finternet-explorer%2Fie-developer%2Fsamples%2Fhh535759(v%3Dvs.85)%3FWT.mc_id%3Dtwitter&amp;text=Today%20I%20completed%20%22How%20To%20Create%203D%20Graphics%20Using%20Canvas%20(Windows)%20%7C%20Microsoft%20Learn%22!%20I%27m%20so%20proud%20to%20be%20celebrating%20this%20achievement%20and%20hope%20this%20inspires%20you%20to%20start%20your%20own%20%40MicrosoftLearn%20journey!&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fprevious-versions%2Fwindows%2Finternet-explorer%2Fie-developer%2Fsamples%2Fhh535759(v%3Dvs.85)%3FWT.mc_id%3Dtwitter">
+													<span class="icon" aria-hidden="true">
+														<span class="docon docon-xlogo-share font-size-xxs"></span>
+													</span>
+													<span class="margin-left-xxs">x.com</span>
+												</a>
+												<a class="button button-clear button-sm has-inner-focus button-block text-decoration-none justify-content-flex-start share-linkedin"
+													data-bi-name="linkedin" data-page-action-item="overflow-all"
+													href="https://www.linkedin.com/feed/?shareActive=true&amp;text=Today%20I%20completed%20%22How%20To%20Create%203D%20Graphics%20Using%20Canvas%20(Windows)%20%7C%20Microsoft%20Learn%22!%20I%27m%20so%20proud%20to%20be%20celebrating%20this%20achievement%20and%20hope%20this%20inspires%20you%20to%20start%20your%20own%20%40MicrosoftLearn%20journey!%0A%0D%0Ahttps%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fprevious-versions%2Fwindows%2Finternet-explorer%2Fie-developer%2Fsamples%2Fhh535759(v%3Dvs.85)%3FWT.mc_id%3Dlinkedin">
+													<span class="icon" aria-hidden="true">
+														<span
+															class="docon docon-linked-in-logo font-size-sm color-primary"></span>
+													</span>
+													<span class="margin-left-xxs">LinkedIn</span>
+												</a>
+												<a class="button button-clear button-sm button-block has-inner-focus text-decoration-none justify-content-flex-start margin-bottom-xxs share-email"
+													data-bi-name="email" data-page-action-item="overflow-all"
+													href="mailto:?subject=%5BShared%20Article%5D%20How%20To%20Create%203D%20Graphics%20Using%20Canvas%20(Windows)%20%7C%20Microsoft%20Learn&amp;body=Today%20I%20completed%20%22How%20To%20Create%203D%20Graphics%20Using%20Canvas%20(Windows)%20%7C%20Microsoft%20Learn%22!%20I'm%20so%20proud%20to%20be%20celebrating%20this%20achievement%20and%20hope%20this%20inspires%20you%20to%20start%20your%20own%20%40MicrosoftLearn%20journey!%0A%0D%0Ahttps%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fprevious-versions%2Fwindows%2Finternet-explorer%2Fie-developer%2Fsamples%2Fhh535759(v%3Dvs.85)%3FWT.mc_id%3Demail">
+													<span class="icon" aria-hidden="true">
+														<span
+															class="docon docon-mail-message font-size-sm color-primary"></span>
+													</span>
+													<span class="margin-left-xxs">Email</span>
+												</a>
+												<hr>
+												<button
+													class="button button-block button-clear button-sm justify-content-flex-start has-inner-focus margin-top-xxs"
+													title="Print" type="button" aria-label="Print" data-bi-name="print"
+													data-page-action-item="overflow-all" data-popover-close=""
+													data-print-page="" data-check-hidden="true">
+													<span class="icon" aria-hidden="true">
+														<span
+															class="docon docon-print font-size-sm color-primary"></span>
+													</span>
+													<span class="margin-left-xxs">Print</span>
+												</button>
+											</div>
+										</details>
+
+									</div>
+								</div>
+							</div>
+							<!-- end article-header -->
+							<div>
+								<button type="button"
+									class="border contents-button button button-clear button-sm is-hidden-tablet has-inner-focus"
+									data-bi-name="contents-expand" data-contents-button="" hidden="">
+									<span class="icon">
+										<span class="docon docon-editor-list-bullet" aria-hidden="true"></span>
+									</span><span class="contents-expand-title">Table of contents</span></button>
+							</div><!-- end mobile-contents button  -->
+
+							<div class="content ">
+								<h1 id="how-to-create-3d-graphics-using-canvas">How To Create 3D Graphics Using Canvas
+								</h1>
+								<div
+									class="display-flex justify-content-space-between align-items-center flex-wrap-wrap page-metadata-container">
+									<div class="margin-right-xxs">
+										<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us"
+											dir="ltr">
+											<li>Article</li>
+											<li>
+												<time class="" data-article-date="" aria-label="Article review date"
+													datetime="2016-03-03T00:00:00.000Z"
+													data-article-date-source="ms.date">03/03/2016</time>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<nav id="center-doc-outline"
+									class="doc-outline is-hidden-desktop display-none-print margin-bottom-sm"
+									data-bi-name="intopic toc" aria-label="In this article" hidden="">
+									<h2 id="ms--in-this-article" class="title is-6 margin-block-xs">In this article</h2>
+								</nav><!-- <content> -->
+								<p>This topic covers a technique for manipulating a 3-dimensional object using HTML5’s
+									<a href="https://go.microsoft.com/fwlink/p/?linkid=225601"
+										data-linktype="external">canvas</a> element.
+								</p>
+								<p><strong>Note</strong>&nbsp;&nbsp;To view the sample presented in this
+									topic, you’ll need a browser, such as Windows Internet Explorer&nbsp;9
+									or later, that supports the <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225601"
+										data-linktype="external">canvas</a> element.</p>
+								<p>&nbsp;</p>
+								<p>Suppose we want to visualize a 3-dimensional (3D) object by
+									displaying various views of it on a display device, such as a computer
+									monitor. Further, assume that the object to display is composed entirely
+									of (<em>x</em>, <em>y</em>, <em>z</em>) points:</p>
+								<p><img src="images/hh535759.figure1(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p><strong>Figure 1</strong></p>
+								<p>If we embed the object in an <em>xyz</em>-coordinate system such that its origin is
+									at the center of the monitor and the <em>xy</em>-plane coincides with the plane of
+									the monitor, an observer will see a projection of the view of the 3D object onto the
+									2D <em>xy</em>-plane or monitor:</p>
+								<p><img src="images/hh535759.figure2(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p><strong>Figure 2</strong></p>
+								<p>The object shown in Figure 1 is a point-based representation of the mathematical <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225596"
+										data-linktype="external">surface</a>:</p>
+								<p><img src="images/hh535759.equation1(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>To create the image in Figure&nbsp;2, 8100 evenly spaced (<em>x</em>, <em>y</em>)
+									points from the <em>xy</em>-plane were used to calculate the height <em>z</em> of
+									the surface above the <em>xy</em>-plane using the given equation ƒ(<em>x</em>,
+									<em>y</em>). Stated another way, each surface point (<em>x</em>, <em>y</em>,
+									<em>z</em>) in the <em>xyz</em>-coordinate system is given by (<em>x</em>,
+									<em>y</em>, ƒ(<em>x</em>, <em>y</em>)).
+								</p>
+								<p>As an aside, the previous surface would appear "flat" when viewed from above. That
+									is, when looking directly down the <em>z</em>-axis you’d see a <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225597"
+										data-linktype="external">contour plot</a> of the surface:</p>
+								<p><img src="images/hh535759.figure3(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p><strong>Figure 3</strong></p>
+								<p>This contour plot of the surface shows the 8100 evenly spaced <em>xy</em>-points used
+									to calculate the <em>z</em>-coordinates of the surface. A contour plot can
+									definitely be useful in its own right (such as a <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225598"
+										data-linktype="external">topographic map</a>) but it is only when you rotate
+									these 3D points about the <em>x</em>-, <em>y</em>-, and <em>z</em>-
+									axes that one can start to see the true nature of a 3D object (as
+									suggested in Figures 1 and 2). This then begs the question – how do you
+									display and rotate 3D points on an inherently 2D display device?</p>
+								<p>To answer this question, we will use the <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225601"
+										data-linktype="external">canvas</a>
+									element, which provides fast plotting of 2D points in an
+									HTML5-compliant browser, such as Internet Explorer&nbsp;9 or later. Be
+									aware that the <a href="https://go.microsoft.com/fwlink/p/?linkid=225601"
+										data-linktype="external">canvas</a> element (at the time of this writing) only
+									supports the manipulation of 2D objects. For example, the canvas <a
+										href="https://msdn.microsoft.com/en-us/library/Ff975427"
+										data-linktype="external"><strong>rotate</strong></a>
+									method is designed to rotate flat 2D objects only. Thus, we must write
+									our own methods to plot and rotate 3D objects, such as the above surface
+									<em>z</em> = <em>f</em>(<em>x</em>, <em>y</em>). Fortunately, the first of these two
+									tasks is trivial:
+								</p>
+								<div class="heading-wrapper" data-heading-level="h3"><a
+										class="anchor-link docon docon-link" href="#plotting-3d-points"
+										aria-label="Section titled: Plotting 3D points"></a>
+									<h3 id="plotting-3d-points" class="heading-anchor">Plotting 3D points</h3>
+								</div>
+								<p>For a given view of the surface, such as Figure&nbsp;2, only the <em>x</em>- and
+									<em>y</em>-coordinates of the points are needed by the display device to draw the
+									view, as only the projection of the surface onto the <em>xy</em>-plane is displayed.
+									We must, however, keep track of the <em>z</em>-coordinates to carry out certain
+									transformations, as discussed next.
+								</p>
+								<div class="heading-wrapper" data-heading-level="h3"><a
+										class="anchor-link docon docon-link" href="#rotating-3d-points"
+										aria-label="Section titled: Rotating 3D points"></a>
+									<h3 id="rotating-3d-points" class="heading-anchor">Rotating 3D points</h3>
+								</div>
+								<p>To start, we place all <em>n</em> surface points (<em>n</em> = 8100) in a 3 x
+									<em>n</em> matrix <em>P</em>, known as the coordinate matrix of the view. That is,
+									there are <em>n</em> columns in <em>P</em> such that each column represents a
+									surface point:
+								</p>
+								<p><img src="images/hh535759.equation2(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>In order to rotate this surface about the <em>x</em>-, <em>y</em>-, or
+									<em>z</em>-axes, we <a href="https://go.microsoft.com/fwlink/p/?linkid=225599"
+										data-linktype="external">multiple</a> <em>P</em> with an appropriate 3 x 3 <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225600"
+										data-linktype="external">rotation matrix</a> <em>R</em>:
+								</p>
+								<p><em>P' = RP</em></p>
+								<p>Here <em>P</em> is the original view of the surface and <em>P’</em> is the view after
+									being rotated about one of the coordinate axes as defined by <em>R</em>. Because
+									there are three coordinate axes, there are three rotational matrices for <em>R</em>:
+								</p>
+								<p><img src="images/hh535759.equation4(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>If, for example, you wanted to rotate the surface shown in Figure&nbsp;3 by π/12
+									radians (15°) about the <em>x</em>-axis, <em>Rₓ</em> becomes (approximately):</p>
+								<p><img src="images/hh535759.equation5(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>To produce the new rotated view <em>P’</em> of the surface, one simply performs the
+									matrix multiplication <em>RₓP</em> as follows:</p>
+								<p><img src="images/hh535759.equation6(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>Then, to display the surface, the resulting numeric (<em>x</em>, <em>y</em>) points
+									from <em>P'</em> are plotted on the display device. The following section provides a
+									concrete example of this technique.</p>
+								<div class="heading-wrapper" data-heading-level="h3"><a
+										class="anchor-link docon docon-link" href="#3d-canvas-sample"
+										aria-label="Section titled: 3D Canvas sample"></a>
+									<h3 id="3d-canvas-sample" class="heading-anchor">3D Canvas sample</h3>
+								</div>
+								<p>This section discusses the <a href="https://go.microsoft.com/fwlink/p/?linkid=226392"
+										data-linktype="external">canvas3dRotation.html</a>
+									sample. To view the source code associated with this sample, use the
+									view source feature of your browser. For example, in Windows Internet
+									Explorer, right-click the webpage whose source code you want to view and
+									click <strong>View source</strong>. Make sure that you have the source code
+									available while reading the remainder of this document.</p>
+								<p>The first step is to choose an interesting surface ƒ(<em>x</em>, <em>y</em>) and an
+									appropriate range for <em>x</em> and <em>y</em>. As in Figure&nbsp;1, we let:</p>
+								<p><img src="images/hh535759.equation7(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>An acceptable range for ƒ is:</p>
+								<p><img src="images/hh535759.equation8(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>The next step is to decide upon a reasonable number of 3D points to plot over this 18
+									x 18 <em>xy</em>-plane region. If we allow five points per unit, we have a total of
+									5·18 x 5·18 = 8100 surface points of the form (<em>x</em>, <em>y</em>, <em>z</em>) =
+									(<em>x</em>, <em>y</em>, ƒ(<em>x</em>, <em>y</em>)):</p>
+								<p><img src="images/hh535759.figure4(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p><strong>Figure 4</strong></p>
+								<p>This range related information is contained in the global <code>constants</code>
+									variable, as indicated by the following JavaScript comments:</p>
+								<div class="codeHeader" id="code-try-0" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span><span class="hljs-keyword">var</span> constants = {
+  <span class="hljs-attr">canvasWidth</span>: <span class="hljs-number">600</span>, 
+  <span class="hljs-attr">canvasHeight</span>: <span class="hljs-number">600</span>,
+  <span class="hljs-attr">leftArrow</span>: <span class="hljs-number">37</span>,
+  <span class="hljs-attr">upArrow</span>: <span class="hljs-number">38</span>,
+  <span class="hljs-attr">rightArrow</span>: <span class="hljs-number">39</span>,
+  <span class="hljs-attr">downArrow</span>: <span class="hljs-number">40</span>,
+  <span class="hljs-attr">xMin</span>: <span class="hljs-number">-9</span>, <span class="hljs-comment">// RANGE RELATED</span>
+  xMax: <span class="hljs-number">9</span>, <span class="hljs-comment">// RANGE RELATED</span>
+  yMin: <span class="hljs-number">-9</span>, <span class="hljs-comment">// RANGE RELATED</span>
+  yMax: <span class="hljs-number">9</span>, <span class="hljs-comment">// RANGE RELATED</span>
+  xDelta: <span class="hljs-number">0.2</span>, <span class="hljs-comment">// RANGE RELATED</span>
+  yDelta: <span class="hljs-number">0.2</span>, <span class="hljs-comment">// RANGE RELATED</span>
+  colorMap: [<span class="hljs-string">"#060"</span>, <span class="hljs-string">"#090"</span>, <span class="hljs-string">"#0C0"</span>, <span class="hljs-string">"#0F0"</span>, <span class="hljs-string">"#9F0"</span>, <span class="hljs-string">"#9C0"</span>, <span class="hljs-string">"#990"</span>, <span class="hljs-string">"#960"</span>, <span class="hljs-string">"#930"</span>, <span class="hljs-string">"#900"</span>, <span class="hljs-string">"#C00"</span>], 
+  <span class="hljs-attr">pointWidth</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">dTheta</span>: <span class="hljs-number">0.05</span>, 
+  <span class="hljs-attr">surfaceScale</span>: <span class="hljs-number">24</span> 
+};
+</span></code></pre>
+								<p>The 8100 points are stored in a JavaScript array of the form [ [<em>x₀</em>,
+									<em>y₀</em>, <em>z₀</em>], [<em>x₁</em>, <em>y₁</em>, <em>z₁</em>], …,
+									[<em>x₈₀₉₉</em>, <em>y₈₀₉₉</em>, <em>z₈₀₉₉</em>] ]. The array is initialized as
+									follows:
+								</p>
+								<div class="codeHeader" id="code-try-1" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span>Surface.prototype.generate = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
+</span>{
+  <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+  
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> x = constants.xMin; x &lt;= constants.xMax; x += constants.xDelta)
+  {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> y = constants.yMin; y &lt;= constants.yMax; y += constants.yDelta)
+    {
+      <span class="hljs-keyword">this</span>.points[i] = point(x, y, <span class="hljs-keyword">this</span>.equation(x, y));
+      ++i;
+    }
+  }
+}
+</span></code></pre>
+								<p>Here <code>this.equation(x, y)</code> is equivalent to:</p>
+								<p><img src="images/hh535759.equation7(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>And the <code>this.points</code> array is analogous to the matrix <em>P</em> above
+									(that is, a list of 3 x 1 column vectors, each of which represents a 3D surface
+									point). In the array, <code>this.points[0][0]</code> would access the
+									<em>x</em>-coordinate of the first surface point and <code>this.points[2][2]</code>
+									would access the <em>z</em>-coordinate of the third point.
+								</p>
+								<p>Once all surface points have been generated, the colors for the points are chosen
+									based upon the <em>z</em>-coordinate of the point. That is, a point’s color is based
+									upon the "height" of the point "above" the <em>xy</em>-plane. There are 11 such
+									"height" colors (contained in the <code>constants.colorMap</code> array), which are
+									assigned as follows:</p>
+								<div class="codeHeader" id="code-try-2" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span>Surface.prototype.color = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
+</span>{
+  <span class="hljs-keyword">var</span> z; 
+  
+  <span class="hljs-keyword">this</span>.zMin = <span class="hljs-keyword">this</span>.zMax = <span class="hljs-keyword">this</span>.points[<span class="hljs-number">0</span>][Z];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.points.length; i++)
+  {            
+    z = <span class="hljs-keyword">this</span>.points[i][Z];
+    <span class="hljs-keyword">if</span> (z &lt; <span class="hljs-keyword">this</span>.zMin) { <span class="hljs-keyword">this</span>.zMin = z; }
+    <span class="hljs-keyword">if</span> (z &gt; <span class="hljs-keyword">this</span>.zMax) { <span class="hljs-keyword">this</span>.zMax = z; }
+  }   
+        
+  <span class="hljs-keyword">var</span> zDelta = <span class="hljs-built_in">Math</span>.abs(<span class="hljs-keyword">this</span>.zMax - <span class="hljs-keyword">this</span>.zMin) / constants.colorMap.length; 
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.points.length; i++)
+  {
+    <span class="hljs-keyword">this</span>.points[i].color = constants.colorMap[ <span class="hljs-built_in">Math</span>.floor( (<span class="hljs-keyword">this</span>.points[i][Z]-<span class="hljs-keyword">this</span>.zMin)/zDelta ) ];
+  }
+}
+</span></code></pre>
+								<p>The most complex aspect of this method is the following <code>for</code> loop:</p>
+								<div class="codeHeader" id="code-try-3" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.points.length; i++)
+{
+  <span class="hljs-keyword">this</span>.points[i].color = constants.colorMap[ <span class="hljs-built_in">Math</span>.floor( (<span class="hljs-keyword">this</span>.points[i][Z]-<span class="hljs-keyword">this</span>.zMin)/zDelta ) ];
+}
+</span></code></pre>
+								<p>To help understand this loop, recall that <code>constants.colorMap</code> contains
+									the following array literal:</p>
+								<div class="codeHeader" id="code-try-4" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span>[<span class="hljs-string">"#060"</span>, <span class="hljs-string">"#090"</span>, <span class="hljs-string">"#0C0"</span>, <span class="hljs-string">"#0F0"</span>, <span class="hljs-string">"#9F0"</span>, <span class="hljs-string">"#9C0"</span>, <span class="hljs-string">"#990"</span>, <span class="hljs-string">"#960"</span>, <span class="hljs-string">"#930"</span>, <span class="hljs-string">"#900"</span>, <span class="hljs-string">"#C00"</span>]
+</span></code></pre>
+								<p>In other words, this <code>for</code> loop is functionally equivalent to the
+									following (much less elegant) loop:</p>
+								<div class="codeHeader" id="code-try-5" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.points.length; i++)
+{
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#060"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">2</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#090"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">3</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#0C0"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">4</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#0F0"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">5</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#9F0"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">6</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#9C0"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">7</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#990"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">8</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#960"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">9</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#930"</span>;}
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.points[i][Z] &lt;= <span class="hljs-keyword">this</span>.zMin + <span class="hljs-number">10</span>*zDelta) {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#900"</span>;}          
+  <span class="hljs-keyword">else</span> {<span class="hljs-keyword">this</span>.points[i].color = <span class="hljs-string">"#C00"</span>;}
+}
+</span></code></pre>
+								<p>As can be seen above, the color representing the lowest <em>z</em>-coordinates is
+									<code>#060</code> (a darkish green). <code>#060</code> is then "increased" towards
+									<code>#C00</code> (a medium red), which represents the highest
+									<em>z</em>-coordinates. Stated another way, the minimum and maximum
+									<em>z</em>-coordinates (<code>this.zMin</code> and <code>this.zMax</code>) are used
+									to linearly distribute (in the vertical sense) the 11 "height" colors amongst the
+									points based upon each point’s <em>z</em>-coordinate.
+								</p>
+								<p>The <code>points</code> array now contains all the information required to plot a
+									view of the surface. In order to do so, we programmatically create a <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=690352"
+										data-linktype="external">canvas</a> element as shown here:</p>
+								<div class="codeHeader" id="code-try-6" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">appendCanvasElement</span>(<span class="hljs-params"></span>)
+</span>{
+  <span class="hljs-keyword">var</span> canvasElement = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'canvas'</span>);
+  
+  canvasElement.width = constants.canvasWidth;
+  canvasElement.height = constants.canvasHeight;
+  canvasElement.id = <span class="hljs-string">"myCanvas"</span>;
+
+  canvasElement.getContext(<span class="hljs-string">'2d'</span>).translate(constants.canvasWidth/<span class="hljs-number">2</span>, constants.canvasHeight/<span class="hljs-number">2</span>); 
+  
+  <span class="hljs-built_in">document</span>.body.appendChild(canvasElement);
+}
+</span></code></pre>
+								<p>The <code>translate(constants.canvasWidth/2, constants.canvasHeight/2)</code> method
+									is used to center the <em>xyz</em>-coordinate system in the middle of the canvas.
+								</p>
+								<p>Now that we have created an appropriate <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225601"
+										data-linktype="external">canvas</a> element, we can draw (or plot) each point to
+									it:</p>
+								<div class="codeHeader" id="code-try-7" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span>Surface.prototype.draw = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
+</span>{
+  <span class="hljs-keyword">var</span> myCanvas = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"myCanvas"</span>);
+  <span class="hljs-keyword">var</span> ctx = myCanvas.getContext(<span class="hljs-string">"2d"</span>);
+
+  <span class="hljs-keyword">this</span>.points = surface.points.sort(surface.sortByZIndex);
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.points.length; i++)
+  {
+    ctx.fillStyle = <span class="hljs-keyword">this</span>.points[i].color; 
+    ctx.fillRect(<span class="hljs-keyword">this</span>.points[i][X] * constants.surfaceScale, <span class="hljs-keyword">this</span>.points[i][Y] * constants.surfaceScale, constants.pointWidth, constants.pointWidth);  
+  }    
+}
+</span></code></pre>
+								<p>In other words, for each 3 x 1 point in the <code>points</code>
+									array, we create a small colored rectangle (which is must faster than
+									rendering a small circle) and position it using the point’s <em>x</em>- and
+									<em>y</em>-coordinates multiplied by an empirically derived constant. The critical
+									line is repeated here:
+								</p>
+								<div class="codeHeader" id="code-try-8" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span>ctx.fillRect(<span class="hljs-keyword">this</span>.points[i][X] * constants.surfaceScale, <span class="hljs-keyword">this</span>.points[i][Y] * constants.surfaceScale, constants.pointWidth, constants.pointWidth);
+</span></code></pre>
+								<p>The (empirically derived) constant <code>constants.surfaceScale</code> is used to
+									scale the surface such that the surface is guaranteed to visually fit on the canvas,
+									for all possible views.</p>
+								<p>Notice that before we draw the points (rectangles) to the display
+									device, we sort the points by their relative z-axis locations. This
+									ensures that the points farthest from the viewer's eyes are drawn first
+									and those closest are drawn last. When the point widths (<code>pointWidth</code>)
+									are small (1 to 2 pixels), this sorting effect isn't to noticeable. However, try
+									commenting out <code>this.points = surface.points.sort(surface.sortByZIndex);</code>
+									and increasing <code>pointWidth</code>
+									to 5 - when you rotate the surface, odd visualizations start to occur.
+									Now remove the comment and refresh the page - the surface rotates as
+									expected.</p>
+								<p>Now that we are able to plot a view of the surface, we can change the view through a
+									rotation, as shown here:</p>
+								<div class="codeHeader" id="code-try-9" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span>Surface.prototype.multi = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">R</span>)
+</span>{
+  <span class="hljs-keyword">var</span> Px = <span class="hljs-number">0</span>, Py = <span class="hljs-number">0</span>, Pz = <span class="hljs-number">0</span>; 
+  <span class="hljs-keyword">var</span> P = <span class="hljs-keyword">this</span>.points; 
+  <span class="hljs-keyword">var</span> sum; 
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> V = <span class="hljs-number">0</span>; V &lt; P.length; V++) 
+  {
+    Px = P[V][X], Py = P[V][Y], Pz = P[V][Z];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> Rrow = <span class="hljs-number">0</span>; Rrow &lt; <span class="hljs-number">3</span>; Rrow++) 
+    {
+      sum = (R[Rrow][X] * Px) + (R[Rrow][Y] * Py) + (R[Rrow][Z] * Pz);
+      P[V][Rrow] = sum;
+    }
+  }     
+}
+</span></code></pre>
+								<p>This method performs the matrix multiplication <em>RP</em> to produce the new view
+									<em>P’</em> (as described previously). More precisely, this method performs
+									<em>P</em> = <em>RP</em>, where "=" indicates the JavaScript assignment operator.
+								</p>
+								<p>Recall that <em>R</em> describes a rotation about the <em>x</em>-, <em>y</em>-, or
+									<em>z</em>-axis. That is, the <em>R</em> passed into the <code>multi</code> method
+									is either <em>Rₓ</em>, <em>Ry</em>, or <em>Rz</em> (as defined previously).
+									<em>Rₓ</em>, <em>Ry</em>, and <em>Rz</em> are implemented via the
+									<code>xRotate</code>, <code>yRotate</code>, and <code>zRotate</code> methods,
+									respectively. For example, <em>Ry</em> is implemented as follows:
+								</p>
+								<div class="codeHeader" id="code-try-10" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus"><code class="lang-javascript"><span>Surface.prototype.yRotate = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">sign</span>) 
+</span>{
+  <span class="hljs-keyword">var</span> Ry = [ [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+             [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+             [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>] ];
+                     
+  Ry[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-built_in">Math</span>.cos( sign*constants.dTheta );
+  Ry[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; 
+  Ry[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>] = <span class="hljs-built_in">Math</span>.sin( sign*constants.dTheta );
+  Ry[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>; 
+  Ry[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+  Ry[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>] = <span class="hljs-number">0</span>; 
+  Ry[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>] = -<span class="hljs-built_in">Math</span>.sin( sign*constants.dTheta );
+  Ry[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>; 
+  Ry[<span class="hljs-number">2</span>][<span class="hljs-number">2</span>] = <span class="hljs-built_in">Math</span>.cos( sign*constants.dTheta );
+  
+  <span class="hljs-keyword">this</span>.multi(Ry); 
+  <span class="hljs-keyword">this</span>.erase(); 
+  <span class="hljs-keyword">this</span>.draw();
+}
+</span></code></pre>
+								<p>When called, <code>yRotate</code> rotates the surface about the <em>y</em>-axis by
+									the small angular amount <code>constants.dTheta</code>. That is,
+									<code>yRotate</code> first builds <code>Ry</code> and then calls
+									<code>this.multi(Ry)</code> to perform <em>RyP</em>, thus rotating the surface about
+									the <em>y</em>-axis by <code>sign*constants.dTheta</code> radians. The
+									<code>sign</code> parameter is used to rotate either clockwise or counterclockwise
+									about the <em>y</em>-axis.
+								</p>
+								<p>As you may have guessed, there are six possible rotations – clockwise or
+									counterclockwise about the <em>x</em>-, <em>y</em>-, or <em>z</em>-axis. Thus, and
+									as described on the <a href="https://go.microsoft.com/fwlink/p/?linkid=225602"
+										data-linktype="external">instructions.html</a> page, there are six arrow key
+									combinations used to signal the desired rotation:</p>
+								<div class="codeHeader" id="code-try-11" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">processKeyDown</span>(<span class="hljs-params">evt</span>)
+</span>{                    
+  <span class="hljs-keyword">if</span> (evt.ctrlKey)
+  {
+    <span class="hljs-keyword">switch</span> (evt.keyCode)
+    {
+      <span class="hljs-keyword">case</span> constants.upArrow: 
+        <span class="hljs-comment">// No operation other than preventing the default behavior of the arrow key.</span>
+        evt.preventDefault();
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> constants.downArrow:
+        <span class="hljs-comment">// No operation other than preventing the default behavior of the arrow key.</span>
+        evt.preventDefault();
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> constants.leftArrow:
+        surface.zRotate(<span class="hljs-number">-1</span>); 
+        evt.preventDefault(); 
+        <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">case</span> constants.rightArrow:
+        surface.zRotate(<span class="hljs-number">1</span>);
+        evt.preventDefault(); 
+        <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">return</span>; 
+  }
+
+  <span class="hljs-keyword">switch</span> (evt.keyCode)
+  {
+    <span class="hljs-keyword">case</span> constants.upArrow:
+      surface.xRotate(<span class="hljs-number">1</span>);
+      evt.preventDefault(); 
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> constants.downArrow:
+      surface.xRotate(<span class="hljs-number">-1</span>); 
+      evt.preventDefault(); 
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> constants.leftArrow:
+      surface.yRotate(<span class="hljs-number">-1</span>);  
+      evt.preventDefault(); 
+      <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> constants.rightArrow:
+      surface.yRotate(<span class="hljs-number">1</span>);   
+      evt.preventDefault(); 
+      <span class="hljs-keyword">break</span>;
+  }
+}
+</span></code></pre>
+								<p>For example, if the control key and left arrow key are pressed simultaneously, the
+									following code is executed:</p>
+								<div class="codeHeader" id="code-try-12" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus"><code class="lang-javascript"><span><span class="hljs-keyword">case</span> constants.leftArrow:
+  surface.zRotate(<span class="hljs-number">-1</span>);  
+  evt.preventDefault();  
+  <span class="hljs-keyword">break</span>;
+</span></code></pre>
+								<p><code>surface.zRotate(-1)</code> rotates the surface about the <em>z</em>-axis in the
+									counterclockwise direction. <code>evt.preventDefault()</code>
+									prevents the default behavior of the arrow key, which is to scroll the
+									browser’s window when scrollbars are present. Note that a user can still
+									scroll the window with the mouse.</p>
+								<p>The remaining implementation details are well described by the large number of
+									detailed comments contained within the <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=226392"
+										data-linktype="external">sample</a>.</p>
+								<div class="heading-wrapper" data-heading-level="h3"><a
+										class="anchor-link docon docon-link" href="#exercises"
+										aria-label="Section titled: Exercises"></a>
+									<h3 id="exercises" class="heading-anchor">Exercises</h3>
+								</div>
+								<p>In this section, we suggest two core exercises. The first involves
+									reducing the size and number of points for the surface; the second
+									involves implementing two additional surface transformations.</p>
+								<div class="heading-wrapper" data-heading-level="h3"><a
+										class="anchor-link docon docon-link" href="#surface-reduction"
+										aria-label="Section titled: Surface reduction"></a>
+									<h3 id="surface-reduction" class="heading-anchor">Surface reduction</h3>
+								</div>
+								<p>The number of surface points in the sample is relatively large –
+									8100. For non-performant hardware, this can cause the rendering of the
+									surface to appear slow, choppy, or both. In such situations, reducing
+									the total number of points will improve perceived performance. This can
+									be accomplished by adjusting the following constants, as indicated by
+									the following JavaScript comments:</p>
+								<div class="codeHeader" id="code-try-13" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span><span class="hljs-keyword">var</span> constants = {
+  <span class="hljs-attr">canvasWidth</span>: <span class="hljs-number">600</span>, <span class="hljs-comment">// ADJUST</span>
+  canvasHeight: <span class="hljs-number">600</span>, <span class="hljs-comment">// ADJUST</span>
+  leftArrow: <span class="hljs-number">37</span>,
+  <span class="hljs-attr">upArrow</span>: <span class="hljs-number">38</span>,
+  <span class="hljs-attr">rightArrow</span>: <span class="hljs-number">39</span>,
+  <span class="hljs-attr">downArrow</span>: <span class="hljs-number">40</span>,
+  <span class="hljs-attr">xMin</span>: <span class="hljs-number">-9</span>,
+  <span class="hljs-attr">xMax</span>: <span class="hljs-number">9</span>,
+  <span class="hljs-attr">yMin</span>: <span class="hljs-number">-9</span>,
+  <span class="hljs-attr">yMax</span>: <span class="hljs-number">9</span>,
+  <span class="hljs-attr">xDelta</span>: <span class="hljs-number">0.2</span>, <span class="hljs-comment">// ADJUST</span>
+  yDelta: <span class="hljs-number">0.2</span>, <span class="hljs-comment">// ADJUST</span>
+  colorMap: [<span class="hljs-string">"#060"</span>, <span class="hljs-string">"#090"</span>, <span class="hljs-string">"#0C0"</span>, <span class="hljs-string">"#0F0"</span>, <span class="hljs-string">"#9F0"</span>, <span class="hljs-string">"#9C0"</span>, <span class="hljs-string">"#990"</span>, <span class="hljs-string">"#960"</span>, <span class="hljs-string">"#930"</span>, <span class="hljs-string">"#900"</span>, <span class="hljs-string">"#C00"</span>], 
+  <span class="hljs-attr">pointWidth</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">dTheta</span>: <span class="hljs-number">0.05</span>, 
+  <span class="hljs-attr">surfaceScale</span>: <span class="hljs-number">24</span> <span class="hljs-comment">// ADJUST</span>
+};
+</span></code></pre>
+								<p>To reduce the size of the canvas, decrease <code>canvasWidth</code> and
+									<code>canvasHeight</code>. To reduce the total number of points, increase
+									<code>xDelta</code> and <code>yDelta</code>. After these adjustments have been made,
+									empirically reduce <code>surfaceScale</code>
+									such that the rendered surface fits nicely on the canvas. For example,
+									the following set of constants produce a surface that fits nicely on a
+									400 x 400 canvas with a total of 3721 points (see JavaScript comments):
+								</p>
+								<div class="codeHeader" id="code-try-14" data-bi-name="code-header"><span
+										class="language">JavaScript</span>
+									<button type="button" class="action position-relative display-none-print"
+										data-bi-name="copy">
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-edit-copy"></span>
+										</span>
+										<span>Copy</span>
+										<div class="successful-copy-alert position-absolute right-0 top-0 left-0 bottom-0 display-flex align-items-center justify-content-center has-text-success-invert has-background-success is-transparent"
+											aria-hidden="true">
+											<span class="icon font-size-lg">
+												<span class="docon docon-check-mark"></span>
+											</span>
+										</div>
+									</button>
+								</div>
+								<pre class="has-inner-focus" role="group" aria-label="Horizontally scrollable code"
+									tabindex="0"><code class="lang-javascript"><span><span class="hljs-keyword">var</span> constants = {
+  <span class="hljs-attr">canvasWidth</span>: <span class="hljs-number">400</span>, <span class="hljs-comment">// 600 TO 400</span>
+  canvasHeight: <span class="hljs-number">400</span>, <span class="hljs-comment">// 600 TO 400</span>
+  leftArrow: <span class="hljs-number">37</span>,
+  <span class="hljs-attr">upArrow</span>: <span class="hljs-number">38</span>,
+  <span class="hljs-attr">rightArrow</span>: <span class="hljs-number">39</span>,
+  <span class="hljs-attr">downArrow</span>: <span class="hljs-number">40</span>,
+  <span class="hljs-attr">xMin</span>: <span class="hljs-number">-9</span>,
+  <span class="hljs-attr">xMax</span>: <span class="hljs-number">9</span>,
+  <span class="hljs-attr">yMin</span>: <span class="hljs-number">-9</span>,
+  <span class="hljs-attr">yMax</span>: <span class="hljs-number">9</span>,
+  <span class="hljs-attr">xDelta</span>: <span class="hljs-number">0.3</span>, <span class="hljs-comment">// 0.2 TO 0.3</span>
+  yDelta: <span class="hljs-number">0.3</span>, <span class="hljs-comment">// 0.2 TO 0.3</span>
+  colorMap: [<span class="hljs-string">"#060"</span>, <span class="hljs-string">"#090"</span>, <span class="hljs-string">"#0C0"</span>, <span class="hljs-string">"#0F0"</span>, <span class="hljs-string">"#9F0"</span>, <span class="hljs-string">"#9C0"</span>, <span class="hljs-string">"#990"</span>, <span class="hljs-string">"#960"</span>, <span class="hljs-string">"#930"</span>, <span class="hljs-string">"#900"</span>, <span class="hljs-string">"#C00"</span>], 
+  <span class="hljs-attr">pointWidth</span>: <span class="hljs-number">2</span>,
+  <span class="hljs-attr">dTheta</span>: <span class="hljs-number">0.05</span>, 
+  <span class="hljs-attr">surfaceScale</span>: <span class="hljs-number">16</span> <span class="hljs-comment">// 24 TO 16</span>
+};
+</span></code></pre>
+								<p>Try experimenting with these constants; possibly including <code>pointWidth</code>
+									and <code>dTheta</code> (<code>dTheta</code>
+									is the amount the surface is rotated about any given axis per key
+									press). To adjust the "zoom factor" for the surface, experiment with
+									<code>xMin</code>, <code>xMax</code>, <code>yMin</code>, and <code>yMax</code>.
+								</p>
+								<div class="heading-wrapper" data-heading-level="h3"><a
+										class="anchor-link docon docon-link" href="#scaling-and-translation"
+										aria-label="Section titled: Scaling and translation"></a>
+									<h3 id="scaling-and-translation" class="heading-anchor">Scaling and translation</h3>
+								</div>
+								<p>As described previously, to rotate the surface about an axis, we perform:</p>
+								<p><em>P’</em> = <em>RP</em></p>
+								<p>Similarly, to scale the surface, we can perform the same matrix multiplication but
+									with a different 3 x 3 transformation matrix <em>S</em>:</p>
+								<p><img src="images/hh535759.equation9(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>Here, <em>S</em> scales a view of the surface along the <em>x</em>, <em>y</em>, and
+									<em>z</em> directions by factors of <em>α</em>, <em>β</em>, and <em>γ</em>,
+									respectively. For example, to double the size of the surface in the <em>x</em>
+									direction, use:
+								</p>
+								<p><img src="images/hh535759.equation10(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>The last transformation to consider is translation (or displacement).
+									That is, moving the surface to a new position on the display device. To
+									translate a view of the surface, we displace each surface point
+									(xi,&nbsp;yi,&nbsp;zi) to a new point by adding constants (one or more
+									of which could be zero) to each point coordinate:</p>
+								<p>(<em>xi</em> + <em>dₓ</em>, <em>yi</em> + <em>dy</em>, <em>zi</em> + <em>dz</em>)</p>
+								<p>Here, dₓ, dy, and dz represent the desired displacements in the <em>x</em>,
+									<em>y</em>, and <em>z</em> directions, respectively. For example, to move the
+									surface three units in the positive <em>x</em> direction, we let <em>dₓ</em> = 3,
+									<em>dy</em> = 0, and <em>dz</em> = 0. That is, we simply add three to each surface
+									point’s <em>x</em>-coordinate.
+								</p>
+								<p>From a matrix perspective, translation can be accomplished using <a
+										href="https://go.microsoft.com/fwlink/p/?linkid=225604"
+										data-linktype="external">matrix addition</a> and a 3 x <em>n</em> translation
+									matrix <em>T</em> as follows:</p>
+								<p><img src="images/hh535759.equation11(en-us,vs.85).png" alt=""
+										data-linktype="relative-path"></p>
+								<p>As the last suggested exercised, try adding scaling and translation
+									options to the sample. For example, various buttons could be clicked to
+									scale and translate the surface.</p>
+								<div class="heading-wrapper" data-heading-level="h2"><a
+										class="anchor-link docon docon-link" href="#related-topics"
+										aria-label="Section titled: Related topics"></a>
+									<h2 id="related-topics" class="heading-anchor">Related topics</h2>
+								</div>
+								<p><a href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589511(v=vs.85)"
+										data-linktype="relative-path">HTML5 Graphics</a></p>
+								<p><a href="https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589510(v=vs.85)"
+										data-linktype="relative-path">HTML5 Canvas</a></p>
+							</div>
+							<div id="ms--inline-notifications" class="margin-block-xs"
+								data-bi-name="inline-notification"></div>
+							<div id="assertive-live-region" role="alert" aria-live="assertive" class="visually-hidden"
+								aria-relevant="additions" aria-atomic="true"></div>
+							<div id="polite-live-region" role="status" aria-live="polite" class="visually-hidden"
+								aria-relevant="additions" aria-atomic="true"></div>
+							<!-- </content> -->
+
+						</main>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+
+</html>
