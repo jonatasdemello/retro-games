@@ -1,11 +1,11 @@
 ﻿namespace UncleTayHouse
 {
-    public partial class Game
+    public static class UserInput
     {
         /// <summary>
         /// Read user input text from console, convert to Uppercase and return.
         /// </summary>
-        public string ReadInput()
+        public static string ReadInput()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(" ");
@@ -37,7 +37,7 @@
         /// CMD3: third word
         /// </summary>
         /// <param name="inputText"></param>
-        public void ProcessInput(string inputText)
+        public static UserInputResult ProcessInput(string inputText)
         {
             // InputWordTotal => number of words
             // InputWordText_INWS => contain only valid words now
@@ -47,14 +47,14 @@
             int[] InputWordNum_INPTK = new int[4];
 
             // reset previous input
-            CMD1 = 0;
-            CMD2 = 0;
-            CMD3 = 0;
-            InputWordTotal = 0;
+            int CMD1 = 0;
+            int CMD2 = 0;
+            int CMD3 = 0;
+            int InputWordTotal = 0;
 
             if (String.IsNullOrEmpty(inputText))
             {
-                return;
+                return new UserInputResult();
             }
 
             inputText = inputText.ToUpper();
@@ -64,9 +64,9 @@
             for (int i = 0; i < words.Length; i++)
             {
                 // remove null words
-                for (int j = 0; j < NULLWORDS.Length; j++)
+                for (int j = 0; j < Constants.NULLWORDS.Length; j++)
                 {
-                    if (words[i] == NULLWORDS[j])
+                    if (words[i] == Constants.NULLWORDS[j])
                     {
                         words[i] = "";
                     }
@@ -75,24 +75,32 @@
                 if (words[i] != "")
                 {
                     // find the verb number for this word
-                    for (int k = 0; k < VOCABS.Length; k++)
+                    for (int k = 0; k < Constants.VOCABS.Length; k++)
                     {
                         // only add if it is a known word
-                        if (words[i] == VOCABS[k])
+                        if (words[i] == Constants.VOCABS[k])
                         {
                             idx++;
-                            InputWordText_INWS[idx] = VOCABS[k]; // words[i] or VOCABS[k]
+                            InputWordText_INWS[idx] = Constants.VOCABS[k]; // words[i] or VOCABS[k]
                             InputWordNum_INPTK[idx] = k; // current verb number
                             break;
                         }
                     }
                 }
             }
-            InputWordTotal = idx; // used later: number of words
 
             CMD1 = InputWordNum_INPTK[1]; // first word
             CMD2 = InputWordNum_INPTK[2]; // second word
             CMD3 = InputWordNum_INPTK[3]; // third word
+            InputWordTotal = idx; // used later: number of words
+
+            return new UserInputResult
+            {
+                CMD1 = CMD1,
+                CMD2 = CMD2,
+                CMD3 = CMD3,
+                InputWordTotal = InputWordTotal
+            };
         }
     }
 }

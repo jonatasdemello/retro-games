@@ -2,13 +2,14 @@
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// UNCLE TAY'S HOUSE ADVENTURE
+        /// created by: Floyd McWilliams
+        /// ported to C# by: Jonatas de Mello
+        /// </summary>
+        static void Main()
         {
-            Console.WriteLine("**********************************");
-            Console.WriteLine("*** UNCLE TAYS HOUSE ADVENTURE ***");
-            Console.WriteLine("**********************************");
-
-            Game game = new Game();
+            Game game = new();
             game.Play();
         }
     }
