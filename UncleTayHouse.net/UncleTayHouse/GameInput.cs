@@ -37,7 +37,7 @@
         /// CMD3: third word
         /// </summary>
         /// <param name="inputText"></param>
-        public static UserInputResult ProcessInput(string inputText)
+        public static GameUserInput ProcessInput(string inputText)
         {
             // InputWordTotal => number of words
             // InputWordText_INWS => contain only valid words now
@@ -54,7 +54,7 @@
 
             if (String.IsNullOrEmpty(inputText))
             {
-                return new UserInputResult();
+                return new GameUserInput();
             }
 
             inputText = inputText.ToUpper();
@@ -94,7 +94,7 @@
             CMD3 = InputWordNum_INPTK[3]; // third word
             InputWordTotal = idx; // used later: number of words
 
-            return new UserInputResult
+            return new GameUserInput
             {
                 CMD1 = CMD1,
                 CMD2 = CMD2,

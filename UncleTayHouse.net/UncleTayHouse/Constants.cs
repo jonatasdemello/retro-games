@@ -2,149 +2,87 @@
 {
     public static class Constants
     {
-
         // item offset - where objects start in Vocab array
-        public static int OBJECTOFFSET = 33;
-
-        // # DIM EXLOC[7][2] : EXTENDED location? (map to LocationExit)
-        // pos1 = location
-        // pos3 = 1-NORTH, 2-SOUTH, 3-EAST, 4-WEST, 5-UP, 6-DOWN
-        public static int[,] EXLOC = {
-            /* 00 */    { -99, -99  , -99 }, // dummy
-            /* 01 */    { -99,  5   ,  6  }, // hallway
-            /* 02 */    { -99,  8   ,  6  }, // library
-            /* 03 */    { -99,  2   ,  6  }, // kitchen
-            /* 04 */    { -99,  29  ,  5  }, // bottom of stairs
-            /* 05 */    { -99,  12  ,  5  }, // balcony
-            /* 06 */    { -99,  17  ,  4  }, // hallway end floor
-            /* 07 */    { -99,  17  ,  1  }  // hallway end floor
-        };
-
-        // extended description
-        public static string[] ExtendedDescription = {
-            /* 00 */    "-99", // 0-dummy
-            /* 01 */    "There is a locked door to the NORTH",
-            /* 02 */    "There is a locked door to the SOUTH",
-            /* 03 */    "Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable",
-            /* 04 */    "Stairs lead up. several steps have collapsed, making the staircase unusable",
-            /* 05 */    "Dark stairs lead up to the attic",
-            /* 06 */    "A locked door to the WEST is labelled 'EXTREME DANGER'",
-            /* 07 */    "Your uncle's doberman blocks a doorway to the north"
-        };
-
-        // Location description
-        public static string[] IDESCS = {
-            /* 00 */    "-99", // 0-dummy
-            /* 01 */    "Tays house unlikely ever to be sold. tales of gutted stairwells and booby traps have spooked buyers...",
-            /* 02 */    "Someone has been playing very rough with this toy",
-            /* 03 */    "Old-fashioned electrical fuse",
-            /* 04 */    "Tire jack for lifting heavy objects like cars",
-            /* 05 */    "Uncle tays in all his sallow glory",
-            /* 06 */    "Cord for bungee jumping",
-            /* 07 */    "A small brass key",
-            /* 08 */    "A child's toy (spinning top)",
-            /* 09 */    "The writing is reversed. maybe there is a way to read it somewhere...",
-            /* 10 */    "Supposedly dog food, though it appears to be made of plastic",
-            /* 11 */    "Rubber gloves used for cleaning",
-            /* 12 */    "A queen-sized boxspring",
-            /* 13 */    "A back brace",
-            /* 14 */    "Tays' strange inventions include booby-trapped doors and toys that open doors by remote control...",
-            /* 15 */    "This can contains fine lubricating oil",
-            /* 16 */    "Uncle tays' checkbook lists a balance of $220,000",
-            /* 17 */    "This diamond's beauty stems from all the goddamned money it is worth",
-            /* 18 */    "Loverboy's first album in vinyl, worth an incalculable sum",
-            /* 19 */    "Pre-ipo shares of apollo computing have to be worth ... something",
-            /* 20 */    "A thick wad of canadian notes",
-            /* 21 */    "This old refrigerator's motor labors heavily",
-            /* 22 */    "An overstuffed, dusty couch",
-            /* 23 */    "A disgusting pile of soiled laundry",
-            /* 24 */    "",
-            /* 25 */    "A railing or guardrail, is a system designed to keep people or objects from falling off the balcony.",
-            /* 26 */    "A dumbwaiter lift is a small freight elevator designed to transport goods, supplies, or food between different levels of a building.",
-            /* 27 */    "An old-fashioned fusebox. the fuse marked 'attic' is missing."
-                    };
-
-        // location extended description
-        public static string[] LocationDescription_RDESCS = {
-            /* 00 */    "-99", // 0-dummy
-            /* 01 */    "The entryway to the house",
-            /* 02 */    "Countertops are dusty and there are rusting pots and pans",
-            /* 03 */    "This room is two stories high and contains elegant chairs and couches",
-            /* 04 */    "A narrow hallway which runs west of the foyer",
-            /* 05 */    "A narrow hallway at the west end of the house",
-            /* 06 */    "This room has an ancient television",
-            /* 07 */    "A dingy bathroom with a cracked sink",
-            /* 08 */    "This well-furnished library is lined with books and leather furniture",
-            /* 09 */    "This small bedroom has a twin bed and chair. It looks little used",
-            /* 10 */    "The cavernous garage holds a non-operational gremlin and piles of junk",
-            /* 11 */    "Trophies line the walls. there are six chairs around a long table",
-            /* 12 */    "Balcony above the sitting room. a railing protects you from a 15-foot drop",
-            /* 13 */    "This large corner bedroom has solid walnut furniture and a large mirror",
-            /* 14 */    "A hallway with a large arch on its south side",
-            /* 15 */    "This elegant game room has a pool table and marble chessboard",
-            /* 16 */    "A spacious closet off the gameroom",
-            /* 17 */    "A hallway in the center of the second floor",
-            /* 18 */    "Your cousin's room in happier times, before he ran off to join the baath party",
-            /* 19 */    "A dark chamber off the bedroom",
-            /* 20 */    "This eerie hall has three identical doors on the west wall (left, center, right)",
-            /* 21 */    "A cozy corner room with windows on two walls",
-            /* 22 */    "An elegant bath with a mirror over a marble sink",
-            /* 23 */    "A cramped dumbwaiter",
-            /* 24 */    "A cramped dumbwaiter",
-            /* 25 */    "A dusty attic with low sloping walls",
-            /* 26 */    "A bare room used to store random equipment and furniture",
-            /* 27 */    "This room has a washer and dryer, as well as a boiler and furnace",
-            /* 28 */    "Equipment for working wood and metal",
-            /* 29 */    "Stairs from basement to kitchen",
-            /* 30 */    "Hanging from a bungee cord",
-            /* 31 */    ""
-        };
-
-        // location name
-        public static string[] LocationName_RNAMES = {
-            /* 00 */    "-99", // 0-dummy
-            /* 01 */    "FOYER (LOBBY)",
-            /* 02 */    "KITCHEN",
-            /* 03 */    "SITTING ROOM",
-            /* 04 */    "HALLWAY",
-            /* 05 */    "HALLWAY",
-            /* 06 */    "DEN",
-            /* 07 */    "BATHROOM",
-            /* 08 */    "LIBRARY",
-            /* 09 */    "SMALL BEDROOM",
-            /* 10 */    "GARAGE",
-            /* 11 */    "DINING ROOM",
-            /* 12 */    "BALCONY",
-            /* 13 */    "MASTER BEDROOM",
-            /* 14 */    "HALLWAY",
-            /* 15 */    "GAME ROOM",
-            /* 16 */    "CLOSET",
-            /* 17 */    "HALLWAY",
-            /* 18 */    "CHILD'S ROOM",
-            /* 19 */    "SECRET ROOM1",
-            /* 20 */    "DANGEROUS HALL",
-            /* 21 */    "CORNER BEDROOM",
-            /* 22 */    "BATHROOM",
-            /* 23 */    "DUMBWAITER",
-            /* 24 */    "DUMBWAITER",
-            /* 25 */    "ATTIC",
-            /* 26 */    "STORAGE ROOM",
-            /* 27 */    "LAUNDRY",
-            /* 28 */    "WORK ROOM",
-            /* 29 */    "BOTTOM OF STAIRS",
-            /* 30 */    "MID-AIR",
-            /* 31 */    "LEAVE THE HOUSE (AND THE GAME)"
-        };
+        public static int OBJECTOFFSET { get; } = 33;
 
         // words to be ignored
-        public static string[] NULLWORDS = [
+        public static string[] NULLWORDS { get; } = [
             "THE", "TO", "WITH", "USING", "IN", "GO"
         ];
+
+        public static List<GameMap> gameMapLocation { get; } = new List<GameMap>
+        {
+            new GameMap{ id = 0, rname = "(dymmy)", rdesc = "(dymmy)" }, // for now we need this, will remove later
+            new GameMap{ id = 1, rname = "FOYER (LOBBY)", rdesc = "The entryway to the house" },
+            new GameMap{ id = 2, rname = "KITCHEN", rdesc = "Countertops are dusty and there are rusting pots and pans" },
+            new GameMap{ id = 3, rname = "SITTING ROOM", rdesc = "This room is two stories high and contains elegant chairs and couches" },
+            new GameMap{ id = 4, rname = "HALLWAY", rdesc = "A narrow hallway which runs west of the foyer" },
+            new GameMap{ id = 5, rname = "HALLWAY", rdesc = "A narrow hallway at the west end of the house" },
+            new GameMap{ id = 6, rname = "DEN", rdesc = "This room has an ancient television" },
+            new GameMap{ id = 7, rname = "BATHROOM", rdesc = "A dingy bathroom with a cracked sink" },
+            new GameMap{ id = 8, rname = "LIBRARY", rdesc = "This well-furnished library is lined with books and leather furniture" },
+            new GameMap{ id = 9, rname = "SMALL BEDROOM", rdesc = "This small bedroom has a twin bed and chair. It looks little used" },
+            new GameMap{ id = 10, rname = "GARAGE", rdesc = "The cavernous garage holds a non-operational gremlin and piles of junk" },
+            new GameMap{ id = 11, rname = "DINING ROOM", rdesc = "Trophies line the walls. there are six chairs around a long table" },
+            new GameMap{ id = 12, rname = "BALCONY", rdesc = "Balcony above the sitting room. a railing protects you from a 15-foot drop" },
+            new GameMap{ id = 13, rname = "MASTER BEDROOM", rdesc = "This large corner bedroom has solid walnut furniture and a large mirror" },
+            new GameMap{ id = 14, rname = "HALLWAY", rdesc = "A hallway with a large arch on its south side" },
+            new GameMap{ id = 15, rname = "GAME ROOM", rdesc = "This elegant game room has a pool table and marble chessboard" },
+            new GameMap{ id = 16, rname = "CLOSET", rdesc = "A spacious closet off the gameroom" },
+            new GameMap{ id = 17, rname = "HALLWAY", rdesc = "A hallway in the center of the second floor" },
+            new GameMap{ id = 18, rname = "CHILD'S ROOM", rdesc = "Your cousin's room in happier times, before he ran off to join the baath party" },
+            new GameMap{ id = 19, rname = "SECRET ROOM1", rdesc = "A dark chamber off the bedroom" },
+            new GameMap{ id = 20, rname = "DANGEROUS HALL", rdesc = "This eerie hall has three identical doors on the west wall (left, center, right)" },
+            new GameMap{ id = 21, rname = "CORNER BEDROOM", rdesc = "A cozy corner room with windows on two walls" },
+            new GameMap{ id = 22, rname = "BATHROOM", rdesc = "An elegant bath with a mirror over a marble sink" },
+            new GameMap{ id = 23, rname = "DUMBWAITER", rdesc = "A cramped dumbwaiter" },
+            new GameMap{ id = 24, rname = "DUMBWAITER", rdesc = "A cramped dumbwaiter" },
+            new GameMap{ id = 25, rname = "ATTIC", rdesc = "A dusty attic with low sloping walls" },
+            new GameMap{ id = 26, rname = "STORAGE ROOM", rdesc = "A bare room used to store random equipment and furniture" },
+            new GameMap{ id = 27, rname = "LAUNDRY", rdesc = "This room has a washer and dryer, as well as a boiler and furnace" },
+            new GameMap{ id = 28, rname = "WORK ROOM", rdesc = "Equipment for working wood and metal" },
+            new GameMap{ id = 29, rname = "BOTTOM OF STAIRS", rdesc = "Stairs from basement to kitchen" },
+            new GameMap{ id = 30, rname = "MID-AIR", rdesc = "Hanging from a bungee cord" },
+            new GameMap{ id = 31, rname = "LEAVE THE HOUSE", rdesc = "Leave the house and the game" }
+        };
+
+        public static List<GameItem> gameItemLocation { get; }  = new List<GameItem>
+        {
+            new GameItem { id = 0, location = -99, objId = 0, name = "(dummy)", desc = "(dummy)" },
+            new GameItem { id = 1, location = 1, objId = 34, name = "NEWSPAPER", desc = "Tays house unlikely ever to be sold. tales of gutted stairwells and booby traps have spooked buyers..." },
+            new GameItem { id = 2, location = -1, objId = 35, name = "TEDDYBEAR", desc = "Someone has been playing very rough with this toy" },
+            new GameItem { id = 3, location = -1, objId = 36, name = "FUSE", desc = "Old-fashioned electrical fuse" },
+            new GameItem { id = 4, location = 10, objId = 37, name = "JACK", desc = "Tire jack for lifting heavy objects like cars" },
+            new GameItem { id = 5, location = 30, objId = 38, name = "PICTURE", desc = "Uncle tays in all his sallow glory" },
+            new GameItem { id = 6, location = 10, objId = 39, name = "BUNGEE", desc = "Cord for bungee jumping" },
+            new GameItem { id = 7, location = 13, objId = 40, name = "KEY", desc = "A small brass key" },
+            new GameItem { id = 8, location = 15, objId = 41, name = "TOP", desc = "A child's toy (spinning top)" },
+            new GameItem { id = 9, location = 9, objId = 42, name = "NOTE", desc = "The writing is reversed. maybe there is a way to read it somewhere..." },
+            new GameItem { id = 10, location = 16, objId = 43, name = "GAINESBURGER", desc = "Supposedly dog food, though it appears to be made of plastic" },
+            new GameItem { id = 11, location = 22, objId = 44, name = "GLOVES", desc = "Rubber gloves used for cleaning" },
+            new GameItem { id = 12, location = 26, objId = 45, name = "BOXSPRING", desc = "A queen-sized boxspring" },
+            new GameItem { id = 13, location = 25, objId = 46, name = "BRACE", desc = "A back brace" },
+            new GameItem { id = 14, location = 25, objId = 47, name = "MAGAZINE", desc = "Tays' strange inventions include booby-trapped doors and toys that open doors by remote control..." },
+            new GameItem { id = 15, location = 28, objId = 48, name = "OILCAN", desc = "This can contains fine lubricating oil" },
+            new GameItem { id = 16, location = 8, objId = 49, name = "CHECKBOOK", desc = "Uncle tays' checkbook lists a balance of $220,000" },
+            new GameItem { id = 17, location = -1, objId = 50, name = "DIAMOND", desc = "This diamond's beauty stems from all the goddamned money it is worth" },
+            new GameItem { id = 18, location = 19, objId = 51, name = "LOVERBOY", desc = "Loverboy's first album in vinyl, worth an incalculable sum" },
+            new GameItem { id = 19, location = 21, objId = 52, name = "INVESTMENT", desc = "Pre-ipo shares of apollo computing have to be worth ... something" },
+            new GameItem { id = 20, location = 27, objId = 53, name = "LOONS", desc = "A thick wad of canadian notes" },
+            new GameItem { id = 21, location = 2, objId = 54, name = "FRIDGE", desc = "This old refrigerator's motor labors heavily" },
+            new GameItem { id = 22, location = 6, objId = 55, name = "COUCH", desc = "An overstuffed, dusty couch" },
+            new GameItem { id = 23, location = 7, objId = 56, name = "CLOTHES", desc = "A disgusting pile of soiled laundry" },
+            new GameItem { id = 24, location = -1, objId = 57, name = "DOOR", desc = "3 doors" },
+            new GameItem { id = 25, location = 12, objId = 58, name = "RAILING", desc = "A railing or guardrail, is a system designed to keep people or objects from falling off the balcony." },
+            new GameItem { id = 26, location = -1, objId = 59, name = "DUMBWAITER", desc = "A dumbwaiter lift is a small freight elevator designed to transport goods, supplies, or food between different levels of a building." },
+            new GameItem { id = 27, location = -1, objId = 60, name = "FUSEBOX", desc = "An old-fashioned fusebox. the fuse marked 'attic' is missing." },
+            new GameItem { id = 28, location = 22, objId = 61, name = "MIRROR", desc = "A mirror in the wall" }
+        };
 
         // NOTE: adding one more item to the arrays because BASIC arrays start at 1
 
         // All Verbs and Objects
-        public static string[] VOCABS = {
+        public static string[] VOCABS { get; } = {
             /* 00 */     "-99", // 0-dummy
 
             /* 01 */     "NORTH",
@@ -215,8 +153,6 @@
             /* 62 */     "L", // look
             /* 63 */     "G", // get
             /* 64 */     "X", // examine
-
-
-            };
+        };
     }
 }

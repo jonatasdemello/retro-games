@@ -9,7 +9,7 @@
         [DataRow("xxxxx yyy")]
         public void Input_Bad_Word_Should_return_0(string prompt)
         {
-            UserInputResult game = UserInput.ProcessInput(prompt);
+            GameUserInput game = UserInput.ProcessInput(prompt);
 
             Assert.IsTrue(game.CMD1 == 0);
             Assert.IsTrue(game.CMD2 == 0);
@@ -21,7 +21,7 @@
         [DataRow("north")]
         public void Input_Direction_Ok(string prompt)
         {
-            UserInputResult game = UserInput.ProcessInput(prompt);
+            GameUserInput game = UserInput.ProcessInput(prompt);
 
             Assert.AreEqual("NORTH", Constants.VOCABS[game.CMD1]);
             Assert.AreEqual(1, game.CMD1); // "NORTH"
@@ -34,7 +34,7 @@
         [DataRow("TAKE XYZ NEWSPAPER WWYA")]
         public void Input_Multi_Word(string prompt)
         {
-            UserInputResult game = UserInput.ProcessInput(prompt);
+            GameUserInput game = UserInput.ProcessInput(prompt);
 
             Assert.AreEqual("TAKE", Constants.VOCABS[game.CMD1]);
             Assert.AreEqual(18, game.CMD1); // "TAKE"
@@ -49,7 +49,7 @@
         [DataRow("MOVE THE FRIDGE WITH JACK")]
         public void Input_Multi_Word2(string prompt)
         {
-            UserInputResult game = UserInput.ProcessInput(prompt);
+            GameUserInput game = UserInput.ProcessInput(prompt);
 
             Assert.AreEqual("MOVE", Constants.VOCABS[game.CMD1]);
             Assert.AreEqual(26, game.CMD1);
@@ -67,7 +67,7 @@
         [DataRow("OPEN RIGHT DOOR")]
         public void Input_Multi_Word3(string prompt)
         {
-            UserInputResult game = UserInput.ProcessInput(prompt);
+            GameUserInput game = UserInput.ProcessInput(prompt);
 
             Assert.AreEqual("OPEN", Constants.VOCABS[game.CMD1]);
             Assert.AreEqual(27, game.CMD1);
@@ -87,7 +87,7 @@
         [DataRow("OIL THE DUMBWAITER WITH OILCAN")]
         public void Input_Multi_Word4(string prompt)
         {
-            UserInputResult game = UserInput.ProcessInput(prompt);
+            GameUserInput game = UserInput.ProcessInput(prompt);
 
             Assert.AreEqual("OIL", Constants.VOCABS[game.CMD1]);
             Assert.AreEqual(29, game.CMD1);

@@ -10,9 +10,9 @@
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static void print(string text) => Console.WriteLine(text);
-        
-        public static void print(string text1, string text2) => Console.WriteLine($"{text1} {text2}");
+        public static void Print(string text) => Console.WriteLine(text);
+
+        public static void Print(string text1, string text2) => Console.WriteLine($"{text1} {text2}");
 
         public static void PrintResponse(string text)
         {
