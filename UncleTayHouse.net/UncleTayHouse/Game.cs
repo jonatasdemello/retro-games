@@ -371,11 +371,11 @@
         {
             Screen.PrintDgb("extras");
 
-            for (int i = 1; i < extDesc.Length; i++)
+            for (int i = 0; i < extDesc.Length; i++)
             {
-                int L1 = extDesc[i].location;
-                int L2 = extDesc[i].direction;
-                if (gameState.LOCAL == L1 && LocationExit[L1, L2] <= 0)
+                int loc = extDesc[i].location;
+                int dir = extDesc[i].direction;
+                if (gameState.LOCAL == loc && LocationExit[loc, dir] <= 0)
                 {
                     Screen.PrintResponse(extDesc[i].description);
                 }

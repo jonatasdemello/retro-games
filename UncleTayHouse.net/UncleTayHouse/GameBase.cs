@@ -1,29 +1,21 @@
 ﻿namespace UncleTayHouse
 {
-    public class ExtDesc
-    {
-        public int id;
-        public int location;
-        public int direction;
-        public string description = "";
-    }
 
     public partial class Game
     {
         #region Variables
 
         // extended description
-        public ExtDesc[] extDesc { get; } = new ExtDesc[]
-        {
-            new ExtDesc { id = 0, location = -99, direction = -99, description = "dummy" },
-            new ExtDesc { id = 1, location = 5, direction = 6, description = "There is a locked door to the north." },
-            new ExtDesc { id = 2, location = 8, direction = 6, description = "There is a locked door to the south." },
-            new ExtDesc { id = 3, location = 2, direction = 6, description = "Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable." },
-            new ExtDesc { id = 4, location = 29, direction = 5, description = "Stairs lead up. Several steps have collapsed, making the staircase unusable." },
-            new ExtDesc { id = 5, location = 12, direction = 5, description = "Dark stairs lead up to the attic." },
-            new ExtDesc { id = 6, location = 17, direction = 4, description = "A locked door to the WEST is labelled 'EXTREME DANGER'." },
-            new ExtDesc { id = 7, location = 17, direction = 1, description = "Your uncle's doberman blocks a doorway to the north." }
-        };
+        public ExtDesc[] extDesc { get; } =
+        [
+            new ExtDesc { location = 5, direction = 6, description = "There is a locked door to the north." },
+            new ExtDesc { location = 8, direction = 6, description = "There is a locked door to the south." },
+            new ExtDesc { location = 2, direction = 6, description = "Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable." },
+            new ExtDesc { location = 29, direction = 5, description = "Stairs lead up. Several steps have collapsed, making the staircase unusable." },
+            new ExtDesc { location = 12, direction = 5, description = "Dark stairs lead up to the attic." },
+            new ExtDesc { location = 17, direction = 4, description = "A locked door to the WEST is labelled 'EXTREME DANGER'." },
+            new ExtDesc { location = 17, direction = 1, description = "Your uncle's doberman blocks a doorway to the north." }
+        ];
 
         // # DIM REXIT[31][6] : : LOCATION EXITS
         public int[,] LocationExit { get; set; } = {
