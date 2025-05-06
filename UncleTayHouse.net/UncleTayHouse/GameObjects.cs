@@ -11,7 +11,7 @@
         public static int PICTURE { get; } = 38;
         public static int BUNGEE { get; } = 39;
         public static int KEY { get; } = 40;
-        public static int TOP { get; } = 41;
+        public static int SPINNINGTOP { get; } = 41;
         public static int NOTE { get; } = 42;
         public static int GAINESBURGER { get; } = 43;
         public static int GLOVES { get; } = 44;

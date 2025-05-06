@@ -526,7 +526,7 @@ namespace UncleTayHouse
                 && LocationExit[17, 1] <= 0) // north exit is not open yet
             {
                 Screen.PrintResponse("The dog chews his favorite toy and is soon asleep");
-                ILOC[obj] = Constants.HIDDEN; // teddybear is hidden
+                ILOC[obj] = Constants.HIDDEN; // teddybear is now hidden
                 LocationExit[17, 1] = 18; // reveal secret room north
                 return;
             }
@@ -537,9 +537,9 @@ namespace UncleTayHouse
                 && LocationExit[29, 5] <= 0)
             {
                 Screen.PrintResponse("The boxspring covers the gap in the stairs");
-                ILOC[obj] = -999;
-                LocationExit[29, 5] = 2;
-                LocationExit[2, 6] = 29;
+                ILOC[obj] = Constants.HIDDEN; // boxspring is now hidden
+                LocationExit[29, 5] = 2; // U: unlock with drop boxspring
+                LocationExit[2, 6] = 29; // D: STAIRS TO BASEMENT is hidden until drop Boxspring
                 return;
             }
 
@@ -547,15 +547,15 @@ namespace UncleTayHouse
             ILOC[obj] = gameState.PlayerAt;
             Screen.PrintResponse(Constants.VOCABS[userInput.CMD2] + ": dropped");
         }
-
+        // ok
         public void ActionLook()
         {
             int obj = userInput.CMD2 - Constants.OBJECTOFFSET;
 
             // look at the picture on the wall
-            if (ILOC[5] == 30
-                && gameState.PlayerAt == 3
-                && userInput.CMD2 == 38)
+            if (userInput.CMD2 == GameObjects.PICTURE // 38 picture
+                && gameState.PlayerAt == GameRooms.SITTINGROOM3 // 3 sitting room
+                && ILOC[5] == GameRooms.MIDAIR30) // 30 mid-air (means picture is in mid-air)
             {
                 Screen.PrintResponse("The picture is hanging too high up on the wall, you have to find another way to reach it...");
                 return;
@@ -569,10 +569,10 @@ namespace UncleTayHouse
                 return;
             }
 
-            // 42=note and (13=master bedroom OR 22=bathroom)
-            if (userInput.CMD2 == 42
-                && (gameState.PlayerAt == 13
-                || gameState.PlayerAt == 22))
+            // look 42=note and (13=master bedroom OR 22=bathroom)
+            if (userInput.CMD2 == GameObjects.NOTE // 42 note
+                && (gameState.PlayerAt == GameRooms.MASTERBEDROOM13 // 13 master bedroom
+                || gameState.PlayerAt == GameRooms.BATHROOM22)) // 22 bathroom
             {
                 ActionSafeDoor();
                 return;
@@ -587,7 +587,7 @@ namespace UncleTayHouse
 
             Screen.PrintResponse("There's nothing special about the " + Constants.VOCABS[userInput.CMD2]);
         }
-
+        // ok
         public void ActionSafeDoor()
         {
             // decide which door is safe
@@ -609,73 +609,79 @@ namespace UncleTayHouse
             }
             Screen.PrintResponse("Experiments on " + N1S + " and " + N2S + " doors proceeding well; file for patent");
         }
-
+        // ok
         public void ActionUnlock()
         {
-            if (gameState.PlayerAt != 20
-                && gameState.PlayerAt != 17)
+            if (gameState.PlayerAt != GameRooms.HALL5
+                && gameState.PlayerAt != GameRooms.LIBRARY8
+                && gameState.PlayerAt != GameRooms.HALL20
+                && gameState.PlayerAt != GameRooms.HALL17)
             {
                 Screen.PrintResponse("There is no door here!");
                 return;
             }
             // do we have a key?
-            if (ILOC[7] != 0) // 13 = master bedroom ? key ?
+            if (ILOC[7] != Constants.CARRYING) // 13 = master bedroom ? key ?
             {
                 Screen.PrintResponse("You don't have a key!");
                 return;
             }
             else // yes
             {
-                // ckeck gameState.LOCALe
-                if (gameState.PlayerAt == 5) // Hallway?
+                // ckeck where we are
+                if (gameState.PlayerAt == GameRooms.HALL5) // 5 Hallway?
                 {
                     Screen.PrintResponse("The key doesn't fit the lock");
                     return;
                 }
                 // only unlock if is in the Hallway and have a key
-                if (gameState.PlayerAt == 17
+                if (gameState.PlayerAt == GameRooms.HALL17 // 17 hall
                     && ILOC[7] == 0) // Hallway?
                 {
                     Screen.PrintResponse("You unlock the door. beware!");
-                    LocationExit[17, 4] = 20;
+                    LocationExit[17, 4] = 20; // reveal north
                     return;
                 }
             }
             Screen.PrintResponse("Nothing to unlock!");
         }
-
+        // ok
         public void ActionOpen()
         {
-            // 2 words only
-
-            // dangerous hall: open door
-            if (gameState.PlayerAt == 20
-                && userInput.CMD2 == 57)
+            // open door == unlock door
+            if (userInput.CMD2 == GameObjects.DOOR)
+            {
+                ActionUnlock();
+                return;
+            }
+            // open door in dangerous hall 20
+            if (userInput.CMD2 == GameObjects.DOOR// 57 door
+                && gameState.PlayerAt == GameRooms.HALL20) // 20 hall
             {
                 Screen.PrintResponse("Please specify LEFT, CENTER or RIGHT");
                 return;
             }
-            else
-            {
-                Screen.PrintResponse("Open what?");
-            }
+            Screen.PrintResponse("Open what?");
         }
-
+        // ok
         public void ActionOpen3Door()
         {
-            if (gameState.PlayerAt != 20) // dangerous hall
+            if (gameState.PlayerAt != GameRooms.HALL20) // 20 dangerous hall
             {
                 Screen.PrintResponse("You can't do that here");
                 return;
             }
 
-            if (userInput.CMD3 != 57) // door
+            if (userInput.CMD3 != GameObjects.DOOR) // 57 door
             {
                 Screen.PrintResponse("Open what?");
                 return;
             }
 
-            // open[direction not mentioned in note] door
+            // open [direction not mentioned in note] door
+            // 31 = left
+            // 32 = center
+            // 33 = right
             int DOORDIR = userInput.CMD2 - 30;
             if (DOORDIR < 1 || DOORDIR > 3)
             {
@@ -702,10 +708,10 @@ namespace UncleTayHouse
             Screen.PrintResponse("An ironing board slams onto your head");
             // you die
         }
-
+        // ok
         public void ActionEat()
         {
-            if (ILOC[10] != 0) //  GAINESBURGER
+            if (ILOC[10] != Constants.CARRYING) //  GAINESBURGER
             {
                 Screen.PrintResponse("You don't have it!");
                 return;
@@ -718,40 +724,40 @@ namespace UncleTayHouse
 
             Screen.PrintResponse("There was a diamond hidden inside the gainesburger");
 
-            ILOC[10] = -2; // GAINESBURGER
-            ILOC[17] = 0; //  DIAMOND
+            ILOC[10] = Constants.HIDDEN; // GAINESBURGER is hidden now -2
+            ILOC[17] = gameState.PlayerAt; //  DIAMOND is revealed in player location
         }
-
+        // ok
         public void ActionSpin()
         {
-            if (ILOC[8] != 0) // Top
+            if (ILOC[8] != Constants.CARRYING) // SPINNINGTOP
             {
                 Screen.PrintResponse("Spin what?");
                 return;
             }
-            if (gameState.PlayerAt == 18) // child's room
+            if (gameState.PlayerAt == GameRooms.CHILDSROOM18) // 18 child's room
             {
                 Screen.PrintResponse("There is a flash of light and a cracking sound! An opening appears in the east wall");
-                LocationExit[18, 3] = 19;
+                LocationExit[18, 3] = GameRooms.SECRETROOM19; // 19 reveal east (dark room)
                 return;
             }
 
             Screen.PrintResponse("Whee!");
         }
-
+        // ok
         public void ActionMoveObj()
         {
-            if (userInput.CMD2 == 54) // fridge
+            if (userInput.CMD2 == GameObjects.FRIDGE) // 54 fridge
             {
                 Screen.PrintResponse("It's too heavy for you to move alone (without any help)");
                 return;
             }
-            if (userInput.CMD2 == 55) // couch
+            if (userInput.CMD2 == GameObjects.COUCH) // 55 couch
             {
                 Screen.PrintResponse("Your back is acting up, you will need some support");
                 return;
             }
-            if (userInput.CMD2 == 56) // clothes
+            if (userInput.CMD2 == GameObjects.CLOTHES) // 56 clothes
             {
                 Screen.PrintResponse("That seems pointless and unsanitary, they are too dirty!");
                 return;
@@ -759,18 +765,18 @@ namespace UncleTayHouse
 
             Screen.PrintResponse("You can't do that");
         }
-
+        // ok
         public void ActionJump()
         {
-            // location 12 = BALCONY12
-            if (gameState.PlayerAt != 12)
+            // check if we are at the balcony
+            if (gameState.PlayerAt != GameRooms.BALCONY12) // 12 Balcony
             {
                 Screen.PrintResponse("You jump up and down a couple of times and feel more relaxed now, but nothing special happens.");
                 return;
             }
 
-            // BUNGEE cord is tied to the railing
-            if (ILOC[6] != -12)
+            // check if BUNGEE cord is tied to the railing
+            if (ILOC[6] != Constants.TIED) // -12 tied
             {
                 Screen.PrintResponse("You forgot your parachute. Or maybe something else...");
                 return;
@@ -779,10 +785,10 @@ namespace UncleTayHouse
             Screen.PrintResponse("You bungee off the balcony...");
 
             // set location to MID-AIR (so can take the picture)
-            gameState.PlayerAt = 30;
+            gameState.PlayerAt = GameRooms.MIDAIR30; // 30 mid-air
             gameState.PlayerJump = false; // reset for multiple jumps
         }
-
+        // ok
         public void ActionPlayerMove(int dir)
         {
             // convert N,S,E,W,U,D to long form
@@ -794,28 +800,26 @@ namespace UncleTayHouse
             {
                 gameState.PlayerAt = LocationExit[gameState.PlayerAt, dir];
             }
-            else if (gameState.PlayerAt == 12
+            if (gameState.PlayerAt == 12
                 && dir == 5) // up to attic
             {
                 Screen.PrintResponse("You're afraid of the dark");
                 return;
             }
-            else if (gameState.PlayerAt == 17
+            if (gameState.PlayerAt == 17
                 && dir == 1)
             {
                 Screen.PrintResponse("You never did like that dog");
                 return;
             }
-            else if (gameState.PlayerAt == 23
+            if (gameState.PlayerAt == 23
                 && LocationExit[23, 6] <= 0)
             {
                 Screen.PrintResponse("The dumbwaiter mechanism is corroded and won't move");
                 return;
             }
-            else
-            {
-                Screen.PrintResponse("You can't go that way");
-            }
+
+            Screen.PrintResponse("You can't go that way");
         }
 
         public void ActionMoveFridgeWithJack()

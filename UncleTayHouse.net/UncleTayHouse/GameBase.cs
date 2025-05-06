@@ -41,7 +41,7 @@ namespace UncleTayHouse
             /* 15 */    {-99,  14  ,   0  ,   0  ,  16  ,   0  ,   0  },
             /* 16 */    {-99,   0  ,   0  ,  15  ,   0  ,   0  ,   0  },
             /* 17 */    {-99,  -1  ,   0  ,  14  ,  -1  ,   0  ,   0  }, // N: HALL, doverman blocks door until drop teddybear, W: unlock door
-            /* 18 */    {-99,   0  ,  17  ,  -1  ,   0  ,   0  ,   0  }, // E: secret room hidden until sping top
+            /* 18 */    {-99,   0  ,  17  ,  -1  ,   0  ,   0  ,   0  }, // E: secret room hidden until SPINNINGTOP
             /* 19 */    {-99,   0  ,   0  ,   0  ,  18  ,   0  ,   0  },
             /* 20 */    {-99,  21  ,  22  ,  17  ,  -1  ,   0  ,   0  }, // W: Dangerous Hall, open X door (after reading note)
             /* 21 */    {-99,   0  ,  20  ,   0  ,   0  ,   0  ,   0  },
@@ -72,7 +72,7 @@ namespace UncleTayHouse
             /* 05 */    30,      // "PICTURE",
             /* 06 */    10,      // "BUNGEE", 10
             /* 07 */    13,      // "KEY", 13
-            /* 08 */    15,      // "TOP", 15
+            /* 08 */    15,      // "SPINNINGTOP", 15
             /* 09 */     9,      // "NOTE", 9
             /* 10 */    16,      // "GAINESBURGER", 16
             /* 11 */    22,      // "GLOVES", 22

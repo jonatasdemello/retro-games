@@ -11,7 +11,7 @@
         public static int HALL5 { get; } = 5;
         public static int DEN6 { get; } = 6;
         public static int BATHROOM7 { get; } = 7;
-        public static int LIBRARY6 { get; } = 8;
+        public static int LIBRARY8 { get; } = 8;
         public static int SMALLBEDROOM9 { get; } = 9;
         public static int GARAGE10 { get; } = 10;
         public static int DININGROOM11 { get; } = 11;
@@ -24,7 +24,7 @@
         public static int CHILDSROOM18 { get; } = 18;
         public static int SECRETROOM19 { get; } = 19;
         public static int HALL20 { get; } = 20;
-        public static int CORNERBEDROOM19 { get; } = 21;
+        public static int CORNERBEDROOM21 { get; } = 21;
         public static int BATHROOM22 { get; } = 22;
         public static int DUMBWAITER23 { get; } = 23;
         public static int DUMBWAITER24 { get; } = 24;
