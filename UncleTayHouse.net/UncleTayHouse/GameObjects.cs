@@ -2,6 +2,7 @@
 {
     public static class GameObjects
     {
+        // These numbers are Object Ids (fixed)
         public static int DUMMY { get; } = 0;
         public static int NEWSPAPER { get; } = 34;
         public static int TEDDYBEAR { get; } = 35;

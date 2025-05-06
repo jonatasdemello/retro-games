@@ -2,6 +2,7 @@
 {
     public static class GameVerbs
     {
+        // These numbers are Verb Ids (fixed)
         public static int DUMMY { get; } = 0;
         public static int NORTH { get; } = 1;
         public static int SOUTH { get; } = 2;

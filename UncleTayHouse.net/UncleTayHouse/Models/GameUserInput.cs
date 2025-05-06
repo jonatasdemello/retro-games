@@ -1,4 +1,4 @@
-﻿namespace UncleTayHouse
+﻿namespace UncleTayHouse.Models
 {
     /* Example:
         move couch with brace

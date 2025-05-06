@@ -1,4 +1,4 @@
-﻿namespace UncleTayHouse
+﻿namespace UncleTayHouse.Models
 {
     public class GameMap
     {

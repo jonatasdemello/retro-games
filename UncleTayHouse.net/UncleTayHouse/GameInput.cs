@@ -1,9 +1,11 @@
-﻿namespace UncleTayHouse
+﻿using UncleTayHouse.Models;
+
+namespace UncleTayHouse
 {
     public static class UserInput
     {
         /// <summary>
-        /// Read user input text from console, convert to Uppercase and return.
+        /// Read userInput input text from console, convert to Uppercase and return.
         /// </summary>
         public static string ReadInput()
         {
@@ -23,7 +25,7 @@
 
             res = res.ToUpper();
 
-            if (res == "EXIT")
+            if (res == "EXIT31")
             {
                 Environment.Exit(0);
             }

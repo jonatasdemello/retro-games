@@ -1,4 +1,6 @@
-﻿namespace UncleTayHouse.Tests.Unit
+﻿using UncleTayHouse.Models;
+
+namespace UncleTayHouse.Tests.Unit
 {
     [TestClass]
     public sealed class ProcessInputTests

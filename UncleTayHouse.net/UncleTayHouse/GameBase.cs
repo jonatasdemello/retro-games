@@ -1,4 +1,6 @@
-﻿namespace UncleTayHouse
+﻿using UncleTayHouse.Models;
+
+namespace UncleTayHouse
 {
 
     public partial class Game
@@ -33,7 +35,7 @@
             /* 09 */    {-99,   5  ,   0  ,   0  ,   0  ,   0  ,   0  },
             /* 10 */    {-99,   0  ,   0  ,   5  ,   0  ,   0  ,   0  },
             /* 11 */    {-99,   0  ,   0  ,   0  ,   3  ,   0  ,   0  },
-            /* 12 */    {-99,  13  ,   0  ,   0  ,  14  ,  -1  ,   3  }, // W: STAIRS TO ATTIC is hidden until fuse is inserted
+            /* 12 */    {-99,  13  ,   0  ,   0  ,  14  ,  -1  ,   3  }, // W: STAIRS TO ATTIC25 is hidden until fuse is inserted
             /* 13 */    {-99,   0  ,  12  ,   0  ,   0  ,   0  ,   0  },
             /* 14 */    {-99,   0  ,  15  ,  12  ,  17  ,   0  ,   0  },
             /* 15 */    {-99,  14  ,   0  ,   0  ,  16  ,   0  ,   0  },
@@ -59,6 +61,8 @@
         // if ILOC[obj] == -1 => object is hidden
 
         // each item location and if player is carrying it
+        // objects can be moved around
+
         public int[] ILOC = [
             /* 00 */    -99,     //dummy
             /* 01 */     1,      // "NEWSPAPER",

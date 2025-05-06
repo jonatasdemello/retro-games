@@ -1,7 +1,14 @@
-﻿namespace UncleTayHouse
+﻿using UncleTayHouse.Models;
+
+namespace UncleTayHouse
 {
     public static class Constants
     {
+        // to avoid magic numbers
+        public static int CARRYING { get; } = 0;
+        public static int HIDDEN { get; } = -1;
+        public static int TIED { get; } = -12;
+
         // item offset - where objects start in Vocab array
         public static int OBJECTOFFSET { get; } = 33;
 
@@ -13,22 +20,22 @@
         public static List<GameMap> gameMapLocation { get; } = new List<GameMap>
         {
             new GameMap{ id = 0, rname = "(dymmy)", rdesc = "(dymmy)" }, // for now we need this, will remove later
-            new GameMap{ id = 1, rname = "FOYER (LOBBY)", rdesc = "The entryway to the house" },
-            new GameMap{ id = 2, rname = "KITCHEN", rdesc = "Countertops are dusty and there are rusting pots and pans" },
+            new GameMap{ id = 1, rname = "FOYER1 (LOBBY)", rdesc = "The entryway to the house" },
+            new GameMap{ id = 2, rname = "KITCHEN2", rdesc = "Countertops are dusty and there are rusting pots and pans" },
             new GameMap{ id = 3, rname = "SITTING ROOM", rdesc = "This room is two stories high and contains elegant chairs and couches" },
             new GameMap{ id = 4, rname = "HALLWAY", rdesc = "A narrow hallway which runs west of the foyer" },
             new GameMap{ id = 5, rname = "HALLWAY", rdesc = "A narrow hallway at the west end of the house" },
-            new GameMap{ id = 6, rname = "DEN", rdesc = "This room has an ancient television" },
+            new GameMap{ id = 6, rname = "DEN6", rdesc = "This room has an ancient television" },
             new GameMap{ id = 7, rname = "BATHROOM", rdesc = "A dingy bathroom with a cracked sink" },
-            new GameMap{ id = 8, rname = "LIBRARY", rdesc = "This well-furnished library is lined with books and leather furniture" },
+            new GameMap{ id = 8, rname = "LIBRARY6", rdesc = "This well-furnished library is lined with books and leather furniture" },
             new GameMap{ id = 9, rname = "SMALL BEDROOM", rdesc = "This small bedroom has a twin bed and chair. It looks little used" },
-            new GameMap{ id = 10, rname = "GARAGE", rdesc = "The cavernous garage holds a non-operational gremlin and piles of junk" },
+            new GameMap{ id = 10, rname = "GARAGE10", rdesc = "The cavernous garage holds a non-operational gremlin and piles of junk" },
             new GameMap{ id = 11, rname = "DINING ROOM", rdesc = "Trophies line the walls. there are six chairs around a long table" },
-            new GameMap{ id = 12, rname = "BALCONY", rdesc = "Balcony above the sitting room. a railing protects you from a 15-foot drop" },
+            new GameMap{ id = 12, rname = "BALCONY12", rdesc = "Balcony above the sitting room. a railing protects you from a 15-foot drop" },
             new GameMap{ id = 13, rname = "MASTER BEDROOM", rdesc = "This large corner bedroom has solid walnut furniture and a large mirror" },
             new GameMap{ id = 14, rname = "HALLWAY", rdesc = "A hallway with a large arch on its south side" },
             new GameMap{ id = 15, rname = "GAME ROOM", rdesc = "This elegant game room has a pool table and marble chessboard" },
-            new GameMap{ id = 16, rname = "CLOSET", rdesc = "A spacious closet off the gameroom" },
+            new GameMap{ id = 16, rname = "CLOSET16", rdesc = "A spacious closet off the gameroom" },
             new GameMap{ id = 17, rname = "HALLWAY", rdesc = "A hallway in the center of the second floor" },
             new GameMap{ id = 18, rname = "CHILD'S ROOM", rdesc = "Your cousin's room in happier times, before he ran off to join the baath party" },
             new GameMap{ id = 19, rname = "SECRET ROOM1", rdesc = "A dark chamber off the bedroom" },
@@ -37,16 +44,16 @@
             new GameMap{ id = 22, rname = "BATHROOM", rdesc = "An elegant bath with a mirror over a marble sink" },
             new GameMap{ id = 23, rname = "DUMBWAITER", rdesc = "A cramped dumbwaiter" },
             new GameMap{ id = 24, rname = "DUMBWAITER", rdesc = "A cramped dumbwaiter" },
-            new GameMap{ id = 25, rname = "ATTIC", rdesc = "A dusty attic with low sloping walls" },
+            new GameMap{ id = 25, rname = "ATTIC25", rdesc = "A dusty attic with low sloping walls" },
             new GameMap{ id = 26, rname = "STORAGE ROOM", rdesc = "A bare room used to store random equipment and furniture" },
-            new GameMap{ id = 27, rname = "LAUNDRY", rdesc = "This room has a washer and dryer, as well as a boiler and furnace" },
+            new GameMap{ id = 27, rname = "LAUNDRY27", rdesc = "This room has a washer and dryer, as well as a boiler and furnace" },
             new GameMap{ id = 28, rname = "WORK ROOM", rdesc = "Equipment for working wood and metal" },
             new GameMap{ id = 29, rname = "BOTTOM OF STAIRS", rdesc = "Stairs from basement to kitchen" },
             new GameMap{ id = 30, rname = "MID-AIR", rdesc = "Hanging from a bungee cord" },
             new GameMap{ id = 31, rname = "LEAVE THE HOUSE", rdesc = "Leave the house and the game" }
         };
 
-        public static List<GameItem> gameItemLocation { get; }  = new List<GameItem>
+        public static List<GameItem> gameItemLocation { get; } = new List<GameItem>
         {
             new GameItem { id = 0, location = -99, objId = 0, name = "(dummy)", desc = "(dummy)" },
             new GameItem { id = 1, location = 1, objId = 34, name = "NEWSPAPER", desc = "Tays house unlikely ever to be sold. tales of gutted stairwells and booby traps have spooked buyers..." },
