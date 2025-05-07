@@ -24,7 +24,7 @@ namespace UncleTayHouse
             new GameMap{ id = 2, rname = "KITCHEN", rdesc = "Countertops are dusty and there are rusting pots and pans" },
             new GameMap{ id = 3, rname = "SITTING ROOM", rdesc = "This room is two stories high and contains elegant chairs and couches" },
             new GameMap{ id = 4, rname = "HALLWAY", rdesc = "A narrow hallway which runs west of the foyer" },
-            new GameMap{ id = 5, rname = "HALLWAY", rdesc = "A narrow hallway at the west end of the house" },
+            new GameMap{ id = 5, rname = "HALLWAY", rdesc = "A narrow hallway at the west end of the house, a door to north" },
             new GameMap{ id = 6, rname = "DEN", rdesc = "This room has an ancient television" },
             new GameMap{ id = 7, rname = "BATHROOM", rdesc = "A dingy bathroom with a cracked sink" },
             new GameMap{ id = 8, rname = "LIBRARY", rdesc = "This well-furnished library is lined with books and leather furniture" },

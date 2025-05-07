@@ -799,6 +799,7 @@ namespace UncleTayHouse
             if (LocationExit[gameState.PlayerAt, dir] > 0)
             {
                 gameState.PlayerAt = LocationExit[gameState.PlayerAt, dir];
+                return;
             }
             if (gameState.PlayerAt == GameRooms.BALCONY12 // 12 attic
                 && dir == GameVerbs.UP) // 5 up to attic
