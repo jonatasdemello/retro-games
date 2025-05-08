@@ -57,12 +57,6 @@ namespace UncleTayHouse
             /* 31 */    {-99,   0  ,   0  ,   0  ,   0  ,   0  ,   0  }
         };
 
-        // if ILOC[obj] == 0 => player is carrying object
-        // if ILOC[obj] == -1 => object is hidden
-
-        // each item location and if player is carrying it
-        // objects can be moved around
-
         public int[] ILOC = [
             /* 00 */    -99,     //dummy
             /* 01 */     1,      // "NEWSPAPER",

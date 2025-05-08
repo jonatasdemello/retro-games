@@ -25,7 +25,7 @@ namespace UncleTayHouse.Tests.Unit
         {
             GameUserInput game = UserInput.ProcessInput(prompt);
 
-            Assert.AreEqual("NORTH", Constants.VOCABS[game.CMD1]);
+            Assert.AreEqual("NORTH", Texts.VOCABS[game.CMD1]);
             Assert.AreEqual(1, game.CMD1); // "NORTH"
         }
 
@@ -38,10 +38,10 @@ namespace UncleTayHouse.Tests.Unit
         {
             GameUserInput game = UserInput.ProcessInput(prompt);
 
-            Assert.AreEqual("TAKE", Constants.VOCABS[game.CMD1]);
+            Assert.AreEqual("TAKE", Texts.VOCABS[game.CMD1]);
             Assert.AreEqual(18, game.CMD1); // "TAKE"
 
-            Assert.AreEqual("NEWSPAPER", Constants.VOCABS[game.CMD2]);
+            Assert.AreEqual("NEWSPAPER", Texts.VOCABS[game.CMD2]);
             Assert.AreEqual(34, game.CMD2); // "NEWSPAPER"
         }
 
@@ -53,13 +53,13 @@ namespace UncleTayHouse.Tests.Unit
         {
             GameUserInput game = UserInput.ProcessInput(prompt);
 
-            Assert.AreEqual("MOVE", Constants.VOCABS[game.CMD1]);
+            Assert.AreEqual("MOVE", Texts.VOCABS[game.CMD1]);
             Assert.AreEqual(26, game.CMD1);
 
-            Assert.AreEqual("FRIDGE", Constants.VOCABS[game.CMD2]);
+            Assert.AreEqual("FRIDGE", Texts.VOCABS[game.CMD2]);
             Assert.AreEqual(54, game.CMD2);
 
-            Assert.AreEqual("JACK", Constants.VOCABS[game.CMD3]);
+            Assert.AreEqual("JACK", Texts.VOCABS[game.CMD3]);
             Assert.AreEqual(37, game.CMD3);
         }
 
@@ -71,15 +71,15 @@ namespace UncleTayHouse.Tests.Unit
         {
             GameUserInput game = UserInput.ProcessInput(prompt);
 
-            Assert.AreEqual("OPEN", Constants.VOCABS[game.CMD1]);
+            Assert.AreEqual("OPEN", Texts.VOCABS[game.CMD1]);
             Assert.AreEqual(27, game.CMD1);
 
-            string wd = Constants.VOCABS[game.CMD2];
+            string wd = Texts.VOCABS[game.CMD2];
             int wn = game.CMD2;
             Assert.IsTrue(wd == "LEFT" || wd == "CENTER" || wd == "RIGHT");
             Assert.IsTrue(wn == 31 || wn == 32 || wn == 33);
 
-            Assert.AreEqual("DOOR", Constants.VOCABS[game.CMD3]);
+            Assert.AreEqual("DOOR", Texts.VOCABS[game.CMD3]);
             Assert.AreEqual(57, game.CMD3);
         }
 
@@ -91,13 +91,13 @@ namespace UncleTayHouse.Tests.Unit
         {
             GameUserInput game = UserInput.ProcessInput(prompt);
 
-            Assert.AreEqual("OIL", Constants.VOCABS[game.CMD1]);
+            Assert.AreEqual("OIL", Texts.VOCABS[game.CMD1]);
             Assert.AreEqual(29, game.CMD1);
 
-            Assert.AreEqual("DUMBWAITER", Constants.VOCABS[game.CMD2]);
+            Assert.AreEqual("DUMBWAITER", Texts.VOCABS[game.CMD2]);
             Assert.AreEqual(59, game.CMD2);
 
-            Assert.AreEqual("OILCAN", Constants.VOCABS[game.CMD3]);
+            Assert.AreEqual("OILCAN", Texts.VOCABS[game.CMD3]);
             Assert.AreEqual(48, game.CMD3);
         }
     }

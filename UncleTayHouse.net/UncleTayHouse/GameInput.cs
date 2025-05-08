@@ -25,7 +25,7 @@ namespace UncleTayHouse
 
             res = res.ToUpper();
 
-            if (res == "EXIT31")
+            if (res == "EXIT")
             {
                 Environment.Exit(0);
             }
@@ -66,9 +66,9 @@ namespace UncleTayHouse
             for (int i = 0; i < words.Length; i++)
             {
                 // remove null words
-                for (int j = 0; j < Constants.NULLWORDS.Length; j++)
+                for (int j = 0; j < Texts.NULLWORDS.Length; j++)
                 {
-                    if (words[i] == Constants.NULLWORDS[j])
+                    if (words[i] == Texts.NULLWORDS[j])
                     {
                         words[i] = "";
                     }
@@ -77,13 +77,13 @@ namespace UncleTayHouse
                 if (words[i] != "")
                 {
                     // find the verb number for this word
-                    for (int k = 0; k < Constants.VOCABS.Length; k++)
+                    for (int k = 0; k < Texts.VOCABS.Length; k++)
                     {
                         // only add if it is a known word
-                        if (words[i] == Constants.VOCABS[k])
+                        if (words[i] == Texts.VOCABS[k])
                         {
                             idx++;
-                            InputWordText_INWS[idx] = Constants.VOCABS[k]; // words[i] or VOCABS[k]
+                            InputWordText_INWS[idx] = Texts.VOCABS[k]; // words[i] or VOCABS[k]
                             InputWordNum_INPTK[idx] = k; // current verb number
                             break;
                         }
