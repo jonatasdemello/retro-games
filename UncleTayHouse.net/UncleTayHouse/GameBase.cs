@@ -1,23 +1,8 @@
-﻿using UncleTayHouse.Models;
-
-namespace UncleTayHouse
+﻿namespace UncleTayHouse
 {
-
     public partial class Game
     {
         #region Variables
-
-        // extended description
-        public ExtDesc[] extDesc { get; } =
-        [
-            new ExtDesc { location = 5, direction = 6, description = "There is a locked door to the north." },
-            new ExtDesc { location = 8, direction = 6, description = "There is a locked door to the south." },
-            new ExtDesc { location = 2, direction = 6, description = "Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable." },
-            new ExtDesc { location = 29, direction = 5, description = "Stairs lead up. Several steps have collapsed, making the staircase unusable." },
-            new ExtDesc { location = 12, direction = 5, description = "Dark stairs lead up to the attic." },
-            new ExtDesc { location = 17, direction = 4, description = "A locked door to the WEST is labelled 'EXTREME DANGER'." },
-            new ExtDesc { location = 17, direction = 1, description = "Your uncle's doberman blocks a doorway to the north." }
-        ];
 
         // # DIM REXIT[31][6] : : LOCATION EXITS
         public int[,] LocationExit { get; set; } = {
@@ -56,37 +41,6 @@ namespace UncleTayHouse
             /* 30 */    {-99,   0  ,   0  ,   0  ,   0  ,   0  ,   0  },
             /* 31 */    {-99,   0  ,   0  ,   0  ,   0  ,   0  ,   0  }
         };
-
-        public int[] ILOC = [
-            /* 00 */    -99,     //dummy
-            /* 01 */     1,      // "NEWSPAPER",
-            /* 02 */    -1,      // "TEDDYBEAR", -1
-            /* 03 */    -1,      // "FUSE",
-            /* 04 */    10,      // "JACK", 10
-            /* 05 */    30,      // "PICTURE",
-            /* 06 */    10,      // "BUNGEE", 10
-            /* 07 */    13,      // "KEY", 13
-            /* 08 */    15,      // "SPINNINGTOP", 15
-            /* 09 */     9,      // "NOTE", 9
-            /* 10 */    16,      // "GAINESBURGER", 16
-            /* 11 */    22,      // "GLOVES", 22
-            /* 12 */    26,      // "BOXSPRING",
-            /* 13 */    25,      // "BRACE", 25
-            /* 14 */    25,      // "MAGAZINE",
-            /* 15 */    28,      // "OILCAN", 28
-            /* 16 */     8,      // "CHECKBOOK",
-            /* 17 */    -1,      // "DIAMOND",
-            /* 18 */    19,      // "LOVERBOY",
-            /* 19 */    21,      // "INVESTMENT",
-            /* 20 */    27,      // "LOONS",
-            /* 21 */     2,      // "FRIDGE",
-            /* 22 */     6,      // "COUCH",
-            /* 23 */     7,      // "CLOTHES",
-            /* 24 */    -1,      // "DOOR",
-            /* 25 */    12,      // "RAILING",
-            /* 26 */    -1,      // "DUMBWAITER",
-            /* 27 */    -1       // "FUSEBOX"
-        ];
 
         #endregion Variables
     }

@@ -4,8 +4,19 @@ namespace UncleTayHouse
 {
     public class GameItems
     {
-        // Describe Objects and their locations
-        // ILOC[obj] => gameItems.houseItems[obj].location
+        // extended description
+        public ExtDesc[] extDesc { get; } =
+        [
+            new ExtDesc { location = 5, direction = 6, description = "There is a locked door to the north." },
+            new ExtDesc { location = 8, direction = 6, description = "There is a locked door to the south." },
+            new ExtDesc { location = 2, direction = 6, description = "Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable." },
+            new ExtDesc { location = 29, direction = 5, description = "Stairs lead up. Several steps have collapsed, making the staircase unusable." },
+            new ExtDesc { location = 12, direction = 5, description = "Dark stairs lead up to the attic." },
+            new ExtDesc { location = 17, direction = 4, description = "A locked door to the WEST is labelled 'EXTREME DANGER'." },
+            new ExtDesc { location = 17, direction = 1, description = "Your uncle's doberman blocks a doorway to the north." }
+        ];
+
+        // Describe game objects and their locations
         public List<GameItem> houseItems { get; } = new List<GameItem>
         {
             new GameItem { id = 0,  location = -99, objId =  0,  name = "(dummy)",      desc = "(dummy)" },
