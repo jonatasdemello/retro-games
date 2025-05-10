@@ -15,6 +15,7 @@
         public int CMD1 = 0; // verb (action)
         public int CMD2 = 0; // noun (object)
         public int CMD3 = 0; // noun (object)
-        public int InputWordTotal = 0;
+        public int NumWords = 0;
+        public bool Exit = false;
     }
 }

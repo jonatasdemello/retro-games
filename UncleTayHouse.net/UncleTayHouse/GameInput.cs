@@ -24,11 +24,6 @@ namespace UncleTayHouse
                 return String.Empty;
 
             res = res.ToUpper();
-
-            if (res == "EXIT")
-            {
-                Environment.Exit(0);
-            }
             return res;
         }
 
@@ -41,7 +36,14 @@ namespace UncleTayHouse
         /// <param name="inputText"></param>
         public static GameUserInput ProcessInput(string inputText)
         {
-            // InputWordTotal => number of words
+            GameUserInput result = new();
+            if (inputText == "EXIT" || inputText == "QUIT" || inputText == "END")
+            {
+                result.Exit = true;
+                return result;
+            }
+
+            // NumWords => number of words
             // InputWordText_INWS => contain only valid words now
             // InputWordNum_INPTK => contain the verb number
 
@@ -101,7 +103,7 @@ namespace UncleTayHouse
                 CMD1 = CMD1,
                 CMD2 = CMD2,
                 CMD3 = CMD3,
-                InputWordTotal = InputWordTotal
+                NumWords = InputWordTotal
             };
         }
     }

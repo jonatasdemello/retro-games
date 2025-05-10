@@ -8,6 +8,10 @@
         public string name = "";
         public string desc = "";
 
+        public bool IsAt(int loc)
+        {
+            return location == loc;
+        }
         public bool IsCarrying()
         {
             if (location == Constants.CARRYING)

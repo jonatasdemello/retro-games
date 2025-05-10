@@ -16,11 +16,11 @@
 
         public static void PrintResponse(string text)
         {
-            string sep = new string('-', 80);
+            /// string sep = new string('-', 80);
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(text);
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine();
+            //Console.WriteLine();
         }
 
         public static void PrintDgb(string text)
@@ -38,6 +38,5 @@
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine();
         }
-
     }
 }
