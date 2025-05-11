@@ -6,13 +6,17 @@ namespace UncleTayHouse
     {
         public GameResponseModel userInput = new();
         public GameStateModel gameState = new();
-        public GameItemsModel gameItems = new();
+        public GameItems gameItems = new();
 
         public void Play()
         {
             Screen.ClearScreen();
 
             ActionShowIntro();
+
+            // debug
+            //gameState.PlayerAt = CteRooms.DUMBWAITER23;
+            //gameItems.houseItems[CteObjects.OILCAN].TakeItem();
 
             while (!userInput.Exit)
             {
@@ -30,8 +34,8 @@ namespace UncleTayHouse
 
         private void ActionReadAndProcessInput()
         {
-            string input = GameUserInputModel.ReadInput();
-            userInput = GameUserInputModel.ProcessInput(input);
+            string input = GameUserInput.ReadInput();
+            userInput = GameUserInput.ProcessInput(input);
         }
 
         public void ShowLocation()
@@ -237,6 +241,13 @@ namespace UncleTayHouse
             {
                 ActionMoveCouchWithBrace();
             }
+            // move couch with jack
+            else if (userInput.CMD1 == CteVerbs.MOVE // 26 move
+                && userInput.CMD2obj == CteObjects.COUCH // 55 couch = 22
+                && userInput.CMD3obj == CteObjects.JACK)
+            {
+                ActionMoveCouchWithJack();
+            }
             // move fridge with jack
             else if (userInput.CMD1 == CteVerbs.MOVE // 26 move
                 && userInput.CMD2obj == CteObjects.FRIDGE // 54 fridge = 21
@@ -404,7 +415,7 @@ namespace UncleTayHouse
                 int loc = gameItems.extDesc[i].location;
                 int dir = gameItems.extDesc[i].direction;
                 if (gameState.IsPlayerAt(loc)
-                    && !gameItems.IsExitHidden(loc, dir))
+                    && gameItems.IsExitHidden(loc, dir))
                 {
                     gameState.AddMessage("    " + gameItems.extDesc[i].description);
                 }
@@ -488,6 +499,13 @@ namespace UncleTayHouse
                 return;
             }
 
+            // clothes have to be moved with gloves
+            if (userInput.CMD2obj == CteObjects.CLOTHES) // 56 clothes = 23
+            {
+                gameState.AddMessage("That seems pointless and unsanitary, they are too dirty!");
+                return;
+            }
+
             // take picture from the wall (3=sitting room)
             if (userInput.CMD2obj == CteObjects.PICTURE // 38 picture = 5
                 && gameItems.houseItems[obj].IsAt(CteRooms.MIDAIR30) // 30 mid-air (means picture is in mid-air)
@@ -542,7 +560,7 @@ namespace UncleTayHouse
             // drop gainesburger hallway
             if (userInput.CMD2obj == CteObjects.GAINESBURGER // 43 gainesburger = 10
                 && gameState.IsPlayerAt(CteRooms.HALL17) // 17 hallway
-                && gameItems.IsExitHidden(17, CteVerbs.NORTH)) // north exit is not open yet
+                && gameItems.IsExitHidden(CteRooms.HALL17, CteVerbs.NORTH)) // north exit is not open yet
             {
                 gameState.AddMessage("The dog looks disgusted. maybe you should eat it");
                 return;
@@ -551,7 +569,7 @@ namespace UncleTayHouse
             // drop teddybear hallway
             if (userInput.CMD2obj == CteObjects.TEDDYBEAR // 35 teddybear = 2
                 && gameState.IsPlayerAt(CteRooms.HALL17) // 17 hallway
-                && gameItems.IsExitHidden(17, CteVerbs.NORTH)) // north exit is not open yet
+                && gameItems.IsExitHidden(CteRooms.HALL17, CteVerbs.NORTH)) // north exit is not open yet
             {
                 gameState.AddMessage("The dog chews his favorite toy and is soon asleep");
 
@@ -645,10 +663,11 @@ namespace UncleTayHouse
 
         public void ActionUnlock()
         {
-            if (!gameState.IsPlayerAt(CteRooms.HALL5)
-                || !gameState.IsPlayerAt(CteRooms.LIBRARY8)
-                || !gameState.IsPlayerAt(CteRooms.HALL20)
-                || !gameState.IsPlayerAt(CteRooms.HALL17))
+            // door only exists in one of these locations
+            if (!(gameState.IsPlayerAt(CteRooms.HALL5)
+                || gameState.IsPlayerAt(CteRooms.LIBRARY8)
+                || gameState.IsPlayerAt(CteRooms.HALL20)
+                || gameState.IsPlayerAt(CteRooms.HALL17)))
             {
                 gameState.AddMessage("There is no door here!");
                 return;
@@ -809,7 +828,7 @@ namespace UncleTayHouse
             }
 
             // check if BUNGEE cord is tied to the railing
-            if (gameItems.houseItems[CteObjects.BUNGEE].IsTied()) // 6 bungee is tied to the railing
+            if (!gameItems.houseItems[CteObjects.BUNGEE].IsTied()) // 6 bungee is tied to the railing
             {
                 gameState.AddMessage("You forgot your parachute. Or maybe something else...");
                 return;
@@ -843,7 +862,7 @@ namespace UncleTayHouse
             if (gameState.IsPlayerAt(CteRooms.HALL17) // 17 hall
                 && dir == CteVerbs.NORTH) // 1 north
             {
-                gameState.AddMessage("You never did like that dog");
+                gameState.AddMessage("You never did like that dog, and he will not let you pass");
                 return;
             }
             if (gameState.IsPlayerAt(CteRooms.DUMBWAITER23) // 23 dumbwaiter
@@ -883,6 +902,18 @@ namespace UncleTayHouse
             gameState.AddMessage("You move the couch and find a teddybear behind it");
 
             gameItems.houseItems[CteObjects.TEDDYBEAR].LeaveItem(gameState.PlayerAt); // reveal teddybear
+        }
+        public void ActionMoveCouchWithJack()
+        {
+            if (userInput.CMD1 != CteVerbs.MOVE
+                || userInput.CMD2obj != CteObjects.COUCH
+                || userInput.CMD3obj != CteObjects.JACK)
+            {
+                gameState.AddMessage("You can't move the couch with that");
+                return;
+            }
+
+            gameState.AddMessage("You can't fit the jack there, maybe try something else");
         }
 
         public void ActionMoveClothesWithGloves()

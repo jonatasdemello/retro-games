@@ -2,6 +2,7 @@
 {
     public static class CteVerbs
     {
+        public static int DUMMY { get; } = 0;
         public static int NORTH { get; } = 1;
         public static int SOUTH { get; } = 2;
         public static int EAST { get; } = 3;

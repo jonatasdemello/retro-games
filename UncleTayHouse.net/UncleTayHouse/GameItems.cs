@@ -2,7 +2,7 @@
 
 namespace UncleTayHouse
 {
-    public class GameItemsModel
+    public class GameItems
     {
         // Describe game objects and their locations
         public List<GameItemModel> houseItems { get; } =
@@ -31,7 +31,7 @@ namespace UncleTayHouse
             new() { id = 21, location =  2,  objId = 54,  name = "FRIDGE",       desc = "This old refrigerator's motor labors heavily" },
             new() { id = 22, location =  6,  objId = 55,  name = "COUCH",        desc = "An overstuffed, dusty couch" },
             new() { id = 23, location =  7,  objId = 56,  name = "CLOTHES",      desc = "A disgusting pile of soiled laundry" },
-            new() { id = 24, location = -1,  objId = 57,  name = "DOOR",         desc = "3 doors" },
+            new() { id = 24, location = -1,  objId = 57,  name = "DOOR",         desc = "3 misterious doors" },
             new() { id = 25, location = 12,  objId = 58,  name = "RAILING",      desc = "A railing or guardrail, is a system designed to keep people or objects from falling off the balcony." },
             new() { id = 26, location = -1,  objId = 59,  name = "DUMBWAITER",   desc = "A dumbwaiter lift is a small freight elevator designed to transport goods, supplies, or food between different levels of a building." },
             new() { id = 27, location = -1,  objId = 60,  name = "FUSEBOX",      desc = "An old-fashioned fusebox. the fuse marked 'attic' is missing." },
@@ -52,7 +52,7 @@ namespace UncleTayHouse
             new ExtendedDescriptionModel { location = 29, direction = 5, description = "Stairs lead up. Several steps have collapsed, making the staircase unusable." },
             new ExtendedDescriptionModel { location = 12, direction = 5, description = "Dark stairs lead up to the attic." },
             new ExtendedDescriptionModel { location = 17, direction = 4, description = "A locked door to the WEST is labelled 'EXTREME DANGER'." },
-            new ExtendedDescriptionModel { location = 17, direction = 1, description = "Your uncle's doberman blocks a doorway to the north." }
+            new ExtendedDescriptionModel { location = 17, direction = 1, description = "Your uncle's doberman is blocking a doorway to the north." }
         ];
 
         // Describe Rooms
@@ -81,8 +81,8 @@ namespace UncleTayHouse
             new() { id = 20, rname = "DANGEROUS HALL", rdesc = "This eerie hall has three identical doors on the west wall (left, center, right)" },
             new() { id = 21, rname = "CORNER BEDROOM", rdesc = "A cozy corner room with windows on two walls" },
             new() { id = 22, rname = "BATHROOM", rdesc = "An elegant bath with a mirror over a marble sink" },
-            new() { id = 23, rname = "DUMBWAITER", rdesc = "A cramped dumbwaiter" },
-            new() { id = 24, rname = "DUMBWAITER", rdesc = "A cramped dumbwaiter" },
+            new() { id = 23, rname = "DUMBWAITER", rdesc = "A jammed dumbwaiter (second floor)" },
+            new() { id = 24, rname = "DUMBWAITER", rdesc = "A dumbwaiter (main floor)" },
             new() { id = 25, rname = "ATTIC", rdesc = "A dusty attic with low sloping walls" },
             new() { id = 26, rname = "STORAGE ROOM", rdesc = "A bare room used to store random equipment and furniture" },
             new() { id = 27, rname = "LAUNDRY", rdesc = "This room has a washer and dryer, as well as a boiler and furnace" },
@@ -124,6 +124,7 @@ namespace UncleTayHouse
             return loc <= 0;
 
         }
+
         public int[,] LocationExit { get; set; } = {
             // 1-NORTH 2-SOUTH 3-EAST 4-WEST 5-UP 6-DOWN
             // 0    N      S      E      W      U      D

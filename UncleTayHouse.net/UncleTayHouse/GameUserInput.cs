@@ -2,7 +2,7 @@
 
 namespace UncleTayHouse
 {
-    public static class GameUserInputModel
+    public static class GameUserInput
     {
         // words to be ignored
         public static string[] NULLWORDS { get; } = [
@@ -65,15 +65,6 @@ namespace UncleTayHouse
             result.CMD3 = FindWord(words, 2); // third word.
             result.NumWords = words.Length;
 
-            // adjust indexes
-            //if (result.CMD2 > 0)
-            //{
-            //    result.CMD2 -= Constants.OBJECTOFFSET;
-            //}
-            //if (result.CMD3 > 0)
-            //{
-            //    result.CMD3 -= Constants.OBJECTOFFSET;
-            //}
             return result;
         }
 

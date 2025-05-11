@@ -13,7 +13,7 @@
         public void Input_One_Word_Should_Return_Response(string prompt, string response)
         {
             Game game = new();
-            game.userInput = GameUserInputModel.ProcessInput(prompt);
+            game.userInput = GameUserInput.ProcessInput(prompt);
             game.ActionProcessInput();
 
             Assert.IsTrue(game.gameState.Msg.Any());

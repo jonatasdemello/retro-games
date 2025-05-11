@@ -11,7 +11,7 @@ namespace UncleTayHouse.Tests.Unit
         [DataRow("xxxxx yyy")]
         public void Input_Bad_Word_Should_return_0(string prompt)
         {
-            GameResponseModel game = GameUserInputModel.ProcessInput(prompt);
+            GameResponseModel game = GameUserInput.ProcessInput(prompt);
 
             Assert.IsTrue(game.CMD1 == 0);
             Assert.IsTrue(game.CMD2 == 0);
@@ -23,7 +23,7 @@ namespace UncleTayHouse.Tests.Unit
         [DataRow("north")]
         public void Input_Direction_Ok(string prompt)
         {
-            GameResponseModel game = GameUserInputModel.ProcessInput(prompt);
+            GameResponseModel game = GameUserInput.ProcessInput(prompt);
 
             Assert.AreEqual("NORTH", Constants.AllWords[game.CMD1]);
             Assert.AreEqual(CteVerbs.NORTH, game.CMD1); // "NORTH"
@@ -36,7 +36,7 @@ namespace UncleTayHouse.Tests.Unit
         [DataRow("TAKE XYZ NEWSPAPER WWYA")]
         public void Input_Multi_Word(string prompt)
         {
-            GameResponseModel game = GameUserInputModel.ProcessInput(prompt);
+            GameResponseModel game = GameUserInput.ProcessInput(prompt);
 
             Assert.AreEqual("TAKE", Constants.AllWords[game.CMD1]);
             Assert.AreEqual(CteVerbs.TAKE, game.CMD1); // "TAKE"
@@ -51,7 +51,7 @@ namespace UncleTayHouse.Tests.Unit
         [DataRow("MOVE THE FRIDGE WITH JACK")]
         public void Input_Multi_Word2(string prompt)
         {
-            GameResponseModel game = GameUserInputModel.ProcessInput(prompt);
+            GameResponseModel game = GameUserInput.ProcessInput(prompt);
 
             Assert.AreEqual("MOVE", Constants.AllWords[game.CMD1]);
             Assert.AreEqual(CteVerbs.MOVE, game.CMD1);
@@ -69,7 +69,7 @@ namespace UncleTayHouse.Tests.Unit
         [DataRow("OPEN RIGHT DOOR")]
         public void Input_Multi_Word3(string prompt)
         {
-            GameResponseModel game = GameUserInputModel.ProcessInput(prompt);
+            GameResponseModel game = GameUserInput.ProcessInput(prompt);
 
             Assert.AreEqual("OPEN", Constants.AllWords[game.CMD1]);
             Assert.AreEqual(CteVerbs.OPEN, game.CMD1);
@@ -89,7 +89,7 @@ namespace UncleTayHouse.Tests.Unit
         [DataRow("OIL THE DUMBWAITER WITH OILCAN")]
         public void Input_Multi_Word4(string prompt)
         {
-            GameResponseModel game = GameUserInputModel.ProcessInput(prompt);
+            GameResponseModel game = GameUserInput.ProcessInput(prompt);
 
             Assert.AreEqual("OIL", Constants.AllWords[game.CMD1]);
             Assert.AreEqual(CteVerbs.OIL, game.CMD1);
