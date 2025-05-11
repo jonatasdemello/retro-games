@@ -1,6 +1,6 @@
 ﻿namespace UncleTayHouse.Models
 {
-    public class GameItem
+    public class GameItemModel
     {
         public int id = 0;
         public int location = 0;

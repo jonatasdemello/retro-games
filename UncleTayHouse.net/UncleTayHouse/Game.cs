@@ -2,15 +2,11 @@
 
 namespace UncleTayHouse
 {
-    public partial class Game
+    public class Game
     {
-        public GameUserInput userInput = new();
-        public GameState gameState = new();
-        public GameItems gameItems = new();
-
-        // adjust the id, adding offset
-        public static int CmdAdd(int num) => num + Constants.OBJECTOFFSET;
-        public static int CmdSub(int num) => num - Constants.OBJECTOFFSET;
+        public GameResponseModel userInput = new();
+        public GameStateModel gameState = new();
+        public GameItemsModel gameItems = new();
 
         public void Play()
         {
@@ -34,9 +30,8 @@ namespace UncleTayHouse
 
         private void ActionReadAndProcessInput()
         {
-            // read and process user input
-            string input = UserInput.ReadInput();
-            userInput = UserInput.ProcessInput(input);
+            string input = GameUserInputModel.ReadInput();
+            userInput = GameUserInputModel.ProcessInput(input);
         }
 
         public void ShowLocation()
@@ -44,19 +39,19 @@ namespace UncleTayHouse
             // additional game logic for specific locations:
 
             // first time after jump
-            if (gameState.IsAt(GameRooms.MIDAIR30)
+            if (gameState.IsPlayerAt(CteRooms.MIDAIR30)
                 && !gameState.PlayerJump) // first time is false
             {
                 gameState.PlayerJump = true;
             }
-            else if (gameState.IsAt(GameRooms.MIDAIR30)
+            else if (gameState.IsPlayerAt(CteRooms.MIDAIR30)
                 && gameState.PlayerJump) // second time is true
             {
                 gameState.AddMessage("... and bunge cord spring back");
-                gameState.PlayerAt = GameRooms.BALCONY12;
+                gameState.PlayerAt = CteRooms.BALCONY12;
             }
 
-            if (gameState.IsAt(GameRooms.EXIT31))
+            if (gameState.IsPlayerAt(CteRooms.EXIT31))
             {
                 ActionScore();
                 ActionExit();
@@ -71,7 +66,7 @@ namespace UncleTayHouse
             // some places have an extra description
             ActionShowExtendedDescriptions();
         }
-        // ok
+
         public void ActionProcessInput()
         {
             if (userInput.NumWords < 1)
@@ -96,177 +91,194 @@ namespace UncleTayHouse
             }
             gameState.AddMessage("I don't understand...");
         }
-        // ok
+
         public void ActionOneWord()
         {
-            // 1-12 move N S E W U D
-            if (userInput.CMD1 == GameVerbs.NORTH
-                || userInput.CMD1 == GameVerbs.SOUTH
-                || userInput.CMD1 == GameVerbs.EAST
-                || userInput.CMD1 == GameVerbs.WEST
-                || userInput.CMD1 == GameVerbs.UP
-                || userInput.CMD1 == GameVerbs.DOWN
-                || userInput.CMD1 == GameVerbs.N
-                || userInput.CMD1 == GameVerbs.S
-                || userInput.CMD1 == GameVerbs.E
-                || userInput.CMD1 == GameVerbs.W
-                || userInput.CMD1 == GameVerbs.U
-                || userInput.CMD1 == GameVerbs.D)
+            // Move
+            if (userInput.CMD1 == CteVerbs.NORTH
+                || userInput.CMD1 == CteVerbs.SOUTH
+                || userInput.CMD1 == CteVerbs.EAST
+                || userInput.CMD1 == CteVerbs.WEST
+                || userInput.CMD1 == CteVerbs.UP
+                || userInput.CMD1 == CteVerbs.DOWN
+                || userInput.CMD1 == CteVerbs.N
+                || userInput.CMD1 == CteVerbs.S
+                || userInput.CMD1 == CteVerbs.E
+                || userInput.CMD1 == CteVerbs.W
+                || userInput.CMD1 == CteVerbs.U
+                || userInput.CMD1 == CteVerbs.D)
             {
                 ActionPlayerMove(userInput.CMD1);
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.INVENTORY || userInput.CMD1 == GameVerbs.I)
+            if (userInput.CMD1 == CteVerbs.INVENTORY || userInput.CMD1 == CteVerbs.I)
             {
                 ActionInventory();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.SCORE)
+            if (userInput.CMD1 == CteVerbs.SCORE)
             {
                 ActionScore();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.JUMP)
+            if (userInput.CMD1 == CteVerbs.JUMP)
             {
                 ActionJump();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.HELP)
+            if (userInput.CMD1 == CteVerbs.HELP)
             {
                 ActionShowIntro();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.TAKE)
+            if (userInput.CMD1 == CteVerbs.TAKE)
             {
                 gameState.AddMessage("Take what?"); // need 2 words
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.DROP)
+            if (userInput.CMD1 == CteVerbs.DROP)
             {
                 gameState.AddMessage("Drop what?"); // need 2 words
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.LOOK
-                || userInput.CMD1 == GameVerbs.L
-                || userInput.CMD1 == GameVerbs.EXAMINE
-                || userInput.CMD1 == GameVerbs.X)
+            if (userInput.CMD1 == CteVerbs.LOOK
+                || userInput.CMD1 == CteVerbs.L
+                || userInput.CMD1 == CteVerbs.EXAMINE
+                || userInput.CMD1 == CteVerbs.X)
             {
                 ShowLocation();
+                return;
             }
-            else if (userInput.CMD1 > Constants.OBJECTOFFSET) // objects, not verbs
+            if (userInput.CMD1 > Constants.OBJECTOFFSET) // objects, not verbs
             {
-                gameState.AddMessage("Do what with " + Texts.VOCABS[userInput.CMD1] + "?");
+                gameState.AddMessage("Do what with " + Constants.AllWords[userInput.CMD1] + "?");
+                return;
             }
-            else
-            {
-                gameState.AddMessage("I don't understand...");
-            }
+            gameState.AddMessage("I don't understand... (1w)");
         }
-        // ok
+
         public void ActionTwoWords()
         {
-            if (userInput.CMD1 == GameVerbs.TAKE)
+            if (userInput.CMD2obj == 0)
+            {
+                gameState.AddMessage("You need 3 words");
+                return;
+            }
+            if (userInput.CMD1 == CteVerbs.TAKE)
             {
                 ActionTake();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.DROP)
+            if (userInput.CMD1 == CteVerbs.DROP)
             {
                 ActionDrop();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.LOOK
-                || userInput.CMD1 == GameVerbs.READ
-                || userInput.CMD1 == GameVerbs.EXAMINE
-                || userInput.CMD1 == GameVerbs.X)
+            if (userInput.CMD1 == CteVerbs.LOOK
+                || userInput.CMD1 == CteVerbs.READ
+                || userInput.CMD1 == CteVerbs.EXAMINE
+                || userInput.CMD1 == CteVerbs.X)
             {
                 ActionLook();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.UNLOCK)
+            if (userInput.CMD1 == CteVerbs.UNLOCK)
             {
                 ActionUnlock();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.EAT)
+            if (userInput.CMD1 == CteVerbs.EAT)
             {
                 ActionEat();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.SPIN)
+            if (userInput.CMD1 == CteVerbs.SPIN)
             {
                 ActionSpin();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.MOVE)
+            if (userInput.CMD1 == CteVerbs.MOVE)
             {
                 ActionMoveObj();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.OPEN)
+            if (userInput.CMD1 == CteVerbs.OPEN)
             {
                 ActionOpen();
+                return;
             }
-            else if (userInput.CMD1 == GameVerbs.TIE)
+            if (userInput.CMD1 == CteVerbs.TIE)
             {
                 ActionTieBungeeToRailing();
+                return;
             }
-            else
-            {
-                gameState.AddMessage("I don't understand...");
-            }
+            gameState.AddMessage("I don't understand... (2w)");
         }
-        // ok
+
         public void ActionThreeWords()
         {
-            if (userInput.CMD2 == 0 || userInput.CMD3 == 0) // 0
+            if (userInput.CMD2 == 0 || userInput.CMD3 == 0)
             {
                 gameState.AddMessage("You need 3 words");
             }
             // read note in mirror
-            else if ((userInput.CMD1 == GameVerbs.LOOK // 20 look
-                || userInput.CMD1 == GameVerbs.READ // 21 read
-                || userInput.CMD1 == GameVerbs.EXAMINE) // 22 examine
-                && userInput.CMD2 == CmdAdd(GameObjects.NOTE) // 42 note
-                && userInput.CMD3 == CmdAdd(GameObjects.MIRROR)) // 61 mirror
+            else if ((userInput.CMD1 == CteVerbs.LOOK // 20 look
+                || userInput.CMD1 == CteVerbs.READ // 21 read
+                || userInput.CMD1 == CteVerbs.EXAMINE) // 22 examine
+                && userInput.CMD2obj == CteObjects.NOTE // 42 note = 9
+                && userInput.CMD3obj == CteObjects.MIRROR) // 61 mirror = 28
             {
                 ActionReadNoteInMirror();
             }
             // move couch with brace
-            else if (userInput.CMD1 == GameVerbs.MOVE // 26 move
-                && userInput.CMD2 == CmdAdd(GameObjects.COUCH) // 55 couch
-                && userInput.CMD3 == CmdAdd(GameObjects.BRACE)) // 46 brace
+            else if (userInput.CMD1 == CteVerbs.MOVE // 26 move
+                && userInput.CMD2obj == CteObjects.COUCH // 55 couch = 22
+                && userInput.CMD3obj == CteObjects.BRACE) // 46 brace = 13
             {
                 ActionMoveCouchWithBrace();
             }
             // move fridge with jack
-            else if (userInput.CMD1 == GameVerbs.MOVE // 26 move
-                && userInput.CMD2 == CmdAdd(GameObjects.FRIDGE) // 54 fridge
-                && userInput.CMD3 == CmdAdd(GameObjects.JACK)) // 37 jack
+            else if (userInput.CMD1 == CteVerbs.MOVE // 26 move
+                && userInput.CMD2obj == CteObjects.FRIDGE // 54 fridge = 21
+                && userInput.CMD3obj == CteObjects.JACK) // 37 jack = 4
             {
                 ActionMoveFridgeWithJack();
             }
             // move clothes with gloves
-            else if (userInput.CMD1 == GameVerbs.MOVE // 26 move
-                && userInput.CMD2 == CmdAdd(GameObjects.CLOTHES) // 56 clothes
-                && userInput.CMD3 == CmdAdd(GameObjects.GLOVES)) // 44 gloves
+            else if (userInput.CMD1 == CteVerbs.MOVE // 26 move
+                && userInput.CMD2obj == CteObjects.CLOTHES // 56 clothes = 23
+                && userInput.CMD3obj == CteObjects.GLOVES) // 44 gloves = 11
             {
                 ActionMoveClothesWithGloves();
             }
             // open [direction not mentioned in note] door
-            else if (userInput.CMD1 == GameVerbs.OPEN // 27 open
-                && (userInput.CMD2 == GameVerbs.LEFT // 31 left
-                || userInput.CMD2 == GameVerbs.CENTER // 32 center
-                || userInput.CMD2 == GameVerbs.RIGHT // 33 right
-                ) && userInput.CMD3 == CmdAdd(GameObjects.DOOR)) // 57 door
+            else if (userInput.CMD1 == CteVerbs.OPEN // 27 open
+                && (userInput.CMD2 == CteVerbs.LEFT // 31 left
+                || userInput.CMD2 == CteVerbs.CENTER // 32 center
+                || userInput.CMD2 == CteVerbs.RIGHT // 33 right
+                ) && userInput.CMD3obj == CteObjects.DOOR) // 57 door = 24
             {
                 ActionOpen3Door();
             }
             // tie bungee to railing
-            else if (userInput.CMD1 == GameVerbs.TIE // 28 tie
-                && userInput.CMD2 == CmdAdd(GameObjects.BUNGEE) // 39 bungee
-                && userInput.CMD3 == CmdAdd(GameObjects.RAILING)) // 58 railing
+            else if (userInput.CMD1 == CteVerbs.TIE // 28 tie
+                && userInput.CMD2obj == CteObjects.BUNGEE // 39 bungee = 6
+                && userInput.CMD3obj == CteObjects.RAILING) // 58 railing = 25
             {
                 ActionTieBungeeToRailing();
             }
             // unlock|oil dumbwaiter with oilcan
-            else if ((userInput.CMD1 == GameVerbs.OIL  // 29 oil
-                || userInput.CMD1 == GameVerbs.UNLOCK) // 23 unlock
-                && userInput.CMD2 == CmdAdd(GameObjects.DUMBWAITER) // 59 dumbwaiter
-                && userInput.CMD3 == CmdAdd(GameObjects.OILCAN)) // 48 oilcan
+            else if ((userInput.CMD1 == CteVerbs.OIL  // 29 oil
+                || userInput.CMD1 == CteVerbs.UNLOCK) // 23 unlock
+                && userInput.CMD2obj == CteObjects.DUMBWAITER // 59 dumbwaiter = 26
+                && userInput.CMD3obj == CteObjects.OILCAN) // 48 oilcan = 15
             {
                 ActionOilDumbwaiterWithOilcan();
             }
             // put fuse in fusebox
-            else if (userInput.CMD1 == GameVerbs.PUT // 30 put
-                && userInput.CMD2 == CmdAdd(GameObjects.FUSE) // 36 fuse
-                && userInput.CMD3 == CmdAdd(GameObjects.FUSEBOX)) // 60 fusebox
+            else if (userInput.CMD1 == CteVerbs.PUT // 30 put
+                && userInput.CMD2obj == CteObjects.FUSE // 36 fuse = 3
+                && userInput.CMD3obj == CteObjects.FUSEBOX) // 60 fusebox = 27
             {
                 ActionPutFuseInFusebox();
             }
@@ -275,7 +287,7 @@ namespace UncleTayHouse
                 gameState.AddMessage("I don't understand...");
             }
         }
-        // ok
+
         public void ActionInventory()
         {
             gameState.AddMessage(" [Inventory] You are carrying:");
@@ -290,7 +302,7 @@ namespace UncleTayHouse
                 gameState.AddMessage("   - nothing yet!");
             }
         }
-        // ok
+
         public static void ActionShowIntro()
         {
             Screen.Print(" ");
@@ -314,7 +326,7 @@ namespace UncleTayHouse
             Screen.Print("    MOVE, OPEN, TIE, OIL, PUT, LEFT, CENTER, RIGHT");
             Screen.Print(" ");
         }
-        // ok
+
         public void ActionScore()
         {
             int SCORE = 50;
@@ -339,7 +351,7 @@ namespace UncleTayHouse
             {
                 for (int j = 1; j < 6; j++)
                 {
-                    if (LocationExit[i, j] == -1)
+                    if (gameItems.GetLocationExit(i, j) == -1)
                     {
                         SCORE -= 5;
                     }
@@ -352,13 +364,13 @@ namespace UncleTayHouse
                 gameState.AddMessage("You have won the game!");
             }
         }
-        // ok
+
         public void ActionExit()
         {
             gameState.AddMessage("Thank you for playing, bye!");
             Environment.Exit(0);
         }
-        // ok
+
         public void ActionShowLocation()
         {
             string mapId = gameState.PlayerAt.ToString();
@@ -368,21 +380,21 @@ namespace UncleTayHouse
             gameState.AddMessage("----------------------------- you are at ----------------------------- ");
             gameState.AddMessage("    { " + mapId + " } " + mapName + " - " + mapDesc);
         }
-        // ok
+
         public void ActionShowDirections()
         {
             gameState.AddMessage("----------------------------- you can go ----------------------------- ");
             for (int i = 1; i <= 6; i++) // 1-NORTH 2-SOUTH 3-EAST 4-WEST 5-UP 6-DOWN
             {
-                int exit = LocationExit[gameState.PlayerAt, i];
+                int exit = gameItems.GetLocationExit(gameState.PlayerAt, i);
                 if (exit > 0)
                 {
-                    string msg = "    " + Texts.VOCABS[i] + "\t : " + gameItems.houseMap[exit].rname;
+                    string msg = "    " + Constants.AllWords[i] + "\t : " + gameItems.houseMap[exit].rname;
                     gameState.AddMessage(msg);
                 }
             }
         }
-        // ok
+
         public void ActionShowExtendedDescriptions()
         {
             gameState.AddMessage("----------------------------- extras ----------------------------- ");
@@ -391,29 +403,30 @@ namespace UncleTayHouse
             {
                 int loc = gameItems.extDesc[i].location;
                 int dir = gameItems.extDesc[i].direction;
-                if (gameState.IsAt(loc) && LocationExit[loc, dir] <= 0)
+                if (gameState.IsPlayerAt(loc)
+                    && !gameItems.IsExitHidden(loc, dir))
                 {
                     gameState.AddMessage("    " + gameItems.extDesc[i].description);
                 }
             }
 
             // N: HALL, doverman blocks door until drop teddybear, W: unlock door
-            if (gameState.IsAt(GameRooms.HALL17) // 17 hallway
-                && LocationExit[17, 1] > 0)
+            if (gameState.IsPlayerAt(CteRooms.HALL17) // 17 hallway
+                && !gameItems.IsExitHidden(CteRooms.HALL17, CteVerbs.NORTH))
             {
                 gameState.AddMessage("    Your uncle's doberman is snoring peacefully");
             }
 
             // in sitting room, if bungee cord is tied
-            if (gameState.IsAt(GameRooms.SITTINGROOM3) // 3 sitting room
-                && gameItems.houseItems[GameObjects.BUNGEE].IsTied()) // 6 = bungee cord & -12 = tied
+            if (gameState.IsPlayerAt(CteRooms.SITTINGROOM3) // 3 sitting room
+                && gameItems.houseItems[CteObjects.BUNGEE].IsTied()) // 6 = bungee cord & -12 = tied
             {
                 gameState.AddMessage("    A bungee cord dangles from the railing above");
             }
 
             // in balcony, if bungee cord is tied
-            if (gameState.IsAt(GameRooms.BALCONY12) // 12 balcony
-                && gameItems.houseItems[GameObjects.BUNGEE].IsTied()) // 6 = bungee cord & -12 = tied
+            if (gameState.IsPlayerAt(CteRooms.BALCONY12) // 12 balcony
+                && gameItems.houseItems[CteObjects.BUNGEE].IsTied()) // 6 = bungee cord & -12 = tied
             {
                 gameState.AddMessage("    A bungee cord dangles from the railing");
             }
@@ -424,37 +437,38 @@ namespace UncleTayHouse
                 gameState.AddMessage("    There is a " + item.name + " here");
             }
 
-            if (gameState.IsAt(GameRooms.KITCHEN2) // 2 kitchen
-                && gameItems.houseItems[GameObjects.FUSE].IsHidden()) // 3 fuse
+            if (gameState.IsPlayerAt(CteRooms.KITCHEN2) // 2 kitchen
+                && gameItems.houseItems[CteObjects.FUSE].IsHidden()) // 3 fuse
             {
                 gameState.AddMessage("    Something is barely visible under the fridge");
             }
 
-            if (gameState.IsAt(GameRooms.SITTINGROOM3) // 3 Sitting room
-                && gameItems.houseItems[GameObjects.PICTURE].IsAt(GameRooms.MIDAIR30)) // 5 picture & 30 = MIDAIR30
+            if (gameState.IsPlayerAt(CteRooms.SITTINGROOM3) // 3 Sitting room
+                && gameItems.houseItems[CteObjects.PICTURE].IsAt(CteRooms.MIDAIR30)) // 5 picture & 30 = MIDAIR30
             {
                 gameState.AddMessage("    There is a picture high up on the wall");
             }
         }
-        // ok
+
         public void ActionTake()
         {
-            if (userInput.CMD1 != GameVerbs.TAKE)
+            if (userInput.CMD1 != CteVerbs.TAKE)
             {
                 gameState.AddMessage("wrong action");
                 return;
             }
 
             // 1-33 (verbs) 34-61 (objects)
-            int obj = CmdSub(userInput.CMD2);
+            //int obj = CmdSub(userInput.CMD2obj);
+            int obj = userInput.CMD2obj;
 
             // cant take verbs
-            if (userInput.CMD2 <= Constants.OBJECTOFFSET
-                || obj > gameItems.houseItems.Count)
-            {
-                gameState.AddMessage("Take what?");
-                return;
-            }
+            //if (userInput.CMD2obj <= Constants.OBJECTOFFSET
+            //    || obj > gameItems.houseItems.Count)
+            //{
+            //    gameState.AddMessage("Take what?");
+            //    return;
+            //}
 
             // check if is not already carrying it
             if (gameItems.houseItems[obj].IsCarrying())
@@ -464,39 +478,39 @@ namespace UncleTayHouse
             }
 
             // big objects that can't be taken
-            if (userInput.CMD2 == GameObjects.FRIDGE
-                || userInput.CMD2 == GameObjects.COUCH
-                || userInput.CMD2 == GameObjects.DOOR
-                || userInput.CMD2 == GameObjects.RAILING
-                || userInput.CMD2 == GameObjects.DUMBWAITER)
+            if (userInput.CMD2obj == CteObjects.FRIDGE
+                || userInput.CMD2obj == CteObjects.COUCH
+                || userInput.CMD2obj == CteObjects.DOOR
+                || userInput.CMD2obj == CteObjects.RAILING
+                || userInput.CMD2obj == CteObjects.DUMBWAITER)
             {
                 gameState.AddMessage("It's too heavy, you can't take that");
                 return;
             }
 
             // take picture from the wall (3=sitting room)
-            if (userInput.CMD2 == CmdAdd(GameObjects.PICTURE) // 38 picture (38-33 = 5)
-                && gameItems.houseItems[obj].IsAt(GameRooms.MIDAIR30) // 30 mid-air (means picture is in mid-air)
-                && gameState.IsAt(GameRooms.SITTINGROOM3)) // 3 sitting room
+            if (userInput.CMD2obj == CteObjects.PICTURE // 38 picture = 5
+                && gameItems.houseItems[obj].IsAt(CteRooms.MIDAIR30) // 30 mid-air (means picture is in mid-air)
+                && gameState.IsPlayerAt(CteRooms.SITTINGROOM3)) // 3 sitting room
             {
                 gameState.AddMessage("The picture is hanging too high up on the wall, you have to find another way to reach it...");
                 return;
             }
 
             // take picture from mid-air
-            if (userInput.CMD2 == CmdAdd(GameObjects.PICTURE) // 38 picture
-                && gameState.IsAt(GameRooms.MIDAIR30)) // 30 mid-air
+            if (userInput.CMD2obj == CteObjects.PICTURE // 38 picture = 5
+                && gameState.IsPlayerAt(CteRooms.MIDAIR30)) // 30 mid-air
             {
                 gameState.AddMessage("Taking the picture reveals a fusebox");
 
-                gameItems.houseItems[GameObjects.PICTURE].TakeItem(); // picture is being carried
-                gameItems.houseItems[GameObjects.FUSEBOX].LeaveItem(GameRooms.MIDAIR30); // fusebox is now in mid-air
+                gameItems.houseItems[CteObjects.PICTURE].TakeItem(); // picture is being carried
+                gameItems.houseItems[CteObjects.FUSEBOX].LeaveItem(CteRooms.MIDAIR30); // fusebox is now in mid-air
                 return;
             }
 
             // take boxspring from bottom of stairs
-            if (userInput.CMD2 == CmdAdd(GameObjects.BOXSPRING) // 45 boxspring
-                && gameState.IsAt(GameRooms.BOTTOMOFSTAIRS29)) // 29 bottom of stairs
+            if (userInput.CMD2obj == CteObjects.BOXSPRING // 45 boxspring = 12
+                && gameState.IsPlayerAt(CteRooms.BOTTOMOFSTAIRS29)) // 29 bottom of stairs
             {
                 gameState.AddMessage("It is better to leave it there");
                 return;
@@ -505,92 +519,93 @@ namespace UncleTayHouse
             // check if the object is here and not hidden
             if (!gameItems.houseItems[obj].IsAt(gameState.PlayerAt))
             {
-                gameState.AddMessage("There is no " + Texts.VOCABS[userInput.CMD2] + " here");
+                gameState.AddMessage("There is no " + Constants.AllWords[userInput.CMD2] + " here");
                 return;
             }
 
             // player is carrying object
             gameItems.houseItems[obj].TakeItem();
-            gameState.AddMessage(Texts.VOCABS[userInput.CMD2] + ": taken");
+            gameState.AddMessage(Constants.AllWords[userInput.CMD2] + ": taken");
         }
-        // ok
+
         public void ActionDrop()
         {
-            int obj = CmdSub(userInput.CMD2);
+            int obj = userInput.CMD2obj;
 
             // check if is carrying it first
             if (!gameItems.houseItems[obj].IsCarrying())
             {
-                gameState.AddMessage("You aren't carrying " + Texts.VOCABS[userInput.CMD2]);
+                gameState.AddMessage("You aren't carrying " + Constants.AllWords[userInput.CMD2]);
                 return;
             }
 
             // drop gainesburger hallway
-            if (userInput.CMD2 == CmdAdd(GameObjects.GAINESBURGER) // 43 gainesburger
-                && gameState.IsAt(GameRooms.HALL17) // 17 hallway
-                && LocationExit[17, 1] <= 0) // north exit is not open yet
+            if (userInput.CMD2obj == CteObjects.GAINESBURGER // 43 gainesburger = 10
+                && gameState.IsPlayerAt(CteRooms.HALL17) // 17 hallway
+                && gameItems.IsExitHidden(17, CteVerbs.NORTH)) // north exit is not open yet
             {
                 gameState.AddMessage("The dog looks disgusted. maybe you should eat it");
                 return;
             }
 
             // drop teddybear hallway
-            if (userInput.CMD2 == CmdAdd(GameObjects.TEDDYBEAR) // 35 teddybear
-                && gameState.IsAt(GameRooms.HALL17) // 17 hallway
-                && LocationExit[17, 1] <= 0) // north exit is not open yet
+            if (userInput.CMD2obj == CteObjects.TEDDYBEAR // 35 teddybear = 2
+                && gameState.IsPlayerAt(CteRooms.HALL17) // 17 hallway
+                && gameItems.IsExitHidden(17, CteVerbs.NORTH)) // north exit is not open yet
             {
                 gameState.AddMessage("The dog chews his favorite toy and is soon asleep");
 
-                gameItems.houseItems[GameObjects.TEDDYBEAR].HideItem(); // teddybear is now hidden
-                LocationExit[17, 1] = 18; // reveal secret room north
+                gameItems.houseItems[CteObjects.TEDDYBEAR].HideItem(); // teddybear is now hidden
+                gameItems.SetLocationExit(CteRooms.HALL17, CteVerbs.NORTH, CteRooms.CHILDSROOM18); // reveal secret room north
                 return;
             }
 
             // drop boxpring bottom of stairs
-            if (userInput.CMD2 == CmdAdd(GameObjects.BOXSPRING) // 45 boxspring
-                && gameState.IsAt(GameRooms.BOTTOMOFSTAIRS29) // 29 bottom of stairs
-                && LocationExit[29, 5] <= 0)
+            if (userInput.CMD2obj == CteObjects.BOXSPRING // 45 boxspring = 12
+                && gameState.IsPlayerAt(CteRooms.BOTTOMOFSTAIRS29) // 29 bottom of stairs
+                && gameItems.IsExitHidden(CteRooms.BOTTOMOFSTAIRS29, CteVerbs.UP)) // 5
             {
                 gameState.AddMessage("The boxspring covers the gap in the stairs");
 
-                gameItems.houseItems[GameObjects.BOXSPRING].HideItem(); // 12 boxspring is now hidden
-
-                LocationExit[29, 5] = 2; // U: unlock with drop boxspring
-                LocationExit[2, 6] = 29; // D: STAIRS TO BASEMENT is hidden until drop Boxspring
+                gameItems.houseItems[CteObjects.BOXSPRING].HideItem(); // 12 boxspring is now hidden
+                // unlock stairs to basement (both ways)
+                gameItems.SetLocationExit(CteRooms.BOTTOMOFSTAIRS29, CteVerbs.UP, CteRooms.KITCHEN2); // unlock up to kitchen
+                gameItems.SetLocationExit(CteRooms.KITCHEN2, CteVerbs.DOWN, CteRooms.BOTTOMOFSTAIRS29); // unlock down to bottom of stairs
                 return;
             }
 
             // leave the object in the current location
             gameItems.houseItems[obj].LeaveItem(gameState.PlayerAt);
 
-            gameState.AddMessage(Texts.VOCABS[userInput.CMD2] + ": dropped");
+            gameState.AddMessage(Constants.AllWords[userInput.CMD2] + ": dropped");
         }
-        // ok
+
         public void ActionLook()
         {
-            int obj = CmdSub(userInput.CMD2);
+            int obj = userInput.CMD2obj;
 
             // check if the object is here and not hidden
-            if (gameItems.houseItems[obj].IsHidden()
-                || !gameItems.houseItems[obj].IsAt(gameState.PlayerAt))
+            if (gameItems.houseItems[obj].IsHidden() // can't look at hidden object
+                || !(gameItems.houseItems[obj].IsAt(gameState.PlayerAt) // is not here
+                || gameItems.houseItems[obj].IsCarrying())) // or player is not carying it
             {
-                gameState.AddMessage("There is no " + Texts.VOCABS[userInput.CMD2] + " here");
+                gameState.AddMessage("There is no " + Constants.AllWords[userInput.CMD2] + " here");
                 return;
             }
 
             // look at the picture on the wall
-            if (userInput.CMD2 == CmdAdd(GameObjects.PICTURE) // 38 picture
-                && gameState.IsAt(GameRooms.SITTINGROOM3) // 3 sitting room
-                && gameItems.houseItems[GameObjects.PICTURE].IsAt(GameRooms.MIDAIR30)) // 30 mid-air (means picture is in mid-air)
+            if (userInput.CMD2obj == CteObjects.PICTURE // 38 picture = 5
+                && gameState.IsPlayerAt(CteRooms.SITTINGROOM3) // 3 sitting room
+                && gameItems.houseItems[CteObjects.PICTURE].IsAt(CteRooms.MIDAIR30)) // 30 mid-air (means picture is in mid-air)
             {
                 gameState.AddMessage("The picture is hanging too high up on the wall, you have to find another way to reach it...");
                 return;
             }
 
             // look 42=note and (13=master bedroom OR 22=bathroom)
-            if (userInput.CMD2 == CmdAdd(GameObjects.NOTE) // 42 note
-                && (gameState.IsAt(GameRooms.MASTERBEDROOM13) // 13 master bedroom
-                || gameState.IsAt(GameRooms.BATHROOM22))) // 22 bathroom
+            if (userInput.CMD2obj == CteObjects.NOTE // 42 note = 9
+                && (gameState.IsPlayerAt(CteRooms.MASTERBEDROOM13) // 13 master bedroom
+                || gameState.IsPlayerAt(CteRooms.BATHROOM22))) // 22 bathroom
             {
                 ActionSafeDoor();
                 return;
@@ -603,9 +618,9 @@ namespace UncleTayHouse
                 return;
             }
 
-            gameState.AddMessage("There's nothing special about the " + Texts.VOCABS[userInput.CMD2]);
+            gameState.AddMessage("There's nothing special about the " + Constants.AllWords[userInput.CMD2]);
         }
-        // ok
+
         public void ActionSafeDoor()
         {
             // decide which door is safe
@@ -627,20 +642,19 @@ namespace UncleTayHouse
             }
             gameState.AddMessage("Experiments on " + N1S + " and " + N2S + " doors proceeding well; file for patent");
         }
-        // ok
+
         public void ActionUnlock()
         {
-            if (!gameState.IsAt(GameRooms.HALL5)
-                || !gameState.IsAt(GameRooms.LIBRARY8)
-                || !gameState.IsAt(GameRooms.HALL20)
-                || !gameState.IsAt(GameRooms.HALL17))
+            if (!gameState.IsPlayerAt(CteRooms.HALL5)
+                || !gameState.IsPlayerAt(CteRooms.LIBRARY8)
+                || !gameState.IsPlayerAt(CteRooms.HALL20)
+                || !gameState.IsPlayerAt(CteRooms.HALL17))
             {
                 gameState.AddMessage("There is no door here!");
                 return;
             }
             // do we have a key?
-            if (!gameItems.houseItems[GameObjects.KEY].IsCarrying()) // 7 key
-            // 13 = master bedroom ? key ?
+            if (!gameItems.houseItems[CteObjects.KEY].IsCarrying()) // 7 key
             {
                 gameState.AddMessage("You don't have a key!");
                 return;
@@ -648,50 +662,50 @@ namespace UncleTayHouse
             else // yes
             {
                 // ckeck where we are
-                if (gameState.IsAt(GameRooms.HALL5)) // 5 Hallway?
+                if (gameState.IsPlayerAt(CteRooms.HALL5)) // 5 Hallway?
                 {
                     gameState.AddMessage("The key doesn't fit the lock");
                     return;
                 }
                 // only unlock if is in the Hallway and have a key
-                if (gameState.IsAt(GameRooms.HALL17) // 17 hall
-                    && gameItems.houseItems[GameObjects.KEY].IsCarrying()) // 7 key
+                if (gameState.IsPlayerAt(CteRooms.HALL17) // 17 hall
+                    && gameItems.houseItems[CteObjects.KEY].IsCarrying()) // 7 key
                 {
-                    gameState.AddMessage("You unlock the door. beware!");
-                    LocationExit[17, 4] = 20; // reveal north
+                    gameState.AddMessage("You unlock the door. Beware!");
+                    gameItems.SetLocationExit(CteRooms.HALL17, CteVerbs.WEST, CteRooms.HALL20); // unlock door west to hall 20
                     return;
                 }
             }
             gameState.AddMessage("Nothing to unlock!");
         }
-        // ok
+
         public void ActionOpen()
         {
             // open door == unlock door
-            if (userInput.CMD2 == CmdAdd(GameObjects.DOOR))
+            if (userInput.CMD2obj == CteObjects.DOOR) // 57 door = 2
             {
                 ActionUnlock();
                 return;
             }
             // open door in dangerous hall 20
-            if (userInput.CMD2 == CmdAdd(GameObjects.DOOR)// 57 door
-                && gameState.IsAt(GameRooms.HALL20)) // 20 hall
+            if (userInput.CMD2obj == CteObjects.DOOR // 57 door = 2
+                && gameState.IsPlayerAt(CteRooms.HALL20)) // 20 hall
             {
                 gameState.AddMessage("Please specify LEFT, CENTER or RIGHT");
                 return;
             }
             gameState.AddMessage("Open what?");
         }
-        // ok
+
         public void ActionOpen3Door()
         {
-            if (!gameState.IsAt(GameRooms.HALL20)) // 20 dangerous hall
+            if (!gameState.IsPlayerAt(CteRooms.HALL20)) // 20 dangerous hall
             {
-                gameState.AddMessage("You can't do that here");
+                gameState.AddMessage("You can't open that door here");
                 return;
             }
 
-            if (userInput.CMD3 != CmdAdd(GameObjects.DOOR)) // 57 door
+            if (userInput.CMD3obj != CteObjects.DOOR) // 57 door
             {
                 gameState.AddMessage("Open what?");
                 return;
@@ -710,8 +724,8 @@ namespace UncleTayHouse
 
             if (DOORDIR == gameState.SafeDoor)
             {
-                gameState.AddMessage("Opening the door reveals a dumbwaiter");
-                LocationExit[gameState.PlayerAt, 4] = 23;
+                gameState.AddMessage("Opening the door reveals a dumbwaiter in the west room");
+                gameItems.SetLocationExit(CteRooms.HALL20, CteVerbs.WEST, CteRooms.DUMBWAITER23); // reveal dumbwaiter in the west room
                 return;
             }
 
@@ -727,15 +741,15 @@ namespace UncleTayHouse
             gameState.AddMessage("An ironing board slams onto your head");
             // you die
         }
-        // ok
+
         public void ActionEat()
         {
-            if (!gameItems.houseItems[GameObjects.GAINESBURGER].IsCarrying()) // 10 GAINESBURGER
+            if (!gameItems.houseItems[CteObjects.GAINESBURGER].IsCarrying()) // 10 GAINESBURGER
             {
                 gameState.AddMessage("You don't have it!");
                 return;
             }
-            else if (userInput.CMD2 != GameObjects.GAINESBURGER)
+            if (userInput.CMD2obj != CteObjects.GAINESBURGER)
             {
                 gameState.AddMessage("You can't eat that!");
                 return;
@@ -743,40 +757,40 @@ namespace UncleTayHouse
 
             gameState.AddMessage("There was a diamond hidden inside the gainesburger");
 
-            gameItems.houseItems[GameObjects.GAINESBURGER].HideItem(); // 10 gainesburger is now hidden
-            gameItems.houseItems[GameObjects.DIAMOND].LeaveItem(gameState.PlayerAt); // 17 diamond is now in the player's location
+            gameItems.houseItems[CteObjects.GAINESBURGER].HideItem(); // 10 gainesburger is now hidden
+            gameItems.houseItems[CteObjects.DIAMOND].LeaveItem(gameState.PlayerAt); // 17 diamond is now in the player's location
         }
-        // ok
+
         public void ActionSpin()
         {
-            if (!gameItems.houseItems[GameObjects.SPINNINGTOP].IsCarrying()) // 8 spinningtop
+            if (!gameItems.houseItems[CteObjects.SPINNINGTOP].IsCarrying()) // 8 spinningtop
             {
                 gameState.AddMessage("Spin what?");
                 return;
             }
-            if (gameState.IsAt(GameRooms.CHILDSROOM18)) // 18 child's room
+            if (gameState.IsPlayerAt(CteRooms.CHILDSROOM18)) // 18 child's room
             {
                 gameState.AddMessage("There is a flash of light and a cracking sound! An opening appears in the east wall");
-                LocationExit[18, 3] = GameRooms.SECRETROOM19; // 19 reveal east (dark room)
+                gameItems.SetLocationExit(CteRooms.CHILDSROOM18, CteVerbs.EAST, CteRooms.SECRETROOM19); // reveal east secret dark room
                 return;
             }
 
             gameState.AddMessage("Whee!");
         }
-        // ok
+
         public void ActionMoveObj()
         {
-            if (userInput.CMD2 == CmdAdd(GameObjects.FRIDGE)) // 54 fridge
+            if (userInput.CMD2obj == CteObjects.FRIDGE) // 54 fridge = 21
             {
                 gameState.AddMessage("It's too heavy for you to move alone (without any help)");
                 return;
             }
-            if (userInput.CMD2 == CmdAdd(GameObjects.COUCH)) // 55 couch
+            if (userInput.CMD2obj == CteObjects.COUCH) // 55 couch = 22
             {
                 gameState.AddMessage("Your back is acting up, you will need some support");
                 return;
             }
-            if (userInput.CMD2 == CmdAdd(GameObjects.CLOTHES)) // 56 clothes
+            if (userInput.CMD2obj == CteObjects.CLOTHES) // 56 clothes = 23
             {
                 gameState.AddMessage("That seems pointless and unsanitary, they are too dirty!");
                 return;
@@ -784,18 +798,18 @@ namespace UncleTayHouse
 
             gameState.AddMessage("You can't do that");
         }
-        // ok
+
         public void ActionJump()
         {
             // check if we are at the balcony
-            if (!gameState.IsAt(GameRooms.BALCONY12)) // 12 Balcony
+            if (!gameState.IsPlayerAt(CteRooms.BALCONY12)) // 12 Balcony
             {
                 gameState.AddMessage("You jump up and down a couple of times and feel more relaxed now, but nothing special happens.");
                 return;
             }
 
             // check if BUNGEE cord is tied to the railing
-            if (gameItems.houseItems[GameObjects.BUNGEE].IsTied()) // 6 bungee is tied to the railing
+            if (gameItems.houseItems[CteObjects.BUNGEE].IsTied()) // 6 bungee is tied to the railing
             {
                 gameState.AddMessage("You forgot your parachute. Or maybe something else...");
                 return;
@@ -804,10 +818,10 @@ namespace UncleTayHouse
             gameState.AddMessage("You bungee off the balcony...");
 
             // set location to MID-AIR (so can take the picture)
-            gameState.PlayerAt = GameRooms.MIDAIR30; // 30 mid-air
+            gameState.PlayerAt = CteRooms.MIDAIR30; // 30 mid-air
             gameState.PlayerJump = false; // reset for multiple jumps
         }
-        // ok
+
         public void ActionPlayerMove(int dir)
         {
             // convert N,S,E,W,U,D to long form
@@ -815,38 +829,37 @@ namespace UncleTayHouse
             {
                 dir -= 6;
             }
-            if (LocationExit[gameState.PlayerAt, dir] > 0)
+            if (!gameItems.IsExitHidden(gameState.PlayerAt, dir))
             {
-                gameState.PlayerAt = LocationExit[gameState.PlayerAt, dir];
+                gameState.PlayerAt = gameItems.GetLocationExit(gameState.PlayerAt, dir);
                 return;
             }
-            if (gameState.IsAt(GameRooms.BALCONY12) // 12 attic
-                && dir == GameVerbs.UP) // 5 up to attic
+            if (gameState.IsPlayerAt(CteRooms.BALCONY12) // 12 attic
+                && dir == CteVerbs.UP) // 5 up to attic
             {
                 gameState.AddMessage("You're afraid of the dark");
                 return;
             }
-            if (gameState.IsAt(GameRooms.HALL17) // 17 hall
-                && dir == GameVerbs.NORTH) // 1 north
+            if (gameState.IsPlayerAt(CteRooms.HALL17) // 17 hall
+                && dir == CteVerbs.NORTH) // 1 north
             {
                 gameState.AddMessage("You never did like that dog");
                 return;
             }
-            if (gameState.IsAt(GameRooms.DUMBWAITER23) // 23 dumbwaiter
-                && LocationExit[23, 6] <= 0) // D: is blocked, unlock with oilcan
+            if (gameState.IsPlayerAt(CteRooms.DUMBWAITER23) // 23 dumbwaiter
+                && gameItems.IsExitHidden(CteRooms.DUMBWAITER23, CteVerbs.DOWN)) // D: is blocked, unlock with oilcan
             {
                 gameState.AddMessage("The dumbwaiter mechanism is corroded and won't move");
                 return;
             }
-
             gameState.AddMessage("You can't go that way");
         }
-        // ok
+
         public void ActionMoveFridgeWithJack()
         {
-            if (userInput.CMD1 != GameVerbs.MOVE // 26 move
-                || userInput.CMD2 != CmdAdd(GameObjects.FRIDGE) // 54 fridge
-                || userInput.CMD3 != CmdAdd(GameObjects.JACK)) // 37 jack
+            if (userInput.CMD1 != CteVerbs.MOVE // 26 move
+                || userInput.CMD2obj != CteObjects.FRIDGE // 54 fridge
+                || userInput.CMD3obj != CteObjects.JACK) // 37 jack
             {
                 gameState.AddMessage("You can't do that");
                 return;
@@ -854,14 +867,14 @@ namespace UncleTayHouse
 
             gameState.AddMessage("You jack up the fridge and find a fuse under it");
 
-            gameItems.houseItems[GameObjects.FUSE].LeaveItem(gameState.PlayerAt); // reveal fuse
+            gameItems.houseItems[CteObjects.FUSE].LeaveItem(gameState.PlayerAt); // reveal fuse
         }
-        // ok
+
         public void ActionMoveCouchWithBrace()
         {
-            if (userInput.CMD1 != GameVerbs.MOVE // 26 move
-                || userInput.CMD2 != CmdAdd(GameObjects.COUCH) // 55 couch
-                || userInput.CMD3 != CmdAdd(GameObjects.BRACE)) // 46 brace
+            if (userInput.CMD1 != CteVerbs.MOVE // 26 move
+                || userInput.CMD2obj != CteObjects.COUCH // 55 couch
+                || userInput.CMD3obj != CteObjects.BRACE) // 46 brace
             {
                 gameState.AddMessage("You can't do that");
                 return;
@@ -869,45 +882,45 @@ namespace UncleTayHouse
 
             gameState.AddMessage("You move the couch and find a teddybear behind it");
 
-            gameItems.houseItems[GameObjects.TEDDYBEAR].LeaveItem(gameState.PlayerAt); // reveal teddybear
+            gameItems.houseItems[CteObjects.TEDDYBEAR].LeaveItem(gameState.PlayerAt); // reveal teddybear
         }
-        // ok
+
         public void ActionMoveClothesWithGloves()
         {
-            if (userInput.CMD1 != GameVerbs.MOVE // 26 move
-                || userInput.CMD2 != CmdAdd(GameObjects.CLOTHES) // 56 clothes
-                || userInput.CMD3 != CmdAdd(GameObjects.GLOVES)) // 44 gloves
+            if (userInput.CMD1 != CteVerbs.MOVE // 26 move
+                || userInput.CMD2obj != CteObjects.CLOTHES // 56 clothes
+                || userInput.CMD3obj != CteObjects.GLOVES) // 44 gloves
             {
                 gameState.AddMessage("You can't do that");
                 return;
             }
 
             gameState.AddMessage("Moving the clothes reveals a laundry chute to the basement");
-            LocationExit[gameState.PlayerAt, 6] = GameRooms.LAUNDRY27; // 27 laundry chute
+            gameItems.SetLocationExit(CteRooms.BATHROOM7, CteVerbs.DOWN, CteRooms.LAUNDRY27); // down to basement
         }
-        // ok
+
         public void ActionTieBungeeToRailing()
         {
             // is carrying a bungee cord?
-            if (!gameItems.houseItems[GameObjects.BUNGEE].IsCarrying()) // 6 bungee
+            if (!gameItems.houseItems[CteObjects.BUNGEE].IsCarrying()) // 6 bungee
             {
                 gameState.AddMessage("You don't have a bungee cord!");
                 return;
             }
             // is in the Balcony
-            if (!gameState.IsAt(GameRooms.BALCONY12)) // 12 balcony
+            if (!gameState.IsPlayerAt(CteRooms.BALCONY12)) // 12 balcony
             {
                 gameState.AddMessage("There is nothing here to tie to");
                 return;
             }
             // object is not BUNGEE cord
-            if (userInput.CMD2 != CmdAdd(GameObjects.BUNGEE)) // 39 bungee
+            if (userInput.CMD2obj != CteObjects.BUNGEE) // 39 bungee
             {
                 gameState.AddMessage("You can't tie that");
                 return;
             }
             // rainling
-            if (userInput.CMD3 != CmdAdd(GameObjects.RAILING)) // 58 railing
+            if (userInput.CMD3obj != CteObjects.RAILING) // 58 railing
             {
                 gameState.AddMessage("Tie to what?");
                 return;
@@ -915,51 +928,51 @@ namespace UncleTayHouse
 
             gameState.AddMessage("Bungee cord tied to Railing!");
 
-            gameItems.houseItems[GameObjects.BUNGEE].TieItem(); // 6 bungee is tied to the railing
+            gameItems.houseItems[CteObjects.BUNGEE].TieItem(); // 6 bungee is tied to the railing
         }
-        // ok
+
         public void ActionOilDumbwaiterWithOilcan()
         {
             // is in the dumbwaiter?
-            if (!gameState.IsAt(GameRooms.DUMBWAITER23)) // 23 dumbwaiter
+            if (!gameState.IsPlayerAt(CteRooms.DUMBWAITER23)) // 23 dumbwaiter
             {
                 gameState.AddMessage("You can't do that here");
                 return;
             }
-            if (!gameItems.houseItems[GameObjects.OILCAN].IsCarrying()) // 15 oilcan
+            if (!gameItems.houseItems[CteObjects.OILCAN].IsCarrying()) // 15 oilcan
             {
                 gameState.AddMessage("You don't have any oil");
                 return;
             }
-            if (userInput.CMD2 != CmdAdd(GameObjects.DUMBWAITER)) // 59 dumbwaiter
+            if (userInput.CMD2obj != CteObjects.DUMBWAITER) // 59 dumbwaiter
             {
                 gameState.AddMessage("Oil what?");
                 return;
             }
 
             gameState.AddMessage("The dumbwaiter mechanism now runs smoothly");
-            LocationExit[23, 6] = GameRooms.DUMBWAITER24; // reveal down to 24
+            gameItems.SetLocationExit(CteRooms.DUMBWAITER23, CteVerbs.DOWN, CteRooms.DUMBWAITER24); // reveal down to dumbwaiter24
         }
-        // ok
+
         public void ActionPutFuseInFusebox()
         {
             // check if we have the fuse
-            if (!gameItems.houseItems[GameObjects.FUSE].IsCarrying())
+            if (!gameItems.houseItems[CteObjects.FUSE].IsCarrying())
             {
                 gameState.AddMessage("You don't have it!");
                 return;
             }
 
-            if (userInput.CMD3 != CmdAdd(GameObjects.FUSEBOX)) // 60 fusebox
+            if (userInput.CMD3obj != CteObjects.FUSEBOX) // 60 fusebox
             {
                 gameState.AddMessage("You can't put it there");
                 return;
             }
 
-            if (userInput.CMD1 != GameVerbs.PUT // 30 put
-                || userInput.CMD2 != CmdAdd(GameObjects.FUSE) // 36 fuse
-                || userInput.CMD3 != CmdAdd(GameObjects.FUSEBOX) // 60 fusebox
-                || !gameState.IsAt(GameRooms.MIDAIR30))// 30 mid-air
+            if (userInput.CMD1 != CteVerbs.PUT // 30 put
+                || userInput.CMD2obj != CteObjects.FUSE // 36 fuse
+                || userInput.CMD3obj != CteObjects.FUSEBOX // 60 fusebox
+                || !gameState.IsPlayerAt(CteRooms.MIDAIR30))// 30 mid-air
             {
                 gameState.AddMessage("You can't do that here");
                 return;
@@ -968,23 +981,22 @@ namespace UncleTayHouse
             gameState.AddMessage("You put the fuse in the box. Power is restored in the Attic!");
 
             // mark fuse as hidden
-            gameItems.houseItems[GameObjects.FUSE].HideItem();
-            // stairs to attic is hidden until fuse is inserted
-            LocationExit[12, 5] = GameRooms.ATTIC25; // 25 attic
+            gameItems.houseItems[CteObjects.FUSE].HideItem();
+            gameItems.SetLocationExit(CteRooms.BALCONY12, CteVerbs.UP, CteRooms.ATTIC25); // stairs to attic is hidden until fuse is inserted
         }
-        // ok
+
         public void ActionReadNoteInMirror()
         {
             // check if we have the note
-            if (!gameItems.houseItems[GameObjects.NOTE].IsCarrying())
+            if (!gameItems.houseItems[CteObjects.NOTE].IsCarrying())
             {
                 gameState.AddMessage("Which note?");
                 return;
             }
             // we can only read the note in the mirror in 2 places
-            if (userInput.CMD2 == CmdAdd(GameObjects.NOTE) // 42 note
-                && (gameState.IsAt(GameRooms.MASTERBEDROOM13) // 13 master bedroom
-                || gameState.IsAt(GameRooms.BATHROOM22))) // 22 bathroom
+            if (userInput.CMD2obj == CteObjects.NOTE // 42 note = 9
+                && (gameState.IsPlayerAt(CteRooms.MASTERBEDROOM13) // 13 master bedroom
+                || gameState.IsPlayerAt(CteRooms.BATHROOM22))) // 22 bathroom
             {
                 ActionSafeDoor();
                 return;

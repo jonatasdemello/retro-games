@@ -1,9 +1,7 @@
 ﻿namespace UncleTayHouse
 {
-    public static class GameRooms
+    public static class CteRooms
     {
-        // These numbers are Room Ids (fixed)
-        public static int DUMMY { get; } = 0;
         public static int FOYER1 { get; } = 1;
         public static int KITCHEN2 { get; } = 2;
         public static int SITTINGROOM3 { get; } = 3;

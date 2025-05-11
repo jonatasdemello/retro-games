@@ -1,6 +1,6 @@
 ﻿namespace UncleTayHouse.Models
 {
-    public class GameMap
+    public class GameMapModel
     {
         public int id = 0;
         public string rname = "";

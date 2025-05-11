@@ -2,22 +2,10 @@
 
 namespace UncleTayHouse
 {
-    public class GameItems
+    public class GameItemsModel
     {
-        // extended description
-        public ExtDesc[] extDesc { get; } =
-        [
-            new ExtDesc { location = 5, direction = 6, description = "There is a locked door to the north." },
-            new ExtDesc { location = 8, direction = 6, description = "There is a locked door to the south." },
-            new ExtDesc { location = 2, direction = 6, description = "Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable." },
-            new ExtDesc { location = 29, direction = 5, description = "Stairs lead up. Several steps have collapsed, making the staircase unusable." },
-            new ExtDesc { location = 12, direction = 5, description = "Dark stairs lead up to the attic." },
-            new ExtDesc { location = 17, direction = 4, description = "A locked door to the WEST is labelled 'EXTREME DANGER'." },
-            new ExtDesc { location = 17, direction = 1, description = "Your uncle's doberman blocks a doorway to the north." }
-        ];
-
         // Describe game objects and their locations
-        public List<GameItem> houseItems { get; } =
+        public List<GameItemModel> houseItems { get; } =
         [
             new() { id = 0,  location = -99, objId =  0,  name = "(dummy)",      desc = "(dummy)" },
             new() { id = 1,  location =  1,  objId = 34,  name = "NEWSPAPER",    desc = "Tays house unlikely ever to be sold. tales of gutted stairwells and booby traps have spooked buyers..." },
@@ -49,14 +37,26 @@ namespace UncleTayHouse
             new() { id = 27, location = -1,  objId = 60,  name = "FUSEBOX",      desc = "An old-fashioned fusebox. the fuse marked 'attic' is missing." },
             new() { id = 28, location = 22,  objId = 61,  name = "MIRROR",       desc = "A mirror in the wall" }
         ];
-        public GameItem GetObject(string obj)
+        public GameItemModel GetObject(string obj)
         {
             return houseItems.FirstOrDefault(i => i.name.Equals(obj, StringComparison.OrdinalIgnoreCase))
-                   ?? new GameItem { id = -1, location = -1, objId = -1, name = "(not found)", desc = "(not found)" };
+                   ?? new GameItemModel { id = -1, location = -1, objId = -1, name = "(not found)", desc = "(not found)" };
         }
 
+        // extended description
+        public ExtendedDescriptionModel[] extDesc { get; } =
+        [
+            new ExtendedDescriptionModel { location = 5, direction = 6, description = "There is a locked door to the north." },
+            new ExtendedDescriptionModel { location = 8, direction = 6, description = "There is a locked door to the south." },
+            new ExtendedDescriptionModel { location = 2, direction = 6, description = "Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable." },
+            new ExtendedDescriptionModel { location = 29, direction = 5, description = "Stairs lead up. Several steps have collapsed, making the staircase unusable." },
+            new ExtendedDescriptionModel { location = 12, direction = 5, description = "Dark stairs lead up to the attic." },
+            new ExtendedDescriptionModel { location = 17, direction = 4, description = "A locked door to the WEST is labelled 'EXTREME DANGER'." },
+            new ExtendedDescriptionModel { location = 17, direction = 1, description = "Your uncle's doberman blocks a doorway to the north." }
+        ];
+
         // Describe Rooms
-        public List<GameMap> houseMap { get; } =
+        public List<GameMapModel> houseMap { get; } =
         [
             new() { id = 0,  rname = "(dymmy)", rdesc = "(dymmy)" }, // for now we need this, will remove later
             new() { id = 1,  rname = "FOYER (LOBBY)", rdesc = "The entryway to the house" },
@@ -91,5 +91,74 @@ namespace UncleTayHouse
             new() { id = 30, rname = "MID-AIR", rdesc = "Hanging from a bungee cord" },
             new() { id = 31, rname = "LEAVE THE HOUSE", rdesc = "Leave the house and the game" }
         ];
+
+        public int GetLocationExit(int location, int direction)
+        {
+            if (IsValid(location, direction))
+            {
+                return LocationExit[location, direction];
+            }
+            return -99;
+        }
+
+        public int SetLocationExit(int curLocation, int direction, int newLocation)
+        {
+            if (IsValid(curLocation, direction))
+            {
+                LocationExit[curLocation, direction] = newLocation;
+                return newLocation;
+            }
+            return -99;
+        }
+
+        public bool IsValid(int location, int direction)
+        {
+            return (location >= 0 && location < LocationExit.GetLength(0) &&
+                    direction >= 0 && direction < LocationExit.GetLength(1) &&
+                    LocationExit[location, direction] != -99);
+        }
+
+        public bool IsExitHidden(int location, int direction)
+        {
+            int loc = GetLocationExit(location, direction);
+            return loc <= 0;
+
+        }
+        public int[,] LocationExit { get; set; } = {
+            // 1-NORTH 2-SOUTH 3-EAST 4-WEST 5-UP 6-DOWN
+            // 0    N      S      E      W      U      D
+            { 00,  -99  , -99  , -99  , -99  , -99  , -99  },//0-dummy
+            { 01,    2  ,  31  ,   3  ,   4  ,   0  ,   0  },
+            { 02,    0  ,   1  ,   0  ,   0  ,   0  ,  -1  }, // D: STAIRS TO BASEMENT is hidden until drop Boxspring
+            { 03,    2  ,   0  ,  11  ,   1  ,  12  ,   0  },
+            { 04,    6  ,   7  ,   1  ,   5  ,   0  ,   0  },
+            { 05,    0  ,   9  ,   4  ,  10  ,   0  ,   0  },
+            { 06,    0  ,   4  ,   0  ,   0  ,   0  ,   0  },
+            { 07,    4  ,   0  ,   0  ,   0  ,   0  ,  -1  }, // D: move clothes with gloves
+            { 08,    0  ,   0  ,   0  ,  24  ,   0  ,   0  },
+            { 09,    5  ,   0  ,   0  ,   0  ,   0  ,   0  },
+            { 10,    0  ,   0  ,   5  ,   0  ,   0  ,   0  },
+            { 11,    0  ,   0  ,   0  ,   3  ,   0  ,   0  },
+            { 12,   13  ,   0  ,   0  ,  14  ,  -1  ,   3  }, // W: STAIRS TO ATTIC25 is hidden until fuse is inserted
+            { 13,    0  ,  12  ,   0  ,   0  ,   0  ,   0  },
+            { 14,    0  ,  15  ,  12  ,  17  ,   0  ,   0  },
+            { 15,   14  ,   0  ,   0  ,  16  ,   0  ,   0  },
+            { 16,    0  ,   0  ,  15  ,   0  ,   0  ,   0  },
+            { 17,   -1  ,   0  ,  14  ,  -1  ,   0  ,   0  }, // N: HALL, doverman blocks door until drop teddybear, W: unlock door
+            { 18,    0  ,  17  ,  -1  ,   0  ,   0  ,   0  }, // E: secret room hidden until SPINNINGTOP
+            { 19,    0  ,   0  ,   0  ,  18  ,   0  ,   0  },
+            { 20,   21  ,  22  ,  17  ,  -1  ,   0  ,   0  }, // W: Dangerous Hall, open X door (after reading note)
+            { 21,    0  ,  20  ,   0  ,   0  ,   0  ,   0  },
+            { 22,   20  ,   0  ,   0  ,   0  ,   0  ,   0  },
+            { 23,    0  ,   0  ,  20  ,   0  ,   0  ,  -1  }, // D: unlock with oilcan
+            { 24,    0  ,   0  ,   8  ,   0  ,  23  ,   0  },
+            { 25,    0  ,   0  ,   0  ,   0  ,   0  ,  12  },
+            { 26,    0  ,   0  ,  27  ,   0  ,   0  ,   0  },
+            { 27,    0  ,   0  ,  28  ,  26  ,   0  ,   0  },
+            { 28,    0  ,   0  ,  29  ,  27  ,   0  ,   0  },
+            { 29,    0  ,   0  ,   0  ,  28  ,  -1  ,   0  }, // U: unlock with drop boxspring
+            { 30,    0  ,   0  ,   0  ,   0  ,   0  ,   0  },
+            { 31,    0  ,   0  ,   0  ,   0  ,   0  ,   0  }
+        };
     }
 }

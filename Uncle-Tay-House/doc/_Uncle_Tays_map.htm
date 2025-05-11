@@ -7,7 +7,8 @@
     <title>Uncle Tays' House Adventure Walkthrough</title>
     <style>
         * {
-            font-family: verdana;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 11pt;
         }
 
         body {
@@ -19,15 +20,15 @@
         }
 
         .house {
-            width: 90%;
+            width: 100%;
             padding: 20%;
         }
 
 		.center {
 		  margin: auto;
 		  width: 50%;
-		  border: 3px solid green;
-		  padding: 10px;
+		  /* border: 3px solid green; */
+		  padding: 5px;
 		}
 
         table {
@@ -72,12 +73,19 @@
 <body>
     <h2>Uncle Tays' House Adventure Walkthrough</h2>
 
-    <button name="hints" onclick="ShowHints()">Show hints</button>
+    <button name="showHints" onclick="ShowHints()">Show hints</button>
+    <button name="hideHints" onclick="HideHints()">Hide hints</button>
     <script>
         function ShowHints() {
             var collection = document.getElementsByClassName("hint");
             for (let i = 0; i < collection.length; i++) {
                 collection[i].style.display = "block";
+            }
+        }
+        function HideHints() {
+            var collection = document.getElementsByClassName("hint");
+            for (let i = 0; i < collection.length; i++) {
+                collection[i].style.display = "none";
             }
         }
     </script>
@@ -89,11 +97,9 @@
         <table>
             <tbody>
                 <tr>
-                    <td style="border: solid 5pt;">
-                        <div>
-                            [25] ATTIC
-                            <br><span class="bgcolor6">(D &rarr; 12)</span>
-                        </div>
+                    <td style="border: solid 5pt; text-align: right">
+                        <div>[25] ATTIC</div>
+                        <div><span class="bgcolor6">(D &rarr; 12)</span></div>
                         <div class="hint">"take brace", <br> "take magazine", <br> "read magazine"</div>
                     </td>
                 </tr>
@@ -109,13 +115,11 @@
                     <td style="border: none">
                         &nbsp;
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: solid 5pt; ">
+                    <td style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: solid 5pt; ">
                         <div>[21] CORNER BEDROOM</div>
                         <div class="hint">"take investment"</div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: dotted 3pt;">
+                    <td style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: dotted 3pt;">
                         <div>[18] CHILD'S ROOM</div>
                         <div class="hint">"spin top"</div>
                     </td>
@@ -123,39 +127,31 @@
                         <div>[19] SECRET ROOM</div>
                         <div class="hint">"take loverboy"</div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: solid 5pt;">
+                    <td style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: solid 5pt;">
                         <div>[13] MASTER BEDROOM</div>
                         <div class="hint">"take key"</div>
                     </td>
                 </tr>
                 <tr>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt;">
-                        <div>
-                            [23] 3 DOORS / DUMBWAITER
-                            <br><span class="bgcolor4">(D &rarr; 24)</span>
-                        </div>
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt;">
+                        <div>[23] 3 DOORS / DUMBWAITER</div>
+                        <div><span class="bgcolor4">(D &rarr; 24)</span></div>
                     </td>
                     <td style="border-top: solid 1pt; border-bottom: solid 1pt; border-left: solid 1pt; border-right: solid 1pt;">
                         <div>[20] DANGEROUS HALL</div>
                         <div class="hint">"open [direction not mentionedin note] door", <br> "oil dumbwaiter with oilcan"</div>
                     </td>
-                    <td
-                        style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: dotted 3pt; border-right: solid 1pt;">
+                    <td style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: dotted 3pt; border-right: solid 1pt;">
                         <div>[17] HALL</div>
                         <div class="hint">"unlock door", <br> "drop teddybear" <br> (dog) </div>
                     </td>
                     <td style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 1pt; border-right: solid 1pt;">
                         <div>[14] HALL</div>
                     </td>
-                    <td
-                        style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 5pt;">
-                        <div>
-                            [12] BALCONY / STAIRS TO ATTIC
-                            <br><span class="bgcolor6">(U &rarr; 25)</span>
-                            <br><span class="bgcolor5">(D &rarr; 3)</span>
-                        </div>
+                    <td style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 5pt;">
+                        <div>[12] BALCONY / STAIRS TO ATTIC</div>
+                        <div><span class="bgcolor6">(U &rarr; 25)</span></div>
+                        <div><span class="bgcolor5">(D &rarr; 3)</span></div>
                         <div class="hint">"tie bungee to railing", <br> "jump", <br> "take picture", <br>"jump", <br>"put fuse in fusebox"</div>
                     </td>
                 </tr>
@@ -163,18 +159,15 @@
                     <td style="border: none;">
                         &nbsp;
                     </td>
-                    <td
-                        style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 5pt">
+                    <td style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 5pt">
                         <div>[22] BATHROOM</div>
                         <div class="hint">"take gloves",<br> "read note in mirror"</div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt;">
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt;">
                         <div>[16] CLOSET</div>
                         <div class="hint">"take gainesburger", <br> "eat gainesburger"</div>
                     </td>
-                    <td
-                        style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 5pt;">
+                    <td style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 5pt;">
                         <div>[15] GAME ROOM</div>
                         <div class="hint">"take top"</div>
                     </td>
@@ -190,31 +183,23 @@
         <table>
             <tbody>
                 <tr>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt;">
-                        <div>
-                            [24] DUMBWAITER
-                            <br><span class="bgcolor4">(U &rarr; 23)</span>
-                        </div>
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt;">
+                        <div>[24] DUMBWAITER</div>
+                        <div><span class="bgcolor4">(U &rarr; 23)</span></div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: dotted 3pt; border-left: solid 1pt; border-right: solid 5pt;">
+                    <td style="border-top: solid 5pt; border-bottom: dotted 3pt; border-left: solid 1pt; border-right: solid 5pt;">
                         <div>
                             <div>[08] LIBRARY</div>
                             <div class="hint">"take checkbook"</div>
                         </div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: solid 5pt;">
+                    <td style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: solid 5pt;">
                         <div>[06] DEN</div>
                         <div class="hint">"move couch with brace", <br> "take teddybear"</div>
                     </td>
-                    <td colspan="2"
-                        style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: solid 5pt;">
-                        <div>
-                            [02] KITCHEN / STAIRS TO BASEMENT
-                            <br><span class="bgcolor1">(D &rarr; 29)</span>
-                        </div>
+                    <td colspan="2" style="border-top: solid 5pt; border-bottom: solid 1pt; border-left: solid 5pt; border-right: solid 5pt;">
+                        <div>[02] KITCHEN / STAIRS TO BASEMENT</div>
+                        <div><span class="bgcolor1">(D &rarr; 29)</span></div>
                         <div class="hint">"move fridge with jack", <br> "take fuse"</div>
                     </td>
                     <td style="border: none;">
@@ -222,8 +207,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt">
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt">
                         <div>[10] GARAGE</div>
                         <div class="hint">"take jack", <br> "take bungee"</div>
                     </td>
@@ -239,13 +223,10 @@
                     </td>
                     <td
                         style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 1pt;">
-                        <div>
-                            [03] SITTING ROOM
-                            <br><span class="bgcolor5">(U &rarr; 12)</span>
-                        </div>
+                        <div>[03] SITTING ROOM</div>
+                        <div><span class="bgcolor5">(U &rarr; 12)</span></div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 5pt;">
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 5pt;">
                         <div>[11] DINING ROOM</div>
                     </td>
                 </tr>
@@ -253,21 +234,16 @@
                     <td style="border: none;">
                         &nbsp;
                     </td>
-                    <td
-                        style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 5pt;">
+                    <td style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 5pt;">
                         <div>[09] SMALL BEDROOM</div>
                         <div class="hint">"take note"</div>
                     </td>
-                    <td
-                        style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 5pt;">
-                        <div>
-                            [07] BATHROOM
-                            <br><span class="bgcolor2">(D &rarr; 27)</span>
-                        </div>
+                    <td style="border-top: solid 1pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 5pt;">
+                        <div>[07] BATHROOM</div>
+                        <div><span class="bgcolor2">(D &rarr; 27)</span></div>
                         <div class="hint">"move clothes with gloves"</div>
                     </td>
-                    <td
-                        style="border-top: solid 1pt; border-bottom: dotted 3pt; border-left: solid 5pt; border-right: solid 5pt;">
+                    <td style="border-top: solid 1pt; border-bottom: dotted 3pt; border-left: solid 5pt; border-right: solid 5pt;">
                         <div>[31] EXIT</div>
                         <div class="hint">Return here when finished</div>
                     </td>
@@ -286,37 +262,33 @@
         <table>
             <tbody>
                 <tr>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt;">
+                    <td style="border: none;">
+                        &nbsp; <span class="">-------------------</span>
+                    </td>
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 5pt; border-right: solid 1pt;">
                         <div>[26] STORAGE</div>
                         <div class="hint">"take boxspring"</div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 1pt;">
-                        <div>
-                            [27] LAUNDRY
-                            <br><span class="bgcolor2">(X &larr; 7)</span>
-                        </div>
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 1pt;">
+                        <div>[27] LAUNDRY</div>
+                        <div><span class="bgcolor2">(X &larr; 7)</span></div>
                         <div class="hint">"take loons"</div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 1pt;">
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 1pt;">
                         <div>[28] WORK ROOM</div>
                         <div class="hint">"take oilcan"</div>
                     </td>
-                    <td
-                        style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 5pt;">
-                        <div>
-                            [29] BOTTOM OF STAIRS
-                            <br><span class="bgcolor1">(X &rarr; 2)</span>
-                        </div>
+                    <td style="border-top: solid 5pt; border-bottom: solid 5pt; border-left: solid 1pt; border-right: solid 5pt;">
+                        <div>[29] BOTTOM OF STAIRS</div>
+                        <div><span class="bgcolor1">(X &rarr; 2)</span></div>
                         <div class="hint">"drop boxspring"</div>
+                    </td>
+                    <td style="border: none;">
+                        &nbsp; <span class="">-------------------</span>
                     </td>
                 </tr>
             </tbody>
         </table>
-
-
 
     </div>
     <hr />

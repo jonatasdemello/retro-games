@@ -1,6 +1,6 @@
 ﻿namespace UncleTayHouse
 {
-    public static class GameObjects
+    public static class CteObjects
     {
         public static int NEWSPAPER { get; } = 1; // 34
         public static int TEDDYBEAR { get; } = 2; // 35

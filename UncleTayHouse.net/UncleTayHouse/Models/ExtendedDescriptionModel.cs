@@ -1,6 +1,6 @@
 ﻿namespace UncleTayHouse.Models
 {
-    public class ExtDesc
+    public class ExtendedDescriptionModel
     {
         public int location;
         public int direction;
