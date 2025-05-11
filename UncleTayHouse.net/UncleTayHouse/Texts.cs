@@ -2,15 +2,8 @@
 {
     public static class Texts
     {
-        // I will keep it here until I find a better place
-
-        // words to be ignored
-        public static string[] NULLWORDS { get; } = [
-            "THE", "TO", "WITH", "USING", "IN", "GO"
-        ];
-
         // all verbs and objects
-        public static string[] VOCABS { get; } = {
+        public static string[] VOCABS { get; } = [
             /* 00 */     "-99", // 0-dummy
 
             /* 01 */     "NORTH",
@@ -81,7 +74,7 @@
             /* 62 */     "L", // look
             /* 63 */     "G", // get
             /* 64 */     "X", // examine
-        };
+        ];
 
     }
 }

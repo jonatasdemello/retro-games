@@ -291,7 +291,7 @@ namespace UncleTayHouse
             }
         }
         // ok
-        public void ActionShowIntro()
+        public static void ActionShowIntro()
         {
             Screen.Print(" ");
             Screen.Print("***********************************");
@@ -813,7 +813,7 @@ namespace UncleTayHouse
             // convert N,S,E,W,U,D to long form
             if (dir > 6)
             {
-                dir = dir - 6;
+                dir -= 6;
             }
             if (LocationExit[gameState.PlayerAt, dir] > 0)
             {

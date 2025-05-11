@@ -6,7 +6,7 @@
         public int SafeDoor { get; set; } = Utils.RNG(3);
         public bool PlayerJump { get; set; } = false;
 
-        public List<string> Msg { get; set; } = new List<string>(); // responses
+        public List<string> Msg { get; set; } = []; // responses
 
         // implement nmethod to check if player is in a location
         public bool IsAt(int location)

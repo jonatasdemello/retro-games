@@ -20,7 +20,6 @@
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(text);
             Console.ForegroundColor = ConsoleColor.White;
-            //Console.WriteLine();
         }
 
         public static void PrintDgb(string text)
