@@ -10,7 +10,10 @@
         [DataRow("TAKE", "Take what?")]
         [DataRow("DROP", "Drop what?")]
         [DataRow("DOOR", "Do what with DOOR?")]
-        public void Input_One_Word_Should_Return_Response(string prompt, string response)
+        [DataRow("LOOK NEWSPAPER", "Tays house unlikely ever to be sold. tales of gutted stairwells and booby traps have spooked buyers...")]
+        [DataRow("TAKE NEWSPAPER", "NEWSPAPER: taken")]
+        [DataRow("TAKE DIAMOND", "There is no DIAMOND here")]
+        public void Input_Word_Should_Return_Response(string prompt, string response)
         {
             Game game = new();
             game.userInput = GameUserInput.ProcessInput(prompt);

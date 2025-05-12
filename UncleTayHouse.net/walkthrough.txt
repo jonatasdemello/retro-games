@@ -1,0 +1,2047 @@
+
+***********************************
+*** UNCLE TAY'S HOUSE ADVENTURE ***
+***********************************
+
+Find treasures and valuables in your mad uncle tays' house
+Type simple commands to move around:
+   NORTH, SOUTH, EAST, WEST, UP, DOWN
+   or just: S, E, W, U, D.
+Type two word commands (verb + action) to interact with objects:
+TAKE BOOK, DROP BOOK, INVENTORY, LOOK, READ, MOVE
+Some commands are complex:
+ 'MOVE THE HUBCAP WITH THE SPANNER'
+
+Possible commands:
+    NORTH, SOUTH, EAST, WEST, UP, DOWN, N, S, E, W, U, D,
+    I, INVENTORY, SCORE, JUMP, HELP, EXIT31
+    TAKE, DROP, LOOK, READ, EXAMINE, UNLOCK, EAT, SPIN,
+    MOVE, OPEN, TIE, OIL, PUT, LEFT, CENTER, RIGHT
+
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+    There is a NEWSPAPER here
+
+] look newspaper
+
+Tays house unlikely ever to be sold. tales of gutted stairwells and booby traps have spooked buyers...
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+    There is a NEWSPAPER here
+
+] take newspaper
+
+NEWSPAPER: taken
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] read newspaper
+
+Tays house unlikely ever to be sold. tales of gutted stairwells and booby traps have spooked buyers...
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 4 } HALLWAY - A narrow hallway which runs west of the foyer
+----------------------------- you can go -----------------------------
+    NORTH        : DEN
+    SOUTH        : BATHROOM
+    EAST         : FOYER (LOBBY)
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 5 } HALLWAY - A narrow hallway at the west end of the house, a door to north
+----------------------------- you can go -----------------------------
+    SOUTH        : SMALL BEDROOM
+    EAST         : HALLWAY
+    WEST         : GARAGE
+----------------------------- extras -----------------------------
+    There is a locked door to the north.
+
+] open door
+
+You don't have a key!
+----------------------------- you are at -----------------------------
+    { 5 } HALLWAY - A narrow hallway at the west end of the house, a door to north
+----------------------------- you can go -----------------------------
+    SOUTH        : SMALL BEDROOM
+    EAST         : HALLWAY
+    WEST         : GARAGE
+----------------------------- extras -----------------------------
+    There is a locked door to the north.
+
+] unlock door
+
+You don't have a key!
+----------------------------- you are at -----------------------------
+    { 5 } HALLWAY - A narrow hallway at the west end of the house, a door to north
+----------------------------- you can go -----------------------------
+    SOUTH        : SMALL BEDROOM
+    EAST         : HALLWAY
+    WEST         : GARAGE
+----------------------------- extras -----------------------------
+    There is a locked door to the north.
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 10 } GARAGE - The cavernous garage holds a non-operational gremlin and piles of junk
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    There is a JACK here
+    There is a BUNGEE here
+
+] look jack
+
+Tire jack for lifting heavy objects like cars
+----------------------------- you are at -----------------------------
+    { 10 } GARAGE - The cavernous garage holds a non-operational gremlin and piles of junk
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    There is a JACK here
+    There is a BUNGEE here
+
+] look bungee
+
+Cord for bungee jumping
+----------------------------- you are at -----------------------------
+    { 10 } GARAGE - The cavernous garage holds a non-operational gremlin and piles of junk
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    There is a JACK here
+    There is a BUNGEE here
+
+] take jack
+
+JACK: taken
+----------------------------- you are at -----------------------------
+    { 10 } GARAGE - The cavernous garage holds a non-operational gremlin and piles of junk
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    There is a BUNGEE here
+
+] take bungee
+
+BUNGEE: taken
+----------------------------- you are at -----------------------------
+    { 10 } GARAGE - The cavernous garage holds a non-operational gremlin and piles of junk
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 5 } HALLWAY - A narrow hallway at the west end of the house, a door to north
+----------------------------- you can go -----------------------------
+    SOUTH        : SMALL BEDROOM
+    EAST         : HALLWAY
+    WEST         : GARAGE
+----------------------------- extras -----------------------------
+    There is a locked door to the north.
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 9 } SMALL BEDROOM - This small bedroom has a twin bed and chair. It looks little used
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a NOTE here
+
+] read note
+
+The writing is reversed. maybe there is a way to read it somewhere...
+----------------------------- you are at -----------------------------
+    { 9 } SMALL BEDROOM - This small bedroom has a twin bed and chair. It looks little used
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a NOTE here
+
+] take note
+
+NOTE: taken
+----------------------------- you are at -----------------------------
+    { 9 } SMALL BEDROOM - This small bedroom has a twin bed and chair. It looks little used
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+----------------------------- extras -----------------------------
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 5 } HALLWAY - A narrow hallway at the west end of the house, a door to north
+----------------------------- you can go -----------------------------
+    SOUTH        : SMALL BEDROOM
+    EAST         : HALLWAY
+    WEST         : GARAGE
+----------------------------- extras -----------------------------
+    There is a locked door to the north.
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 10 } GARAGE - The cavernous garage holds a non-operational gremlin and piles of junk
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 5 } HALLWAY - A narrow hallway at the west end of the house, a door to north
+----------------------------- you can go -----------------------------
+    SOUTH        : SMALL BEDROOM
+    EAST         : HALLWAY
+    WEST         : GARAGE
+----------------------------- extras -----------------------------
+    There is a locked door to the north.
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 4 } HALLWAY - A narrow hallway which runs west of the foyer
+----------------------------- you can go -----------------------------
+    NORTH        : DEN
+    SOUTH        : BATHROOM
+    EAST         : FOYER (LOBBY)
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 6 } DEN - This room has an ancient television
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a COUCH here
+
+] look couch
+
+An overstuffed, dusty couch
+----------------------------- you are at -----------------------------
+    { 6 } DEN - This room has an ancient television
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a COUCH here
+
+] move couch
+
+Your back is acting up, you will need some support
+----------------------------- you are at -----------------------------
+    { 6 } DEN - This room has an ancient television
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a COUCH here
+
+] move couch jack
+
+You can't fit the jack there, maybe try something else
+----------------------------- you are at -----------------------------
+    { 6 } DEN - This room has an ancient television
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a COUCH here
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 4 } HALLWAY - A narrow hallway which runs west of the foyer
+----------------------------- you can go -----------------------------
+    NORTH        : DEN
+    SOUTH        : BATHROOM
+    EAST         : FOYER (LOBBY)
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 7 } BATHROOM - A dingy bathroom with a cracked sink
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a CLOTHES here
+
+] look clothes
+
+A disgusting pile of soiled laundry
+----------------------------- you are at -----------------------------
+    { 7 } BATHROOM - A dingy bathroom with a cracked sink
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a CLOTHES here
+
+] take clothes
+
+That seems pointless and unsanitary, they are too dirty!
+----------------------------- you are at -----------------------------
+    { 7 } BATHROOM - A dingy bathroom with a cracked sink
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a CLOTHES here
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 4 } HALLWAY - A narrow hallway which runs west of the foyer
+----------------------------- you can go -----------------------------
+    NORTH        : DEN
+    SOUTH        : BATHROOM
+    EAST         : FOYER (LOBBY)
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 2 } KITCHEN - Countertops are dusty and there are rusting pots and pans
+----------------------------- you can go -----------------------------
+    SOUTH        : FOYER (LOBBY)
+----------------------------- extras -----------------------------
+    Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable.
+    There is a FRIDGE here
+    Something is barely visible under the fridge
+
+] look fridge
+
+This old refrigerator's motor labors heavily
+----------------------------- you are at -----------------------------
+    { 2 } KITCHEN - Countertops are dusty and there are rusting pots and pans
+----------------------------- you can go -----------------------------
+    SOUTH        : FOYER (LOBBY)
+----------------------------- extras -----------------------------
+    Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable.
+    There is a FRIDGE here
+    Something is barely visible under the fridge
+
+] look under fridge
+
+This old refrigerator's motor labors heavily
+----------------------------- you are at -----------------------------
+    { 2 } KITCHEN - Countertops are dusty and there are rusting pots and pans
+----------------------------- you can go -----------------------------
+    SOUTH        : FOYER (LOBBY)
+----------------------------- extras -----------------------------
+    Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable.
+    There is a FRIDGE here
+    Something is barely visible under the fridge
+
+] use jack fridge
+
+I don't understand... (2w)
+----------------------------- you are at -----------------------------
+    { 2 } KITCHEN - Countertops are dusty and there are rusting pots and pans
+----------------------------- you can go -----------------------------
+    SOUTH        : FOYER (LOBBY)
+----------------------------- extras -----------------------------
+    Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable.
+    There is a FRIDGE here
+    Something is barely visible under the fridge
+
+] move fridge jack
+
+You jack up the fridge and find a fuse under it
+----------------------------- you are at -----------------------------
+    { 2 } KITCHEN - Countertops are dusty and there are rusting pots and pans
+----------------------------- you can go -----------------------------
+    SOUTH        : FOYER (LOBBY)
+----------------------------- extras -----------------------------
+    Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable.
+    There is a FUSE here
+    There is a FRIDGE here
+
+] look fuse
+
+Old-fashioned electrical fuse
+----------------------------- you are at -----------------------------
+    { 2 } KITCHEN - Countertops are dusty and there are rusting pots and pans
+----------------------------- you can go -----------------------------
+    SOUTH        : FOYER (LOBBY)
+----------------------------- extras -----------------------------
+    Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable.
+    There is a FUSE here
+    There is a FRIDGE here
+
+] take fuse
+
+FUSE: taken
+----------------------------- you are at -----------------------------
+    { 2 } KITCHEN - Countertops are dusty and there are rusting pots and pans
+----------------------------- you can go -----------------------------
+    SOUTH        : FOYER (LOBBY)
+----------------------------- extras -----------------------------
+    Stairs lead down to a cellar. Several steps have collapsed, making the staircase unusable.
+    There is a FRIDGE here
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 3 } SITTING ROOM - This room is two stories high and contains elegant chairs and couches
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    EAST         : DINING ROOM
+    WEST         : FOYER (LOBBY)
+    UP   : BALCONY
+----------------------------- extras -----------------------------
+    There is a picture high up on the wall
+
+] look picture
+
+There is no PICTURE here
+----------------------------- you are at -----------------------------
+    { 3 } SITTING ROOM - This room is two stories high and contains elegant chairs and couches
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    EAST         : DINING ROOM
+    WEST         : FOYER (LOBBY)
+    UP   : BALCONY
+----------------------------- extras -----------------------------
+    There is a picture high up on the wall
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 11 } DINING ROOM - Trophies line the walls. there are six chairs around a long table
+----------------------------- you can go -----------------------------
+    WEST         : SITTING ROOM
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 3 } SITTING ROOM - This room is two stories high and contains elegant chairs and couches
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    EAST         : DINING ROOM
+    WEST         : FOYER (LOBBY)
+    UP   : BALCONY
+----------------------------- extras -----------------------------
+    There is a picture high up on the wall
+
+] u
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    Dark stairs lead up to the attic.
+    There is a RAILING here
+
+] jump
+
+You forgot your parachute. Or maybe something else...
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    Dark stairs lead up to the attic.
+    There is a RAILING here
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 13 } MASTER BEDROOM - This large corner bedroom has solid walnut furniture and a large mirror
+----------------------------- you can go -----------------------------
+    SOUTH        : BALCONY
+----------------------------- extras -----------------------------
+    There is a KEY here
+
+] look key
+
+A small brass key
+----------------------------- you are at -----------------------------
+    { 13 } MASTER BEDROOM - This large corner bedroom has solid walnut furniture and a large mirror
+----------------------------- you can go -----------------------------
+    SOUTH        : BALCONY
+----------------------------- extras -----------------------------
+    There is a KEY here
+
+] take key
+
+KEY: taken
+----------------------------- you are at -----------------------------
+    { 13 } MASTER BEDROOM - This large corner bedroom has solid walnut furniture and a large mirror
+----------------------------- you can go -----------------------------
+    SOUTH        : BALCONY
+----------------------------- extras -----------------------------
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    Dark stairs lead up to the attic.
+    There is a RAILING here
+
+] look railing
+
+A railing or guardrail, is a system designed to keep people or objects from falling off the balcony.
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    Dark stairs lead up to the attic.
+    There is a RAILING here
+
+] tie bungee
+
+Tie to what?
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    Dark stairs lead up to the attic.
+    There is a RAILING here
+
+] tie bungee railing
+
+Bungee cord tied to Railing!
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    Dark stairs lead up to the attic.
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] jump
+
+You bungee off the balcony...
+----------------------------- you are at -----------------------------
+    { 30 } MID-AIR - Hanging from a bungee cord
+----------------------------- you can go -----------------------------
+----------------------------- extras -----------------------------
+    There is a PICTURE here
+
+] look picture
+
+Uncle tays in all his sallow glory
+... and bunge cord spring back
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    Dark stairs lead up to the attic.
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] jump
+
+You bungee off the balcony...
+----------------------------- you are at -----------------------------
+    { 30 } MID-AIR - Hanging from a bungee cord
+----------------------------- you can go -----------------------------
+----------------------------- extras -----------------------------
+    There is a PICTURE here
+
+] take picture
+
+Taking the picture reveals a fusebox
+... and bunge cord spring back
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    Dark stairs lead up to the attic.
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] jump
+
+You bungee off the balcony...
+----------------------------- you are at -----------------------------
+    { 30 } MID-AIR - Hanging from a bungee cord
+----------------------------- you can go -----------------------------
+----------------------------- extras -----------------------------
+    There is a FUSEBOX here
+
+] put fuse fusebox
+
+You put the fuse in the box. Power is restored in the Attic!
+... and bunge cord spring back
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] u
+
+----------------------------- you are at -----------------------------
+    { 25 } ATTIC - A dusty attic with low sloping walls
+----------------------------- you can go -----------------------------
+    DOWN         : BALCONY
+----------------------------- extras -----------------------------
+    There is a BRACE here
+    There is a MAGAZINE here
+
+] look brace
+
+A back brace
+----------------------------- you are at -----------------------------
+    { 25 } ATTIC - A dusty attic with low sloping walls
+----------------------------- you can go -----------------------------
+    DOWN         : BALCONY
+----------------------------- extras -----------------------------
+    There is a BRACE here
+    There is a MAGAZINE here
+
+] take brace
+
+BRACE: taken
+----------------------------- you are at -----------------------------
+    { 25 } ATTIC - A dusty attic with low sloping walls
+----------------------------- you can go -----------------------------
+    DOWN         : BALCONY
+----------------------------- extras -----------------------------
+    There is a MAGAZINE here
+
+] look magazine
+
+Tays' strange inventions include booby-trapped doors and toys that open doors by remote control...
+----------------------------- you are at -----------------------------
+    { 25 } ATTIC - A dusty attic with low sloping walls
+----------------------------- you can go -----------------------------
+    DOWN         : BALCONY
+----------------------------- extras -----------------------------
+    There is a MAGAZINE here
+
+] take magazine
+
+MAGAZINE: taken
+----------------------------- you are at -----------------------------
+    { 25 } ATTIC - A dusty attic with low sloping walls
+----------------------------- you can go -----------------------------
+    DOWN         : BALCONY
+----------------------------- extras -----------------------------
+
+] d
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] e
+
+You can't go that way
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 15 } GAME ROOM - This elegant game room has a pool table and marble chessboard
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+    WEST         : CLOSET
+----------------------------- extras -----------------------------
+    There is a SPINNINGTOP here
+
+] look spinnngtop
+
+----------------------------- you are at -----------------------------
+    { 15 } GAME ROOM - This elegant game room has a pool table and marble chessboard
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+    WEST         : CLOSET
+----------------------------- extras -----------------------------
+    There is a SPINNINGTOP here
+----------------------------- you are at -----------------------------
+    { 15 } GAME ROOM - This elegant game room has a pool table and marble chessboard
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+    WEST         : CLOSET
+----------------------------- extras -----------------------------
+    There is a SPINNINGTOP here
+
+] look spinningtop
+
+A child's toy (spinning top)
+----------------------------- you are at -----------------------------
+    { 15 } GAME ROOM - This elegant game room has a pool table and marble chessboard
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+    WEST         : CLOSET
+----------------------------- extras -----------------------------
+    There is a SPINNINGTOP here
+
+] take spinningtop
+
+SPINNINGTOP: taken
+----------------------------- you are at -----------------------------
+    { 15 } GAME ROOM - This elegant game room has a pool table and marble chessboard
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+    WEST         : CLOSET
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 16 } CLOSET - A spacious closet off the gameroom
+----------------------------- you can go -----------------------------
+    EAST         : GAME ROOM
+----------------------------- extras -----------------------------
+    There is a GAINESBURGER here
+
+] look gainesburger
+
+Supposedly dog food, though it appears to be made of plastic
+----------------------------- you are at -----------------------------
+    { 16 } CLOSET - A spacious closet off the gameroom
+----------------------------- you can go -----------------------------
+    EAST         : GAME ROOM
+----------------------------- extras -----------------------------
+    There is a GAINESBURGER here
+
+] take gainesburger
+
+GAINESBURGER: taken
+----------------------------- you are at -----------------------------
+    { 16 } CLOSET - A spacious closet off the gameroom
+----------------------------- you can go -----------------------------
+    EAST         : GAME ROOM
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 15 } GAME ROOM - This elegant game room has a pool table and marble chessboard
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+    WEST         : CLOSET
+----------------------------- extras -----------------------------
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is blocking a doorway to the north.
+
+] n
+
+You never did like that dog, and he will not let you pass
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is blocking a doorway to the north.
+
+] drop gainesburger
+
+The dog looks disgusted. maybe you should eat it
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is blocking a doorway to the north.
+
+] eat gainesburger
+
+There was a diamond hidden inside the gainesburger
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is blocking a doorway to the north.
+    There is a DIAMOND here
+
+] take diamond
+
+DIAMOND: taken
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is blocking a doorway to the north.
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 13 } MASTER BEDROOM - This large corner bedroom has solid walnut furniture and a large mirror
+----------------------------- you can go -----------------------------
+    SOUTH        : BALCONY
+----------------------------- extras -----------------------------
+
+] look mirror
+
+There is no MIRROR here
+----------------------------- you are at -----------------------------
+    { 13 } MASTER BEDROOM - This large corner bedroom has solid walnut furniture and a large mirror
+----------------------------- you can go -----------------------------
+    SOUTH        : BALCONY
+----------------------------- extras -----------------------------
+
+] read note mirror
+
+Experiments on CENTER and RIGHT doors proceeding well; file for patent
+----------------------------- you are at -----------------------------
+    { 13 } MASTER BEDROOM - This large corner bedroom has solid walnut furniture and a large mirror
+----------------------------- you can go -----------------------------
+    SOUTH        : BALCONY
+----------------------------- extras -----------------------------
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is blocking a doorway to the north.
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] i
+
+ [Inventory] You are carrying:
+   -NEWSPAPER
+   -JACK
+   -PICTURE
+   -KEY
+   -SPINNINGTOP
+   -NOTE
+   -BRACE
+   -MAGAZINE
+   -DIAMOND
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] d
+
+----------------------------- you are at -----------------------------
+    { 3 } SITTING ROOM - This room is two stories high and contains elegant chairs and couches
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    EAST         : DINING ROOM
+    WEST         : FOYER (LOBBY)
+    UP   : BALCONY
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing above
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 4 } HALLWAY - A narrow hallway which runs west of the foyer
+----------------------------- you can go -----------------------------
+    NORTH        : DEN
+    SOUTH        : BATHROOM
+    EAST         : FOYER (LOBBY)
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 6 } DEN - This room has an ancient television
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a COUCH here
+
+] move couch brace
+
+You move the couch and find a teddybear behind it
+----------------------------- you are at -----------------------------
+    { 6 } DEN - This room has an ancient television
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a TEDDYBEAR here
+    There is a COUCH here
+
+] take teddybear
+
+TEDDYBEAR: taken
+----------------------------- you are at -----------------------------
+    { 6 } DEN - This room has an ancient television
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a COUCH here
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 4 } HALLWAY - A narrow hallway which runs west of the foyer
+----------------------------- you can go -----------------------------
+    NORTH        : DEN
+    SOUTH        : BATHROOM
+    EAST         : FOYER (LOBBY)
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] i
+
+ [Inventory] You are carrying:
+   -NEWSPAPER
+   -TEDDYBEAR
+   -JACK
+   -PICTURE
+   -KEY
+   -SPINNINGTOP
+   -NOTE
+   -BRACE
+   -MAGAZINE
+   -DIAMOND
+----------------------------- you are at -----------------------------
+    { 4 } HALLWAY - A narrow hallway which runs west of the foyer
+----------------------------- you can go -----------------------------
+    NORTH        : DEN
+    SOUTH        : BATHROOM
+    EAST         : FOYER (LOBBY)
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 3 } SITTING ROOM - This room is two stories high and contains elegant chairs and couches
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    EAST         : DINING ROOM
+    WEST         : FOYER (LOBBY)
+    UP   : BALCONY
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing above
+
+] u
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] e
+
+You can't go that way
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] e
+
+You can't go that way
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is blocking a doorway to the north.
+
+] drop teddybear
+
+The dog chews his favorite toy and is soon asleep
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    NORTH        : CHILD'S ROOM
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is snoring peacefully
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 18 } CHILD'S ROOM - Your cousin's room in happier times, before he ran off to join the baath party
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+----------------------------- extras -----------------------------
+
+] spin spinningtop
+
+There is a flash of light and a cracking sound! An opening appears in the east wall
+----------------------------- you are at -----------------------------
+    { 18 } CHILD'S ROOM - Your cousin's room in happier times, before he ran off to join the baath party
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+    EAST         : SECRET ROOM
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 19 } SECRET ROOM - A dark chamber off the bedroom
+----------------------------- you can go -----------------------------
+    WEST         : CHILD'S ROOM
+----------------------------- extras -----------------------------
+    There is a LOVERBOY here
+
+] look loverboy
+
+Loverboy's first album in vinyl, worth an incalculable sum
+----------------------------- you are at -----------------------------
+    { 19 } SECRET ROOM - A dark chamber off the bedroom
+----------------------------- you can go -----------------------------
+    WEST         : CHILD'S ROOM
+----------------------------- extras -----------------------------
+    There is a LOVERBOY here
+
+] take loverboy
+
+LOVERBOY: taken
+----------------------------- you are at -----------------------------
+    { 19 } SECRET ROOM - A dark chamber off the bedroom
+----------------------------- you can go -----------------------------
+    WEST         : CHILD'S ROOM
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 18 } CHILD'S ROOM - Your cousin's room in happier times, before he ran off to join the baath party
+----------------------------- you can go -----------------------------
+    SOUTH        : HALLWAY
+    EAST         : SECRET ROOM
+----------------------------- extras -----------------------------
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    NORTH        : CHILD'S ROOM
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is snoring peacefully
+
+] w
+
+You can't go that way
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    NORTH        : CHILD'S ROOM
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+    A locked door to the WEST is labelled 'EXTREME DANGER'.
+    Your uncle's doberman is snoring peacefully
+
+] open door
+
+You unlock the door. Beware!
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    NORTH        : CHILD'S ROOM
+    EAST         : HALLWAY
+    WEST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    Your uncle's doberman is snoring peacefully
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 20 } DANGEROUS HALL - This eerie hall has three identical doors on the west wall (left, center, right)
+----------------------------- you can go -----------------------------
+    NORTH        : CORNER BEDROOM
+    SOUTH        : BATHROOM
+    EAST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] open left door
+
+Opening the door reveals a dumbwaiter in the west room
+----------------------------- you are at -----------------------------
+    { 20 } DANGEROUS HALL - This eerie hall has three identical doors on the west wall (left, center, right)
+----------------------------- you can go -----------------------------
+    NORTH        : CORNER BEDROOM
+    SOUTH        : BATHROOM
+    EAST         : HALLWAY
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 23 } DUMBWAITER - A jammed dumbwaiter (second floor)
+----------------------------- you can go -----------------------------
+    EAST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] i
+
+ [Inventory] You are carrying:
+   -NEWSPAPER
+   -JACK
+   -PICTURE
+   -KEY
+   -SPINNINGTOP
+   -NOTE
+   -BRACE
+   -MAGAZINE
+   -DIAMOND
+   -LOVERBOY
+----------------------------- you are at -----------------------------
+    { 23 } DUMBWAITER - A jammed dumbwaiter (second floor)
+----------------------------- you can go -----------------------------
+    EAST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] look dumbwaiter
+
+There is no DUMBWAITER here
+----------------------------- you are at -----------------------------
+    { 23 } DUMBWAITER - A jammed dumbwaiter (second floor)
+----------------------------- you can go -----------------------------
+    EAST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] open dumbwaiter
+
+Open what?
+----------------------------- you are at -----------------------------
+    { 23 } DUMBWAITER - A jammed dumbwaiter (second floor)
+----------------------------- you can go -----------------------------
+    EAST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 20 } DANGEROUS HALL - This eerie hall has three identical doors on the west wall (left, center, right)
+----------------------------- you can go -----------------------------
+    NORTH        : CORNER BEDROOM
+    SOUTH        : BATHROOM
+    EAST         : HALLWAY
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 22 } BATHROOM - An elegant bath with a mirror over a marble sink
+----------------------------- you can go -----------------------------
+    NORTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    There is a GLOVES here
+    There is a MIRROR here
+
+] take gloves
+
+GLOVES: taken
+----------------------------- you are at -----------------------------
+    { 22 } BATHROOM - An elegant bath with a mirror over a marble sink
+----------------------------- you can go -----------------------------
+    NORTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    There is a MIRROR here
+
+] look gloves
+
+Rubber gloves used for cleaning
+----------------------------- you are at -----------------------------
+    { 22 } BATHROOM - An elegant bath with a mirror over a marble sink
+----------------------------- you can go -----------------------------
+    NORTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    There is a MIRROR here
+
+] look mirror
+
+A mirror in the wall
+----------------------------- you are at -----------------------------
+    { 22 } BATHROOM - An elegant bath with a mirror over a marble sink
+----------------------------- you can go -----------------------------
+    NORTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    There is a MIRROR here
+
+] take mirror
+
+MIRROR: taken
+----------------------------- you are at -----------------------------
+    { 22 } BATHROOM - An elegant bath with a mirror over a marble sink
+----------------------------- you can go -----------------------------
+    NORTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 20 } DANGEROUS HALL - This eerie hall has three identical doors on the west wall (left, center, right)
+----------------------------- you can go -----------------------------
+    NORTH        : CORNER BEDROOM
+    SOUTH        : BATHROOM
+    EAST         : HALLWAY
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    NORTH        : CHILD'S ROOM
+    EAST         : HALLWAY
+    WEST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    Your uncle's doberman is snoring peacefully
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] d
+
+----------------------------- you are at -----------------------------
+    { 3 } SITTING ROOM - This room is two stories high and contains elegant chairs and couches
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    EAST         : DINING ROOM
+    WEST         : FOYER (LOBBY)
+    UP   : BALCONY
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing above
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 4 } HALLWAY - A narrow hallway which runs west of the foyer
+----------------------------- you can go -----------------------------
+    NORTH        : DEN
+    SOUTH        : BATHROOM
+    EAST         : FOYER (LOBBY)
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 7 } BATHROOM - A dingy bathroom with a cracked sink
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+----------------------------- extras -----------------------------
+    There is a CLOTHES here
+
+] move clothes gloves
+
+Moving the clothes reveals a laundry chute to the basement
+----------------------------- you are at -----------------------------
+    { 7 } BATHROOM - A dingy bathroom with a cracked sink
+----------------------------- you can go -----------------------------
+    NORTH        : HALLWAY
+    DOWN         : LAUNDRY
+----------------------------- extras -----------------------------
+    There is a CLOTHES here
+
+] d
+
+----------------------------- you are at -----------------------------
+    { 27 } LAUNDRY - This room has a washer and dryer, as well as a boiler and furnace
+----------------------------- you can go -----------------------------
+    EAST         : WORK ROOM
+    WEST         : STORAGE ROOM
+----------------------------- extras -----------------------------
+    There is a LOONS here
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 26 } STORAGE ROOM - A bare room used to store random equipment and furniture
+----------------------------- you can go -----------------------------
+    EAST         : LAUNDRY
+----------------------------- extras -----------------------------
+    There is a BOXSPRING here
+
+] look boxspring
+
+A queen-sized boxspring
+----------------------------- you are at -----------------------------
+    { 26 } STORAGE ROOM - A bare room used to store random equipment and furniture
+----------------------------- you can go -----------------------------
+    EAST         : LAUNDRY
+----------------------------- extras -----------------------------
+    There is a BOXSPRING here
+
+] take boxspring
+
+BOXSPRING: taken
+----------------------------- you are at -----------------------------
+    { 26 } STORAGE ROOM - A bare room used to store random equipment and furniture
+----------------------------- you can go -----------------------------
+    EAST         : LAUNDRY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 27 } LAUNDRY - This room has a washer and dryer, as well as a boiler and furnace
+----------------------------- you can go -----------------------------
+    EAST         : WORK ROOM
+    WEST         : STORAGE ROOM
+----------------------------- extras -----------------------------
+    There is a LOONS here
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 28 } WORK ROOM - Equipment for working wood and metal
+----------------------------- you can go -----------------------------
+    EAST         : BOTTOM OF STAIRS
+    WEST         : LAUNDRY
+----------------------------- extras -----------------------------
+    There is a OILCAN here
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 27 } LAUNDRY - This room has a washer and dryer, as well as a boiler and furnace
+----------------------------- you can go -----------------------------
+    EAST         : WORK ROOM
+    WEST         : STORAGE ROOM
+----------------------------- extras -----------------------------
+    There is a LOONS here
+
+] look loons
+
+A thick wad of canadian notes
+----------------------------- you are at -----------------------------
+    { 27 } LAUNDRY - This room has a washer and dryer, as well as a boiler and furnace
+----------------------------- you can go -----------------------------
+    EAST         : WORK ROOM
+    WEST         : STORAGE ROOM
+----------------------------- extras -----------------------------
+    There is a LOONS here
+
+] take loons
+
+LOONS: taken
+----------------------------- you are at -----------------------------
+    { 27 } LAUNDRY - This room has a washer and dryer, as well as a boiler and furnace
+----------------------------- you can go -----------------------------
+    EAST         : WORK ROOM
+    WEST         : STORAGE ROOM
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 28 } WORK ROOM - Equipment for working wood and metal
+----------------------------- you can go -----------------------------
+    EAST         : BOTTOM OF STAIRS
+    WEST         : LAUNDRY
+----------------------------- extras -----------------------------
+    There is a OILCAN here
+
+] look oilcan
+
+This can contains fine lubricating oil
+----------------------------- you are at -----------------------------
+    { 28 } WORK ROOM - Equipment for working wood and metal
+----------------------------- you can go -----------------------------
+    EAST         : BOTTOM OF STAIRS
+    WEST         : LAUNDRY
+----------------------------- extras -----------------------------
+    There is a OILCAN here
+
+] take oilcan
+
+OILCAN: taken
+----------------------------- you are at -----------------------------
+    { 28 } WORK ROOM - Equipment for working wood and metal
+----------------------------- you can go -----------------------------
+    EAST         : BOTTOM OF STAIRS
+    WEST         : LAUNDRY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 29 } BOTTOM OF STAIRS - Stairs from basement to kitchen
+----------------------------- you can go -----------------------------
+    WEST         : WORK ROOM
+----------------------------- extras -----------------------------
+    Stairs lead up. Several steps have collapsed, making the staircase unusable.
+
+] drop boxspring
+
+The boxspring covers the gap in the stairs
+----------------------------- you are at -----------------------------
+    { 29 } BOTTOM OF STAIRS - Stairs from basement to kitchen
+----------------------------- you can go -----------------------------
+    WEST         : WORK ROOM
+    UP   : KITCHEN
+----------------------------- extras -----------------------------
+
+] u
+
+----------------------------- you are at -----------------------------
+    { 2 } KITCHEN - Countertops are dusty and there are rusting pots and pans
+----------------------------- you can go -----------------------------
+    SOUTH        : FOYER (LOBBY)
+    DOWN         : BOTTOM OF STAIRS
+----------------------------- extras -----------------------------
+    There is a FRIDGE here
+    Something is barely visible under the fridge
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 3 } SITTING ROOM - This room is two stories high and contains elegant chairs and couches
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    EAST         : DINING ROOM
+    WEST         : FOYER (LOBBY)
+    UP   : BALCONY
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing above
+
+] u
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    NORTH        : CHILD'S ROOM
+    EAST         : HALLWAY
+    WEST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    Your uncle's doberman is snoring peacefully
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 20 } DANGEROUS HALL - This eerie hall has three identical doors on the west wall (left, center, right)
+----------------------------- you can go -----------------------------
+    NORTH        : CORNER BEDROOM
+    SOUTH        : BATHROOM
+    EAST         : HALLWAY
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 23 } DUMBWAITER - A jammed dumbwaiter (second floor)
+----------------------------- you can go -----------------------------
+    EAST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] oil dumbwaiter
+
+I don't understand... (2w)
+----------------------------- you are at -----------------------------
+    { 23 } DUMBWAITER - A jammed dumbwaiter (second floor)
+----------------------------- you can go -----------------------------
+    EAST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] oil dumbwaiter oilcan
+
+The dumbwaiter mechanism now runs smoothly
+----------------------------- you are at -----------------------------
+    { 23 } DUMBWAITER - A jammed dumbwaiter (second floor)
+----------------------------- you can go -----------------------------
+    EAST         : DANGEROUS HALL
+    DOWN         : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] d
+
+----------------------------- you are at -----------------------------
+    { 24 } DUMBWAITER - A dumbwaiter (main floor)
+----------------------------- you can go -----------------------------
+    EAST         : LIBRARY
+    UP   : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 8 } LIBRARY - This well-furnished library is lined with books and leather furniture
+----------------------------- you can go -----------------------------
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+    There is a locked door to the south.
+    There is a CHECKBOOK here
+
+] look checkbook
+
+Uncle tays' checkbook lists a balance of $220,000
+----------------------------- you are at -----------------------------
+    { 8 } LIBRARY - This well-furnished library is lined with books and leather furniture
+----------------------------- you can go -----------------------------
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+    There is a locked door to the south.
+    There is a CHECKBOOK here
+
+] take checkbook
+
+CHECKBOOK: taken
+----------------------------- you are at -----------------------------
+    { 8 } LIBRARY - This well-furnished library is lined with books and leather furniture
+----------------------------- you can go -----------------------------
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+    There is a locked door to the south.
+
+] open door
+
+Nothing to unlock!
+----------------------------- you are at -----------------------------
+    { 8 } LIBRARY - This well-furnished library is lined with books and leather furniture
+----------------------------- you can go -----------------------------
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+    There is a locked door to the south.
+
+] i
+
+ [Inventory] You are carrying:
+   -NEWSPAPER
+   -JACK
+   -PICTURE
+   -KEY
+   -SPINNINGTOP
+   -NOTE
+   -GLOVES
+   -BRACE
+   -MAGAZINE
+   -OILCAN
+   -CHECKBOOK
+   -DIAMOND
+   -LOVERBOY
+   -LOONS
+   -MIRROR
+----------------------------- you are at -----------------------------
+    { 8 } LIBRARY - This well-furnished library is lined with books and leather furniture
+----------------------------- you can go -----------------------------
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+    There is a locked door to the south.
+
+] score
+
+Your score is 60 out of a possible 100.
+----------------------------- you are at -----------------------------
+    { 8 } LIBRARY - This well-furnished library is lined with books and leather furniture
+----------------------------- you can go -----------------------------
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+    There is a locked door to the south.
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 24 } DUMBWAITER - A dumbwaiter (main floor)
+----------------------------- you can go -----------------------------
+    EAST         : LIBRARY
+    UP   : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] u
+
+----------------------------- you are at -----------------------------
+    { 23 } DUMBWAITER - A jammed dumbwaiter (second floor)
+----------------------------- you can go -----------------------------
+    EAST         : DANGEROUS HALL
+    DOWN         : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 20 } DANGEROUS HALL - This eerie hall has three identical doors on the west wall (left, center, right)
+----------------------------- you can go -----------------------------
+    NORTH        : CORNER BEDROOM
+    SOUTH        : BATHROOM
+    EAST         : HALLWAY
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] n
+
+----------------------------- you are at -----------------------------
+    { 21 } CORNER BEDROOM - A cozy corner room with windows on two walls
+----------------------------- you can go -----------------------------
+    SOUTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    There is a INVESTMENT here
+
+] look investment
+
+Pre-ipo shares of apollo computing have to be worth ... something
+----------------------------- you are at -----------------------------
+    { 21 } CORNER BEDROOM - A cozy corner room with windows on two walls
+----------------------------- you can go -----------------------------
+    SOUTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    There is a INVESTMENT here
+
+] take investment
+
+INVESTMENT: taken
+----------------------------- you are at -----------------------------
+    { 21 } CORNER BEDROOM - A cozy corner room with windows on two walls
+----------------------------- you can go -----------------------------
+    SOUTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] score
+
+Your score is 70 out of a possible 100.
+----------------------------- you are at -----------------------------
+    { 21 } CORNER BEDROOM - A cozy corner room with windows on two walls
+----------------------------- you can go -----------------------------
+    SOUTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] i
+
+ [Inventory] You are carrying:
+   -NEWSPAPER
+   -JACK
+   -PICTURE
+   -KEY
+   -SPINNINGTOP
+   -NOTE
+   -GLOVES
+   -BRACE
+   -MAGAZINE
+   -OILCAN
+   -CHECKBOOK
+   -DIAMOND
+   -LOVERBOY
+   -INVESTMENT
+   -LOONS
+   -MIRROR
+----------------------------- you are at -----------------------------
+    { 21 } CORNER BEDROOM - A cozy corner room with windows on two walls
+----------------------------- you can go -----------------------------
+    SOUTH        : DANGEROUS HALL
+----------------------------- extras -----------------------------
+
+] s
+
+----------------------------- you are at -----------------------------
+    { 20 } DANGEROUS HALL - This eerie hall has three identical doors on the west wall (left, center, right)
+----------------------------- you can go -----------------------------
+    NORTH        : CORNER BEDROOM
+    SOUTH        : BATHROOM
+    EAST         : HALLWAY
+    WEST         : DUMBWAITER
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 17 } HALLWAY - A hallway in the center of the second floor
+----------------------------- you can go -----------------------------
+    NORTH        : CHILD'S ROOM
+    EAST         : HALLWAY
+    WEST         : DANGEROUS HALL
+----------------------------- extras -----------------------------
+    Your uncle's doberman is snoring peacefully
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 14 } HALLWAY - A hallway with a large arch on its south side
+----------------------------- you can go -----------------------------
+    SOUTH        : GAME ROOM
+    EAST         : BALCONY
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+] e
+
+----------------------------- you are at -----------------------------
+    { 12 } BALCONY - Balcony above the sitting room. a railing protects you from a 15-foot drop
+----------------------------- you can go -----------------------------
+    NORTH        : MASTER BEDROOM
+    WEST         : HALLWAY
+    UP   : ATTIC
+    DOWN         : SITTING ROOM
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing
+    There is a RAILING here
+
+] d
+
+----------------------------- you are at -----------------------------
+    { 3 } SITTING ROOM - This room is two stories high and contains elegant chairs and couches
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    EAST         : DINING ROOM
+    WEST         : FOYER (LOBBY)
+    UP   : BALCONY
+----------------------------- extras -----------------------------
+    A bungee cord dangles from the railing above
+
+] w
+
+----------------------------- you are at -----------------------------
+    { 1 } FOYER (LOBBY) - The entryway to the house
+----------------------------- you can go -----------------------------
+    NORTH        : KITCHEN
+    SOUTH        : LEAVE THE HOUSE
+    EAST         : SITTING ROOM
+    WEST         : HALLWAY
+----------------------------- extras -----------------------------
+
+]

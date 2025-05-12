@@ -22,6 +22,7 @@ namespace UncleTayHouse
             {
                 gameState.ClearMessages();
 
+                ActionPrep();
                 ShowLocation();
                 gameState.PrintMessages();
 
@@ -38,9 +39,10 @@ namespace UncleTayHouse
             userInput = GameUserInput.ProcessInput(input);
         }
 
-        public void ShowLocation()
+        public void ActionPrep()
         {
             // additional game logic for specific locations:
+            // run before showing location
 
             // first time after jump
             if (gameState.IsPlayerAt(CteRooms.MIDAIR30)
@@ -60,7 +62,10 @@ namespace UncleTayHouse
                 ActionScore();
                 ActionExit();
             }
+        }
 
+        public void ShowLocation()
+        {
             // show where the player is
             ActionShowLocation();
 
