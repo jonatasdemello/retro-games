@@ -28,7 +28,10 @@
         {
             foreach (var message in Msg)
             {
-                Screen.PrintResponse(message);
+                if (message.Contains("---"))
+                    Screen.PrintBlue(message);
+                else
+                    Screen.PrintResponse(message);
             }
             ClearMessages();
             return true;

@@ -21,6 +21,12 @@
             Console.WriteLine(text);
             Console.ForegroundColor = ConsoleColor.White;
         }
+        public static void PrintBlue(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
 
         public static void PrintDgb(string text)
         {
