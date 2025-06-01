@@ -55,7 +55,7 @@ namespace UncleTayHouse.Tests.Unit
                 { "s", "" },
                 // 	{ 9 } SMALL BEDROOM - This small bedroom has a twin bed and chair. It looks little used" },
                 // 	There is a NOTE here" },
-                { "read note", "The writing is reversed. maybe there is a way to read it somewhere..." },
+                { "read note", "The writing is reversed. Try to read it somewhere else..." },
                 // 	{ 9 } SMALL BEDROOM - This small bedroom has a twin bed and chair. It looks little used" },
                 // 	There is a NOTE here" },
                 { "take note", "NOTE: taken" },
@@ -591,8 +591,8 @@ namespace UncleTayHouse.Tests.Unit
             };
 
             Game game = new();
-            // set center door fixed for testing
-            game.gameState.SafeDoor = 2; //CENTER;
+            // set center (2) door fixed for testing
+            game.gameState.SafeDoor = 2;
 
             // start at the FOYER
             Assert.IsTrue(game.gameState.IsPlayerAt(CteRooms.FOYER1));
@@ -612,11 +612,12 @@ namespace UncleTayHouse.Tests.Unit
                     continue;
                 }
 
-                bool exists = game.gameState.Msg.Any(m => m.Contains(response));
+                // show responses
                 var msgList = String.Join(" => ", game.gameState.Msg);
-                var msgDebug = prompt + ", " + response + ", " + msgList;
+                var msgDebug = $"P: {prompt}  R: {response} M: {msgList}";
                 Debug.WriteLine(msgDebug);
 
+                bool exists = game.gameState.Msg.Any(m => m.Contains(response));
                 Assert.IsTrue(game.gameState.Msg.Any());
                 Assert.IsTrue(exists, "Expected " + response);
 
