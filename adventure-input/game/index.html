@@ -174,7 +174,7 @@
 			<button onclick="toggleMap()">Toggle Map</button>
 			<div id="divMap" style="display: none;"><img src="images/_map2.jpg" /></div>
 		</section>
-		
+
 	</div>
 
 	<script type="text/javascript">
@@ -208,9 +208,9 @@
 		var input_NS = ""; // Substantivo em CMD
 
 		var input_I = 0;  // Contém número correspondente a um verbo, usado para selecionar a rotina adequada
-		
+
 		var output_MSG = ""; // Descricao do Local Atual
-		
+
 		var verb_RS = []; // R$(18) Matriz de verbos
 		var verb_RN = []; // R(18)  Matriz de números de verbos
 
@@ -351,7 +351,7 @@
 			}
 			GameLoop();
 		}
-		
+
 		function MovePlayer(direction) {
 			output_MSG = "";
 			switch (direction) {
@@ -618,10 +618,10 @@
 				output_MSG = "Nadar Onde?";
 			}
 			else if (obj_OBP[1] == -1) {
-				// obj_OBS[1] = "TIJOLO" 
+				// obj_OBS[1] = "TIJOLO"
 				output_MSG = "Tijolos sao muito pesados. Voce se afogou!";
 			}
-			else if (obj_OBP[3] > -1) { 
+			else if (obj_OBP[3] > -1) {
 				// obj_OBS[3] = "REVOLVER"
 				output_MSG = "Voce achou um revolver!";
 				obj_OBP[3] = -1;
@@ -649,7 +649,7 @@
 		}
 
 		function coletorRnd() {
-			// randomly select 
+			// randomly select
 			var rnd = Math.floor(Math.random() * 15);
 			if (rnd == 1 && flag_TA == 0) {
 				obj_OBP[6] = currentLocation; // coloca o coletor no local
@@ -690,7 +690,7 @@
 		}
 
 		function Action_Esvaziar() {
-			if (obj_OBP[0] != -1) { 
+			if (obj_OBP[0] != -1) {
 				// obj_OBS[0] = "SACO"
 				output_MSG = "Voce nao pode " + input_VS + " o que nao tem.";
 			}
@@ -744,7 +744,7 @@
 				"Depois de encontra-lo voce precisa achar a saida. <br/>" +
 				"Cuidado com o coletor de impostos!<br/>";
 		}
-		
+
 		function ShowEnd() {
 			output_MSG = "Parabens! Voce completou a tarefa!";
 		}
