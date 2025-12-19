@@ -13,6 +13,8 @@
 		body {
 			margin: 30px;
 			font-family: 'Acme', sans-serif;
+			background: #191919;
+			color: #19b345;
 		}
 
 		h1 {
@@ -41,25 +43,25 @@
 		}
 
 		#divDirections {
-			border: 1px solid brown;
+			border: 1px solid rgb(147, 172, 131);
 			padding: 10px;
 			border-radius: 15px;
 		}
 
 		#divAnswer {
-			border: 1px solid grey;
+			border: 1px solid rgb(147, 172, 131);
 			padding: 10px;
 			border-radius: 15px;
 		}
 
 		#divObjectsHere {
-			border: 1px solid blue;
+			border: 1px solid rgb(147, 172, 131);
 			padding: 10px;
 			border-radius: 15px;
 		}
 
 		#divPlayerObjects {
-			border: 1px solid magenta;
+			border: 1px solid rgb(147, 172, 131);
 			padding: 10px;
 			border-radius: 15px;
 		}
@@ -68,7 +70,7 @@
 			width: 350px;
 			height: 250px;
 			border-radius: 15px;
-			background: black;
+			background: rgb(22, 46, 44);
 			padding: 10px;
 			vertical-align: center;
 		}
@@ -79,7 +81,7 @@
 		}
 
 		#divLocationDescription {
-			border: 1px solid red;
+			border: 1px solid rgb(147, 172, 131);
 			padding: 10px;
 			border-radius: 15px;
 		}
@@ -99,7 +101,8 @@
 		}
 
 		.msg-direction {
-			background-color: rgb(146, 223, 225);
+			background-color: rgb(14, 50, 50);
+			color: rgb(120, 147, 34);
 		}
 
 		.img-direction:hover {
@@ -114,7 +117,7 @@
 
 		<section class="wrapper">
 			<div class="leftCol">
-				<div id="divLocationImage"><img id="locationImage" src="images/img.png" width="350" height="250" />
+				<div id="divLocationImage"><img id="locationImage" src="./images/img.png" width="350" height="250" />
 				</div>
 			</div>
 			<div class="rightCol">
@@ -130,21 +133,21 @@
 							<table>
 								<tr>
 									<td>&nbsp;</td>
-									<td><img class="img-direction" id="mv_north" src="images/mv_north.png"
+									<td><img class="img-direction" id="mv_north" src="./images/mv_north.png"
 											onclick="MovePlayer('N');" width="30" height="30" /></td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
-									<td><img class="img-direction" id="mv_west" src="images/mv_west.png"
+									<td><img class="img-direction" id="mv_west" src="./images/mv_west.png"
 											onclick="MovePlayer('O');" width="30" height="30" /></td>
-									<td><img class="img-center" id="mv_center" src="images/mv_center.png" width="30"
+									<td><img class="img-center" id="mv_center" src="./images/mv_center.png" width="30"
 											height="30" /></td>
-									<td><img class="img-direction" id="mv_east" src="images/mv_east.png"
+									<td><img class="img-direction" id="mv_east" src="./images/mv_east.png"
 											onclick="MovePlayer('L');" width="30" height="30" /></td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
-									<td><img class="img-direction" id="mv_south" src="images/mv_south.png"
+									<td><img class="img-direction" id="mv_south" src="./images/mv_south.png"
 											onclick="MovePlayer('S');" width="30" height="30" /></td>
 									<td>&nbsp;</td>
 								</tr>
@@ -172,7 +175,7 @@
 
 		<section class="map">
 			<button onclick="toggleMap()">Toggle Map</button>
-			<div id="divMap" style="display: none;"><img src="images/_map2.jpg" /></div>
+			<div id="divMap" style="display: none;"><img src="./images/map2.jpg" /></div>
 		</section>
 
 	</div>
