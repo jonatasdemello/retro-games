@@ -31,6 +31,17 @@
 
 		table tr td {
 			text-align: center;
+			padding: 0;
+			margin: 0;
+		}
+
+		/* define a min height for all divs */
+		.minHeight {
+			min-height: 50px;
+		}
+
+		.hidden {
+			display: none;
 		}
 
 		#divMap {
@@ -42,13 +53,14 @@
 			width: 300px;
 		}
 
-		#divDirections {
+		#divDirections, #divDirectionsToMove {
 			border: 1px solid rgb(147, 172, 131);
 			padding: 10px;
 			border-radius: 15px;
+			min-height: 120px;
 		}
 
-		#divAnswer {
+		#divResponse {
 			border: 1px solid rgb(147, 172, 131);
 			padding: 10px;
 			border-radius: 15px;
@@ -70,7 +82,7 @@
 			width: 350px;
 			height: 250px;
 			border-radius: 15px;
-			background: rgb(22, 46, 44);
+			background: rgb(147, 172, 131);
 			padding: 10px;
 			vertical-align: center;
 		}
@@ -101,7 +113,7 @@
 		}
 
 		.msg-direction {
-			background-color: rgb(14, 50, 50);
+			/* background-color: rgb(14, 50, 50); */
 			color: rgb(120, 147, 34);
 		}
 
@@ -122,15 +134,15 @@
 			</div>
 			<div class="rightCol">
 
-				<div id="divLocationDescription"></div>
-				<div id="divObjectsHere"></div>
-				<div id="divPlayerObjects"></div>
+				<div id="divLocationDescription" class="minHeight"></div>
+				<div id="divObjectsHere" class="minHeight"></div>
+				<div id="divPlayerObjects" class="minHeight"></div>
 
 				<!-- movement -->
 				<section class="wrapper">
 					<div class="leftCol">
 						<div id="divDirectionsToMove">
-							<table>
+							<table id="compass-rose">
 								<tr>
 									<td>&nbsp;</td>
 									<td><img class="img-direction" id="mv_north" src="./images/mv_north.png"
@@ -140,8 +152,10 @@
 								<tr>
 									<td><img class="img-direction" id="mv_west" src="./images/mv_west.png"
 											onclick="MovePlayer('O');" width="30" height="30" /></td>
-									<td><img class="img-center" id="mv_center" src="./images/mv_center.png" width="30"
-											height="30" /></td>
+
+									<td><img class="img-center" id="mv_center" src="./images/mv_center.png"
+											width="30" height="30" /></td>
+
 									<td><img class="img-direction" id="mv_east" src="./images/mv_east.png"
 											onclick="MovePlayer('L');" width="30" height="30" /></td>
 								</tr>
@@ -162,20 +176,35 @@
 			</div>
 		</section>
 
-		<section class="user">
-			<div id="divAnswer"></div>
-			<div id="divCommand">
-				<p>Command:
+		<section class="user-interaction">
+			<div id="divResponse" class="minHeight"></div>
+			<div id="divCommand" class="minHeight">
+				<p>Comando: &nbsp;
+					<!-- input text box and button -->
 					<input id="cmd_input" name="cmd_input" type="text" size="50" />
 					<input id="btn_input" name="btn_input" type="button" value="Execute!" onclick="ReadInput();" />
 				</p>
 			</div>
-
 		</section>
 
+		<button onclick="toggleMap()">Toggle Map</button>
+		<button onclick="toggleAjuda()">Toggle Ajuda</button>
+
 		<section class="map">
-			<button onclick="toggleMap()">Toggle Map</button>
-			<div id="divMap" style="display: none;"><img src="./images/map2.jpg" /></div>
+			<div id="divMap" style="display: none;">
+				<img src="./images/map2.jpg" />
+			</div>
+		</section>
+
+		<section class="instructions">
+			<div id="divInstructions" style="display: none;">
+				<p>Lista de comandos validos:</p>
+				NORTE, SUL, LESTE, OESTE, <br/>
+				PEGAR, APANHAR, CARREGAR, COLOCAR, <br/>
+				DEIXAR, LARGAR, PUXAR, NADAR, <br/>
+				ESVAZIAR, ACENDER, DESISTIR, <br/>
+				LISTAR, MATAR, ATIRAR, AJUDAR, EXAMINAR<br/>
+			</div>
 		</section>
 
 	</div>
@@ -189,14 +218,20 @@
 					document.getElementById("btn_input").click();
 				}
 			});
-		// map
-		function toggleMap() {
- 			var el = document.getElementById("divMap");
+
+		function toggleItem(item) {
+ 			var el = document.getElementById(item);
 			 if (el.style.display === "none") {
 				el.style.display = "block";
 			} else {
 				el.style.display = "none";
 			}
+		}
+		function toggleMap() {
+			toggleItem("divMap");
+		}
+		function toggleAjuda() {
+			toggleItem("divInstructions");
 		}
 
 		// use Global variables for now to keep it simple
@@ -236,6 +271,7 @@
 		verb_RN[16] = 10; verb_RS[16] = "MATAR";
 		verb_RN[17] = 10; verb_RS[17] = "ATIRAR";
 		verb_RN[18] = 11; verb_RS[18] = "AJUDAR";
+		verb_RN[19] = 12; verb_RS[19] = "EXAMINAR";
 
 		var obj_OBP = []; //  obj_OBP[6] = Posição onde esta o objeto no mapa
 		var obj_OBS = []; //  obj_OBS[6] = Nome do Objeto
@@ -261,7 +297,7 @@
 			ShowObjectsHere(currentLocation);
 			ShowInventory();
 			ShowDirections(currentLocation);
-			ShowAnswer();
+			ShowResponse();
 		}
 
 		function ClearInput() {
@@ -292,7 +328,7 @@
 			}
 			// input_I: Contém número correspondente a um verbo, usado para selecionar a rotina adequada
 			input_I = 0;
-			for (let i = 0; i < 19; i++) {
+			for (let i = 0; i < verb_RS.length; i++) {
 				if (verb_RS[i] == input_VS) { // only verbs
 					input_I = verb_RN[i];
 					break;
@@ -300,6 +336,11 @@
 			}
 			// keep the first letter (N, S, E, W) only
 			input_CMD = input_VS.substring(0, 1);
+			if (input_I == 0) {
+				if (input_CMD == "N" || input_CMD == "S" || input_CMD == "L" || input_CMD == "O") {
+					input_I = 1; // movement
+				}
+			}
 
 			// debug:
 			console.log("ReadInput:");
@@ -309,10 +350,10 @@
 			console.log("NS: ", input_NS);
 
 			// if we parse input, then we run the action after
-			DoStuff();
+			ProcessInput();
 		}
 
-		function DoStuff() {
+		function ProcessInput() {
 			//  neste momento já decodificou a entrada do usuario:
 			switch (input_I) {
 				case 0:
@@ -350,6 +391,9 @@
 					break;
 				case 11:
 					Action_Ajudar();
+					break;
+				case 12:
+					Action_Examinar();
 					break;
 			}
 			GameLoop();
@@ -414,37 +458,37 @@
 			document.getElementById("divPlayerObjects").innerHTML = txt;
 		}
 
-		function ShowAnswer() {
-			let txt = "<span class='msg-direction'>Answer:</span><br/>";
-			document.getElementById("divAnswer").innerHTML = txt + output_MSG;
+		function ShowResponse() {
+			let txt = "<span class='msg-direction'>Resposta:</span><br/>";
+			document.getElementById("divResponse").innerHTML = txt + output_MSG;
 		}
 
 		function ShowDirections(currentLocation) {
 			let txt = "<span class='msg-direction'>Voce pode seguir:</span><br/>";
 
 			if (move_N == 1) {
-				txt += " &bull; Norte N<br/>";
+				txt += " &bull; Norte (N)<br/>";
 				document.getElementById("mv_north").src = "./images/mv_north.png";
 			}
 			else {
 				document.getElementById("mv_north").src = "./images/mv_empty.png";
 			}
 			if (move_S == 1) {
-				txt += " &bull; Sul S<br/>";
+				txt += " &bull; Sul (S)<br/>";
 				document.getElementById("mv_south").src = "./images/mv_south.png";
 			}
 			else {
 				document.getElementById("mv_south").src = "./images/mv_empty.png";
 			}
 			if (move_E == 1) {
-				txt += " &bull; Leste E<br/>";
+				txt += " &bull; Leste (L)<br/>";
 				document.getElementById("mv_east").src = "./images/mv_east.png";
 			}
 			else {
 				document.getElementById("mv_east").src = "./images/mv_empty.png";
 			}
 			if (move_W == 1) {
-				txt += " &bull; Oeste W<br/>";
+				txt += " &bull; Oeste (O)<br/>";
 				document.getElementById("mv_west").src = "./images/mv_west.png";
 			}
 			else {
@@ -460,7 +504,7 @@
 
 			switch (currentLocation) {
 				case 4:
-					locDesc = "Voce esta do lado de fora de uma grande construcao.";
+					locDesc = "Voce esta do lado de fora do palacio.";
 					move_N = 0;
 					move_E = 0;
 					move_S = 1;
@@ -553,7 +597,7 @@
 					move_W = 0;
 					break;
 			}
-			let txt = "<span class='msg-direction'>Location:</span><br/>";
+			let txt = "<span class='msg-direction'>Local:</span><br/>";
 			document.getElementById("locationImage").src = "./images/" + currentLocation + ".png";
 			document.getElementById("divLocationDescription").innerHTML = txt + locDesc;
 		}
@@ -571,7 +615,9 @@
 						output_MSG = obj_OBS[i] + " nao esta aqui";
 						break;
 					}
-					else if (obj_OBP[i] == currentLocation) {
+					else if (obj_OBP[i] == currentLocation
+						&& obj_OBS[2] != input_NS
+					) {
 						obj_OBP[i] = -1;
 						output_MSG = "Voce pegou o " + obj_OBS[i];
 						break;
@@ -609,7 +655,7 @@
 			}
 			else if (obj_OBP[4] != -1 && currentLocation == 24) {
 				// obj_OBS[4] = "OLHO"
-				output_MSG = "Voce cai dentro do vaso e vai embora com a descarga.";
+				output_MSG = "Um buraco no chao se abriu. Voce cai dentro dele e morre.";
 			}
 			else if (obj_OBP[4] == -1 && currentLocation == 24) {
 				output_MSG = "Voce completou a aventura!";
@@ -736,6 +782,22 @@
 					msg += verb_RS[i] +", ";
 				}
 				output_MSG += msg;
+			}
+		}
+
+		function Action_Examinar() {
+			output_MSG = "Voce examina " + input_NS;
+			for (let i = 0; i < obj_OBP.length; i++) {
+				if (obj_OBS[i] == input_NS) {
+					if (obj_OBP[i] == -1 || obj_OBP[i] == currentLocation) {
+						output_MSG = obj_OBD[i];
+						break;
+					}
+					else {
+						output_MSG = obj_OBS[i] + " nao esta aqui.";
+						break;
+					}
+				}
 			}
 		}
 
