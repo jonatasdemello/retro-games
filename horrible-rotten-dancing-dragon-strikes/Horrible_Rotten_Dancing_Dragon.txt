@@ -1,3 +1,34 @@
+https://github.com/dfabulich/horrible-rotten-dancing-dragon-strikes
+
+The Horrible Rotten Dancing Dragon...Strikes!!!
+
+Aka:		Adventure of the Dancing Dragon
+Language:	English
+Authors:	Ken Rose
+Systems:	BASIC
+Platforms:	Apple II, Atari 400/800
+Genres: 	Fantasy, misc., Magic, Type-in info
+Entered by:	ahope1, Garry, Strident
+Added:	03-08-2010
+Edited:	17-08-2022
+
+Synopsis
+Your adventure starts in a forest. You are empty-handed and have absolutely no idea what you are supposed to do. After a little exploring, you discover a small castle that is inhabited by a poor king who has been exposed to werewolf simplex II (a reference to an earlier adventure in this series) and is slowly turning into a wolf. He explains that unless he is cured by the magic spring, he is doomed, since he can't leave the castle.
+
+Your mission is now clear. You must find the magic spring and return it to the king.
+
+Notes
+This adventure was originally published in Softline magazine, vol. 2, no. 3, January 1983, pp. 22–27. This accompanied an ongoing series of articles titled 'An adventure in adventuring' that taught you how to write adventures in BASIC. The full listing is in Atari BASIC, but the article describes the modifications needed to convert it to Applesoft BASIC so that it can run on an Apple II.
+
+The game was also made available, ready-typed on disk for Apple II or Atari direct from Softline.
+
+There is an Atari version of this adventure called 'Adventure of the Dancing Dragon' that is downloadable from a couple of the archive sites. However, this version has been extensively modified, slightly reworded, introduced many spelling and punctuation errors and renumbered.
+
+The original game has been ported to BBC Micro by Lurkio. You can access that version, and also view Dan Fabulich's Apple restoration of the game via Dan's Github.
+
+Barry Hart produced an unofficial port of the Atari version of the game to C64 in 2020.
+
+---------------------------------------------------------------------------------------------------
 The Horrible Rotten Dancing Dragon...Strikes!!!
 By Ken Rose
 Published in Softline, vol. 2, no. 3, January 1983, pp. 22-27
@@ -5,7 +36,12 @@ For Atari 400/800/XL/XE
 
 Solution by Garry Francis
 ----------------------------------------
-(This is a minimal solution. You cannot LOOK or EXAMINE things, but you will receive many subtle hints when you first enter each room. You cannot get these hints back again, so make sure you take extensive notes.)
+(This is a minimal solution. 
+You cannot LOOK or EXAMINE things, 
+but you will receive many subtle hints 
+when you first enter each room. 
+You cannot get these hints back again, 
+so make sure you take extensive notes.)
 
 E
 E
@@ -66,3 +102,6 @@ W
 N
 W
 ***THE END***
+---------------------------------------------------------------------------------------------------
+
+https://www.youtube.com/watch?v=unpZSzFufQg
