@@ -98,26 +98,30 @@
 
   function listObjectsHere(room) {
     let found = false;
-    if (room === OB[1]) { print("A STICK"); found = true; }
-    if (room === OB[2]) { print("A SWORD"); found = true; }
-    if (room === OB[3]) { print("A MAGIC SPRING"); found = true; }
-    if (room === OB[4]) { print("A DRUMSTICK"); found = true; }
-    if (room === OB[5]) { print("A MCRIB SANDWICH"); found = true; }
-    if (room === OB[6]) { print("A TOY DRUM"); found = true; }
-    if (room === OB[7]) { print("A DRAGON WAGON"); found = true; }
-    if (!found) {
-      print("NOTHING");
-    }
+    if (room === OB[1]) { print("- A STICK"); found = true; }
+    if (room === OB[2]) { print("- A SWORD"); found = true; }
+    if (room === OB[3]) { print("- A MAGIC SPRING"); found = true; }
+    if (room === OB[4]) { print("- A DRUMSTICK"); found = true; }
+    if (room === OB[5]) { print("- A MCRIB SANDWICH"); found = true; }
+    if (room === OB[6]) { print("- A TOY DRUM"); found = true; }
+    if (room === OB[7]) { print("- A DRAGON WAGON"); found = true; }
+    if (!found) { print("- NOTHING"); }
     print("");
   }
 
   function showExits() {
-    let exits = "EXITS: ";
-    if (N[R] > 0) exits += "NORTH ";
-    if (S[R] > 0) exits += "SOUTH ";
-    if (E[R] > 0) exits += "EAST ";
-    if (W[R] > 0) exits += "WEST";
-    print(exits.trimEnd());
+    print("EXITS: ");
+    print("");
+    let exits = "";
+    if (N[R] > 0) exits += "- NORTH;";
+    if (S[R] > 0) exits += "- SOUTH;";
+    if (E[R] > 0) exits += "- EAST;";
+    if (W[R] > 0) exits += "- WEST;";
+    let ar = exits.split(";");
+    ar.forEach((val, index) => {
+      print(ar[index]);
+    });
+    //print(exits.trimEnd());
   }
 
   function describeRoom() {
@@ -291,7 +295,7 @@
     }
     const obj = checkNoun(noun);
     if (obj === 0) {
-      print("BE REALISTIC");
+      print("BE REALISTIC.");
       promptLine();
       return;
     }
@@ -313,8 +317,9 @@
     OB[obj] = 34;
     if (OB[3] === 34) {
       print("");
-      print("YOU PUSH AND TUG THE MAGIC METAL SPRING INTO THE WAGON AND  FIND THAT YOU CAN NOW ");
-      print("TRANSPORT IT. AREN'T YOU CLEVER, YOU RASCAL YOU.");
+      print("YOU PUSH AND TUG THE MAGIC METAL SPRING INTO THE WAGON");
+      print("AND  FIND THAT YOU CAN NOW TRANSPORT IT.");
+      print("AREN'T YOU CLEVER, YOU RASCAL YOU.");
       print("");
       promptLine();
       return;
@@ -360,7 +365,8 @@
       }
       if (noun === "BUTTON") {
         print("");
-        print("YOU LEAP HIGH IN THE AIR AND PRESS THE BUTTON WITH YOUR HAND. THE POISONED LIZARD LIVING ");
+        print("YOU LEAP HIGH IN THE AIR AND PRESS THE BUTTON WITH YOUR HAND.");
+        print("THE POISONED LIZARD LIVING ");
         print("");
         print("IN THE BUTTONHOLE ");
         print("PRESSES YOUR HAND WITH ITS FANGS AND...");
@@ -382,7 +388,7 @@
   function dropObject(noun) {
     const obj = checkNoun(noun);
     if (obj === 0) {
-      print("BE REALISTIC");
+      print("BE REALISTIC.");
       promptLine();
       return;
     }
@@ -423,17 +429,15 @@
 
   function dance() {
     print("");
-    print("YOU START TO HUM A CATCHY LITTLE TUNE. YOU GRACEFULLY LEAP UP IN THE AIR, DO A PIROUETTE, LAND,");
-    print("DO A CARTWHEEL,");
-    print("AND TAKE A BOW.");
+    print("YOU START TO HUM A CATCHY LITTLE TUNE.");
+    print("YOU GRACEFULLY LEAP UP IN THE AIR, DO A PIROUETTE,");
+    print("LAND, DO A CARTWHEEL, AND TAKE A BOW.");
     if (R === 28) {
       print("");
       print("THE DRAGON LOOKS AT YOU IN DISGUST. HE GETS UP AND SAYS, ");
-      print("'THAT'S AWFUL. THIS IS ");
-      print("HOW YOU DO IT.'");
+      print("'THAT'S AWFUL. THIS IS HOW YOU DO IT.'");
       print("HE IS EXTREMELY CLUMSY AND SAYS,");
-      print("'I JUST CAN'T SEEM TO GET THE");
-      print("TEMPO RIGHT.'");
+      print("'I JUST CAN'T SEEM TO GET THE TEMPO RIGHT.'");
       print("");
       print("HE IS GETTING MADDER AND MADDER. HE LOOKS AT YOU, SNARLS, AND SAYS, ");
       print("'WELL, IF YOU WON'T HELP ME.....'CHOMP!!");
@@ -455,10 +459,8 @@
     }
     if (R === 9 && OB[7] < 34) {
       print("");
-      print(`WHAT, YOU DARE TO ${verb} IN THE `);
-      print("PRESENCE OF THE KING?");
-      print("THE GUARDS SEIZE YOU ");
-      print("AND DRAG YOU OFF");
+      print(`WHAT, YOU DARE TO ${verb} IN THE PRESENCE OF THE KING?`);
+      print("THE GUARDS SEIZE YOU AND DRAG YOU OFF");
       print("KICKING AND SCREAMING TO BE FED TO THE DRAGON.");
       print("");
       gameOverNow();
@@ -467,10 +469,9 @@
     if (R === 18 && OB[2] === 34) {
       if (noun === "KETTLE") {
         print("");
-        print(`YOU ${verb} THE SWORD AGAINST THE `);
-        print("KETTLE. THE ROCK VIBRATES IN ");
-        print("TUNE ");
-        print("AND ROLLS ASIDE, REVEALING A PASSAGE TO THE NORTH.");
+        print(`YOU ${verb} THE SWORD AGAINST THE KETTLE.`);
+        print("THE ROCK VIBRATES IN TUNE AND ROLLS ASIDE,");
+        print("REVEALING A PASSAGE TO THE NORTH.");
         N[18] = 14;
         S[14] = 18;
         promptLine();
@@ -485,8 +486,7 @@
       print("");
       print(`YOU ${verb} IT WITH YOUR HAND.`);
       print("");
-      print("NOTHING SEEMS TO HAPPEN EXCEPT YOUR HAND ");
-      print("HURTS.");
+      print("NOTHING SEEMS TO HAPPEN EXCEPT YOUR HAND HURTS.");
       promptLine();
       return;
     }
@@ -507,7 +507,8 @@
     }
     if (R === 28) {
       print("");
-      print("YOU ATTACK THE DRAGON FURIOUSLY WITH YOUR BARE HANDS. THE DRAGON CHUCKLES AT YOU...");
+      print("YOU ATTACK THE DRAGON FURIOUSLY WITH YOUR BARE HANDS.");
+      print("THE DRAGON CHUCKLES AT YOU...");
       print("");
       print("'IF YOU HAD A MAGIC SWORD YOU MIGHT HAVE HAD A CHANCE.'");
       print("");
@@ -535,9 +536,8 @@
         return;
       }
       print("");
-      print("KABOOM, KABOOM. HITTING THE DRUM WITH THE DRUMSTICK PRODUCES A NICE BEAT. YOU'RE NO GENE ");
-      print("KRUPA (WHO?), BUT YOU'LL");
-      print("DO IN A PINCH.");
+      print("KABOOM, KABOOM. HITTING THE DRUM WITH THE DRUMSTICK PRODUCES A NICE BEAT.");
+      print(" YOU'RE NO GENE KRUPA (WHO?), BUT YOU'LL DO IN A PINCH.");
       promptLine();
       return;
     }
@@ -626,8 +626,8 @@
   function trappedInDragon() {
     R = 28;
     print("");
-    print("YOU'RE TRAPPED IN THE DRAGON'S CAVE. IF YOU DON'T DO SOMETHING SOON YOU'RE IN BIG ");
-    print("TROUBLE.");
+    print("YOU'RE TRAPPED IN THE DRAGON'S CAVE.");
+    print("IF YOU DON'T DO SOMETHING SOON YOU'RE IN BIG TROUBLE.");
     TC += 1;
     print("");
     print(`YOU'VE ONLY GOT ${5 - TC} MINUTES LEFT.`);
@@ -660,8 +660,9 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("IT IS A WARM SPRING DAY IN THE FOREST PRIMEVAL. YOU ARE DRESSED IN A JERKIN. CUTE LITTLE");
-        print(" FURRY CREATURES BOUND THROUGH THE WOODS.");
+        print("IT IS A WARM SPRING DAY IN THE FOREST PRIMEVAL.");
+        print("YOU ARE DRESSED IN A JERKIN.");
+        print("CUTE LITTLE FURRY CREATURES BOUND THROUGH THE WOODS.");
         RD[R] = 1;
         return;
       case 2:
@@ -687,10 +688,10 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("THE WIND BLOWING THROUGH THE PINES IS SINGING A SONG. YOU LISTEN CLOSELY AND CAN MAKE OUT ");
-        print("SOME OF THE WORDS.");
+        print("THE WIND BLOWING THROUGH THE PINES IS SINGING A SONG.");
+        print("YOU LISTEN CLOSELY AND CAN MAKE OUT SOME OF THE WORDS.");
         print("");
-        print("THEY ARE, 'I OPINE A DRAGON TO SWEETEN MAKE SURE THAT HE'S EATEN'.");
+        print("THEY ARE, **I OPINE A DRAGON TO SWEETEN MAKE SURE THAT HE'S EATEN**.");
         RD[R] = 1;
         return;
       case 5:
@@ -704,7 +705,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("TO THE SOUTH IS THE NORTH SIDE OF A DRAWBRIDGE. THE BRIDGE LOOKS PRETTY RICKETY.");
+        print("TO THE SOUTH IS THE NORTH SIDE OF A DRAWBRIDGE.");
+        print("THE BRIDGE LOOKS PRETTY RICKETY.");
         RD[R] = 1;
         return;
       case 7:
@@ -717,8 +719,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("THIS, AS YOU'LL FIND, IS NOT A VERY LARGE CASTLE. IN FACT IT HAS ONLY THREE (I THINK) ");
-        print("ROOMS.");
+        print("THIS, AS YOU'LL FIND, IS NOT A VERY LARGE CASTLE.");
+        print("IN FACT IT HAS ONLY THREE (I THINK) ROOMS.");
         RD[R] = 1;
         return;
       case 9:
@@ -730,11 +732,11 @@
           return;
         }
         print("");
-        print("THE POOR KING HAS BEEN EXPOSED TO WEREWOLF SIMPLEX II AND IS SLOWLY TURNING INTO ");
-        print("A WOLF.");
+        print("THE POOR KING HAS BEEN EXPOSED TO WEREWOLF SIMPLEX II");
+        print("AND IS SLOWLY TURNING INTO A WOLF.");
         print("");
-        print("HE EXPLAINS THAT UNLESS CURED BY THE MAGIC SPRING HE IS DOOMED SINCE HE CAN'T ");
-        print("LEAVE THE PALACE.");
+        print("HE EXPLAINS THAT UNLESS CURED BY THE MAGIC SPRING ");
+        print("HE IS DOOMED SINCE HE CAN'T LEAVE THE PALACE.");
         RD[R] = 1;
         return;
       case 10:
@@ -755,9 +757,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("TO THE NORTH YOU SEE A SMALL CASTLE. SMALL DOES NOT DO IT JUSTICE. IT IS REALLY SMALL. ");
-        print("IF YOU WANT TO SEE ");
-        print("HOW SMALL, GO NORTH.");
+        print("TO THE NORTH YOU SEE A SMALL CASTLE. SMALL DOES NOT DO IT JUSTICE.");
+        print("IT IS REALLY SMALL. IF YOU WANT TO SEE HOW SMALL, GO NORTH.");
         RD[R] = 1;
         return;
       case 13:
@@ -765,8 +766,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("IF YOU THINK IT'S DULL READING ABOUT THE FOREST, YOU SHOULD TRY YOUR HAND AT WRITING ABOUT ");
-        print("IT.");
+        print("IF YOU THINK IT'S DULL READING ABOUT THE FOREST,");
+        print("YOU SHOULD TRY YOUR HAND AT WRITING ABOUT IT.");
         RD[R] = 1;
         return;
       case 14:
@@ -774,7 +775,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("THERE IS SOMETHING VERY STRANGE HERE. THE GROUND SOUNDS HOLLOW!");
+        print("THERE IS SOMETHING VERY STRANGE HERE.");
+        print("THE GROUND SOUNDS HOLLOW!");
         RD[R] = 1;
         return;
       case 15:
@@ -790,10 +792,10 @@
         print("");
         print("THE HILLS ARE ALIVE WITH THE SOUND OF MUSIC. THEY SING:");
         print("");
-        print("DON'T PUT YOUR SHOULDER");
-        print("TO THE BOULDER,");
-        print("BUT TEST YOUR METTLE,");
-        print("AGAINST THE KETTLE.");
+        print(" > DON'T PUT YOUR SHOULDER");
+        print(" > TO THE BOULDER,");
+        print(" > BUT TEST YOUR METTLE,");
+        print(" > AGAINST THE KETTLE.");
         RD[R] = 1;
         return;
       case 17:
@@ -801,7 +803,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("ALL ADVENTURE GAMES HAVE TO HAVE AT LEAST ONE VOLCANO. THIS VOLCANO IS ALL POOPED OUT AND ");
+        print("ALL ADVENTURE GAMES HAVE TO HAVE AT LEAST ONE VOLCANO.");
+        print("THIS VOLCANO IS ALL POOPED OUT AND");
         print("WILL NOT ERUPT DURING THIS GAME.");
         RD[R] = 1;
         return;
@@ -816,7 +819,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("A SMALL DINOSAUR STICKS ITS TONGUE OUT AT YOU FROM BEHIND A FERN. IT THEN DARTS AWAY.");
+        print("A SMALL DINOSAUR STICKS ITS TONGUE OUT AT YOU ");
+        print("FROM BEHIND A FERN. IT THEN DARTS AWAY.");
         RD[R] = 1;
         return;
       default:
@@ -831,7 +835,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("THE SMALL DINOSAUR REAPPEARS AND HURLS A ROCK AT YOU. THE ROCK MISSES AND THE DINOSAUR DARTS ");
+        print("THE SMALL DINOSAUR REAPPEARS AND HURLS A ROCK AT YOU.");
+        print("THE ROCK MISSES AND THE DINOSAUR DARTS ");
         print("AWAY.");
         RD[R] = 1;
         return;
@@ -842,9 +847,7 @@
         print("");
         print("THE SMALL DINOSAUR TAUNTS YOU BY SAYING (IN DINOSAUR LANGUAGE):");
         print("");
-        print("'NYAH, ");
-        print("NYAH, THE DRAGON'S GONNA ");
-        print("GET YOU!'");
+        print("'NYAH, NYAH, THE DRAGON'S GONNA GET YOU!'");
         RD[R] = 1;
         return;
       case 3:
@@ -876,8 +879,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("A GORGEOUS RAINBOW ARCHES ACROSS THE SKY AND PINK EGRETS FLAP HAPPILY BY. A SIGN PAINTED ");
-        print("ON THE WALL SAYS:");
+        print("A GORGEOUS RAINBOW ARCHES ACROSS THE SKY AND PINK EGRETS FLAP HAPPILY BY.");
+        print("A SIGN PAINTED ON THE WALL SAYS:");
         print("'SATISFACTION GUARANTEED OR YOUR MONEY BACK!'");
         RD[R] = 1;
         return;
@@ -894,9 +897,9 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("LOOKING AROUND YOU SEE PICNIC TABLES AND GARBAGE CANS OVERFLOWING WITH LITTER.  ");
-        print("HOWEVER, IT APPEARS THAT YOU FRIGHTENED SOMEONE OR SOMETHING AWAY AS THEY LEFT THEIR LUNCH ON THE ");
-        print("TABLE.");
+        print("LOOKING AROUND YOU SEE PICNIC TABLES AND GARBAGE CANS OVERFLOWING WITH LITTER.");
+        print("HOWEVER, IT APPEARS THAT YOU FRIGHTENED SOMEONE OR SOMETHING AWAY");
+        print("AS THEY LEFT THEIR LUNCH ON THE TABLE.");
         RD[R] = 1;
         return;
       case 9:
@@ -909,8 +912,9 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("JUST KIDDING. NO MAZES IN THIS GAME. IF YOU WANT TO SEE MY FEELING ON MAZES SEE THE LAST ");
-        print("ISSUE OF 'SOFTLINE'.");
+        print("JUST KIDDING. NO MAZES IN THIS GAME.");
+        print("IF YOU WANT TO SEE MY FEELING ON MAZES");
+        print("SEE THE LAST ISSUE OF 'SOFTLINE'.");
         RD[R] = 1;
         return;
       case 11:
@@ -926,8 +930,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("THIS APPEARS TO HAVE BEEN SOME SORT OF QUICK FOOD PLACE AT ONE TIME. THERE IS THE SMELL OF ");
-        print("GREASE IN THE AIR.");
+        print("THIS APPEARS TO HAVE BEEN SOME SORT OF QUICK FOOD PLACE AT ONE TIME.");
+        print("THERE IS THE SMELL OF GREASE IN THE AIR.");
         RD[R] = 1;
         return;
       case 13:
@@ -935,9 +939,8 @@
         print(DES);
         if (RD[R] === 1) return;
         print("");
-        print("SOMEONE HAS SPRAY PAINTED THIS CAVE AND SCRAWLED GRAFFITI ALL OVER THE WALL. I WON'T ");
-        print("GIVE ANY MORE DETAILS ");
-        print("AS I'M NOT THAT SORT OF COMPUTER.");
+        print("SOMEONE HAS SPRAY PAINTED THIS CAVE AND SCRAWLED GRAFFITI ALL OVER THE WALL.");
+        print("I WON'T GIVE ANY MORE DETAILS AS I'M NOT THAT SORT OF COMPUTER.");
         RD[R] = 1;
         return;
       case 14:
@@ -958,20 +961,22 @@
       print("");
       print("THE BRIDGE IS DOWN.");
       print("");
-      print("A SIGN UNDER THE BUTTON SAYS: 'UNDER NO CIRCUMSTANCES PUSH THIS BUTTON!'");
+      print("A SIGN UNDER THE BUTTON SAYS:");
+      print("'UNDER NO CIRCUMSTANCES PUSH THIS BUTTON!'");
       return;
     }
     print("");
     print("THE BRIDGE IS UP BUT THERE IS A LARGE BUTTON JUST OUT OF YOUR REACH.");
     print("");
-    print("A SIGN UNDER THE BUTTON SAYS: 'UNDER NO CIRCUMSTANCES PUSH THIS BUTTON!'");
+    print("A SIGN UNDER THE BUTTON SAYS:");
+    print("'UNDER NO CIRCUMSTANCES PUSH THIS BUTTON!'");
   }
 
   function drawbridgeSouth() {
     print("");
-    print("AS YOU PASS OVER THE DRAWBRIDGE A THREE-TOED OGRE RUNS FROM UNDER THE BRIDGE CARRYING ");
-    print("YOUR STICK. HE PRESSES ");
-    print("THE BUTTON, CATCHES THE POISONED LIZARD FROM THE BUTTONHOLE ");
+    print("AS YOU PASS OVER THE DRAWBRIDGE");
+    print("A THREE-TOED OGRE RUNS FROM UNDER THE BRIDGE CARRYING YOUR STICK.");
+    print("HE PRESSES THE BUTTON, CATCHES THE POISONED LIZARD FROM THE BUTTONHOLE ");
     print("AND EATS IT.");
     print("");
     print("THE BRIDGE RAISES HIGH UP IN THE AIR, MAKING IT IMPOSSIBLE TO RETURN.");
@@ -981,32 +986,33 @@
   function throneRoom() {
     if (OB[7] === 34 && OB[3] === 34) {
       print("");
-      print("THE KING JUMPS UP AND DOWN ON THE MAGIC SPRING WHICH ACTIVATES ITS CURATIVE POWERS. ");
-      print("HE IS CURED. ");
+      print("THE KING JUMPS UP AND DOWN ON THE MAGIC SPRING ");
+      print("WHICH ACTIVATES ITS CURATIVE POWERS. HE IS CURED. ");
       print("");
-      print("TO SHOW HIS GRATITUDE HE GIVES YOU THE DUSTY TAPESTRY, A DEED TO THE ");
-      print("DRAGON'S CAVE, AND THE TAX BILL THAT THE DRAGON NEVER GOT AROUND TO PAYING ON THAT PARTICULAR ");
-      print("PIECE OF PROPERTY.");
+      print("TO SHOW HIS GRATITUDE HE GIVES YOU THE DUSTY TAPESTRY,");
+      print("A DEED TO THE DRAGON'S CAVE,");
+      print("AND THE TAX BILL THAT THE DRAGON NEVER GOT AROUND TO PAYING");
+      print("ON THAT PARTICULAR PIECE OF PROPERTY.");
       print("");
-      print("HE ALSO GIVES YOU A COMMISSION FOR A MUCH MORE LUCRATIVE QUEST, BUT THAT IS ANOTHER ADVENTURE ");
-      print("FOR ANOTHER TIME.");
+      print("HE ALSO GIVES YOU A COMMISSION FOR A MUCH MORE LUCRATIVE QUEST,");
+      print("BUT THAT IS ANOTHER ADVENTURE FOR ANOTHER TIME.");
       gameOverNow();
       return;
     }
     print("");
-    print("THE THRONE ROOM IS EMPTY AND FAIRLY CLEAN EXCEPT FOR A DUSTY TAPESTRY ON THE WALL. ");
-    print("THE TAPESTRY DEPICTS A");
-    print("DRAGON IN A CAVE EATING A MCRIB SANDWICH.");
+    print("THE THRONE ROOM IS EMPTY AND FAIRLY CLEAN");
+    print("EXCEPT FOR A DUSTY TAPESTRY ON THE WALL. ");
+    print("THE TAPESTRY DEPICTS A DRAGON IN A CAVE EATING A MCRIB SANDWICH.");
   }
 
   function volcanoRock() {
     print("");
-    print("YOU ARE IN A WEIRD VALLEY. BLOCKING THE NORTH SIDE OF THE CLIFF IS A HUGE ROCK. THE ROCK ");
-    print("IS CHIPPED AND PRETTY");
+    print("YOU ARE IN A WEIRD VALLEY.");
+    print("BLOCKING THE NORTH SIDE OF THE CLIFF IS A HUGE ROCK.");
+    print("THE ROCK IS CHIPPED AND PRETTY");
     print("WELL BEATEN UP AND DENTED.");
     print("");
-    print("A DENTED WITCH'S KETTLE IS ");
-    print("BOLTED DOWN HERE.");
+    print("A DENTED WITCH'S KETTLE IS BOLTED DOWN HERE.");
   }
 
   function dragonLair() {
@@ -1016,9 +1022,7 @@
     print("IT SNORTS FIRE FROM ITS NOSTRILS, BURPS, DOES A BIT OF THE OLD SOFT SHOE, AND SAYS TO YOU:");
     print("");
     print("'BOY I'M GLAD YOU MADE IT. NOT ONLY AM I BORED, BUT I'M STARVING.");
-    print("SHALL WE DANCE, OR ");
-    print("SHALL YOU");
-    print("FEED ME FIRST?'");
+    print("SHALL WE DANCE, OR SHALL YOU FEED ME FIRST?'");
   }
 
   form.addEventListener("submit", (event) => {
