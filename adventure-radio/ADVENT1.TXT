@@ -1,0 +1,118 @@
+                     How to Write an Adventure
+					        Part 1
+
+     It seems to me that there have got to be others out there in modem
+country who have adventure running around in their heads.  If you are like me,
+you are brimming over with plots, and just can't fathom how to code them.
+Well, since I started writing adventures in 1981, I've learned alot about how
+to code.  In the this series of files (and it may take a few days for them to
+all appear) we'll demonstrate how to make the computer understand our input
+and act out the adventure.  The coding is coing to be "plain vanilla"...
+nothing fancy with the screen or machine specific.  Just code that will create
+an adventure, and which will be easily transportable from machine to machine.
+
+Some conventions in Adventuring
+
+     An adventure is a hybrid sort of program.  It is a semi-intelligent
+word-recognition program which takes simple english commands and acts upon
+them, updating some sort of situation display in the process.  The point of an
+adventure is almost always a puzzle. The puzzle may be escape from an
+unpleasant fate or surrounding, or the gathering of treasure or other prizes.
+     What all adventures have in common are some basic concepts, and some
+basic parts.
+     The first part of the adventure is the situation display.  This may take
+the form of a simple display that says:
+
+     YOU SEE: A GRASSY MEADOW
+     VISABLE OBJECTS: A TALL OAK TREE
+     YOU CAN GO: N,S,E,W,U
+
+     This is the format made popular by Scott Adams, and most adventurers
+have, at one time or another seen this style display. It is easy to code, and
+easy for the player to understand.  A little harder to code is the interactive
+fiction/text adventure. The same display above would read like this:
+     YOU ARE IN A GRASSY MEADOW. THERE IS A TALL OAK TREE NEARBY. YOU CAN GO
+NORTH, EAST, SOUTH, OR WEST, AND THE TREE LOOKS CLIMBABLE.
+     This is tougher to code, and unless there is interest in examples of it,
+we probably are not going to go into it here.
+     The second part of the adventure is the command parser. It begins with a
+prompt asking for user input (ex: WHAT WOULD YOU LIKE TO DO?).  After
+accepting the user input, the parser does a number of things.
+     1. It checks to see if there are two words present.
+     2. If only one word is present, it diverts the flow of the program to the
+single word recognition list.
+     3. If two words are present, it divides the input string into two parts,
+and passes the parts to the command interpreter.
+     The Command interpreter is the third and most complex part of the
+adventure. It is usually organized along these lines:
+     First, the verb is evaluated. If a good verb (understood by the program)
+control is passed to a set of lines in the code designed to deal with that
+verb.
+     Second, the noun is evaluated. If the noun is one recognized as having
+meaning in the context of the verb, action takes place. If not, then a message
+is printed indicating that the input is meaningless.
+
+Pre-planning
+
+       As with anything else, an adventure requires alot of pre-planning.  You
+cannot just sit down at the keyboard and hack one out.  I believe my record
+for putting one together is eight days (and that was a simple to code one ---
+RADIO.BAS here).  There is alot of planning that must happen first.
+     For instance:
+     PLOT: The basic plot and assumptions of the adventure must be set in your
+mind longh before you hit the first key. Where will the adventure take place?
+What time period? Is it technological or mythical (does magic work) ? What is
+the goal (escape, rescue, gathering treasure, solving a mystery)? The thematic
+considerations are going to dictate alot of what you do with the story. It is
+generally a bad idea to mix magic and high tech science. That is to say, a
+space-opera should not incorporate magic, because of the old axiom that "if
+magic works, there is no need to generate high tech science. Use magic to
+solve all of your problems" (STAR WARS not withstanding).
+     MAPPING: Once you have the plot in mind, the next step is to generate
+your move map.  This is a sheet where you draw out all of the rooms
+(locations) of the adventure. They should be laid out on the sheet in their
+true relationships. Once you've done this, and labeled all the rooms as to
+what they are, you then should draw lines from one box to the other showing
+the connections... that is, where does room "A" goto to the North, to the
+east...etc. This will greatly facilitate the keyboard job of mapping the
+adventure.
+     Once you do all of this, NUMBER the rooms from 1 to however many you
+have.
+     FILLING THE ROOMS: Now comes the fun part. Each room of your maze has a
+specific part to play in your story. It may be a colorful backdrop to make the
+story seem more real, or it may be the initial location of an object that is
+needed by the story. It also may contain object(s) that have absolutely
+NOTHING to do with solving the puzzle. They, again, may be just for color and
+believability, or they may be "red herrings" to distract the unsuspecting
+player.
+     Go through each room on your map, and write a description of the room
+that will be displayed when the player enters the room, and make a list of the
+items that will be found in the room. Don't go overboard...  the more items
+the slower your parser is going to run. A total of 100 objects for the
+adventure is TONS... as few as 20 can make a good adventure. If there are
+objects that you don't want the player to have at first (for instance stuff
+that appears magically later) put that in a special room we'll call "ROOM 0".
+     There is just one more job to do before you start plinking the keys and
+hacking code. That is the job of:
+     CREATING THE VOCABULARY: That's right. You have to tell the computer the
+list of words that the adventure will understand. The noun list is pretty
+easy. Look at the objects you have placed in your rooms.  Well, you will of
+course need a different word to identify each object.
+     Eh? You say you had objects with the same names in several rooms?  Well,
+go back and find other, simular words for the duplicate objects.  That
+situation CAN be dealt with, but it sure makes the coding harder.  We'll save
+that for an online siminar in Advanced Adventure Writing.
+     Look at the object list, and write down one word that will describe each
+object. This is your noun list.
+     Now, add to that list, North, East, South, West, Up and Down.
+     In another column, start your verb list. This is a little harder.
+     There are a number of verbs (movement words) that everyone needs in their
+adventures. Words like GO, GET, TAKE, PUT, DROP... in fact, put those at the
+top of your verb list. You'll need all of them! Think of all of the things
+people will need to do to your objects in order to solve the adventure. Will
+they need to "SHOOT GUN"? Then SHOOT must be on your verb list. Continue in
+this fashion until you feel you have covered all bases. (You'll forget
+something, but that can be fixed later on... I'll show you how!)
+     You are now ready to hit the keyboard... a subject covered in file 2 of
+our little story.
+

@@ -1,0 +1,117 @@
+                     How to Write an Adventure
+					        Part 3
+
+The Display Screen
+
+    After you have loaded the arrays, you are ready to begin working on the
+Display screen. This is the next major part of the adventure, and one of the
+most inportant parts. The display, as stated earlier, can fall into one of two
+general types...
+    The Block display, made popular by Scott Adams, and used in a great many
+adventures.
+    The Interactive ficition display which is a narative of the situation.
+
+    Since the interactive fiction coding can become very tedious, we'll look
+at the block display.
+
+    The first thing to do is display WHERE the adventurer is. That is done
+very simply. I usually use the variable "L" to stand for the location where
+the adventurer currently is. This is usually set to 1 in the initialization
+sequence (back when you are loading the arrays). If you recall, we wrote all
+of our room descriptions to fit into array ROOM$(X). So, to display where we
+are, all we have to do is:
+
+         1000 PRINT "You see: ";ROOM$(L)
+
+    Pretty simple. I think we all grasp the simplicity and elegance of the
+technique.
+    Next, we must display VISABLE OBJECTS. This should be quite simple. All
+you have to do is compare the L(X) location of all your objects with the value
+of L (the current location) and print any matches. That code is pretty simple
+too.  It would look like this:
+
+         1010 PRINT"VISABLE OBJECTS:";:FOR X=1 TO OBJECTS:IF L(X)=L THEN
+                   PRINT OBJECT$(X)
+         1020 NEXT X
+
+     Simple, and it will work... except
+    it
+    prints
+    the
+    objects
+    in
+    a
+    column
+    like
+    this.
+         Hmmmmmm. Not too cool. Well, let's see what we can do to string the
+objects out in neat lines, and while we are at it, put commas between the
+items. While we're at it, it would also be nice if, given the possibility that
+there are no visable objects, the program would print "NOTHING", so the
+display doesn't look dumb. WOW! A mouthful, huh? Really it's very easy.
+
+         1010 Z=0:PRINT"VISABLE OBJECTS: ";:FOR X=1 TO OBJECTS:IF L(X)=L THEN
+                   PRINT OBJECT$(X);", ";:Z=Z+1
+         1020 NEXT:IF Z=0 THEN PRINT"NOTHING"
+
+    All well and good... except. NOW, when we print the list, some of the
+objects word wrap from one line to the next, and we have no idea where they
+will be broken up. There is also a comma trailing the end of the list that
+looks tacky. These problems are very easy to solve using two BASIC functions.
+POS(0) and LEN(A$).
+    POS(0) returns the POSition of the cursor in the line. LEN(A$) returns the
+length of A$. Using these two functions it is easy to first check the LENgth
+of OBJECT$(X) and compare it with the POSition of the cursor. If it will fit,
+print it. If not, print, then print it. I also check to see that there would
+be space for the comma by comparing POS(0) with LEN(object$(X))+3. I am
+assuming a screen width of 80 characters. If you are dealing with another
+width, change the 79 to one less than your screen width. Note also how we
+handle getting rid of that darn trailing comma:
+
+         1010 Z=0:PRINT"VISABLE OBJECTS:";
+         1020 FOR X=1 TO OBJECTS:IF L(X)<>L THEN 1060
+         1030 IF Z<>0 THEN PRINT", ";
+         1040 IF POS(0)+LEN(OBJECT$(X))+3>79 THEN PRINT
+         1050 PRINT OBJECT$(X);
+         1060 NEXT X:IF Z=0 THEN PRINT"NOTHING"
+
+    SPECIAL NOTE TO C-64 PEOPLE: The POS command is NOT supported in C-64
+BASIC. This can, however be programmed around. Change YOUR coding to the
+following:
+          1030 IF Z<>0 THEN PRINT", ";:HL$=HL$+", "
+          1040 IF LEN(HL$)+LEN(OBJECT$(X))+3>39 THEN PRINT:HL$=""
+          1050 PRINT OBJECT$(X);:HL$=HL$+OBJECT$(X)
+          1060 NEXT X:HL$="":IF Z=0 THEN PRINT"NOTHING"
+
+     The length of HL$ is used in the same way the POS command is used... to
+determine just how far over we have printed. Use this coding technique anywhere
+in this tutoral that the POS command is used.
+
+     OK. So far, terrific. Lastly, we need to print the OBVIOUS EXITS... the
+directions in which the adventurer can go. Remember, we stored those as
+numbers in the D(X,Y) array. It is therefore easy to print that message.
+Watch:
+         1070 PRINT"YOU CAN GO: ";:FOR X=1 TO 6
+         1080 IF D(L,X)=0 THEN 1150
+         1090 IF X=1 THEN PRINT"NORTH ";
+         1100 IF X=2 THEN PRINT"EAST ";
+         1110 IF X=3 THEN PRINT"SOUTH ";
+         1120 IF X=4 THEN PRINT"WEST ";
+         1130 IF X=5 THEN PRINT"UP ";
+         1140 IF X=6 THEN PRINT"DOWN ";
+         1150 NEXT X:PRINT
+
+    The final print statement clears the append of the ";" at the end of the
+last line printed.
+    Now, we have printed the display screen. The only thing left to do is
+print a row of some character or the other under it to show that that is all
+there is on the display. I tend to like the minus sign, so, simply put, add:
+
+         1160 PRINT"-------------------------------------------------------"
+
+    or however wide your display is.
+
+    OK! So now the adventurer knows that the score is!!!!!! Next we have to
+write the command parser, so he'll be able to tell the program what HE
+wants... and that is the subject of chapter 4!
+

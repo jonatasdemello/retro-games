@@ -1,0 +1,163 @@
+                     How to Write an Adventure
+                            Part 6
+
+Advanced techniques and routines
+
+     While the adventure, as outlined in the previous files WILL run, there
+are alot of elegant touches we can give the game to make it look and behave
+more professionally. Those ideas to be covered in this files are:
+     1. Display Inventory
+     2. Command Shorthand
+     3. Display a Word List
+     4. Opening invisable doors
+     5. Saves and Loads
+     6. Ending the game
+     7. Machine specific ideas for better appearance
+
+INVENTORY
+
+     Since your puppet in the adventure can pick up and put dowm things, it
+would be nice to have some sort of routine to display what it is that he is
+holding at any given time. This is done by making just a few changes to the
+VISABLE OBJECTS routine in the display screen and placing it in a routine to
+be accessed by the one word command "INVENTORY". Here's the code:
+
+     13000 Z=0:PRINT"YOU ARE CURRENTLY HOLDING: ";
+     13010 FOR X=1 TO OBJECTS:IF L(X)<>-1 THEN 13050
+     13020 IF Z<>0 THEN PRINT", ";
+     13030 IF POS(0)+LEN(OBJECT$(X))+3>79 THEN PRINT
+     13040 PRINT OBJECT$(X);
+     13050 NEXT:IF Z=0 THEN PRINT "NOTHING":GOTO 1000
+     13060 PRINT:GOTO 1000
+
+     As you can see this routine is identical to the earlier routine EXCEPT
+that instead of testing for an object being located in room L, we test for it
+being located in room -1 (the puppet's hands).
+
+SHORTHAND
+
+     We have been assuming all long that the command parser is working with
+the full words that you have chosen for communications. To quote an old song
+"It tain't necessarily so!". You can save memory, and make the typing chores
+of your players lighter by making the parser interpret only the first 3 or 4
+letters of the word (whichever is enough to remove ambiguity). Here's how we
+do that.
+     When the parser breaks the input string down into VERB$ and NOUN$, add to
+the code a line that does the following:
+
+     10?? VB$=LEFT$(VERB$,3):NN$=LEFT$(NOUN$,3)
+
+     Now, instead of using NOUN$ and VERB$ in the compare loops of the parser,
+use VB$ and NN$. You likewise should adjust your verb and noun lists to
+contain the shortened words instead of the whole words as you indicated
+earlier.
+     This technique is by no means necessary, it's just nice to know about if
+you get into a situation (as adventure authors always do) where they are
+coming down to the wire and running out of memory faster than plot ideas!
+     Another shorthand is the time-honored method of allowing the user to
+input N for GO NORTH or U for GO UP. This again is east to code. Just add the
+following lines IMMEDIATELY after the INPUT line of the parser input routine:
+
+     1101 IF AN$="N" THEN AN$="GO NORTH"
+     1102 IF AN$="E" THEN AN$="GO EAST"
+     1103 IF AN$="S" THEN AN$="GO SOUTH"
+     1104 IF AN$="W" THEN AN$="GO WEST"
+     1105 IF AN$="U" THEN AN$="GO UP"
+     1106 IF AN$="D" THEN AN$="GO DOWN"
+
+     And last but not least, ANY one word command can be shortened to 3 or 4
+character input by this coding technique:
+
+     2000 IF LEFT$(AN$,3)="INV" THEN 13000
+     2010 IF LEFT$(AN$,3)="HEL" THEN 11000
+
+     and so on.
+
+WORD LISTS
+
+     This is a nice touch if you have the memory and the inclination.
+Sometimes it is especially hard for a new adventurer to get the hang of just
+how to phrase what he wishes to say. A "Words" list willdisplay all of the
+words that the computer understands. It is just a print routine that has all
+the full-length words typed into it and displayed when the one-word command
+"WORDS" is issued.
+
+OPENING INVISABLE DOORS
+
+     The day will come when you want a door to open when something or the
+other is done (like waving a wand or using a key). This is done by
+manipulation of the D(X,6) array. When the triggering even occurs, let us say
+you wish to open a door to the west. Do the following:
+
+     23650 D(L,4)=16:GOTO 1000
+
+     This opens a door from the current room to room 16. (The previous number
+stored in D(L,4) was a 0).
+
+SAVES and LOADS
+
+     This also is a nice, much appreciated touch you can give your players.
+This saves the current game situation to disk, so you can come back to that
+point if you are killed, or if you get called to supper and have to shut the
+machine off. It simply consists of a routine to save all the variables that
+might be changed, and call them back later.
+     Start by opening the save file, using whatever format your BASIC demands.
+Next, save the locations of all objects:
+
+     50010 FOR X=1 TO OBJECTS:PRINT #1, OBJECT$(X):NEXT
+
+     Next, if the door configuration ever changes in your adventure (if you
+allow doors to open or close), save your D array. This is NOT required if you
+never modify this array.
+
+     50020 FOR X=1 TO NUMBEROFROOMS:FOR Y=1 TO 6
+     50030 PRINT #1,D(X,Y):NEXT Y:NEXT X
+
+     Finally, save any flag variables you may have, and the current room
+number L:
+
+     50040 PRINT #1,L,QQ,KILLFLAG,PRIZEFLAG
+
+     and then close your file. You will want to display an appropriate message
+while this is going on.
+     To restore the game, direct the program to code that will read all this
+stuff back into the arrays, in the same order.
+
+ENDING THE GAME
+
+     By the way, Hemmingway, please be sure to include some sort of a printed
+statement in the adventure to the effect that the whole puzzle has been
+solved, and the adventure is over. I remeber playing one for two days after
+I'd solved it all because it didn't bother to TELL ME THAT!
+
+MACHINE SPECIFIC STUFF
+
+     I have made a very genuine attempt so far to do all coding in PLAIN
+VANILLA BASIC... BASIC that will run on any computer. This code, however,
+produces an adventure whose status screen scrolls off the screen, and is
+replaced after each event. A more attractive coding is possible, but it
+requires more sophistocated coding, and is different for each machine we
+support here. I'm going to discuss what happens here, and then direct you to
+another file in the library that has the revised parser for your particular
+machine.
+
+     The simplist way to keep the display screen at the top of the screen is
+to clear it after each action. This is not cool, though, because the adventure
+plays easier if the player can see his last few moves still displayed in a
+screen scroll. This can be done on all machines, but requires manipulation of
+the cursor on the screen, and some additional code to clean up potential
+messes. Here is the sequence of events. Read and understand it, then look at
+the file for your machine and try to understand how the code does these
+things.
+     1. Position the cursor at the upper left-hand corner of the screen.
+     2. Reprint the status screen (updated), but be sure the erase anything to
+the right of the last thing written on each line. This is required to cover up
+garbage that collects from the bottom of the screen.
+     3. Blank the line just below the line of dashes.
+     4. Position the cursor on the left-hand side of the bottom line of the
+screen.
+     The examples are saved as:
+     IBM.SCR
+     APPLE.SCR
+     COMM.SCR
+

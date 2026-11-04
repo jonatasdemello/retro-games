@@ -1,0 +1,22 @@
+# This is not a real Debian control file, though the syntax is compatible.
+# It's project metadata for the shipper tool
+
+Package: wumpus
+
+Description: Exact clone of the ancient BASIC Hunt the Wumpus game
+ WUMPUS is a bit of retrocomputing nostalgia.  It is an *exact* clone, even
+ down to the godawful user interface, of an ancient classic game.  This version
+ fixes two minor bugs in my original USENET posting of the source.
+
+#XBS-Destinations: freshcode
+
+Homepage: http://www.catb.org/~esr/wumpus
+
+XBS-HTML-Target: index.html
+
+XBS-Repository-URL: https://gitlab.com/esr/wumpus
+
+XBS-Logo: wumpus.png
+
+XBS-VC-Tag-Template: %(version)s
+

@@ -1,0 +1,26 @@
+= wumpus project news =
+
+1.8: 2022-03-14::
+  Numerous small C fixes by Julian Cowley. 
+
+1.7: 2019-03-25::
+  Added the logo and a historical note about it.
+  Minor bug fix for suprhack.
+  Change license from 3-clause BSD to 2-clause BSD and add SPDX tags.
+
+1.6: 2015-04-04::
+  Code audited with cppcheck. Changed to modern packaging.
+
+1.5: 2011-03-09::
+  Fixed a minor bug in the superhack starlet check.
+
+1.4: 2010-10-21::
+  Ported to modern C.
+  License changed to BSD.
+
+1.3: 2003-12-28::
+  Changing the .spec file so that it installs under a build-root.
+  Changes so that the RPM can be built as a non-root user.
+
+
+

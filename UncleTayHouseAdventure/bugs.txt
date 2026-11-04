@@ -1,0 +1,352 @@
+BUGS:
+In the original file:
+
+LINE 6530 is dupplicated
+
+Also: variable is missing declarartion
+
+IMMOFF = 20
+IMOFF = 20
+
+# IMOFF ?? never declared
+used in lines:
+7450, 7530, 7720, 7830, 8200
+
+-------------------------------------------------------------------------------------------------------------------------------
+Running on AppleWin:
+
+INWORD  => become INW OR D   => INWRD
+CURTOK  => become CUR TO K   => CURTK
+NTOK    => become N TO K     => NTK
+DOORDIR => become DO OR DIR  => DRDIR
+
+Running on GW-Basic
+
+LOC	=> LCL => PLOC
+HOME => CLS
+PR#3 => 80 COLS
+
+* GWBasic:
+	LOC() => To return the current position in the file.
+-------------------------------------------------------------------------------------------------------------------------------
+Bug:
+https://github.com/inexorabletash/jsbasic/issues/36
+
+W
+W
+S
+TAKE NOTE
+N
+E
+E
+E
+U
+N
+TAKE KEY
+S
+W
+W
+UNLOCK DOOR
+W
+S
+READ NOTE
+N
+OPEN X DOOR
+
+7110 IF COMM = 27 THEN ARG = INPTK(2) - DIROFF : GOTO 7120
+7115 IF COMM = 23 OR COMM = 29 THEN ARG = INPTK(2) - ITEMOFF : GOTO 7130
+
+
+7099 REM *** 3 WORDS ***
+7100 IF COMM < 23 OR COMM > 30 THEN GOTO 6899
+
+7110 IF COMM = 27 THEN GOTO 7120
+7115 IF COMM = 23 OR COMM = 29 THEN GOTO 7130
+
+	7119 REM *** 27-OPEN ***
+7120 ARG = INPTK(2) - DIROFF: IF COMM <> 27 AND ARG < 1 or ARG > LASTITEM THEN D$ = "HUH? 5": PRINT D$: GOTO 5000
+
+	7129 REM *** 23-UNLOCK 29-OIL ***
+7130 ARG = INPTK(2) - ITEMOFF: IF COMM <> 23 AND COMM <> 29 AND ILOC(ARG) <> LCL AND ILOC(ARG) <> 0 THEN D$= "IT'S NOT HERE 3": PRINT D$: GOTO 5000
+
+-------------------------------------------------------------------------------------------------------------------------------
+Walkthrough
+
+Start loc 01 - Foyer
+
+TAKE NEWSPAPER
+READ NEWSPAPER
+W
+W
+W
+TAKE JACK
+TAKE BUNGEE
+E
+S
+TAKE NOTE
+READ NOTE
+N
+E
+E
+E
+U
+TIE BUNGEE TO RAILING
+JUMP
+TAKE PICTURE
+W
+S
+TAKE TOP
+W
+TAKE GAINESBURGER
+EAT GAINESBURGER
+E
+N
+E
+D
+N
+MOVE FRIDGE JACK
+TAKE FUSE
+S
+E
+U
+JUMP
+PUT FUSE IN FUSEBOX
+U
+TAKE BRACE
+TAKE MAGAZINE
+READ MAGAZINE
+D
+D
+W
+W
+N
+MOVE COUCH WITH BRACE
+TAKE TEDDYBEAR
+S
+E
+E
+U
+W
+W
+DROP TEDDYBEAR
+N
+SPIN TOP
+E
+TAKE LOVERBOY
+W
+S
+E
+E
+N
+TAKE KEY
+S
+W
+W
+UNLOCK DOOR
+W
+S
+TAKE GLOVES
+READ NOTE -> MARK THE MISSING DIRECTION: LEFT, CENTER, RIGHT
+N
+OPEN CENTER DOOR
+E
+E
+E
+E
+D
+W
+W
+S
+MOVE CLOTHES WITH GLOVES
+D
+TAKE LOONS
+W
+TAKE BOXSPRING
+E
+E
+TAKE OILCAN
+E
+DROP BOXSPRING
+U
+S
+E
+U
+W
+W
+W
+OIL DUMBWAITER OILCAN
+W
+D
+E
+TAKE CHECKBOOK
+W
+U
+E
+N
+TAKE INVESTMENT
+S
+E
+E
+E
+D
+W
+SCORE
+
+
+
+BASEMENT
+[26] STORAGE           =>"TAKE BOXSPRING"
+[27] LAUNDRY           =>"TAKE LOONS"
+[28] WORK ROOM         =>"TAKE OILCAN"
+[29] BOTTOM OF STAIRS  =>"DROP BOXSPRING"
+
+MAIN FLOOR
+[23] DUMBWAITER
+[08] LIBRARY           =>"TAKE CHECKBOOK"
+[06] DEN               =>"MOVE COUCH WITH BRACE", "TAKE TEDDYBEAR"
+[02] KITCHEN / STAIRS  =>"MOVE FRIDGE WITH JACK", "TAKE FUSE"
+[10] GARAGE            =>"TAKE JACK", "TAKE BUNGEE"
+[05] HALL
+[04] HALL
+[01] FOYER (LOBBY)     =>"TAKE NEWSPAPER", "READ NEWSPAPER"
+[03] SITTING ROOM
+[11] DINING ROOM
+[09] SMALL BEDROOM     =>"TAKE NOTE"
+[07] BATHROOM          =>"MOVE CLOTHES WITH GLOVES"
+[31] EXIT              =>"RETURN HERE WHEN FINISHED"
+
+SECOND FLOOR
+[21] CORNER BEDROOM     =>"TAKE INVESTMENT"
+[18] CHILD'S ROOM       =>"SPIN TOP"
+[19] SECRET ROOM        =>"TAKE LOVERBOY"
+[13] MASTER BEDROOM     =>"TAKE KEY"
+[24] 3 DOORS / DUMBWAITER
+[20] DANGEROUS HALL     =>"OPEN [DIRECTION NOT MENTIONEDIN NOTE] DOOR", "OIL DUMBWAITER WITH OILCAN"
+[17] HALL               =>"UNLOCK DOOR", "DROP TEDDYBEAR"
+[14] HALL
+[12] BALCONY / STAIRS   =>"TIE BUNGEE TO RAILING", "JUMP", "TAKE PICTURE", "PUT FUSE IN FUSEBOX"
+[22] BATHROOM           =>"TAKE GLOVES", "READ NOTE IN MIRROR"
+[16] CLOSET             =>"TAKE GAINESBURGER", "EAT GAINESBURGER"
+[15] GAME ROOM          =>"TAKE TOP"
+
+THIRD FLOOR
+[25] ATTIC              =>"TAKE BRACE", "TAKE MAGAZINE", "READ MAGAZINE"
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+To repro: https://www.calormen.com/jsbasic/
+
+    Click the Select a sample… drop down
+    In the Games section, select "Text Adventure (Floyd McWilliams)"
+    Click Run
+    Run these commands:
+
+    e
+    u
+    n
+    take key
+    s
+    w
+    w
+    unlock door
+    open left door (it doesn't matter which door you open)
+
+A JS alert appears, "Illegal quantity in line 7130"
+-------------------------------------------------------------------------------------------------------------------------------
+
+7110 PRINT COMM,INPTK(1),INPTK(2),INPTK(3)
+7120 ARG = INPTK(2) - ITEMOFF: IF COMM <> 27 AND ARG < 1 or ARG > LASTITEM THEN D$ = "3KXK?9": GOSUB 11000: GOTO 5000
+
+replace by
+7120 ARG = ITEMOFF - INPTK(2)
+or
+7120 ARG = INPTK(2) - DIROFF
+
+ITEMOFF = 33
+INPTK(2) = 31 | 32 | 33
+
+	31 LEFT
+	32 CENTER
+	33 RIGHT
+
+
+Hi,
+when you type "OPEN LEFT DOOR"
+line 7120 calculates ARG as the second word number stored in INPTK(2) = 31 (LEFT) or 31 (CENTER) or 33 (RIGHT)
+subtracted by ITEMOFF = 33 (line 700)
+which translates to:
+ARG = 31 - 33 = -2
+this happens because INPTK(2) will always be lower than ITEMOFF (=33)
+and it will fail on line 7130 because ILOC(ARG) translates to ILOC(-2)
+and arrays can't have negative indexes.
+
+So, in line 7120, instead of:
+
+`7120 ARG = INPTK(2) - ITEMOFF`
+
+if we just swith the order of the parameters (and leave the rest of the line after the : untouched)
+
+`7120 ARG = ITEMOFF - INPTK(2)`
+
+everything works correctly.
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Uncle Tays' House Adventure Walkthrough
+http://jimgerrie.blogspot.com/2014/02/uncle-tays-house-adventure-walkthrough.html
+
+
+    Click the Select a sample… drop down
+    In the Games section, select "Text Adventure (Floyd McWilliams)"
+    Click Run
+    Run these commands:
+
+
+w
+w
+w
+s
+take note
+n
+e
+e
+e
+u
+n
+take key
+s
+w
+w
+unlock door
+w
+s
+read note
+(make a note of the missing door left|center|right)
+n
+open (left|center|right) door
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+    Click the Select a sample… drop down
+    In the Games section, select "Text Adventure (Floyd McWilliams)"
+    Click Run
+    Run these commands:
+
+    e
+    u
+    n
+    take key
+    s
+    w
+    w
+    unlock door
+    open left door (it doesn't matter which door you open)
+
+
+

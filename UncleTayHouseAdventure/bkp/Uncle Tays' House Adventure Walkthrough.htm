@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html class='v2' dir='ltr' lang='en-GB'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/2975350028-css_bundle_v2.css' rel='stylesheet' type='text/css'/>
+<meta content='width=1100' name='viewport'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<link href='http://jimgerrie.blogspot.com/favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='http://jimgerrie.blogspot.com/2014/02/uncle-tays-house-adventure-walkthrough.html' rel='canonical'/>
+<meta content='http://jimgerrie.blogspot.com/2014/02/uncle-tays-house-adventure-walkthrough.html' property='og:url'/>
+<title>Type-in Mania: BASIC Programming on the TRS-80 MC-10: Uncle Tays' House Adventure Walkthrough (Spoiler Alert)</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Simple
+Designer: Blogger
+URL:      www.blogger.com
+----------------------------------------------- */
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #222222;
+background: #7edd66 none repeat scroll top left;
+padding: 0 40px 40px 40px;
+}
+html body .region-inner {
+min-width: 0;
+max-width: 100%;
+width: auto;
+}
+h2 {
+font-size: 22px;
+}
+a:link {
+text-decoration:none;
+color: #3abb21;
+}
+a:visited {
+text-decoration:none;
+color: #888888;
+}
+a:hover {
+text-decoration:underline;
+color: #43ff32;
+}
+.body-fauxcolumn-outer .fauxcolumn-inner {
+background: transparent url(https://resources.blogblog.com/blogblog/data/1kt/simple/body_gradient_tile_light.png) repeat scroll top left;
+_background-image: none;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 400px;
+width: 100%;
+}
+.body-fauxcolumn-outer .cap-top .cap-left {
+width: 100%;
+background: transparent url(https://resources.blogblog.com/blogblog/data/1kt/simple/gradients_light.png) repeat-x scroll top left;
+_background-image: none;
+}
+.content-outer {
+-moz-box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+-goog-ms-box-shadow: 0 0 10px #333333;
+box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+margin-bottom: 1px;
+}
+.content-inner {
+padding: 10px 10px;
+}
+.content-inner {
+background-color: #ffffff;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+background: transparent none repeat-x scroll 0 -400px;
+_background-image: none;
+}
+.Header h1 {
+font: normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #54bb32;
+text-shadow: -1px -1px 1px rgba(0, 0, 0, .2);
+}
+.Header h1 a {
+color: #54bb32;
+}
+.Header .description {
+font-size: 140%;
+color: #777777;
+}
+.header-inner .Header .titlewrapper {
+padding: 22px 30px;
+}
+.header-inner .Header .descriptionwrapper {
+padding: 0 30px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child {
+border-top: 1px solid #eeeeee;
+}
+.tabs-inner .section:first-child ul {
+margin-top: -1px;
+border-top: 1px solid #eeeeee;
+border-left: 0 solid #eeeeee;
+border-right: 0 solid #eeeeee;
+}
+.tabs-inner .widget ul {
+background: #f5f5f5 url(https://resources.blogblog.com/blogblog/data/1kt/simple/gradients_light.png) repeat-x scroll 0 -800px;
+_background-image: none;
+border-bottom: 1px solid #eeeeee;
+margin-top: 0;
+margin-left: -30px;
+margin-right: -30px;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+padding: .6em 1em;
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #999999;
+border-left: 1px solid #ffffff;
+border-right: 1px solid #eeeeee;
+}
+.tabs-inner .widget li:first-child a {
+border-left: none;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+color: #000000;
+background-color: #eeeeee;
+text-decoration: none;
+}
+/* Columns
+----------------------------------------------- */
+.main-outer {
+border-top: 0 solid #eeeeee;
+}
+.fauxcolumn-left-outer .fauxcolumn-inner {
+border-right: 1px solid #eeeeee;
+}
+.fauxcolumn-right-outer .fauxcolumn-inner {
+border-left: 1px solid #eeeeee;
+}
+/* Headings
+----------------------------------------------- */
+div.widget > h2,
+div.widget h2.title {
+margin: 0 0 1em 0;
+font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #000000;
+}
+/* Widgets
+----------------------------------------------- */
+.widget .zippy {
+color: #999999;
+text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
+}
+.widget .popular-posts ul {
+list-style: none;
+}
+/* Posts
+----------------------------------------------- */
+h2.date-header {
+font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+}
+.date-header span {
+background-color: transparent;
+color: #222222;
+padding: inherit;
+letter-spacing: inherit;
+margin: inherit;
+}
+.main-inner {
+padding-top: 30px;
+padding-bottom: 30px;
+}
+.main-inner .column-center-inner {
+padding: 0 15px;
+}
+.main-inner .column-center-inner .section {
+margin: 0 15px;
+}
+.post {
+margin: 0 0 25px 0;
+}
+h3.post-title, .comments h4 {
+font: normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+margin: .75em 0 0;
+}
+.post-body {
+font-size: 110%;
+line-height: 1.4;
+position: relative;
+}
+.post-body img, .post-body .tr-caption-container, .Profile img, .Image img,
+.BlogList .item-thumbnail img {
+padding: 2px;
+background: #ffffff;
+border: 1px solid #eeeeee;
+-moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+-webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+.post-body img, .post-body .tr-caption-container {
+padding: 5px;
+}
+.post-body .tr-caption-container {
+color: #222222;
+}
+.post-body .tr-caption-container img {
+padding: 0;
+background: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+}
+.post-header {
+margin: 0 0 1.5em;
+line-height: 1.6;
+font-size: 90%;
+}
+.post-footer {
+margin: 20px -2px 0;
+padding: 5px 10px;
+color: #666666;
+background-color: #f9f9f9;
+border-bottom: 1px solid #eeeeee;
+line-height: 1.6;
+font-size: 90%;
+}
+#comments .comment-author {
+padding-top: 1.5em;
+border-top: 1px solid #eeeeee;
+background-position: 0 1.5em;
+}
+#comments .comment-author:first-child {
+padding-top: 0;
+border-top: none;
+}
+.avatar-image-container {
+margin: .2em 0 0;
+}
+#comments .avatar-image-container img {
+border: 1px solid #eeeeee;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+.comments .comment-thread.inline-thread {
+background-color: #f9f9f9;
+}
+.comments .continue {
+border-top: 2px solid #999999;
+}
+/* Accents
+---------------------------------------------- */
+.section-columns td.columns-cell {
+border-left: 1px solid #eeeeee;
+}
+.blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+background-color: #ffffff;
+padding: 5px;
+}
+.footer-outer {
+border-top: 0 dashed #bbbbbb;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile  {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+.mobile .body-fauxcolumn-outer .cap-top {
+background-size: 100% auto;
+}
+.mobile .content-outer {
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
+.mobile .tabs-inner .widget ul {
+margin-left: 0;
+margin-right: 0;
+}
+.mobile .post {
+margin: 0;
+}
+.mobile .main-inner .column-center-inner .section {
+margin: 0;
+}
+.mobile .date-header span {
+padding: 0.1em 10px;
+margin: 0 -10px;
+}
+.mobile h3.post-title {
+margin: 0;
+}
+.mobile .blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.mobile .footer-outer {
+border-top: none;
+}
+.mobile .main-inner, .mobile .footer-inner {
+background-color: #ffffff;
+}
+.mobile-index-contents {
+color: #222222;
+}
+.mobile-link-button {
+background-color: #3abb21;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .section:first-child {
+border-top: none;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background-color: #eeeeee;
+color: #000000;
+border-top: 1px solid #eeeeee;
+border-bottom: 1px solid #eeeeee;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #eeeeee;
+}
+
+--></style>
+<style id='template-skin-1' type='text/css'><!--
+body {
+min-width: 930px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 930px;
+max-width: 930px;
+_width: 930px;
+}
+.main-inner .columns {
+padding-left: 0px;
+padding-right: 0px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0px;
+right: 0px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0px") -
+parseInt("0px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0px;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 0px;
+}
+.main-inner .column-left-outer {
+width: 0px;
+right: 100%;
+margin-left: -0px;
+}
+.main-inner .column-right-outer {
+width: 0px;
+margin-right: -0px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+body#layout div.add_widget {
+padding: 8px;
+}
+body#layout div.add_widget a {
+margin-left: 32px;
+}
+--></style>
+</head>
+
+<body class='variant-pale'>
+<div class='navbar section' id='navbar' name='Navbar'><div class='widget Navbar' data-version='1' id='Navbar1'>
+<div id="navbar-iframe-container"></div>
+</div></div>
+<div class='body-fauxcolumns'>
+<div class='fauxcolumn-outer body-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content'>
+<div class='content-fauxcolumns'>
+<div class='fauxcolumn-outer content-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content-outer'>
+<div class='content-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left content-fauxborder-left'>
+<div class='fauxborder-right content-fauxborder-right'></div>
+<div class='content-inner'>
+<header>
+<div class='header-outer'>
+<div class='header-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left header-fauxborder-left'>
+<div class='fauxborder-right header-fauxborder-right'></div>
+<div class='region-inner header-inner'>
+<div class='header section' id='header' name='Header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='http://jimgerrie.blogspot.com/'>
+Type-in Mania: BASIC Programming on the TRS-80 MC-10
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span>8-Bit BASIC Retro-programming Projects and Classic BASIC Games</span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='header-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</header>
+<div class='tabs-outer'>
+<div class='tabs-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left tabs-fauxborder-left'>
+<div class='fauxborder-right tabs-fauxborder-right'></div>
+<div class='region-inner tabs-inner'>
+<div class='tabs section' id='crosscol' name='Cross-column'><div class='widget LinkList' data-version='1' id='LinkList1'>
+<div class='widget-content'>
+<ul>
+<li><a href='http://faculty.cbu.ca/jgerrie/Home/Type-in-Mania.html'>Type-in Mania Page</a></li>
+<li><a href='https://github.com/jggames'>My GitHub Page</a></li>
+<li><a href='http://faculty.cbu.ca/jgerrie/Home/jgames.html'>Screenshots of Our Games</a></li>
+<li><a href='https://www.youtube.com/user/BenevolentChum/videos'>My YouTube Channel</a></li>
+<li><a href='http://faculty.cbu.ca/jgerrie/Home/Type-in-Mania.html'>Play Our Games On-line</a></li>
+</ul>
+<div class='clear'></div>
+</div>
+</div></div>
+<div class='tabs no-items section' id='crosscol-overflow' name='Cross-Column 2'></div>
+</div>
+</div>
+<div class='tabs-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='main-outer'>
+<div class='main-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left main-fauxborder-left'>
+<div class='fauxborder-right main-fauxborder-right'></div>
+<div class='region-inner main-inner'>
+<div class='columns fauxcolumns'>
+<div class='fauxcolumn-outer fauxcolumn-center-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-left-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-right-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class='columns-inner'>
+<div class='column-center-outer'>
+<div class='column-center-inner'>
+<div class='main section' id='main' name='Main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+
+<h2 class='date-header'><span>Saturday, 1 February 2014</span></h2>
+
+          <div class="date-posts">
+
+<div class='post-outer'>
+<div class='post hentry uncustomized-post-template' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='https://1.bp.blogspot.com/-bSRjIpOQ6nM/XJZdXuV9EgI/AAAAAAAABzk/1v5GGHQDtzI0UqjqTIhP3yTU4ScN1F5bwCLcBGAs/s1600/taywin.png' itemprop='image_url'/>
+<meta content='3253169805880538966' itemprop='blogId'/>
+<meta content='6284451326511559512' itemprop='postId'/>
+<a name='6284451326511559512'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Uncle Tays' House Adventure Walkthrough (Spoiler Alert)
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-6284451326511559512' itemprop='description articleBody'>
+<div class="MsoNormal">
+<div class="MsoNormal">
+MAIN FLOOR</div>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-yfti-tbllook: 1184;">
+ <tbody>
+<tr>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: double windowtext 4.5pt; border-right: solid windowtext 1.0pt; border-top: double windowtext 4.5pt; mso-border-bottom-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-right-alt: solid windowtext 1.0pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<span style="background-color: magenta;">DUMBWAITER</span></div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: solid windowtext 1.0pt; border-right: double windowtext 4.5pt; border-top: double windowtext 4.5pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+LIBRARY</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take checkbook&#8221;</div>
+</div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: double windowtext 4.5pt; border-top: double windowtext 4.5pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+DEN</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;move couch with brace&#8221;,&#8220;take teddybear&#8221;</div>
+</td>
+  <td colspan="2" style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: double windowtext 4.5pt; border-top: double windowtext 4.5pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<span style="background: lime; mso-highlight: lime;">KITCHEN/STAIRS TO
+  BASEMENT</span></div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;move fridge with jack&#8221;, &#8220;take fuse&#8221;</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border: none; mso-border-bottom-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+ </tr>
+<tr>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: double windowtext 4.5pt; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-right-alt: solid windowtext .5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+GARAGE</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take jack&#8221;, &#8220;take bungee&#8221;</div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+HALL</div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+HALL</div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+FOYER</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take newspaper&#8221;,&#8220;read newspaper&#8221;</div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-bottom-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<span style="background: aqua; mso-highlight: aqua;">SITTING ROOM</span></div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: double windowtext 4.5pt; border-top: double windowtext 4.5pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+DINING ROOM</div>
+</td>
+ </tr>
+<tr>
+  <td style="border-right: double windowtext 4.5pt; border: none; mso-border-right-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: double windowtext 4.5pt; border-right: double windowtext 4.5pt; border-top: none; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+BEDROOM</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take note&#8221;</div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: double windowtext 4.5pt; border-top: none; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<span style="background: yellow; mso-highlight: yellow;">BATHROOM</span></div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;move clothes with gloves&#8221;</div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: double windowtext 4.5pt; border-top: none; mso-border-bottom-alt: solid .5pt; mso-border-color-alt: windowtext; mso-border-left-alt: thin-thick-small-gap 4.5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-right-alt: thin-thick-small-gap 4.5pt; mso-border-top-alt: solid .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+EXIT</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+Return here when finished</div>
+</td>
+  <td style="border: none; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+  <td style="border: none; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+ </tr>
+</tbody></table>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+<div class="MsoNormal">
+<br />
+BASEMENT</div>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-yfti-tbllook: 1184;">
+ <tbody>
+<tr><td style="border-bottom: double windowtext 4.5pt; border-left: double windowtext 4.5pt; border-right: solid windowtext 1.0pt; border-top: double windowtext 4.5pt; mso-border-bottom-alt: thin-thick-small-gap 4.5pt; mso-border-color-alt: windowtext; mso-border-left-alt: double windowtext 4.5pt; mso-border-left-alt: double windowtext 4.5pt; mso-border-right-alt: solid .5pt; mso-border-top-alt: thin-thick-small-gap 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+STORAGE</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take boxspring&#8221;</div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: double windowtext 4.5pt; mso-border-bottom-alt: thin-thick-small-gap 4.5pt; mso-border-color-alt: windowtext; mso-border-left-alt: solid .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-right-alt: solid .5pt; mso-border-top-alt: thin-thick-small-gap 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<span style="background: yellow; mso-highlight: yellow;">LAUNDRY</span> </div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take loons&#8221;</div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: double windowtext 4.5pt; mso-border-bottom-alt: thin-thick-small-gap 4.5pt; mso-border-color-alt: windowtext; mso-border-left-alt: solid .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-right-alt: solid .5pt; mso-border-top-alt: thin-thick-small-gap 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+WORK ROOM</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take oilcan&#8221;</div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: double windowtext 4.5pt; border-top: double windowtext 4.5pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<span style="background: lime; mso-highlight: lime;">BOTTOM OF STAIRS<o:p></o:p></span></div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;drop boxspring&#8221;</div>
+</td>
+ </tr>
+</tbody></table>
+</div>
+</div>
+<br />
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+SECOND FLOOR</div>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-yfti-tbllook: 1184;">
+ <tbody>
+<tr>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: double windowtext 4.5pt; border-top: none; mso-border-bottom-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-right-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: double windowtext 4.5pt; border-top: double windowtext 4.5pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+BEDROOM</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take investment&#8221;</div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: double windowtext 4.5pt; mso-border-bottom-alt: solid .5pt; mso-border-color-alt: windowtext; mso-border-left-alt: thin-thick-small-gap 4.5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-right-alt: solid .5pt; mso-border-top-alt: thin-thick-small-gap 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+CHILD&#8217;S ROOM</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;spin top&#8221;</div>
+</td>
+  <td style="border-left: none; border: double windowtext 4.5pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+SECRET ROOM</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take loverboy&#8221;</div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: double windowtext 4.5pt; border-top: double windowtext 4.5pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-bottom-alt: solid windowtext .5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+BEDROOM</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take key&#8221;</div>
+</td>
+ </tr>
+<tr>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: double windowtext 4.5pt; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-right-alt: solid windowtext .5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+3 DOORS/ <span style="background: fuchsia; mso-highlight: fuchsia;">DUMBWAITER</span></div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+DANGEROUS HALL</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&nbsp;&#8220;open [direction not mentioned
+  in note] door&#8221;,&#8220;oil dumbwaiter with oilcan&#8221;</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-bottom-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+HALL</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;unlock door&#8221;</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;drop teddybear&#8221;</div>
+</td>
+  <td style="border-bottom: solid windowtext 1.0pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+HALL</div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: double windowtext 4.5pt; border-top: none; mso-border-bottom-alt: thin-thick-small-gap 4.5pt; mso-border-color-alt: windowtext; mso-border-left-alt: solid .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-right-alt: thin-thick-small-gap 4.5pt; mso-border-top-alt: solid .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<span style="background: aqua; mso-highlight: aqua;">BALCONY</span> /<span style="background: red; mso-highlight: red;">STAIRS TO ATTIC</span></div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;tie bungee to railing&#8221;,&#8220;jump&#8221;</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take picture&#8221;,&#8220;jump&#8221;</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;put fuse in fusebox&#8221;</div>
+</td>
+ </tr>
+<tr>
+  <td style="border-right: double windowtext 4.5pt; border: none; mso-border-right-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: double windowtext 4.5pt; border-right: double windowtext 4.5pt; border-top: none; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: solid windowtext .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+BATHROOM</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take gloves&#8221;, &#8220;read note in mirror&#8221;</div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: solid windowtext 1.0pt; border-top: none; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-right-alt: solid windowtext .5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+CLOSET</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take gainesburger&#8221;,&#8221;eat gainesburger&#8221;</div>
+</td>
+  <td style="border-bottom: double windowtext 4.5pt; border-left: none; border-right: double windowtext 4.5pt; border-top: none; mso-border-bottom-alt: thin-thick-small-gap 4.5pt; mso-border-color-alt: windowtext; mso-border-left-alt: solid .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-right-alt: thin-thick-small-gap 4.5pt; mso-border-top-alt: solid .5pt; mso-border-top-alt: solid windowtext .5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+GAME ROOM</div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take top&#8221;</div>
+</td>
+  <td style="border: none; mso-border-left-alt: thin-thick-small-gap windowtext 4.5pt; mso-border-top-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<br /></div>
+</td>
+ </tr>
+</tbody></table>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+THIRD FLOOR</div>
+<table border="1" cellpadding="0" cellspacing="0" class="MsoTableGrid" style="border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-padding-alt: 0in 5.4pt 0in 5.4pt; mso-yfti-tbllook: 1184;">
+ <tbody>
+<tr style="height: 13.45pt; mso-yfti-firstrow: yes; mso-yfti-irow: 0; mso-yfti-lastrow: yes;">
+  <td style="border: double windowtext 4.5pt; height: 13.45pt; mso-border-alt: thin-thick-small-gap windowtext 4.5pt; padding: 0in 5.4pt 0in 5.4pt;" valign="top"><div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+<span style="background: red; mso-highlight: red;">ATTIC</span></div>
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+&#8220;take brace&#8221;, &#8220;take magazine&#8221;, &#8220;read magazine&#8221;</div>
+</td>
+ </tr>
+</tbody></table>
+<div class="MsoNormal">
+<br /></div>
+Well this is the end of my Retrochallenge 2014 Winter Warmup project. &nbsp;I had to chase down a few last bugs in the "Uncle Tays' House Adventure" that I ported to the TRS-80 MC-10 Micro Color Basic from Javascript Applesoft Basic source that I found at&nbsp;<a href="https://github.com/inexorabletash/jsbasic/blob/master/samples/sample.adventure.txt" style="background-color: white; color: #888888; font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: 13px; line-height: 18.479999542236328px; text-decoration: none;" target="_blank">github.com</a><span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , &quot;tahoma&quot; , &quot;helvetica&quot; , &quot;freesans&quot; , sans-serif; font-size: 13px; line-height: 18.479999542236328px;">. &nbsp;</span>I have also now ported it to Dragon<span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , &quot;tahoma&quot; , &quot;helvetica&quot; , &quot;freesans&quot; , sans-serif; font-size: 13px; line-height: 18.479999542236328px;">&nbsp;</span><a href="http://archive.worldofdragon.org/phpBB3/viewtopic.php?f=7&amp;t=4745" style="background-color: white; color: #888888; font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: 13px; line-height: 18.479999542236328px; text-decoration: none;">worldofdragon.org</a><span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , &quot;tahoma&quot; , &quot;helvetica&quot; , &quot;freesans&quot; , sans-serif; font-size: 13px; line-height: 18.479999542236328px;">&nbsp;and Coco&nbsp;</span><a href="http://www3.ns.sympatico.ca/jimgerrie/JGGAMES.zip" style="background-color: white; color: #888888; font-family: Arial, Tahoma, Helvetica, FreeSans, sans-serif; font-size: 13px; line-height: 18.479999542236328px; text-decoration: none;" target="_blank">JGGAMES.zip</a>. &nbsp;I would like to thank the organizers for a very enjoyable competition and for all the impetus that it has provided.<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-bSRjIpOQ6nM/XJZdXuV9EgI/AAAAAAAABzk/1v5GGHQDtzI0UqjqTIhP3yTU4ScN1F5bwCLcBGAs/s1600/taywin.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="224" data-original-width="288" src="https://1.bp.blogspot.com/-bSRjIpOQ6nM/XJZdXuV9EgI/AAAAAAAABzk/1v5GGHQDtzI0UqjqTIhP3yTU4ScN1F5bwCLcBGAs/s1600/taywin.png" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div style="text-align: justify;">
+A summary of my projects can be found at&nbsp;<a href="http://jimgerrie.blogspot.ca/2013/12/retrochallenge-winter-roundup.html">http://jimgerrie.blogspot.ca/2013/12/retrochallenge-winter-roundup.html</a></div>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'>
+<span class='post-author vcard'>
+Posted by
+<span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+<meta content='https://www.blogger.com/profile/04063695347287888310' itemprop='url'/>
+<a class='g-profile' href='https://www.blogger.com/profile/04063695347287888310' rel='author' title='author profile'>
+<span itemprop='name'>jgerrie</span>
+</a>
+</span>
+</span>
+<span class='post-timestamp'>
+at
+<meta content='http://jimgerrie.blogspot.com/2014/02/uncle-tays-house-adventure-walkthrough.html' itemprop='url'/>
+<a class='timestamp-link' href='http://jimgerrie.blogspot.com/2014/02/uncle-tays-house-adventure-walkthrough.html' rel='bookmark' title='permanent link'><abbr class='published' itemprop='datePublished' title='2014-02-01T21:48:00-08:00'>21:48</abbr></a>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1234881590'>
+<a href='https://www.blogger.com/post-edit.g?blogID=3253169805880538966&postID=6284451326511559512&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=3253169805880538966&postID=6284451326511559512&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=3253169805880538966&postID=6284451326511559512&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=3253169805880538966&postID=6284451326511559512&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=3253169805880538966&postID=6284451326511559512&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=3253169805880538966&postID=6284451326511559512&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'>
+<span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'>
+<span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+
+</div>
+
+        </div></div>
+
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://jimgerrie.blogspot.com/2014/03/escape-from-secret-science-and.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://jimgerrie.blogspot.com/2014/01/flipull.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='http://jimgerrie.blogspot.com/'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://jimgerrie.blogspot.com/feeds/6284451326511559512/comments/default' target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='column-left-outer'>
+<div class='column-left-inner'>
+<aside>
+</aside>
+</div>
+</div>
+<div class='column-right-outer'>
+<div class='column-right-inner'>
+<aside>
+</aside>
+</div>
+</div>
+</div>
+<div style='clear: both'></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+
+</div>
+
+<!-- content -->
+</div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

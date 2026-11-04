@@ -1,0 +1,80 @@
+"YOU ARE IN A FOREST" = forest
+"YOU ARE IN A LEAFY FOREST" = leafy forest
+"YOU ARE IN A LEAFY GLADE" = leafy glade
+"YOU ARE IN THE PINE FOREST" = pine forest
+"ALL THE TREES ARE DEAD HERE" = dead forest
+"YOU ARE ON A PAVED ROAD" = paved road
+"YOU ARE IN THE THRONE ROOM" = throne room
+"YOU ARE IN THE ANTECHAMBER" = antechamber
+"THIS IS THE KING'S BEDROOM" = king's bedroom
+"MORE FOREST" = forest
+"NORTH END OF BRIDGE" = "north end of bridge"
+"CAUSEWAY TO CASTLE" = "causeway to castle"
+"AND YET EVEN MORE FOREST" = "more forest"
+"DARK FOREST" = "dark forest"
+"SOUTH SIDE OF DRAWBRIDGE." = "south side of drawbridge."
+"GENTLY ROLLING HILLS" = "gently rolling hills"
+"VOLCANIC HIGHLANDS" = "volcanic highlands"
+"VOLCANO VALLEY" = "volcano valley"
+"MARSHY SWAMP" = "marshy swamp"
+"MORE MARSHY SWAMP" = "more marshy swamp"
+"MUSHY SWAMP" = "mushy swamp"
+"A PLAIN" = "a plain"
+"PLAIN PLAIN" = "very long plain"
+"PLANE PLAIN PLAIN" = "plane plain"
+"THE LAND OF THE MAGIC SPRING" = "the land of the magic spring"
+"NONDESCRIPT LAND" = "nondescript land"
+"BREAK LAND" = "break land"
+"LAIR OF THE DRAGON" = "lair of the dragon"
+"TWISTY LITTLE MAZES" = "twisty little mazes"
+"ENTRANCE TO MAGIC LAND" = "entrance to magic land"
+"COLONEL'S CAVERN" = "colonel's cavern"
+"VERY SECRET CAVE" = "very secret cave"
+"BOOM BOOM ROOM" = "boom boom room"
+
+
+"A STICK"
+"A SWORD"
+"A MAGIC SPRING"
+"A DRUMSTICK"
+"A MCRIB SANDWICH"
+"A TOY DRUM"
+"A DRAGON WAGON"
+
+A_PLAIN.png
+ALL_THE_TREES_ARE_DEAD_HERE.png
+AND_YET_EVEN_MORE_FOREST.png
+base.png
+BOOM_BOOM_ROOM.png
+BREAK_LAND.png
+CAUSEWAY_TO_CASTLE.png
+COLONEL_S_CAVERN.png
+COLONEL'S_CAVERN.png
+DARK_FOREST.png
+ENTRANCE_TO_MAGIC_LAND.png
+GENTLY_ROLLING_HILLS.png
+LAIR_OF_THE_DRAGON.png
+MARSHY_SWAMP.png
+MORE_FOREST.png
+MORE_MARSHY_SWAMP.png
+MUSHY_SWAMP.png
+NONDESCRIPT_LAND.png
+NORTH_END_OF_BRIDGE.png
+PLAIN_PLAIN.png
+PLANE_PLAIN_PLAIN.png
+SOUTH_SIDE_OF_DRAWBRIDGE..png
+SOUTH_SIDE_OF_DRAWBRIDGE.png
+THE_LAND_OF_THE_MAGIC_SPRING.png
+THIS_IS_THE_KING_S_BEDROOM.png
+THIS_IS_THE_KING'S_BEDROOM.png
+TWISTY_LITTLE_MAZES.png
+VERY_SECRET_CAVE.png
+VOLCANIC_HIGHLANDS.png
+VOLCANO_VALLEY.png
+YOU_ARE_IN_A_FOREST.png
+YOU_ARE_IN_A_LEAFY_FOREST.png
+YOU_ARE_IN_A_LEAFY_GLADE.png
+YOU_ARE_IN_THE_ANTECHAMBER.png
+YOU_ARE_IN_THE_PINE_FOREST.png
+YOU_ARE_IN_THE_THRONE_ROOM.png
+YOU_ARE_ON_A_PAVED_ROAD.png

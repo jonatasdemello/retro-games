@@ -1,0 +1,29 @@
+Standard: 640 × 480
+SVGA: 800 × 600
+XGA: 1024 × 768
+UXGA: 1600 × 1200
+QXVGA: 2048 × 1536
+
+Example 1: If the image is 800 × 600, divide 800 by 600 = 1.333... (→ 4:3)
+Example 2: If the image is 4000 × 3000, divide 4000 by 3000 = 1.333... (→ 4:3)
+
+4/3 = 1.333
+16/9 = 1.7777
+
+4:3 = 1.33 (The width is 33% longer than the height)
+16:9 = 1.77 (The width is 77% longer than the height)
+
+4:3 (Standard): For every 4 units of width, there are 3 units of height. It looks like an old CRT television screen.
+16:9 (Widescreen): For every 16 units of width, there are 9 units of height. It looks like a modern TV, computer monitor, or movie screen.
+
+Common Uses
+4:3: Retro video games, older TV shows (pre-2000s), iPad screens, and default photography modes on most smartphones.
+16:9: High-definition (HD) TV broadcasting, modern movies, YouTube videos, and widescreen computer monitors.
+
+
+magick mogrify -path .\out -resize 45% *.png
+magick input.jpg -gravity center -crop 4:3 +repage output.jpg
+magick mogrify -path .\out -gravity center -crop 4:3 +repage *.png
+
+magick input.jpg -resize "800x600^" -gravity center -extent 800x600 output.jpg
+

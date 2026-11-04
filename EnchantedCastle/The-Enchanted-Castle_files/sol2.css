@@ -1,0 +1,93 @@
+body {background-color: white; color: black; }
+
+/* BAD: It's illegal to have tables inside headers. Try to get this to work some other way. */
+h1 table { margin-left: auto; margin-right: auto; }
+h1 table td.kac { color: darkblue; font-size: large; text-align:left; }
+h1 table td.title { background-color: lightsteelblue; text-align:center; border: 2px solid black;
+                    font-family: Segoe UI, sans-serif; font-size: xx-large; padding: 0px 10px; }
+h1 table td.author { color: darkblue; font-size: large; text-align:right; }
+
+/* NEW TESTING for h1 */
+h1 { margin-left: auto; margin-right: auto; text-align:center; }
+h1 span.kac { color: darkblue; font-size: large; text-align:left; }
+/* h1 span.kac:after { content: ""; } */
+h1 span.title { display: inline-block; background-color: lightsteelblue; border: 2px solid black; font-family: Segoe UI, sans-serif; font-size: xx-large; padding: 0px 10px; }
+h1 span.author { color: darkblue; font-size: large; text-align:right; vertical-align:top; }
+/* h1 span.author:before { content: ""; } */
+
+
+h2 { text-align: center; }
+hr.dashed { height: 1px; border-top: 1px dashed black; }
+
+div.topbtn {
+  background-color: navajowhite; padding: 0 5px;
+  border: black solid 1px;
+  position: fixed; top: 0px; right: 0px;
+}
+div.topbtn a { text-decoration: none; }
+
+samp, kbd { font-family: Segoe UI, sans-serif; font-style: normal; font-size: 10pt; }
+kbd { font-weight: bold; }
+
+p.rm { background-color: lightsteelblue; color: black; font-family: Consolas, fixed; font-size:11pt;
+       margin-top: 1em; margin-bottom: 0.25em; }
+p.rm i { font-family: serif; }
+p.com { font-style: italic; text-indent: 1.5em; margin-top: 0em; margin-bottom: 0em; }
+p.com i { font-style: normal; }
+p.in { margin-top: 0em; margin-bottom: 0em; }
+p.in + p.com { margin-top: 1em; }
+/* p.in samp { font-size: 10pt; } */
+/* p.in kbd { font-weight: bold; } */
+p.end { font-weight: bold; font-size:14pt; text-indent:1em; }
+
+ul.err { border-left: red solid 6px; }
+
+/* Quote box on right-hand-side */
+div.rquote {float: right; background-color: #FED; color: black; margin-left: 6px; margin-top: 0.5em;
+  border: solid black 1px; border-width: 1px 2px 2px 1px; padding: 6px; width: 20em; }
+
+/* to make a fake button: */
+span.btn { padding: 0 3px; border: 1px black solid; border-radius: 5px;
+           font-family: Segoe UI,sans-serif; font-weight: normal; font-style: normal; font-size: 10pt; }
+
+/*
+div.block { margin-top: 1em; margin-bottom: 1em; }
+div.block p { margin-top: 0em; margin-bottom: 0em; }
+div.block p.rm { margin-bottom: 0.25em; }
+*/
+
+/* old map formatting: */
+table.map {background-color: white; color: black; }
+table.map tr td {font-family: Arial Narrow, Verdana; font-size: 10pt; text-align: center; vertical-align: middle; }
+td.loc {border: black solid 1px; font-weight: bold; }
+td.oloc {border: black dashed 1px; font-style: italic; }
+td.dkloc {background-color: black; color: white; font-weight: bold; }
+.dimloc { background-color: #EEE; color: black; border: 1px solid black; font-weight: bold; text-align: center; }
+.wetloc { background-color: #DDF; color: black; border: 1px solid black; font-weight: bold; text-align: center; }
+td.regloc {border: black dashed 3px; font-style: italic; font-weight: bold; }
+td.comloc {font-style: italic; }
+
+
+/* from sol1.css (currently omitted):
+div.game { margin-top: 20em; }
+div.intro p {text-align: justify; }
+div.keeptogether p {text-indent: 1.5em; text-align: justify;
+ margin-top: 0em; margin-bottom: 0em; }
+div.rinset {float: right; background-color: white; color: black; margin-left: 6px; margin-top: 1em;
+  border: solid black 1px; padding: 6px; }
+div.cinset {background-color: white; color: black; margin-top: 1em;
+  border: solid black 1px; padding: 6px; }
+
+
+p.com span.in {font-style: normal; }
+p.com2 { margin-top: 1em; margin-bottom: 0em; font-style: italic;
+ text-indent: 1.5em; text-align: justify; }
+p.com2 span.in {font-style: normal; }
+p.in { margin-top: 0em; margin-bottom: 0em; font-weight: bold; }
+p.in span.com {font-weight: normal; font-style: italic; }
+p.in span.com span.in {font-style: normal; }
+p.top { text-align: right; margin-top: 0em; margin-bottom: 0em; }
+p.linklist {font-family: Verdana, sans-serif; font-size: smaller;
+            text-align: center; margin-top: 0; margin-bottom: 0;
+            letter-spacing: 2px; font-weight: bold; }
+*/

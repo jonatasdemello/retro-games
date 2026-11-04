@@ -1,0 +1,5 @@
+https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python/
+https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-2-the-world-space/
+https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-3-player-action/
+https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-4-the-game-loop/
+https://letstalkdata.com/2020/12/how-to-write-a-text-adventure-in-python-appendix-a-saving-a-game/

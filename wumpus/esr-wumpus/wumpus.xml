@@ -1,0 +1,49 @@
+<!DOCTYPE refentry PUBLIC 
+   "-//OASIS//DTD DocBook XML V4.1.2//EN"
+   "docbook/docbookx.dtd">
+<refentry id='wumpus.6'>
+<refmeta>
+<refentrytitle>wumpus</refentrytitle>
+<manvolnum>6</manvolnum>
+<refmiscinfo class='date'>Sep 7 1992</refmiscinfo>
+<refmiscinfo class='productname'>wumpus</refmiscinfo>
+<refmiscinfo class='source'>wumpus</refmiscinfo>
+<refmiscinfo class='manual'>Games</refmiscinfo>
+</refmeta>
+<refnamediv id='name'>
+<refname>wumpus</refname>
+<refpurpose>the classic game of Hunt the Wumpus</refpurpose>
+</refnamediv>
+<refsynopsisdiv id='synopsis'>
+
+<cmdsynopsis>
+  <command>wumpus</command>
+</cmdsynopsis>
+<cmdsynopsis>
+  <command>superhack</command>
+</cmdsynopsis>
+
+</refsynopsisdiv>
+
+<refsect1 id='description'><title>DESCRIPTION</title>
+
+<para><application>wumpus</application> is a faithful transcription of
+the 1974 game WUMPUS for the Atari, the first computer game to
+maintain a consistent external map.  An article on the history of this
+classic game can be found <ulink
+url='http://www.atariarchives.org/bcc1/showpage.php?page=247'>here</ulink>.</para>
+
+<para><application>superhack</application> is a structurally similar
+game with a different premise.</para>
+</refsect1>
+
+<refsect1 id='authors'><title>AUTHORS</title>
+<para>The original Atari game was designed and written by Gregory Yob.
+This version was cloned from the original BASIC sources by Eric
+S. Raymond <email>esr@snark.thyrsus.com</email>.  See ESR's home page at
+<ulink
+url='http://www.catb.org/~esr/'>http://www.catb.org/~esr/</ulink>
+for updates and other resources.</para>
+</refsect1>
+</refentry>
+

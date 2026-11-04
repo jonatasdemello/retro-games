@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Write a Text Adventure in Python | Let's Talk Data</title>
+    <meta name="description" content="A blog about data analysis, programming, and visualization">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link rel="stylesheet" href="./include/css2.css">
+    <link rel="stylesheet" href="./include/main.css">
+    <link rel="stylesheet" href="./include/syntax.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="https://letstalkdata.com/" class="site-title">Let's Talk Data</a>
+            <nav class="site-nav"><a href="https://letstalkdata.com/">Home</a></nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="content">
+            <article class="post">
+                <header class="post-header">
+                    <h1 class="post-title">How to Write a Text Adventure in Python</h1>
+                    <div class="post-meta">
+                        <time datetime="2014-08-29T03:37:10+00:00">
+                            August 29, 2014
+                        </time>
+                        <span class="post-author">by Phillip Johnson</span>
+                    </div>
+                </header>
+
+<hr><h2>Part 1</h2>
+
+  <div class="post-content">
+    <p>People new to programming often ask for suggestions of what projects they should work on and a common reply is, “Write a text adventure game!” I think there are even some <a href="http://learnpythonthehardway.org/book/ex43.html">popular tutorials</a> floating around that assign this as homework since I see it so much. This is a really good suggestion for a few reasons:</p>
+
+<ul>
+  <li>The concept is familiar and fun (everyone loves games!)</li>
+  <li>They can be written using core libraries</li>
+  <li>The UI is the console</li>
+</ul>
+
+<p>But new programmers often struggle with knowing where to start. That’s why I wrote and published <em><a href="https://www.apress.com/us/book/9781484232309">Make Your Own Python Text Adventure</a></em>. This book is a structured approach to learning Python that teaches the fundamentals of the language, while also guiding the development of your own customizable text adventure game.
+For those of you who know some Python and just need a little guidance, there’s an abbreviated version of the book material here on the blog. It assumes you are familiar with basic programming concepts (if-statements, loops, objects, etc.), but are still new to writing full applications. - <a href="https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-1-items-and-enemies/" title="How to Write a Text Adventure in Python Part 1: Items and Enemies">Part 1: Items and Enemies</a></p>
+<ul>
+  <li><a href="https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-2-the-world-space/" title="How to Write a Text Adventure in Python Part 2: The World Space">Part 2: The World Space</a></li>
+  <li><a href="https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-3-player-action/" title="How to Write a Text Adventure in Python Part 3: Player Action">Part 3: Player Actions</a></li>
+  <li><a href="https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-4-the-game-loop/" title="How to Write a Text Adventure in Python Part 4: The Game Loop">Part 4: The Game Loop</a></li>
+  <li><a href="https://letstalkdata.com/2020/12/how-to-write-a-text-adventure-in-python-appendix-a-saving-a-game/">Appendix A: Saving a Game</a></li>
+</ul>
+
+<p>Just looking for some code? You can view the tutorial version of the game on <a href="https://github.com/phillipjohnson/text-adventure-tut" title="Text Adventure Tutorial">GitHub</a>.</p>
+
+  </div>
+
+<hr><h2>Part 2</h2>
+
+  <div class="post-content">
+    <p><em>This is an abbreviated version of the book <a href="https://www.apress.com/us/book/9781484232309">Make Your Own Python Text Adventure</a>.</em></p>
+
+<p>All games take place in some sort of world. The world can be as simple as a chess board or as complex as the <em>Mass Effect</em> universe and provides the foundation for the game as a whole. All elements of a game reside in the world and some elements interact with the world. In this post, you’ll learn how to add items and enemies to your world.</p>
+
+<h4 id="the-coordinate-plane">The coordinate plane</h4>
+
+<p>A text adventure usually involves a player moving through the world one section per turn. We can think of each section as a tile on an x-y grid. Note: in most game programming the x-y coordinate plane is different from the one you learned in algebra. In the game world, (0,0) is in the top left corner, x increases to the right, and y increases to the bottom.</p>
+
+<h4 id="creating-tiles">Creating tiles</h4>
+
+<p>Start by creating a module tiles.py with this class:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import items, enemies
+
+class MapTile:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">import</code> keyword means “give this module access the ‘items’ module and ‘enemies’ module. We need this because we will want to put these elements inside some of our rooms.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">MapTile</code> class is going to provide a template for all of the tiles in our world, which means we need to define the methods that all tiles will need. First, we’ll want to display some text to the user when they enter the tile that describes the world. We also expect that some actions may take place when the player enters the tile, and that those actions change the state of the player (e.g., they pick something up, they win the game, something attacks them, etc.). Let’s add those methods now.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def intro_text(self):
+        raise NotImplementedError()
+
+    def modify_player(self, player):
+        raise NotImplementedError()
+</code></pre></div></div>
+
+<p>We haven’t talked about the code for the player yet, but that’s OK. The <code class="language-plaintext highlighter-rouge">player</code> parameter will serve as a placeholder. As you might guess, these methods aren’t going to do much in their current state. In fact, they will actually cause the program to crash! This might seem silly, but this behavior is to help us as programmers.</p>
+
+<p>When thinking about our world, we don’t want to have tiles that do <em>nothing</em>. We may want tiles of water, tiles in a spaceship corridor, tiles with other characters, or tiles with treasure, but not empty tiles. So this <code class="language-plaintext highlighter-rouge">MapTile</code> class is actually just a template that all other tiles will expand on.</p>
+
+<p>In the last post we learned about base classes. <code class="language-plaintext highlighter-rouge">MapTile</code> is actually a specific flavor of a base class. We call it an <strong><em>abstract</em> base class</strong> because we don’t want to create any instances of it. In our game, we will only create specific types of tiles. We will never create a <code class="language-plaintext highlighter-rouge">MapTile</code> directly, instead we will create subclasses. The code <code class="language-plaintext highlighter-rouge">raise NotImplementedError()</code> will warn us if we accidentally create a <code class="language-plaintext highlighter-rouge">MapTile</code> directly.</p>
+
+<p>Now on to our first tile subclass!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class StartingRoom(MapTile):
+    def intro_text(self):
+        return """
+        You find yourself if a cave with a flickering torch on the wall.
+        You can make out four paths, each equally as dark and foreboding.
+        """
+
+    def modify_player(self, player):
+        #Room has no action on player
+        pass
+</code></pre></div></div>
+
+<p>This class extends <code class="language-plaintext highlighter-rouge">MapTile</code> to make a more specific type of tile. We <strong>override</strong> the <code class="language-plaintext highlighter-rouge">intro_text</code> and <code class="language-plaintext highlighter-rouge">modify_player</code> methods to implement the specific behavior that this tile should have. A method is overridden when a subclass has the same method name as a superclass. Because it’s the starting room, I didn’t want anything to happen to the player. The <code class="language-plaintext highlighter-rouge">pass</code> keyword simply tells Python to not do anything. You might wonder why the method is even in this class if it doesn’t do anything. The reason is because if we don’t override <code class="language-plaintext highlighter-rouge">modify_player</code>, the superclass’s <code class="language-plaintext highlighter-rouge">modify_player</code> will execute and if that happens the program will crash because of <code class="language-plaintext highlighter-rouge">raise NotImplementedError()</code>.</p>
+
+<p>Next, let’s add a class for the tile where a player will find a new item.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class LootRoom(MapTile):
+    def __init__(self, x, y, item):
+        self.item = item
+        super().__init__(x, y)
+
+    def add_loot(self, player):
+        player.inventory.append(self.item)
+
+    def modify_player(self, player):
+        self.add_loot(player)
+</code></pre></div></div>
+
+<p>Remember, we haven’t created <code class="language-plaintext highlighter-rouge">player</code> yet, but we can guess that the player will have an inventory.</p>
+
+<p>Let’s define one more type of room: a room in which the player encounters an enemy.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class EnemyRoom(MapTile):
+    def __init__(self, x, y, enemy):
+        self.enemy = enemy
+        super().__init__(x, y)
+
+    def modify_player(self, the_player):
+        if self.enemy.is_alive():
+            the_player.hp = the_player.hp - self.enemy.damage
+            print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp))
+</code></pre></div></div>
+
+<p>This constructor should look familiar to you now. It’s very similar to the <code class="language-plaintext highlighter-rouge">LootRoom</code> constructor, but instead of an item, we are working with an enemy.</p>
+
+<p>The logic for this room is a bit different. I didn’t want enemies to respawn. So if the player already visited this room and killed the enemy, they should not engage battle again. Assuming the enemy is alive, they attack the player and do damage to the player’s hit points.</p>
+
+<p>Now that we have some basic types of tiles defined, we can make some even more specific versions. Here are some that I created:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class EmptyCavePath(MapTile):
+    def intro_text(self):
+        return """
+        Another unremarkable part of the cave. You must forge onwards.
+        """
+
+    def modify_player(self, player):
+        #Room has no action on player
+        pass
+
+class GiantSpiderRoom(EnemyRoom):
+    def __init__(self, x, y):
+        super().__init__(x, y, enemies.GiantSpider())
+
+    def intro_text(self):
+        if self.enemy.is_alive():
+            return """
+            A giant spider jumps down from its web in front of you!
+            """
+        else:
+            return """
+            The corpse of a dead spider rots on the ground.
+            """
+
+class FindDaggerRoom(LootRoom):
+    def __init__(self, x, y):
+        super().__init__(x, y, items.Dagger())
+
+    def intro_text(self):
+        return """
+        Your notice something shiny in the corner.
+        It's a dagger! You pick it up.
+        """
+</code></pre></div></div>
+
+<p>If you remember, I also created an <code class="language-plaintext highlighter-rouge">Ogre</code> enemy and <code class="language-plaintext highlighter-rouge">Gold</code> item. You may choose to create corresponding rooms too.</p>
+
+<h4 id="creating-the-world">Creating the world</h4>
+
+<p>We’re going to close out this post by actually creating a world based on the tiles we’ve defined. This delves into some advanced features so it’s OK if you don’t follow everything. I’ll explain everything briefly here, but I encourage you to read up on anything you’re interested in learning more about.</p>
+
+<p>Create a new module in the same directory called <code class="language-plaintext highlighter-rouge">world.py</code>. Next, make a folder called “resources” that is in the same directory as the “adventuretotrial” directory and create <code class="language-plaintext highlighter-rouge">map.txt</code> inside. We’re going to build the world in this external file and load it into the game programatically.</p>
+
+<p>I like to use a spreadsheet program and then copy the text into the map file, but you can just edit the file directly too. The goal is to lay out a grid of tiles whose names match the class names and are separated by tabs. Here’s an example in a spreadsheet:</p>
+
+<div class="wp-block-image"><figure class="aligncenter">[![Game tiles in spreadsheet](/wp-content/uploads/2014/08/map_in_excel.png)](/wp-content/uploads/2014/08/map_in_excel.png)</figure></div>
+<p>Remember, your map should not include MapTile, LootRoom, or EnemyRoom! Those are base classes that should not be created directly.</p>
+
+<p>In the <code class="language-plaintext highlighter-rouge">world</code> module, add the following dictionary and method to parse the file you created.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_world = {}
+starting_position = (0, 0)
+
+def load_tiles():
+    """Parses a file that describes the world space into the _world object"""
+    with open('resources/map.txt', 'r') as f:
+        rows = f.readlines()
+    x_max = len(rows[0].split('\t')) # Assumes all rows contain the same number of tabs
+    for y in range(len(rows)):
+        cols = rows[y].split('\t')
+        for x in range(x_max):
+            tile_name = cols[x].replace('\n', '') # Windows users may need to replace '\r\n'
+            if tile_name == 'StartingRoom':
+                global starting_position
+                starting_position = (x, y)
+            _world[(x, y)] = None if tile_name == '' else getattr(__import__('tiles'), tile_name)(x, y)
+</code></pre></div></div>
+
+<p>The parsing method goes through each line of the file and splits the line into cells. Using a double <code class="language-plaintext highlighter-rouge">for</code> loop is a common way of working with grids. The <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> variables keep track of the coordinates. When we find the Starting Room, that position is saved because we will use it later. We use the <code class="language-plaintext highlighter-rouge">global</code> keyword to let us access the <code class="language-plaintext highlighter-rouge">starting_position</code> variable that lives outside of this method. The last line is the most interesting, but it’s fine if you don’t fully understand it.</p>
+
+<p>The variable <code class="language-plaintext highlighter-rouge">_world</code> is a dictionary that maps a coordinate pair to a tile. So the code <code class="language-plaintext highlighter-rouge">_world[(x, y)]</code> creates the key (i.e. the coordinate pair) of the dictionary. If the cell is an empty string, we don’t want to store a tile in it’s place which is why we have the code <code class="language-plaintext highlighter-rouge">None if tile_name == ''</code>. However, if the cell <em>does</em> contain a name, we want to actually create a tile of that type. The <code class="language-plaintext highlighter-rouge">getattr</code> method is built into Python and lets us <strong>reflect</strong> into the tile module and find the class whose name matches <code class="language-plaintext highlighter-rouge">tile_name</code>. Finally the <code class="language-plaintext highlighter-rouge">(x, y)</code> passes the coordinates to the constructor of the tile.</p>
+
+<p><strong>Looking for an easier approach to building your world? Check out Chapter 13 of <em><a href="https://www.apress.com/us/book/9781484232309">Make Your Own Python Text Adventure</a></em>.</strong></p>
+
+<p>Essentially what we’re doing is using some advanced features in Python as an alternative to something like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tile_map = [[FindGoldRoom(),GiantSpiderRoom(),None,None,None],
+            [None,StartingRoom(),EmptyCave(),EmptyCave(),None]
+           ]
+</code></pre></div></div>
+
+<p>That’s hard to read and maintain. Using a text file makes changing our world easy. It’s also a lot simpler to visualize the world space.</p>
+
+<p>Keep in mind that the only reason we are able to do this is because all of our tile classes derive from the same base class with a common constructor that accepts the parameters x and y.</p>
+
+<p>Let’s add one more method to the world module that will make working with the tiles a little easier:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def tile_exists(x, y):
+    return _world.get((x, y))
+</code></pre></div></div>
+
+<p>Congratulations for making it this far! If you’d like to see how to make the game easier or more difficult with different enemy types, see Chapter 12 of <em><a href="https://www.apress.com/us/book/9781484232309">Make Your Own Python Text Adventure</a></em>.</p>
+
+<p><a href="https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-3-player-action/">Click here for Part 3 of the abridged tutorial.</a></p>
+
+  </div>
+
+<hr><h2>Part 3</h2>
+
+  <div class="post-content">
+    <p><em>This is an abbreviated version of the book <a href="https://www.apress.com/us/book/9781484232309">Make Your Own Python Text Adventure</a>.</em></p>
+
+<p>So far we’ve created a world and filled it with lots of interesting things. Now we’re going to create our player and provide ways for the player to interact with the world. This will probably be the most conceptually challenging part of the game, so you may want to re-read this section a few times.</p>
+
+<h4 id="the-player">The Player</h4>
+
+<p>Time for a new module! Create <code class="language-plaintext highlighter-rouge">player.py</code> and include this class:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import items
+
+class Player():
+    def __init__(self):
+        self.inventory = [items.Gold(15), items.Rock()]
+        self.hp = 100
+        self.location_x, self.location_y = world.starting_position
+        self.victory = False
+
+    def is_alive(self):
+        return self.hp &gt; 0
+
+    def print_inventory(self):
+        for item in self.inventory:
+            print(item, '\n')
+</code></pre></div></div>
+
+<p>Now you can see some of the concepts that we previously templated have been made into reality. The player starts out with a few basic items and 100 hit points. We also load the starting location that was saved before and create a victory flag that will notify us if the player has won the game. The methods <code class="language-plaintext highlighter-rouge">is_alive</code> and <code class="language-plaintext highlighter-rouge">print_inventory</code> should be self-explanatory.</p>
+
+<h4 id="adding-actions">Adding Actions</h4>
+
+<p>Now that we have a player, we can start to give them actions. We’ll start with moving around first.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def move(self, dx, dy):
+        self.location_x += dx
+        self.location_y += dy
+        print(world.tile_exists(self.location_x, self.location_y).intro_text())
+
+    def move_north(self):
+        self.move(dx=0, dy=-1)
+
+    def move_south(self):
+        self.move(dx=0, dy=1)
+
+    def move_east(self):
+        self.move(dx=1, dy=0)
+
+    def move_west(self):
+        self.move(dx=-1, dy=0)
+</code></pre></div></div>
+
+<p>The player can move in four directions: north, south, east, and west. To avoid repeating ourselves, we have a basic <code class="language-plaintext highlighter-rouge">move</code> method that takes care of actually changing the player’s position and then we have four convenience methods that use the common <code class="language-plaintext highlighter-rouge">move</code> method. Now we can simply refer to <code class="language-plaintext highlighter-rouge">move_south</code> without specifically trying to remember if <code class="language-plaintext highlighter-rouge">y</code> should be positive or negative, for example.</p>
+
+<p>The next action the player should have is attack.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def attack(self, enemy):
+        best_weapon = None
+        max_dmg = 0
+        for i in self.inventory:
+            if isinstance(i, items.Weapon):
+                if i.damage &gt; max_dmg:
+                    max_dmg = i.damage
+                    best_weapon = i
+
+        print("You use {} against {}!".format(best_weapon.name, enemy.name))
+        enemy.hp -= best_weapon.damage
+        if not enemy.is_alive():
+            print("You killed {}!".format(enemy.name))
+        else:
+            print("{} HP is {}.".format(enemy.name, enemy.hp))
+</code></pre></div></div>
+
+<p>In order to find the most powerful weapon in the player’s inventory, we loop through all the items and use <code class="language-plaintext highlighter-rouge">isinstance</code> (a built-in function) to see if the item is a <code class="language-plaintext highlighter-rouge">Weapon</code>. This is another feature we gain by having all of our weapons share a common class. If we didn’t do this, we would need to do something messy like <code class="language-plaintext highlighter-rouge">if item.name=="dagger" or item.name=="rock" or item.name=="sword"...</code>. The rest of the method actually attacks the enemy and reports the result back to the user.</p>
+
+<p>We now have behavior defined for certain actions. But within the game, we need some additional information. First, we need to bind keyboard keys to these actions. It would also be nice if we had a “pretty” name for each action that could be displayed to the player. Because of this additional “meta” information, we are going to wrap these behavior methods inside of classes. It’s time for a new module called <code class="language-plaintext highlighter-rouge">actions.py</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import Player
+
+class Action():
+    def __init__(self, method, name, hotkey, **kwargs):
+        self.method = method
+        self.hotkey = hotkey
+        self.name = name
+        self.kwargs = kwargs
+
+    def __str__(self):
+        return "{}: {}".format(self.hotkey, self.name)
+</code></pre></div></div>
+
+<p>We’re going to use the now-comfortable design of a base class with specific subclasses. For starters, the <code class="language-plaintext highlighter-rouge">Action</code> class will have a method assigned to it. This method will correspond directly to one of the action methods in the player class, which you will see shortly. Additionally, each <code class="language-plaintext highlighter-rouge">Action</code> will have a hotkey, the “pretty” name, and a slot for additional parameters. These additional parameters are specified by the special <code class="language-plaintext highlighter-rouge">**</code> operator and are named <code class="language-plaintext highlighter-rouge">kwargs</code> by convention. Using <code class="language-plaintext highlighter-rouge">**kwargs</code> allows us to make the <code class="language-plaintext highlighter-rouge">Action</code> class extremely flexible. We know all actions will require certain parameters, but there may be additional parameters that are different for certain actions. For example, we’ve already seen the <code class="language-plaintext highlighter-rouge">attack</code> method that requires an enemy parameter.</p>
+
+<p>The following classes are our first wrappers:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class MoveNorth(Action):
+    def __init__(self):
+        super().__init__(method=Player.move_north, name='Move north', hotkey='n')
+
+class MoveSouth(Action):
+    def __init__(self):
+        super().__init__(method=Player.move_south, name='Move south', hotkey='s')
+
+class MoveEast(Action):
+    def __init__(self):
+        super().__init__(method=Player.move_east, name='Move east', hotkey='e')
+
+class MoveWest(Action):
+    def __init__(self):
+        super().__init__(method=Player.move_west, name='Move west', hotkey='w')
+
+class ViewInventory(Action):
+    """Prints the player's inventory"""
+    def __init__(self):
+        super().__init__(method=Player.print_inventory, name='View inventory', hotkey='i')
+</code></pre></div></div>
+
+<p>Notice how the method parameter actually points to a specific method in the Player class. Referring to methods as objects in a feature in Python and other languages with “first class” methods. Be sure that you do not include <code class="language-plaintext highlighter-rouge">()</code> after the method name. The code <code class="language-plaintext highlighter-rouge">Player.some_method()</code> will execute the method whereas <code class="language-plaintext highlighter-rouge">Player.some_method</code> is just a reference to the method as an object.</p>
+
+<p>The attack method wrapper is very similar with one small difference:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Attack(Action):
+    def __init__(self, enemy):
+        super().__init__(method=Player.attack, name="Attack", hotkey='a', enemy=enemy)
+</code></pre></div></div>
+
+<p>Here we have included the “enemy” parameter as previously discussed. Since <code class="language-plaintext highlighter-rouge">enemy</code> is not a named parameter in the base <code class="language-plaintext highlighter-rouge">Action</code> class constructor, it will get bundled up into the <code class="language-plaintext highlighter-rouge">**kwargs</code> parameter.</p>
+
+<p>Now that we have some actions defined, we need to consider how they will be used in the game. For example, the player should not be able to attack when no enemy is present. Conversely, they shouldn’t be able to calmly leave a room that has an enemy! Actions should be available or unavailable based on the context of the situation. To handle this, we need to flip back to our tiles module.</p>
+
+<p>Change your import statement to include the actions and world modules:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import items, enemies, actions, world
+</code></pre></div></div>
+
+<p>Next add the following methods to <code class="language-plaintext highlighter-rouge">MapTile</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def adjacent_moves(self):
+        """Returns all move actions for adjacent tiles."""
+        moves = []
+        if world.tile_exists(self.x + 1, self.y):
+            moves.append(actions.MoveEast())
+        if world.tile_exists(self.x - 1, self.y):
+            moves.append(actions.MoveWest())
+        if world.tile_exists(self.x, self.y - 1):
+            moves.append(actions.MoveNorth())
+        if world.tile_exists(self.x, self.y + 1):
+            moves.append(actions.MoveSouth())
+        return moves
+
+    def available_actions(self):
+        """Returns all of the available actions in this room."""
+        moves = self.adjacent_moves()
+        moves.append(actions.ViewInventory())
+
+        return moves
+</code></pre></div></div>
+
+<p>These methods provide some default behavior for a tile. The default actions that a player should have are: move to any adjacent tile and view inventory. The method <code class="language-plaintext highlighter-rouge">adjacent_moves</code> determines which moves are possible in the map. For each available action, we append an instance of one of our wrapper classes to the list. Since we used the wrapper classes, we will later have easy access to the names and hotkeys of the actions.</p>
+
+<p>Now we need to allow the <code class="language-plaintext highlighter-rouge">Player</code> class to take an <code class="language-plaintext highlighter-rouge">Action</code> and run the action’s internally-bound method. Add this method to the <code class="language-plaintext highlighter-rouge">Player</code> class:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def do_action(self, action, **kwargs):
+        action_method = getattr(self, action.method.__name__)
+        if action_method:
+            action_method(**kwargs)
+</code></pre></div></div>
+
+<p>That <code class="language-plaintext highlighter-rouge">getattr</code> rears its head again! We have a similar concept to what we did to create tiles, but this time instead of looking for a <em>class</em> in a <em>module</em>, we’re looking for a <em>method</em> in a <em>class</em>. For example, if <code class="language-plaintext highlighter-rouge">action</code> is a <code class="language-plaintext highlighter-rouge">MoveNorth</code> action, then we know that its internal method is <code class="language-plaintext highlighter-rouge">Player.move_north</code>. The <code class="language-plaintext highlighter-rouge">__name__</code> of that method is “move_north”. Then <code class="language-plaintext highlighter-rouge">getattr</code> finds the <code class="language-plaintext highlighter-rouge">move_north</code> method inside the <code class="language-plaintext highlighter-rouge">Player</code> class and stores that method as the object <code class="language-plaintext highlighter-rouge">action_method</code>. If <code class="language-plaintext highlighter-rouge">getattr</code> was successful, we execute the found method and we include the <code class="language-plaintext highlighter-rouge">**kwargs</code> in case that method needs additional objects (like the <code class="language-plaintext highlighter-rouge">attack</code> method).</p>
+
+<p><strong>Looking for something a little simpler? My book <em><a href="https://www.apress.com/us/book/9781484232309">Make Your Own Python Text Adventure</a></em> has a different approach to player actions that avoids the sometimes confusing <code class="language-plaintext highlighter-rouge">getattr</code> and <code class="language-plaintext highlighter-rouge">**kwargs</code>.</strong></p>
+
+<p>At this point, I decided to add one more action: flee. As an alternative to battle, the player can flee which causes them to a random adjacent tile. Here’s the behavior for the <code class="language-plaintext highlighter-rouge">Player</code> in the <code class="language-plaintext highlighter-rouge">players</code> module:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import random #Note the new import!
+import items, world
+
+class Player:
+    # Existing code omitted for brevity
+
+    def flee(self, tile):
+        """Moves the player randomly to an adjacent tile"""
+        available_moves = tile.adjacent_moves()
+        r = random.randint(0, len(available_moves) - 1)
+        self.do_action(available_moves[r])
+</code></pre></div></div>
+
+<p>And here’s our wrapper in the <code class="language-plaintext highlighter-rouge">actions</code> module:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Flee(Action):
+    def __init__(self, tile):
+        super().__init__(method=Player.flee, name="Flee", hotkey='f', tile=tile)
+</code></pre></div></div>
+
+<p>Similar to the attack action, the flee action requires an additional parameter. This time, it’s the tile from which the player needs to flee.</p>
+
+<p>Most of the tiles we have created so far can use the default available moves. However, the enemy tiles need to provide the attack and flee actions. To do this, we will override the default behavior of the <code class="language-plaintext highlighter-rouge">MapTile</code> class with our own version of the method in the <code class="language-plaintext highlighter-rouge">EnemyRoom</code> class.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class EnemyRoom(MapTile):
+    def __init__(self, x, y, enemy):
+        self.enemy = enemy
+        super().__init__(x, y)
+
+    def modify_player(self, the_player):
+        if self.enemy.is_alive():
+            the_player.hp = the_player.hp - self.enemy.damage
+            print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp))
+
+    def available_actions(self):
+        if self.enemy.is_alive():
+            return [actions.Flee(tile=self), actions.Attack(enemy=self.enemy)]
+        else:
+            return self.adjacent_moves()
+</code></pre></div></div>
+
+<p>If the enemy is still alive then the player’s only options are attack or flee. If the enemy is dead, then this room works like all other rooms.</p>
+
+<p>Whew! That was a lot of new code. We’re almost finished! All we need to do to wrap up is create and interface for the human player.</p>
+
+<p><a href="https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-4-the-game-loop/">Click here for part 4</a></p>
+
+  </div>
+
+<hr><h2>Part 4</h2>
+
+  <div class="post-content">
+    <p><em>This is an abbreviated version of the book <a href="https://www.apress.com/us/book/9781484232309">Make Your Own Python Text Adventure</a>.</em></p>
+
+<p>The end is near, we’re almost ready to play the game! We’ll finish this series by implementing the game loop and receiving input from the human player.</p>
+
+<h4 id="the-game-loop">The Game Loop</h4>
+
+<p>While some applications follow a discrete set of steps and terminate, a game typically just “keeps going”. The only way the program stops is if the player wins, loses, or quits. To handle this behavior, games usually run inside a loop. On each iteration, the game state is updated and input is received from the human player. In graphical games, the loop runs many times per second. Since we don’t need to continually refresh the player’s screen for a text game, our code will actually pause until the player provides input. Our game loop is going to reside in a new module <code class="language-plaintext highlighter-rouge">game.py</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import world
+from player import Player
+
+def play():
+    world.load_tiles() player = Player()
+    while player.is_alive() and not player.victory:
+        #Loop begins here
+</code></pre></div></div>
+
+<p>Before play begins, we load our world from the text file and create a new <code class="language-plaintext highlighter-rouge">Player</code> object. Next, we begin the loop. Note the two conditions we check: if the player is alive and if victory has not been achieved. For this game, the only way to lose is by dying. However, there isn’t any code yet that lets the player win. In my story, I want the player to escape the cave alive. If they do that, they win. To implement this behavior, we’re going to add a very simple room and place it into our world. Switch back to <code class="language-plaintext highlighter-rouge">tiles.py</code> and add this class:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class LeaveCaveRoom(MapTile):
+    def intro_text(self):
+        return """
+        You see a bright light in the distance...
+        ... it grows as you get closer! It's sunlight!
+
+        Victory is yours!
+        """
+
+    def modify_player(self, player):
+        player.victory = True
+</code></pre></div></div>
+
+<p>Don’t forget to include one of these rooms somewhere in your map.txt file. Now that the player can win, let’s finish the game loop.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def play():
+    world.load_tiles()
+    player = Player()
+    #These lines load the starting room and display the text
+    room = world.tile_exists(player.location_x, player.location_y)
+    print(room.intro_text())
+    while player.is_alive() and not player.victory:
+        room = world.tile_exists(player.location_x, player.location_y)
+        room.modify_player(player)
+        # Check again since the room could have changed the player's state
+        if player.is_alive() and not player.victory:
+            print("Choose an action:\n")
+            available_actions = room.available_actions()
+            for action in available_actions:
+                print(action)
+            action_input = input('Action: ')
+            for action in available_actions:
+                if action_input == action.hotkey:
+                    player.do_action(action, **action.kwargs)
+                    break
+</code></pre></div></div>
+
+<p>The first thing the loop does is find out what room the player is in and then executes the behavior for that room. If the player is alive and they have not won after the behavior executes, we prompt the human player for input. This is done using the built-in <code class="language-plaintext highlighter-rouge">input()</code> function. If the human player provided a matching hotkey, then we execute the associated action using the <code class="language-plaintext highlighter-rouge">do_action</code> method.</p>
+
+<p>The last thing we need to include is an instruction for Python to know that <code class="language-plaintext highlighter-rouge">play()</code> should run when running the file. Include these lines at the bottom of the <code class="language-plaintext highlighter-rouge">game.py</code> module:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if __name__ == "__main__":
+    play()
+</code></pre></div></div>
+
+<p>To run the program, navigate to the folder containing the adventuretutorial package in your console and run <code class="language-plaintext highlighter-rouge">python adventuretutorial/game.py</code>. If you get warnings about packages, try <a href="http://matplotlib.org/faq/environment_variables_faq.html">setting your PYTHONPATH</a> environment variable manually. Have fun!</p>
+
+<h4 id="where-to-go-from-here">Where to go from here</h4>
+
+<p>Congratulations! You now have a working text adventure game. With the information learned here, you should be able to quickly add your own custom items, enemies, and tiles. If you’re up for more of a challenge, here are some of the features included in <em><a href="https://www.apress.com/us/book/9781484232309">Make Your Own Python Text Adventure</a></em>:</p>
+
+<ul>
+  <li>An easier and more flexible way to build your world (no text files or reflection!)</li>
+  <li>A game economy where the player can buy and sell items</li>
+  <li>The ability for players to heal during and between fights</li>
+  <li>Difficulty settings to make the game harder or easier</li>
+</ul>
+
+  </div>
+
+<hr><h2>Part 5</h2>
+
+  <div class="post-content">
+    <p>Merry Christmas! This has been one of the most requested features for me to add to the tutorial, so here goes. While it modifies the free tutorial code, the concepts here can also apply to the book.</p>
+
+<p>Saving and loading data from code to a binary or text format is referred to as “serialization” and “deserialization”. When different computer systems need to share data, this is often done with XML or JSON. If that’s not a concern, Python can use the builtin pickle library.</p>
+
+<p>Saving the game</p>
+
+<p>First, we’ll need to create the action for the player. Let’s start by adding the action to the player. First add <code class="language-plaintext highlighter-rouge">import pickle</code> to the top of the file, then add this method:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def save_and_exit(self):
+    pickle.dump(self, open( "saved_player.p", "wb" ))
+    pickle.dump(world._world, open( "saved_world.p", "wb" ))
+    print("Game saved!")
+    exit()
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">pickle.dump</code> method converts an object to a binary format for Python. The first parameter is the object to save and the second parameter specifies where to save the object. We need to create a save for both the world itself (tiles) and the player.</p>
+
+<p>Next, go to the actions file and create an action for this method:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class SaveAndExit(Action):
+    def __init__(self):
+        super().__init__(method=Player.save_and_exit, name="Save and Exit", hotkey='x')
+</code></pre></div></div>
+
+<p>Finally, we have to make sure this shows up as an option for the player, so add <code class="language-plaintext highlighter-rouge">moves.append(actions.SaveAndExit())</code> to the end of the list of actions in <code class="language-plaintext highlighter-rouge">tiles.py</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def available_actions(self):
+    """Returns all of the available actions in this room."""
+    moves = self.adjacent_moves()
+    moves.append(actions.ViewInventory())
+    moves.append(actions.SaveAndExit())
+
+    return moves
+</code></pre></div></div>
+
+<p>If you run the game now, you can save the game and you should notice two files appear in the directory of your game code.</p>
+
+<p>Loading the game</p>
+
+<p>To load the game, we basically have to do the same process in reverse. So we’ll check to see if the save files exist, and if they do, transform the data into the game objects.</p>
+
+<p>Since we need to handle new games and saved games, I renamed the <code class="language-plaintext highlighter-rouge">play</code> method to <code class="language-plaintext highlighter-rouge">game_loop</code> and created a new <code class="language-plaintext highlighter-rouge">play</code> method:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def play(saved_world=None, saved_player=None):
+    if saved_world and saved_player:
+        world._world = saved_world
+        player = saved_player
+    else:
+        world.load_tiles()
+        player = Player()
+    game_loop(player)
+
+def game_loop(player):
+   # same code that used to be in "play"
+</code></pre></div></div>
+
+<p>The new <code class="language-plaintext highlighter-rouge">play</code> method has optional parameters for the saved objects. If they are present, we manually set the world and player to those parameters. Otherwise, we default to creating a new world and player.</p>
+
+<p>Next add these imports:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from pathlib import Path
+import pickle
+</code></pre></div></div>
+
+<p>Now we’ll create a method that checks to see if the files are present, and if so load them and pass them into our new <code class="language-plaintext highlighter-rouge">play</code> method. Here we’ll use <code class="language-plaintext highlighter-rouge">pickle.load</code> which reads in a file and unpacks it into an object.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def check_for_save():
+    if Path("saved_player.p").is_file() and Path("saved_world.p").is_file():
+        saved_world = pickle.load(open("saved_world.p", "rb"))
+        saved_player = pickle.load(open("saved_player.p", "rb"))
+        save_exists = True
+    else:
+        save_exists = False
+</code></pre></div></div>
+
+<p>I wanted to give the player the option of loading the saved game or starting a new one, so I added this code too:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    if save_exists:
+        valid_input = False
+        while not valid_input:
+            load = input("Saved game found! Do you want to load the game? Y/N ")
+            if load in ['Y','y']:
+                play(saved_world, saved_player)
+                valid_input = True
+            elif load in ['N','n']:
+                play()
+                valid_input = True
+            else:
+                print("Invalid choice.")
+    else:
+        play()
+</code></pre></div></div>
+
+<p>Notice how we use the two variants of <code class="language-plaintext highlighter-rouge">play</code>, sometimes with parameters and sometimes without.</p>
+
+<p>Last, we have to change the entry point of our code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if __name__ == "__main__":
+    check_for_save()
+</code></pre></div></div>
+
+<p>Now when you play the game, you should see it pick up your save files and load the game at the spot when you saved it.</p>
+
+<p>As always, <a href="https://github.com/phillipjohnson/text-adventure-tut">the full code is on GitHub</a>!</p>
+
+<p><a href="https://letstalkdata.com/2014/08/how-to-write-a-text-adventure-in-python-part-3-player-action/">Click here for Part 1 of the abridged tutorial.</a></p>
+
+  </div>
+
+            </article>
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2026 Let's Talk Data - Made with <a href="https://jekyllrb.com/">Jekyll 🧪</a></p>
+    </footer>
+</body>
+</html>

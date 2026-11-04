@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://plover.net/~davidw/sol/e/encha19.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="Author" content="David Welbourn">
+<title>The Enchanted Castle - map and walkthrough | Key &amp; Compass</title>
+<link rel="stylesheet" type="text/css" href="./The-Enchanted-Castle_files/sol2.css">
+<link rel="icon" type="image/png" href="https://plover.net/~davidw/img/kc_logo.png">
+</head>
+
+<body style="padding-left:0.5in;padding-right:0.5in">
+<div class="topbtn"><a href="https://plover.net/~davidw/sol/e/encha19.html#top">top</a></div>
+
+<h1><span class="kac">Key &amp; Compass presents:</span><br>
+<span class="title">The Enchanted Castle</span><br>
+<span class="author">by Gregg Roberts</span></h1>
+
+<div class="intro">
+<p><b>The Enchanted Castle</b> is a Z-machine interactive fiction game written with Inform 7 and is © 2019 by Gregg Roberts.</p>
+<p>In this simple game, you play as a young man. You fell asleep reading about castles and somehow wake up in one. Now find as much treasure as you can and rescue the princess!</p>
+<p>This solution is by David Welbourn, and is based on Release 1 (Serial number 190627) of the game.</p>
+<p style="margin: 1em; padding: 10px; background-color: whitesmoke; border: lightgray solid 1px; border-left: red solid 6px;"><strong>SPOILERS AHEAD.</strong> Reading a walkthrough prematurely can sometimes diminish one's enjoyment of an interactive fiction game. Please make an honest effort to play the game before reading this walkthrough.</p>
+</div>
+
+<ul>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#maps">Maps</a><ul>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#map1">Map 1: Castle Upper Level</a></li>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#map2">Map 2: Castle Ground Level</a></li>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#map3">Map 3: Castle Dungeons</a></li>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#map4">Map 4: Forest and Cave</a></li>
+</ul>
+</li>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#walk">Walkthrough</a></li>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#extras">Extras</a><ul>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#characters">Characters</a>, <a href="https://plover.net/~davidw/sol/e/encha19.html#endings">Endings</a>, <a href="https://plover.net/~davidw/sol/e/encha19.html#inventory">Inventory</a></li>
+</ul>
+</li>
+<li><a href="https://plover.net/~davidw/sol/e/encha19.html#patreon">Thank You to my Patreon supporters</a></li>
+<li>External links:<ul>
+<li>This game at <a href="https://ifdb.tads.org/viewgame?id=r5jlzvx3g5iijjm" rel="external">IFDB</a>, and <a href="http://www.ifwiki.org/index.php/The_Enchanted_Castle" rel="external">IFWiki</a>.</li>
+<li><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="&lt;Please enter your comment here&gt;" data-via="dswxyz" data-show-count="true">Tweet</a> about this walkthrough on Twitter.<script async="" src="./The-Enchanted-Castle_files/widgets.js.download" charset="utf-8"></script></li>
+</ul></li>
+</ul>
+<hr><h2 id="maps">Maps</h2>
+<h3 id="map1">Map 1: Castle Upper Level</h3>
+<svg id="myMap1" width="480" height="292" viewBox="0 0 480 292" style="border:1px dotted black;background-color:white;display:block;margin:1em auto;font-family:Arial,Helvetica,Tahoma,Geneva,sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <rect x="120" y="28" width="72" height="48" style="fill:steelblue;fill-opacity:0.5;"></rect>
+ <rect x="112" y="20" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="342" y="20" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="20" y="88" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="112" y="88" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="88" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="88" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="388" y="88" width="72" height="48" style="fill:white;stroke:black;stroke-width:1;stroke-dasharray:5,5;"></rect>
+ <rect x="20" y="156" width="72" height="48" style="fill:plum;stroke:black;stroke-width:1;"></rect>
+ <rect x="112" y="156" width="72" height="48" style="fill:plum;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="156" width="72" height="48" style="fill:plum;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="156" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="20" y="224" width="72" height="48" style="fill:burlywood;stroke:black;stroke-width:1;"></rect>
+ <rect x="212" y="232" width="72" height="48" style="fill:steelblue;fill-opacity:0.5;"></rect>
+ <rect x="204" y="224" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="224" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="396" y="232" width="72" height="48" style="fill:steelblue;fill-opacity:0.5;"></rect>
+ <rect x="388" y="224" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <g style="stroke:black;stroke-width:1;fill:none">
+  <path d="M148 68L148 88"></path>
+  <path d="M332 88L342 68"></path>
+  <path d="M424 88L414 68"></path>
+  <path d="M92 112L112 112"></path>
+  <path d="M184 112L204 112"></path>
+  <path d="M276 112L296 112"></path>
+  <path d="M56 136L56 156"></path>
+  <path d="M148 136L148 156"></path>
+  <path d="M240 136L240 156"></path>
+  <path d="M332 136L332 156"></path>
+  <path d="M56 204L56 224"></path>
+  <path d="M332 204L332 224"></path>
+  <path d="M276 248L296 248"></path>
+  <path d="M368 248L388 248"></path>
+ </g>
+ <g style="stroke:black;stroke-width:1;fill:black">
+  <polygon points="331.64,82.01 332,88 337.01,84.69"></polygon>
+  <polygon points="342.36,73.99 342,68 336.99,71.31"></polygon>
+  <polygon points="418.99,84.69 424,88 424.36,82.01"></polygon>
+  <polygon points="419.01,71.31 414,68 413.64,73.99"></polygon>
+  <polygon points="373.20,245.00 368,248 373.20,251.00"></polygon>
+  <polygon points="382.80,251.00 388,248 382.80,245.00"></polygon>
+ </g>
+ <g style="fill:black;text-anchor:start;">
+  <text x="426" y="84">u</text>
+  <text x="416" y="64">d</text>
+  <text x="370" y="244">u</text>
+ </g>
+ <g style="fill:black;text-anchor:end;">
+  <text x="330" y="84">d</text>
+  <text x="340" y="64">u</text>
+  <text x="386" y="260">d</text>
+ </g>
+ <a xlink:href="#map2"><text x="424" y="109.5" style="fill:black;font-style:italic;text-anchor:middle;">Bottom<tspan x="424" y="122.5">of Stairs</tspan></text></a>
+ <g style="fill:black;font-weight:bold;text-anchor:middle;">
+  <text x="148" y="41.5">Central<tspan x="148" y="54.5">Turret</tspan></text>
+  <text x="378" y="48">Stairway</text>
+  <text x="56" y="109.5">West<tspan x="56" y="122.5">Hallway</tspan></text>
+  <text x="148" y="109.5">Central<tspan x="148" y="122.5">Hallway</tspan></text>
+  <text x="240" y="109.5">East<tspan x="240" y="122.5">Hallway</tspan></text>
+  <text x="332" y="109.5">Top of<tspan x="332" y="122.5">Stairway</tspan></text>
+  <text x="56" y="177.5">King's<tspan x="56" y="190.5">Bedroom</tspan></text>
+  <text x="148" y="177.5">Queen's<tspan x="148" y="190.5">Bedroom</tspan></text>
+  <text x="240" y="177.5">Small<tspan x="240" y="190.5">Bedroom</tspan></text>
+  <text x="332" y="177.5">North-South<tspan x="332" y="190.5">Hallway</tspan></text>
+  <text x="56" y="245.5">King's<tspan x="56" y="258.5">Study</tspan></text>
+  <text x="240" y="252">Balcony</text>
+  <text x="332" y="245.5">South<tspan x="332" y="258.5">Hallway</tspan></text>
+  <text x="424" y="245.5">Southern<tspan x="424" y="258.5">Turret</tspan></text>
+ </g>
+</svg>
+<hr class="dashed"><h3 id="map2">Map 2: Castle Ground Level</h3>
+<svg id="myMap2" width="555" height="428" viewBox="0 0 555 428" style="border:1px dotted black;background-color:white;display:block;margin:1em auto;font-family:Arial,Helvetica,Tahoma,Geneva,sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <rect x="112" y="20" width="72" height="48" style="fill:burlywood;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="20" width="72" height="48" style="fill:gold;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="20" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="388" y="20" width="72" height="48" style="fill:white;stroke:black;stroke-width:1;stroke-dasharray:5,5;"></rect>
+ <rect x="112" y="88" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="88" width="72" height="82" style="fill:lime;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="88" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="112" y="156" width="72" height="48" style="fill:burlywood;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="190" width="72" height="82" style="fill:lime;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="156" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <rect x="388" y="156" width="72" height="48" style="fill:white;stroke:black;stroke-width:1;stroke-dasharray:5,5;"></rect>
+ <rect x="20" y="156" width="72" height="116" style="fill:palegoldenrod;stroke:black;stroke-width:1;"></rect>
+ <rect x="112" y="224" width="72" height="48" style="fill:burlywood;stroke:black;stroke-width:1;"></rect>
+ <ellipse cx="325" cy="248" rx="29" ry="29" style="fill:lavender;stroke:black;stroke-width:1;"></ellipse>
+ <rect x="204" y="292" width="72" height="48" style="fill:lime;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="292" width="72" height="48" style="fill:lime;stroke:black;stroke-width:1;"></rect>
+ <rect x="388" y="292" width="72" height="48" style="fill:tan;stroke:black;stroke-width:1;"></rect>
+ <rect x="480" y="292" width="55" height="48" style="fill:tan;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="360" width="72" height="48" style="fill:white;stroke:black;stroke-width:1;stroke-dasharray:5,5;"></rect>
+ <rect x="396" y="368" width="72" height="38" style="fill:black;fill-opacity:0.5;"></rect>
+ <rect x="388" y="360" width="72" height="38" style="fill:tan;stroke:black;stroke-width:1;"></rect>
+ <g style="stroke:black;stroke-width:1;fill:none">
+  <path d="M184 44L204 44"></path>
+  <path d="M276 44L296 44"></path>
+  <path d="M368 44L388 44"></path>
+  <path d="M148 68L148 88"></path>
+  <path d="M240 68L240 88"></path>
+  <path d="M332 68L332 88"></path>
+  <path d="M148 136L148 156"></path>
+  <path d="M332 136L332 156"></path>
+  <path d="M240 170L240 190"></path>
+  <path d="M368 180L388 180"></path>
+  <path d="M148 204L148 224"></path>
+  <path d="M92 248L112 248"></path>
+  <path d="M276 248L296 248"></path>
+  <path d="M240 272L240 292"></path>
+  <path d="M276 316L296 316"></path>
+  <path d="M368 316L388 316"></path>
+  <path d="M460 316L480 316"></path>
+  <path d="M240 340L240 360"></path>
+  <path d="M424 340L424 360"></path>
+ </g>
+ <g style="stroke:black;stroke-width:1;fill:black">
+  <polygon points="373.20,41.00 368,44 373.20,47.00"></polygon>
+  <polygon points="382.80,47.00 388,44 382.80,41.00"></polygon>
+  <polygon points="373.20,177.00 368,180 373.20,183.00"></polygon>
+  <polygon points="382.80,183.00 388,180 382.80,177.00"></polygon>
+  <polygon points="281.20,245.00 276,248 281.20,251.00"></polygon>
+  <polygon points="290.80,251.00 296,248 290.80,245.00"></polygon>
+  <polygon points="427.00,345.20 424,340 421.00,345.20"></polygon>
+  <polygon points="421.00,354.80 424,360 427.00,354.80"></polygon>
+ </g>
+ <g style="fill:black;text-anchor:start;">
+  <text x="370" y="40">u</text>
+  <text x="370" y="176">d</text>
+  <text x="278" y="244">in</text>
+  <text x="426" y="356">d</text>
+ </g>
+ <g style="fill:black;text-anchor:end;">
+  <text x="386" y="56">d</text>
+  <text x="386" y="192">u</text>
+  <text x="294" y="260">out</text>
+  <text x="422" y="352">u</text>
+ </g>
+ <g style="fill:black;font-style:italic;text-anchor:middle;">
+  <a xlink:href="#map1"><text x="424" y="48">Stairway</text></a>
+  <a xlink:href="#map3"><text x="424" y="177.5">Dungeon<tspan x="424" y="190.5">Entrance</tspan></text></a>
+  <a xlink:href="#map4"><text x="240" y="381.5">On the<tspan x="240" y="394.5">drawbridge</tspan></text></a>
+ </g>
+ <g style="fill:black;font-weight:bold;text-anchor:middle;">
+  <text x="148" y="41.5">Sword<tspan x="148" y="54.5">Room</tspan></text>
+  <text x="240" y="41.5">Throne<tspan x="240" y="54.5">Room</tspan></text>
+  <text x="332" y="41.5">Bottom<tspan x="332" y="54.5">of Stairs</tspan></text>
+  <text x="148" y="103">Western<tspan x="148" y="116">North-South</tspan><tspan x="148" y="129">Corridor</tspan></text>
+  <text x="240" y="126.5">Inner<tspan x="240" y="139.5">Court</tspan></text>
+  <text x="332" y="103">Eastern<tspan x="332" y="116">North-South</tspan><tspan x="332" y="129">Corridor</tspan></text>
+  <text x="148" y="184">Library</text>
+  <text x="240" y="228.5">Outer<tspan x="240" y="241.5">Court</tspan></text>
+  <text x="332" y="171">Lower<tspan x="332" y="184">South</tspan><tspan x="332" y="197">Hallway</tspan></text>
+  <text x="56" y="218">Ballroom</text>
+  <text x="148" y="245.5">Dining<tspan x="148" y="258.5">Room</tspan></text>
+  <text x="325" y="245.5">Inside<tspan x="325" y="258.5">Gazebo</tspan></text>
+  <text x="240" y="320">Gateway</text>
+  <text x="332" y="313.5">Garden<tspan x="332" y="326.5">Walk</tspan></text>
+  <text x="424" y="320">Stable</text>
+  <text x="507.5" y="313.5">Empty<tspan x="507.5" y="326.5">Stable</tspan></text>
+  <text x="424" y="383">Hayloft</text>
+ </g>
+</svg>
+<hr class="dashed"><h3 id="map3">Map 3: Castle Dungeons</h3>
+<svg id="myMap3" width="388" height="360" viewBox="0 0 388 360" style="border:1px dotted black;background-color:white;display:block;margin:1em auto;font-family:Arial,Helvetica,Tahoma,Geneva,sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <rect x="20" y="20" width="72" height="48" style="fill:gold;stroke:black;stroke-width:1;"></rect>
+ <rect x="112" y="20" width="72" height="48" style="fill:gold;stroke:black;stroke-width:1;"></rect>
+ <rect x="27" y="88" width="58" height="48" style="fill:darkkhaki;stroke:black;stroke-width:1;"></rect>
+ <rect x="119" y="88" width="58" height="48" style="fill:darkkhaki;stroke:black;stroke-width:1;"></rect>
+ <rect x="20" y="156" width="72" height="48" style="fill:darkkhaki;stroke:black;stroke-width:1;"></rect>
+ <rect x="112" y="156" width="72" height="48" style="fill:darkkhaki;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="156" width="72" height="48" style="fill:darkkhaki;stroke:black;stroke-width:1;"></rect>
+ <rect x="27" y="224" width="58" height="48" style="fill:darkkhaki;stroke:black;stroke-width:1;"></rect>
+ <rect x="119" y="224" width="58" height="48" style="fill:darkkhaki;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="224" width="72" height="48" style="fill:darkkhaki;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="224" width="72" height="48" style="fill:white;stroke:black;stroke-width:1;stroke-dasharray:5,5;"></rect>
+ <rect x="20" y="292" width="72" height="48" style="fill:gold;stroke:black;stroke-width:1;"></rect>
+ <rect x="112" y="292" width="72" height="48" style="fill:gold;stroke:black;stroke-width:1;"></rect>
+ <g style="stroke:black;stroke-width:1;fill:none">
+  <path d="M56 136L56 156"></path>
+  <path d="M148 136L148 156"></path>
+  <path d="M92 180L112 180"></path>
+  <path d="M184 180L204 180"></path>
+  <path d="M56 204L56 224"></path>
+  <path d="M148 204L148 224"></path>
+  <path d="M240 204L240 224"></path>
+  <path d="M276 248L296 248"></path>
+ </g>
+ <g style="stroke:black;stroke-width:1;stroke-dasharray:2,2;fill:none">
+  <path d="M56 68L56 88"></path>
+  <path d="M148 68L148 88"></path>
+  <path d="M56 272L56 292"></path>
+  <path d="M148 272L148 292"></path>
+ </g>
+ <g style="stroke:black;stroke-width:1;fill:black">
+  <polygon points="281.20,245.00 276,248 281.20,251.00"></polygon>
+  <polygon points="290.80,251.00 296,248 290.80,245.00"></polygon>
+ </g>
+ <text x="278" y="244" style="fill:black;text-anchor:start;">u</text>
+ <a xlink:href="#map2"><text x="332" y="239" style="fill:black;font-style:italic;text-anchor:middle;">Lower<tspan x="332" y="252">South</tspan><tspan x="332" y="265">Hallway</tspan></text></a>
+ <text x="294" y="260" style="fill:black;text-anchor:end;">d</text>
+ <g style="fill:black;font-weight:bold;text-anchor:middle;">
+  <text x="56" y="41.5">Treasure<tspan x="56" y="54.5">Room?</tspan></text>
+  <text x="148" y="41.5">Treasure<tspan x="148" y="54.5">Room?</tspan></text>
+  <text x="56" y="109.5">Dungeon<tspan x="56" y="122.5">Cell</tspan></text>
+  <text x="148" y="109.5">Dungeon<tspan x="148" y="122.5">Cell</tspan></text>
+  <text x="56" y="184">Dungeon</text>
+  <text x="148" y="184">Dungeon</text>
+  <text x="240" y="184">Dungeon</text>
+  <text x="56" y="245.5">Dungeon<tspan x="56" y="258.5">Cell</tspan></text>
+  <text x="148" y="245.5">Dungeon<tspan x="148" y="258.5">Cell</tspan></text>
+  <text x="240" y="245.5">Dungeon<tspan x="240" y="258.5">Entrance</tspan></text>
+  <text x="56" y="313.5">Treasure<tspan x="56" y="326.5">Room?</tspan></text>
+  <text x="148" y="313.5">Treasure<tspan x="148" y="326.5">Room?</tspan></text>
+ </g>
+</svg>
+<p>The treasure room is accessed from a random dungeon cell. You must consult the in-game map to learn which it is.</p>
+<hr class="dashed"><h3 id="map4">Map 4: Forest and Cave</h3>
+<svg id="myMap4" width="766" height="360" viewBox="0 0 766 360" style="border:1px dotted black;background-color:white;display:block;margin:1em auto;font-family:Arial,Helvetica,Tahoma,Geneva,sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <rect x="204" y="20" width="72" height="48" style="fill:white;stroke:black;stroke-width:1;stroke-dasharray:5,5;"></rect>
+ <rect x="204" y="88" width="72" height="48" style="fill:tan;stroke:black;stroke-width:1;"></rect>
+ <rect x="20" y="156" width="72" height="48" style="fill:yellowgreen;stroke:black;stroke-width:1;"></rect>
+ <rect x="112" y="156" width="72" height="48" style="fill:limegreen;stroke:black;stroke-width:1;"></rect>
+ <rect x="204" y="156" width="72" height="48" style="fill:limegreen;stroke:black;stroke-width:1;"></rect>
+ <path d="M480 180Q480 156 516 156L552 156L552 180L552 204L516 204L480 204Z" style="fill:black;stroke:black;stroke-width:1;"></path>
+ <path d="M582 180L582 156L618 156Q654 156 654 180L654 204L618 204L582 204Z" style="fill:black;stroke:black;stroke-width:1;"></path>
+ <rect x="204" y="224" width="72" height="48" style="fill:limegreen;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="224" width="72" height="48" style="fill:limegreen;stroke:black;stroke-width:1;"></rect>
+ <path d="M388 248Q388 224 424 224L460 224L460 248L460 272L424 272L388 272Z" style="fill:black;stroke:black;stroke-width:1;"></path>
+ <rect x="480" y="224" width="72" height="48" style="fill:black;stroke:black;stroke-width:1;"></rect>
+ <rect x="582" y="224" width="72" height="48" style="fill:black;stroke:black;stroke-width:1;"></rect>
+ <rect x="674" y="224" width="72" height="48" style="fill:black;stroke:black;stroke-width:1;"></rect>
+ <rect x="296" y="292" width="72" height="48" style="fill:limegreen;stroke:black;stroke-width:1;"></rect>
+ <rect x="388" y="292" width="72" height="48" style="fill:lightgray;stroke:black;stroke-width:1;"></rect>
+ <path d="M480 316L480 292L516 292L552 292L552 316L552 340L516 340Q480 340 480 316Z" style="fill:black;stroke:black;stroke-width:1;"></path>
+ <path d="M582 316L582 292L618 292L654 292L654 316Q654 340 618 340L582 340Z" style="fill:black;stroke:black;stroke-width:1;"></path>
+ <g style="stroke:black;stroke-width:1;fill:none">
+  <path d="M240 68L240 88"></path>
+  <path d="M240 136L240 156"></path>
+  <path d="M92 180L112 180"></path>
+  <path d="M184 180L204 180"></path>
+  <path d="M552 180L552 180Q562 180 566.138029443012 189.103664774626L582 224"></path>
+  <path d="M582 180L582 180Q572 180 567.861970556988 189.103664774626L552 224"></path>
+  <path d="M240 204L240 224"></path>
+  <path d="M516 204L516 224"></path>
+  <path d="M618 204L618 224"></path>
+  <path d="M276 248L296 248"></path>
+  <path d="M460 248L480 248"></path>
+  <path d="M654 248L674 248"></path>
+  <path d="M332 272L332 292"></path>
+  <path d="M424 272L424 292"></path>
+  <path d="M516 272L516 292"></path>
+  <path d="M618 272L618 292"></path>
+  <path d="M368 316L388 316"></path>
+  <path d="M552 316L552 316Q562 316 566.138029443012 306.896335225374L582 272"></path>
+  <path d="M582 316L582 316Q572 316 567.861970556988 306.896335225374L552 272"></path>
+ </g>
+ <g style="stroke:black;stroke-width:1;fill:black">
+  <polygon points="577.12,220.51 582,224 582.58,218.03"></polygon>
+  <polygon points="551.42,218.03 552,224 556.88,220.51"></polygon>
+  <polygon points="582.58,277.97 582,272 577.12,275.49"></polygon>
+  <polygon points="556.88,275.49 552,272 551.42,277.97"></polygon>
+ </g>
+ <a xlink:href="#map2"><text x="240" y="48" style="fill:black;font-style:italic;text-anchor:middle;">Gateway</text></a>
+ <g style="fill:black;font-weight:bold;text-anchor:middle;">
+  <text x="240" y="109.5">On the<tspan x="240" y="122.5">drawbridge</tspan></text>
+  <text x="56" y="184">Clearing</text>
+  <text x="148" y="177.5">Forest<tspan x="148" y="190.5">Path</tspan></text>
+  <text x="240" y="177.5">Forest<tspan x="240" y="190.5">Path</tspan></text>
+  <text x="240" y="245.5">Forest<tspan x="240" y="258.5">Path</tspan></text>
+  <text x="332" y="245.5">Forest<tspan x="332" y="258.5">Path</tspan></text>
+  <text x="332" y="313.5">Forest<tspan x="332" y="326.5">End</tspan></text>
+  <text x="424" y="313.5">Cave<tspan x="424" y="326.5">Entrance</tspan></text>
+ </g>
+ <g style="fill:white;font-weight:bold;text-anchor:middle;">
+  <text x="516" y="177.5">South-East<tspan x="516" y="190.5">Bend</tspan></text>
+  <text x="618" y="177.5">South-West<tspan x="618" y="190.5">Bend</tspan></text>
+  <text x="424" y="252">Cave</text>
+  <text x="516" y="245.5">Cavern<tspan x="516" y="258.5">Split</tspan></text>
+  <text x="618" y="245.5">Inner<tspan x="618" y="258.5">Cavern</tspan></text>
+  <text x="710" y="245.5">Dragon's<tspan x="710" y="258.5">Nest</tspan></text>
+  <text x="516" y="313.5">North-East<tspan x="516" y="326.5">Bend</tspan></text>
+  <text x="618" y="313.5">North-West<tspan x="618" y="326.5">Bend</tspan></text>
+ </g>
+</svg>
+<hr><h2 id="walk">Walkthrough</h2>
+<p class="rm">Small Bedroom</p>
+<p class="com">Note that the premise of this game — find treasure and rescue the princess — isn't mentioned in the game itself, but only on the game's IFDB page.</p>
+<p class="com">Also, there's no score, and there's nothing you need to do with any treasure you find, so it's hard to tell if you're accomplishing anything at all. So in this walkthrough, let's just take everything that we can (whether we need it or not) and say that the player with the most inventory at the end wins the most, okay?</p>
+<p class="in"><samp>&gt; <kbd>x bed. n. e. s.</kbd></samp></p>
+<p class="rm">North/South Hallway</p>
+<p class="in"><samp>&gt; <kbd>x torches. s. w.</kbd></samp></p>
+<p class="rm">Balcony</p>
+<p class="in"><samp>&gt; <kbd>x binoculars. take it.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>look through binoculars.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>e. u.</kbd></samp></p>
+<p class="rm">Southern Turret</p>
+<p class="in"><samp>&gt; <kbd>look through binoculars.</kbd></samp> <i>(see cave beyond forest)</i></p>
+<p class="in"><samp>&gt; <kbd>d. n. n. d.</kbd></samp></p>
+<p class="rm">Stairway</p>
+<p class="in"><samp>&gt; <kbd>x tapestry. take it.</kbd></samp> <i>(a paper falls)</i></p>
+<p class="in"><samp>&gt; <kbd>take paper. x it.</kbd></samp></p>
+<p class="com">It's a map. Note which corner of the dungeon has the X; it's randomized.</p>
+<p class="in"><samp>&gt; <kbd>d. w.</kbd></samp></p>
+<p class="rm">Throne Room</p>
+<p class="com">As you enter, the court jester gives you a box. He's gone.</p>
+<p class="com">CAUTION: Don't open the box until you're in the correct location.</p>
+<p class="in"><samp>&gt; <kbd>x box. x ribbon. x tag.</kbd></samp> <i>("Explosive!")</i></p>
+<p class="in"><samp>&gt; <kbd>x king's throne. x queen's throne.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>w.</kbd></samp></p>
+<p class="rm">Sword Room</p>
+<p class="in"><samp>&gt; <kbd>x case. x sword. take sword.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>s. s.</kbd></samp></p>
+<p class="rm">Library</p>
+<p class="com">I wish the book actually told you something about the king and the kingdom, but it doesn't.</p>
+<p class="in"><samp>&gt; <kbd>x bookshelf. x book. take it.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>s.</kbd></samp></p>
+<p class="rm">Dining Room</p>
+<p class="com">CAUTION: If you eat the food, you'll teleport to a random location. Try it if you must, then <kbd>UNDO</kbd> so you're back here.</p>
+<p class="in"><samp>&gt; <kbd>x tables. x plate. x food. take food.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>w.</kbd></samp></p>
+<p class="rm">Ballroom</p>
+<p class="in"><samp>&gt; <kbd>x chandelier. x candle. take wand.</kbd></samp></p>
+<p class="com">Head all the way back upstairs and explore the western half.</p>
+<p class="in"><samp>&gt; <kbd>e. n. n. n. e. e. u. u. e. e. n.</kbd></samp></p>
+<p class="rm">Central Turret</p>
+<p class="in"><samp>&gt; <kbd>look through binoculars.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>s. s.</kbd></samp></p>
+<p class="rm">Queen's Bedroom</p>
+<p class="in"><samp>&gt; <kbd>x window.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>n. w. s.</kbd></samp></p>
+<p class="rm">King's Bedroom</p>
+<p class="com">You must have the sword to be able to attack the king.</p>
+<p class="in"><samp>&gt; <kbd>x king. kill king.</kbd></samp></p>
+<p class="com">"You fight well, my son." Then he vanishes. Was he a ghost? Or did he teleport away?</p>
+<p class="com">And are you really his son? Or is he welcoming you into his family as his son-in-law? It's open to interpretation.</p>
+<p class="in"><samp>&gt; <kbd>s.</kbd></samp></p>
+<p class="rm">King's Study</p>
+<p class="in"><samp>&gt; <kbd>x desk. x ring. take it. wear it.</kbd></samp></p>
+<p class="com">Now head for the dungeon. The stairs down are in the southeast corner from the ground level.</p>
+<p class="in"><samp>&gt; <kbd>n. n. e. e. e. d. d. s. s. d.</kbd></samp></p>
+<p class="rm">Dungeon Entrance</p>
+<p class="com">Read the map again if you've forgotten and go to the indicated corner.</p>
+<ul>
+<li>To northwest corner: <samp>&gt; <kbd>n. w. w. n.</kbd></samp></li>
+<li>To northeast corner: <samp>&gt; <kbd>n. w. n.</kbd></samp></li>
+<li>To southwest corner: <samp>&gt; <kbd>n. w. w. s.</kbd></samp></li>
+<li>To southeast corner: <samp>&gt; <kbd>n. w. s.</kbd></samp></li>
+</ul>
+<p class="rm">Dungeon Cell <i>(appropriate corner)</i></p>
+<p class="in"><samp>&gt; <kbd>x shackles.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>open box. look.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>n</kbd></samp> —<i>or</i>— <samp><kbd>s.</kbd></samp> <i>(as appropriate for the new passageway)</i></p>
+<p class="rm">Treasure Room</p>
+<p class="in"><samp>&gt; <kbd>x treasure. x crown. x chalice. x necklace. x sac.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>take all.</kbd></samp></p>
+<p class="com">Return to the dungeon entrance:</p>
+<ul>
+<li>From northwest corner: <samp>&gt; <kbd>s. s. e. e. s.</kbd></samp></li>
+<li>From northeast corner: <samp>&gt; <kbd>s. s. e. s.</kbd></samp></li>
+<li>From southwest corner: <samp>&gt; <kbd>n. n. e. e. s.</kbd></samp></li>
+<li>From southeast corner: <samp>&gt; <kbd>n. n. e. s.</kbd></samp></li>
+</ul>
+<p class="rm">Dungeon Entrance</p>
+<p class="com">From here, return to the throne room then head south:</p>
+<p class="in"><samp>&gt; <kbd>u. n. n. w. s.</kbd></samp></p>
+<p class="rm">Inner Court</p>
+<p class="in"><samp>&gt; <kbd>x fountain. x statue. x staff. x jewel.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>take staff. s.</kbd></samp></p>
+<p class="rm">Outer Court</p>
+<p class="in"><samp>&gt; <kbd>x gazebo. enter it.</kbd></samp></p>
+<p class="rm">Inside Gazebo</p>
+<p class="in"><samp>&gt; <kbd>x bench. x pot. x flowers.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>take pot.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>out. s.</kbd></samp></p>
+<p class="rm">Gateway</p>
+<p class="in"><samp>&gt; <kbd>x drawbridge. x crank. turn crank.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>e. e. e.</kbd></samp></p>
+<p class="rm">Empty Stable</p>
+<p class="in"><samp>&gt; <kbd>take shovel. w. u.</kbd></samp></p>
+<p class="rm">Hayloft</p>
+<p class="in"><samp>&gt; <kbd>x lantern. take it.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>d. w. w. s.</kbd></samp></p>
+<p class="rm">On the drawbridge</p>
+<p class="in"><samp>&gt; <kbd>x moat. s.</kbd></samp></p>
+<p class="rm">Forest Path <i>(near drawbridge)</i></p>
+<p class="in"><samp>&gt; <kbd>x trees. w. w.</kbd></samp></p>
+<p class="rm">Clearing</p>
+<p class="in"><samp>&gt; <kbd>search leaves. x lamp. take lamp.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>rub lamp.</kbd></samp> <i>(Merlin says to wake him up later.)</i></p>
+<p class="com">Now head for the cave:</p>
+<p class="in"><samp>&gt; <kbd>e. e. s. e. s. e.</kbd></samp></p>
+<p class="rm">Cave Entrance</p>
+<p class="com">You'll need the light of the lantern to see past this point.</p>
+<p class="in"><samp>&gt; <kbd>n. e. n. e.</kbd></samp></p>
+<p class="rm">Inner Cavern</p>
+<p class="com">CAUTION: Once you enter the dragon's nest, you can't leave until the dragon's dead. Make sure you have the sword.</p>
+<p class="in"><samp>&gt; <kbd>save.</kbd></samp></p>
+<p class="in"><samp>&gt; <kbd>e.</kbd></samp></p>
+<p class="rm">Dragon's Nest</p>
+<p class="com">The dragon breathes fire, decreasing your health by 2 to 3 units of something!</p>
+<p class="com">The damage that both the dragon and you do is randomized. I'm going to assume you win the battle, but if you don't, <kbd>UNDO</kbd> or <kbd>RESTORE</kbd> and try again until you do win.</p>
+<p class="in"><samp>&gt; <kbd>kill dragon. g. g. g. g.</kbd></samp> <i>(Repeat attacking until the dragon is dead.)</i></p>
+<p class="in"><samp>&gt; <kbd>dig box with shovel. x box.</kbd></samp> <i>(It's a treasure chest.)</i></p>
+<p class="in"><samp>&gt; <kbd>x marking. open chest.</kbd></samp> <i>(locked)</i></p>
+<p class="in"><samp>&gt; <kbd>take chest.</kbd></samp> <i>(It's too heavy.)</i></p>
+<p class="in"><samp>&gt; <kbd>unlock chest with ring.</kbd></samp> <i>(this works!)</i></p>
+<p class="in"><samp>&gt; <kbd>open chest. x doll. take it.</kbd></samp></p>
+<p class="com">Return to the throne room:</p>
+<p class="in"><samp>&gt; <kbd>w. n. w. w. s. w. n. w. n. n. n. n. n. n.</kbd></samp></p>
+<p class="rm">Throne Room</p>
+<p class="com">You must be carrying both the doll and the wand for this to work.</p>
+<p class="in"><samp>&gt; <kbd>rub lamp.</kbd></samp> <i>(Merlin turns the doll into a princess.)</i></p>
+<p class="in"><samp>&gt; <kbd>x princess.</kbd></samp></p>
+<p class="com">Unfortunately, the princess says absolutely nothing, not even her name. Awkward. Perhaps she needs time to recover from her ordeal as a literal plaything. Can we at least assume she's an adult and likes you?</p>
+<p class="com">By the way, if you wander, the princess will follow you wherever you go, but this is where you want to be.</p>
+<p class="in"><samp>&gt; <kbd>sit on king's throne.</kbd></samp></p>
+<p class="end"><samp>*** You and the princess sit on the thrones taking your place as king and queen. ***</samp></p>
+<p class="com">Forget about whatever life you had before. This is your new home now, <u>son</u>.</p>
+<hr><h2 id="extras">Extras</h2>
+<h3 id="characters">Characters</h3>
+<ul>
+<li>The <b>king</b> is in his bedroom. He orders you to defend yourself!</li>
+<li>The <b>court jester</b> makes a brief appearance in the throne book to give you a gift-wrapped explosive.</li>
+<li><b>Merlin the Sorcerer</b> can be summoned by rubbing the magic lamp.</li>
+<li>A <b>fire-breathing dragon</b> attacks you if you dare invade its nest!</li>
+<li>The <b>princess</b> must be found, but where could she be?</li>
+<li>A <b>grue</b> may eat you if you persist in wandering in dark caves without any source of light.</li>
+</ul>
+<p>Mentioned:</p>
+<ul>
+<li>The <b>queen</b> seems to be no longer in residence.</li>
+</ul>
+<hr class="dashed"><h3 id="endings">Endings</h3>
+<ul>
+<li><samp><b>Ignoring the warning, you continue in darkness and are attacked by a grue and eaten alive.</b></samp></li>
+<ul>
+<li>if you persist in wandering in dark caves without the lantern.</li>
+</ul>
+<li><samp><b>The End</b></samp></li>
+<ul>
+<li>if the dragon succeeds in killing you.</li>
+</ul>
+<li><samp><b> You and the princess sit on the thrones taking your place as king and queen.</b></samp></li>
+<ul>
+<li>if you sit on the king's throne when the princess is with you.</li>
+</ul>
+</ul>
+<hr class="dashed"><h3 id="inventory">Inventory</h3>
+<ul>
+<li>a <b>pair of binoculars</b>. It's on the balcony.</li>
+<ul>
+<li>To use them, <kbd>look through binoculars</kbd>. Unfortunately, this is only vaguely useful while on the southern turret.</li>
+</ul>
+<li>a <b id="map_item">map</b>. Find it by trying to <kbd>take</kbd> the tapestry on the stairway.</li>
+<ul>
+<li>Examine the map; it's a map of the dungeons. Note which dungeon cell is marked with an X; that's the cell that's adjacent to a hidden treasure room.</li>
+</ul>
+<li>a <b>box</b>. The court jester gives it to you when you first enter the throne room.</li>
+<ul>
+<li>Opening the box makes it explode. You are not damaged, but obviously you can only do this once.</li>
+<li>Open the box in the dungeon cell indicated by the <a href="https://plover.net/~davidw/sol/e/encha19.html#map_item">map</a> to reveal the way to the treasure room.</li>
+<li>Note: The explosion has no effect on the king or the dragon anymore than it does on you.</li>
+</ul>
+<li>a <b id="sword">King's sword</b>. It's in the display case in the sword room.</li>
+<ul>
+<li>This is the only weapon in the game. </li>
+<li>Attack the king in his bedroom with the sword. He will compliment you, call you his "son", and vanish.</li>
+<li>Attack the dragon in his nest repeatedly with the sword until the dragon is dead.</li>
+</ul>
+<li>a <b>book</b>. It's on the bookshelf in the library.</li>
+<ul>
+<li>It's a history of the king, but unfortunately you can't really read it or learn anything from it.</li>
+</ul>
+<li>a <b>morsel of food</b>. It's on the plate in the dining room.</li>
+<ul>
+<li>Eating the food teleports you to a random location. This isn't really helpful, except in reinforcing the idea that this is an enchanted castle where anything might be magical.</li>
+<li>By the way, if you teleport while the princess is following you, the princess is not teleported, but she will attempt to walk to your new location until you're reunited.</li>
+</ul>
+<li>a <b id="wand">magic wand</b>. It's the "unlit candle" in the ballroom's chandelier.</li>
+<ul>
+<li>Although you can wave the wand, nothing ever happens when you try.</li>
+<li>This is actually Merlin's wand. If you're carrying both the wand and the <a href="https://plover.net/~davidw/sol/e/encha19.html#doll">princess doll</a> when you rub the magic lamp, Merlin will take his wand from you and turn the doll into a real princess.</li>
+</ul>
+<li>a <b>king's staff</b>. It's held by the fountain's statue in the inner court.</li>
+<ul>
+<li>It's not a weapon. It contains a jewel.</li>
+</ul>
+<li>a <b>jewel</b>. It's embedded in the king's staff.</li>
+<ul>
+<li>I suppose this is treasure? You can take it from the staff and put it back in. Nice.</li>
+</ul>
+<li>a <b>flower pot</b>. It's on the bench inside the gazebo.</li>
+<ul>
+<li>They contain flowers, but otherwise, you may ignore the flower pot.</li>
+</ul>
+<li>some <b>flowers</b>. They're in the flower pot.</li>
+<ul>
+<li>You may ignore the flowers or take them out from the pot. It's up to you!</li>
+</ul>
+<li>a <b id="shovel">shovel</b>. It's in the empty stable.</li>
+<ul>
+<li>In the dragon's nest after the dragon is slain, dig the wooden box with the shovel. The box is revealed to be a treasure chest.</li>
+</ul>
+<li>a <b>lantern</b>. It's in the hayloft.</li>
+<ul>
+<li>It's already lit. Its light lets you see in the dark caves.</li>
+</ul>
+<li>the <b>king's treasure</b>. It's in the treasure room.</li>
+<ul>
+<li>These are the coins that were mentioned there. It was the king's most generic treasure and now it's all yours!</li>
+</ul>
+<li>the <b>king's crown</b>. It's in the treasure room.</li>
+<ul>
+<li>It's treasure. You may wear it.</li>
+</ul>
+<li>a <b>chalice</b>. It's in the treasure room.</li>
+<ul>
+<li>It's treasure. You can't fill it with anything.</li>
+</ul>
+<li>a <b>diamond necklace</b>. It's in the treasure room.</li>
+<ul>
+<li>It's treasure. Alas, you cannot wear it.</li>
+</ul>
+<li>a <b>sac</b>. It's in the treasure room.</li>
+<ul>
+<li>You can put your inventory into it, but since there's no carrying capacity restrictions, you don't need to use the sac at all.</li>
+</ul>
+<li>a <b id="lamp">magic lamp</b>. Find it by searching the leaves in the clearing.</li>
+<ul>
+<li>When you have both the magic wand and the princess doll, rub the lamp. Merlin will appear, take the wand from you, and transform the doll into a real princess.</li>
+<li>After you've found the princess, rubbing the lamp no longer summons Merlin.</li>
+</ul>
+<li>an <b id="ring">insignia ring</b>. It's on the desk in the king's study.</li>
+<ul>
+<li>You may wear the ring. In the dragon's nest, unlock the treasure chest with the ring.</li>
+</ul>
+<li>a <b id="doll">princess doll</b>. It's in the treasure chest in the dragon's nest.</li>
+<ul>
+<li>To find the doll, you'll first need to kill the dragon (see <a href="https://plover.net/~davidw/sol/e/encha19.html#sword">sword</a>), dig the wooden box (see <a href="https://plover.net/~davidw/sol/e/encha19.html#shovel">shovel</a>), and unlock the chest (see <a href="https://plover.net/~davidw/sol/e/encha19.html#ring">ring</a>).</li>
+<li>While carrying both the doll and the <a href="https://plover.net/~davidw/sol/e/encha19.html#wand">magic wand</a>, rub the <a href="https://plover.net/~davidw/sol/e/encha19.html#lamp">magic lamp</a>. Merlin will appear, take the wand from you, and transform the doll into a real princess.</li>
+<li>The princess doesn't talk, accept gifts, or respond to orders, but she will follow you everywhere you go.</li>
+<li>In the throne room, sit on the king's throne while the princess is there to win the game.</li>
+</ul>
+</ul>
+<hr><h2 id="patreon">Thank You to my Patreon supporters</h2>
+<p>This walkthrough was funded via <a href="http://patreon.com/dswxyz">Patreon</a> with</p>
+<ul><li>the support of Robin Johnson, Ville Lavonius, Andrew Schultz, Kenneth Hon, Carl Muckenhoupt, Mark Musante, and Phil Tatro;</li>
+<li>the generous support of Janice M Eisen and Matthew Foxley;</li>
+<li>the <strong>very generous</strong> support of <a href="https://www.patreon.com/user?u=2876970" rel="external">Karl Ove Hufthammer</a>;</li>
+<li>the <strong><i>extremely generous</i></strong> support of <a href="http://www.patreon.com/user?u=37617" rel="external">Emily Short</a>, <a href="https://www.patreon.com/user?u=132863" rel="external">Allen Garvin</a>, <a href="https://www.patreon.com/user?u=132952" rel="external">Jesse McGrew</a>, <a href="http://www.patreon.com/user?u=132816" rel="external">Jacqueline Ashwell</a>, <a href="http://www.patreon.com/user?u=130250" rel="external">Marius Müller</a>, and <a href="https://www.patreon.com/user?u=130271" rel="external">Jennifer Rexrode</a>;</li>
+<li>and the invisible support of several anonymous patrons.</li>
+</ul>
+<footer>
+<hr style="clear:both; margin-top:1em;">
+<div style="text-align:center;font-size:small">
+ <a href="https://plover.net/~davidw/sol/index.html">IF Works</a>
+ <details style="float:left"><summary>Last updated: 28 Jul 2020</summary><ul><li>2020-07-28: Walkthrough first published.</li></ul></details>
+ <span style="float:right">davidwelbourn(a)hotmail*com</span>
+</div>
+</footer>
+
+
+
+</body></html>
